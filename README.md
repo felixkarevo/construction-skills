@@ -58,6 +58,7 @@ These cost real debugging time and are now documented in [`skills/architecture-f
 - Hand-setting a `Window`/`Door` object's `Normal` property (to fix a plan-view swing-symbol direction) corrupts its internal shape rebuild (`ValueError: Null shape` in `ArchWindow.buildShapes`) — that property isn't meant to be overridden directly.
 - An unconstrained FEM mesh on a large, thin cantilevered member (like a chajja/sunshade) can generate hundreds of thousands of elements and hang the solver indefinitely with no clean cancel path — always cap `CharacteristicLengthMax` explicitly for thin members.
 - `Arch.makeRebar`'s default 30mm `OffsetStart`/`OffsetEnd`, plus a closed stirrup's own bar radius poking past a flush end, can make correctly-placed rebar fail a naive bounding-box containment check — the tolerance needs to account for bar diameter, not just a flat few-mm margin.
+- A `Door`/`Window` object's `Base` sketch `Placement` has **zero effect** on the built 3D shape — only the object's own `Placement` does. A door "fixed" by reverting a crash-causing `Normal` property back to its default can still build lying flat (like a downward-facing skylight) instead of standing upright in its wall opening — always re-verify with `Shape.BoundBox` against the actual `Void_*` opening, not just "no longer null."
 
 ## ⚠️ Reality check — read this before building anything from this repo
 
