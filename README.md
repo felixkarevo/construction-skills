@@ -57,6 +57,7 @@ These cost real debugging time and are now documented in [`skills/architecture-f
 - `Arch.makeStairs`'s `length`/`width` map to local X/Y in a way that depends on the rotation applied — verify every flight's `Shape.BoundBox` immediately after placement rather than trusting the parameters.
 - Hand-setting a `Window`/`Door` object's `Normal` property (to fix a plan-view swing-symbol direction) corrupts its internal shape rebuild (`ValueError: Null shape` in `ArchWindow.buildShapes`) — that property isn't meant to be overridden directly.
 - An unconstrained FEM mesh on a large, thin cantilevered member (like a chajja/sunshade) can generate hundreds of thousands of elements and hang the solver indefinitely with no clean cancel path — always cap `CharacteristicLengthMax` explicitly for thin members.
+- `Arch.makeRebar`'s default 30mm `OffsetStart`/`OffsetEnd`, plus a closed stirrup's own bar radius poking past a flush end, can make correctly-placed rebar fail a naive bounding-box containment check — the tolerance needs to account for bar diameter, not just a flat few-mm margin.
 
 ## ⚠️ Reality check — read this before building anything from this repo
 
