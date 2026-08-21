@@ -60,6 +60,19 @@ These cost real debugging time and are now documented in [`skills/architecture-f
 - `Arch.makeRebar`'s default 30mm `OffsetStart`/`OffsetEnd`, plus a closed stirrup's own bar radius poking past a flush end, can make correctly-placed rebar fail a naive bounding-box containment check — the tolerance needs to account for bar diameter, not just a flat few-mm margin.
 - A `Door`/`Window` object's `Base` sketch `Placement` has **zero effect** on the built 3D shape — only the object's own `Placement` does. A door "fixed" by reverting a crash-causing `Normal` property back to its default can still build lying flat (like a downward-facing skylight) instead of standing upright in its wall opening — always re-verify with `Shape.BoundBox` against the actual `Void_*` opening, not just "no longer null."
 
+## What's not done yet (help wanted)
+
+This is a genuine work-in-progress, not a finished showcase. Concrete open items, most load-bearing first:
+
+- **27 lintels and 10 decorative fascias/fins have zero reinforcement modeled.** Every tie column (14/14), footing (9/9), and tie beam (16/16) is reinforced and BoundBox-verified — lintels and decorative elements are not yet.
+- **FEM verification covers only ~4-6 of roughly 90 structural members.** The rest are sized by ACI 318-19 minimum-steel ratios and hand calculation only — not solver-confirmed. Widening this coverage is the single highest-value contribution someone could make.
+- **Foundation upsizing for a hypothetical future G+4 (4-storey) addition is calculated but deliberately not applied** — it's a real cost trade-off (bigger footings/columns now, for a floor that may never be built) that needs an owner's explicit decision, not a default.
+- **MEP is schematic, not coordinated.** Water supply/drainage routing runs in straight lines, not through real wall chases or ceiling voids. There's no electrical conduit/wire geometry at all — no FreeCAD Arch tool exists for it in this version, so it's a text schedule only.
+- **A real, documented naming defect**: `Wall_GF_West` (and its 1F equivalent) is actually the compass-**north**-facing wall; `Wall_GF_East_Party` is actually south. Geometrically correct, just confusingly labeled — never renamed.
+- **Two verification bugs were found and fixed *this session*** (doors built lying flat instead of standing in their openings; a rebar bounding-box check that needed a bar-diameter-aware tolerance) — both are documented in the gotchas list and `docs/WORK_LOG.md`, precisely so the next contributor doesn't have to rediscover them, and as an honest signal that earlier "verified" claims in this project's own history have needed re-checking more than once.
+
+If you extend this model or catch something wrong with it, that's exactly the kind of contribution this repo is asking for — see [Contributing](#contributing) below.
+
 ## ⚠️ Reality check — read this before building anything from this repo
 
 **Nothing in this repository is construction-ready.** Every structural member size, reinforcement schedule, and material spec here is a **conceptual/preliminary design aid**, not an engineering deliverable. Before any of this is used to build a real, occupied building:
