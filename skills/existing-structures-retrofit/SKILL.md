@@ -31,6 +31,14 @@ description: >
 
 # Existing Structures & Retrofit (Bauen im Bestand) — DACH Practice Skill
 
+> **Simple-first gate (governs how this skill is applied).** Default every choice here to
+> the *simplest proven* solution at the agreed standard tier — see the governing skill
+> `simple-first-building` (complexity ladder §1). Escalate to more demanding construction
+> (innovative systems, one-off details, higher comfort tiers) only when the client
+> **explicitly** asks for it, with cost/schedule impact stated; deviate **below** the usual
+> standard or the aarRdT only via the documented risk-acceptance machinery
+> (`simple-first-building` §3) — public permission never cures the private default.
+
 Agent-neutral procedure skill for assessing, re-checking and strengthening existing
 buildings (and for deciding *whether* to), under the German-language regulatory and
 normative framework. German terms are kept in parentheses because inventories,

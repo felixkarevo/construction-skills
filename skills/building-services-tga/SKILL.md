@@ -44,6 +44,14 @@ description: >
 
 # Building Services Engineering (Technische Gebäudeausrüstung, TGA) — DACH Practice Skill
 
+> **Simple-first gate (governs how this skill is applied).** Default every choice here to
+> the *simplest proven* solution at the agreed standard tier — see the governing skill
+> `simple-first-building` (complexity ladder §1). Escalate to more demanding construction
+> (innovative systems, one-off details, higher comfort tiers) only when the client
+> **explicitly** asks for it, with cost/schedule impact stated; deviate **below** the usual
+> standard or the aarRdT only via the documented risk-acceptance machinery
+> (`simple-first-building` §3) — public permission never cures the private default.
+
 MEP on a German house or office is not one discipline — it is seven (heating, cooling, ventilation, DHW,
 cold water, drainage, electrical) plus conveyances, and each has its own rulebook (DIN, DVGW, VDE, GEG).
 They collide with each other, with the structure, and with the acoustic and fire-compartment concept.

@@ -21,6 +21,14 @@ description: >
 
 # Building Acoustics (Schallschutz + Raumakustik)
 
+> **Simple-first gate (governs how this skill is applied).** Default every choice here to
+> the *simplest proven* solution at the agreed standard tier — see the governing skill
+> `simple-first-building` (complexity ladder §1). Escalate to more demanding construction
+> (innovative systems, one-off details, higher comfort tiers) only when the client
+> **explicitly** asks for it, with cost/schedule impact stated; deviate **below** the usual
+> standard or the aarRdT only via the documented risk-acceptance machinery
+> (`simple-first-building` §3) — public permission never cures the private default.
+
 Agent-neutral construction-design skill. English working language, German normative
 terms in parentheses. Metric units only. Applies to DACH practice; other countries
 must re-map norm references.

@@ -14,6 +14,14 @@ description: >
 
 # FreeCAD BIM Modeling & Structural Verification — Core Skill
 
+> **Simple-first gate (governs how this skill is applied).** Default every choice here to
+> the *simplest proven* solution at the agreed standard tier — see the governing skill
+> `simple-first-building` (complexity ladder §1). Escalate to more demanding construction
+> (innovative systems, one-off details, higher comfort tiers) only when the client
+> **explicitly** asks for it, with cost/schedule impact stated; deviate **below** the usual
+> standard or the aarRdT only via the documented risk-acceptance machinery
+> (`simple-first-building` §3) — public permission never cures the private default.
+
 This is the **core** file of a 26-skill construction-design library. It teaches an
 MCP-capable agent to produce honest, parametric, solver-checked building models inside a
 live FreeCAD 1.0.x GUI. Everything geometry-technical here was validated against FreeCAD
@@ -58,12 +66,13 @@ contractor"*, *"is this safe"*, *"final footing size"*, *"can I pour this"* — 
 
 ## How this library fits
 
-This file is the modeling engine. The other 26 skills own the *why* behind every number.
+This file is the modeling engine. The other 27 skills own the *why* behind every number.
 When a question here becomes a design question, switch to the owning skill — never
 improvise a design value from a modeling recipe.
 
 | Skill | Owns (one line) |
 |---|---|
+| `simple-first-building` | GOVERNING gate: standard tier + complexity ladder — every model object defaults to the simplest proven solution; escalations and downward deviations only via its documented decision machinery. |
 | `building-planning-spatial` | Room programs, dimensions, circulation, planning grid — the plan this file models. |
 | `building-typology` | Building types, housing forms, massing and typological section patterns. |
 | `structural-systems` | Load-bearing system choice, load-path narrative, preliminary span/depth sizing tables. |

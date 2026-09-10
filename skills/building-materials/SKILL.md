@@ -22,6 +22,14 @@ description: >
 
 # Building Materials (Baustoffe) — Selection and Verification
 
+> **Simple-first gate (governs how this skill is applied).** Default every choice here to
+> the *simplest proven* solution at the agreed standard tier — see the governing skill
+> `simple-first-building` (complexity ladder §1). Escalate to more demanding construction
+> (innovative systems, one-off details, higher comfort tiers) only when the client
+> **explicitly** asks for it, with cost/schedule impact stated; deviate **below** the usual
+> standard or the aarRdT only via the documented risk-acceptance machinery
+> (`simple-first-building` §3) — public permission never cures the private default.
+
 Skill for construction design agents: choosing, specifying and plausibility-checking
 construction materials (Baustoffe) in DACH / European practice. Complements geometry
 and detailing skills; supplies the material layer of any structural, physical or

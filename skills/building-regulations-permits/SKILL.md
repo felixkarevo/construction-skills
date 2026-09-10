@@ -33,6 +33,14 @@ description: >
 
 # Building Regulations & Permits — Germany (DACH-Portable Framework)
 
+> **Simple-first gate (governs how this skill is applied).** Default every choice here to
+> the *simplest proven* solution at the agreed standard tier — see the governing skill
+> `simple-first-building` (complexity ladder §1). Escalate to more demanding construction
+> (innovative systems, one-off details, higher comfort tiers) only when the client
+> **explicitly** asks for it, with cost/schedule impact stated; deviate **below** the usual
+> standard or the aarRdT only via the documented risk-acceptance machinery
+> (`simple-first-building` §3) — public permission never cures the private default.
+
 Germany does not have one building rulebook either — it has **four stacks of law that answer four different questions**, and almost every regulatory error in German residential work comes from confusing them. *Was darf ich hier bauen?* (what may I build here) is answered by planning law (BauGB + the parcel's Bebauungsplan, or §34/§35 BauGB where there is none). *Wie muss ich es bauen?* (how must I build it) is answered by public building law proper — the state building code (Landesbauordnung, LBO) of the **specific Bundesland**, plus the technical rules introduced through it. *Wann muss ich wofür welchen Nachweis führen und wer darf unterschreiben?* is answered by the Verfahren and Vorlage rules of that same LBO — which differ meaningfully from state to state. *Was schulde ich wem, wann und bis wann?* is private law: BGB Werkvertragsrecht, plus VOB/B only if it was actually and wholly contracted. The Musterbauordnung (MBO) that everyone cites is a **model, not law** — no citizen is ever judged against the MBO itself, only against the LBO that (mostly) follows it, in whichever variant that Land chose. Austria adds a further complication: there is no federal building code at all — Bauordnungsrecht is purely Landessache (nine different Bauordnungen), plus flat-law and Bautechnik rules; Switzerland decides at cantonal and municipal level (Bau- und Zonenordnungen, Baubewilligungsdekret). This skill models all four stacks, keeps them cited separately, walks the German submission lifecycle from B-Plan read to completion, and gives the routing protocol for Austria and Switzerland — but its numeric baseline is Germany, and every Bundesland-specific figure carries a VERIFY tag because state law changes more often than this document is revised.
 
 ## Reality Check — Licensing & Liability

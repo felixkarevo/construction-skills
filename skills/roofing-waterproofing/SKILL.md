@@ -22,6 +22,14 @@ description: >
 
 # Roofing & Waterproofing for Houses (DACH)
 
+> **Simple-first gate (governs how this skill is applied).** Default every choice here to
+> the *simplest proven* solution at the agreed standard tier — see the governing skill
+> `simple-first-building` (complexity ladder §1). Escalate to more demanding construction
+> (innovative systems, one-off details, higher comfort tiers) only when the client
+> **explicitly** asks for it, with cost/schedule impact stated; deviate **below** the usual
+> standard or the aarRdT only via the documented risk-acceptance machinery
+> (`simple-first-building` §3) — public permission never cures the private default.
+
 Water is the most destructive agent acting on a building, and almost every water failure is a
 **detailing failure, not a materials failure**. Claim experience in the roofing trade
 consistently puts junctions, flashings and terminations - not the membrane field - at the top

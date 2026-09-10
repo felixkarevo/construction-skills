@@ -37,6 +37,14 @@ description: >
 
 # Sustainable Construction (Nachhaltiges Bauen) — DACH Lifecycle Design
 
+> **Simple-first gate (governs how this skill is applied).** Default every choice here to
+> the *simplest proven* solution at the agreed standard tier — see the governing skill
+> `simple-first-building` (complexity ladder §1). Escalate to more demanding construction
+> (innovative systems, one-off details, higher comfort tiers) only when the client
+> **explicitly** asks for it, with cost/schedule impact stated; deviate **below** the usual
+> standard or the aarRdT only via the documented risk-acceptance machinery
+> (`simple-first-building` §3) — public permission never cures the private default.
+
 Use this skill whenever the agent must judge or shape a design decision against sustainability: material substitution ("wood instead of concrete?"), insulation choice, heating-system choice, envelope standard, embodied-carbon estimates per m²BGF, certification orientation (DGNB/BNB/QNG), reuse/recycling questions, indoor-air and comfort limits, life-cycle cost comparisons, retrofit-vs-demolition verdicts, or customer claims that smell like greenwashing ("climate-neutral house", "CO₂-free concrete"). It is the cross-domain trade-off layer: it does not replace the structural, physics, services, or cost skills — it arbitrates between them and forces the reasoning to be disclosed.
 
 Sibling skills (call them, do not duplicate their scope):

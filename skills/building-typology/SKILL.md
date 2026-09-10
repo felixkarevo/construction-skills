@@ -26,6 +26,14 @@ description: >
 
 # Building Typology — Choosing & Configuring the Building Form (DACH)
 
+> **Simple-first gate (governs how this skill is applied).** Default every choice here to
+> the *simplest proven* solution at the agreed standard tier — see the governing skill
+> `simple-first-building` (complexity ladder §1). Escalate to more demanding construction
+> (innovative systems, one-off details, higher comfort tiers) only when the client
+> **explicitly** asks for it, with cost/schedule impact stated; deviate **below** the usual
+> standard or the aarRdT only via the documented risk-acceptance machinery
+> (`simple-first-building` §3) — public permission never cures the private default.
+
 Typology is the decision that comes *after* the site is known and *before* room sizing begins. Get it wrong and no amount of good plan-making rescues the project: a 14 m-wide plot laid out as a free-standing house with 3 m side setbacks produces a windowless side face; a 45 m-deep interior-block lot laid out as a single bar produces flats nobody lets; a 1,200 m² urban infill site built as one EFH surrenders most of the legally permitted floor area. In Germany the typology question is strongly determined — but by a different pre-quantisation than the Anglo-American literature assumes: the **Bebauungsplan (B-Plan)** fixes the envelope (GRZ, GFZ, Zahl der Vollgeschosse, Bauweise offen/geschlossen, Wandhöhe/roof geometry, sometimes unit caps and street-facing wall positions), the **Landesbauordnung (LBO)** fixes the fire and circulation consequences of whatever you choose (Gebäudeklasse), and the **plot geometry** fixes the plan depth and therefore the daylight. This skill encodes that ladder: plot + plan + household + budget + density target → 2–3 plausible archetypes with construction-system recommendations — then hands every candidate back to be re-tested against the actual B-Plan and LBO before anything is drawn.
 
 This is the **typology-selection layer**. It deliberately does **not** re-derive room minimums, stair geometry, Abstandsflächen law, fire-compartment sizing or energy-balance procedures — those are cross-referenced, not duplicated.

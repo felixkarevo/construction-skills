@@ -39,6 +39,14 @@ description: >
 
 # Construction Scheduling & Site Organisation (Bauablauf & Baustelleneinrichtung)
 
+> **Simple-first gate (governs how this skill is applied).** Default every choice here to
+> the *simplest proven* solution at the agreed standard tier — see the governing skill
+> `simple-first-building` (complexity ladder §1). Escalate to more demanding construction
+> (innovative systems, one-off details, higher comfort tiers) only when the client
+> **explicitly** asks for it, with cost/schedule impact stated; deviate **below** the usual
+> standard or the aarRdT only via the documented risk-acceptance machinery
+> (`simple-first-building` §3) — public permission never cures the private default.
+
 A design package tells you *what* to build. A construction programme (Bauablaufplan) turns it into *when, with whom, with which machine, and at what cost per week of delay*. In European practice the difference between a house delivered on time and one that bleeds money for months is almost never the drawing — it is the schedule and the site setup behind it: crew sizes derived from real productivity values instead of guesswork, a shoring decision made before the excavator arrives, a tower crane positioned so nothing waits for hoisting, winter concrete planned with its surcharge priced in, and a daily-report discipline that makes every later claim provable.
 
 This skill covers the execution-planning layer (Arbeitsvorbereitung, AV) between an approved design (or FreeCAD/BIM model) and a finished building: the canonical build sequence with durations, the two scheduling methods (bar chart and CPM network) with their formulas and worked examples, flow-line (Takt) planning, resource levelling, site layout, machinery selection, excavation support, site-safety coordination, quality supervision, and the delay/claims interface. Detailed trade-level execution sequences, hold points and finishing order sit in the companion `construction-scheduling-site` skill; this file focuses on **programmes, productivity numbers, plant, site organisation and coordination**.

@@ -24,6 +24,14 @@ description: >
 
 # Geotechnics & Foundation Design for Buildings (DIN 1054 / EN 1997-1, DIN 4017)
 
+> **Simple-first gate (governs how this skill is applied).** Default every choice here to
+> the *simplest proven* solution at the agreed standard tier — see the governing skill
+> `simple-first-building` (complexity ladder §1). Escalate to more demanding construction
+> (innovative systems, one-off details, higher comfort tiers) only when the client
+> **explicitly** asks for it, with cost/schedule impact stated; deviate **below** the usual
+> standard or the aarRdT only via the documented risk-acceptance machinery
+> (`simple-first-building` §3) — public permission never cures the private default.
+
 Foundations are the one part of a building that cannot be corrected after the fact. Everything above grade is replaceable; a footing sized against the wrong Sohlwiderstand, a cellar founded in frost-susceptible soil without drainage, or a retaining wall built without a drainage layer produces damage no architectural remedy fixes. This skill provides the numeric and conceptual backbone for **preliminary foundation design in the DIN/EN (DACH) framework**: how to scope and read a ground investigation, how to classify soil, how to carry the DIN 1054 design checks, how to size shallow foundations, piles and retaining structures, and how to keep water out of the basement.
 
 Values marked **(VERIFY)** are digested from table sources whose printed columns were partially corrupted, or are general geotechnical physics not fixed by a single cited clause — confirm against the standard text before quoting in a deliverable.
