@@ -10,7 +10,7 @@ The repository also bundles a real, verifiable demo: a complete residential BIM 
 
 ## How to use
 
-1. **Load the skills** into your agent's skill/knowledge directory (most agents accept a folder of `SKILL.md` files, e.g. `.claude/skills/`, `skills/`, or system-prompt includes). Every file is self-contained reference material with frontmatter (`name`, `description`).
+1. **Load the skills** into your agent's skill/knowledge directory (most agents accept a folder of `SKILL.md` files, e.g. `.claude/skills/`, `skills/`, or system-prompt includes). Every file is self-contained reference material with frontmatter (`name`, `description`). The root [`SKILL.md`](SKILL.md) is a **router**: it maps tasks/keywords to the right discipline skill(s) and gives the multi-skill sequence for project-level asks — consult it first, especially for anything spanning more than one discipline. Agent harnesses that read an `AGENTS.md` will pick this up automatically via [`AGENTS.md`](AGENTS.md).
 2. **Connect FreeCAD** with the [neka-nat/freecad-mcp](https://github.com/neka-nat/freecad-mcp) server:
    - Install FreeCAD **1.0+** (desktop GUI — the RPC bridge needs a live event loop, not headless).
    - Copy the `addon/FreeCADMCP` folder of the repo into FreeCAD's Mod directory (Linux: `~/.FreeCAD/Mod/` or `~/.local/share/FreeCAD/Mod/`; Windows: `%APPDATA%\FreeCAD\Mod\`; macOS: `~/Library/Application Support/FreeCAD/v1-1/Mod/`), restart FreeCAD, open the **MCP** workbench and **Start RPC Server** (an Auto-Start option exists).
@@ -19,7 +19,7 @@ The repository also bundles a real, verifiable demo: a complete residential BIM 
      { "mcpServers": { "freecad": { "command": "uvx", "args": ["freecad-mcp"] } } }
      ```
    - Tools exposed: `create_document`, `create_object`, `edit_object`, `delete_object`, `execute_code` (persistent Python namespace with `FreeCAD`/`App`/`Gui`), `insert_part_from_library`, `get_view`, `get_object(s)`, `list_documents`, `get_rpc_status`, and `run_fem_analysis` (CalculiX solver: von Mises, displacement, node count). Screenshot feedback can be toggled per call (`include_screenshot`, `view_name`) or globally (`--only-text-feedback`) to save tokens.
-3. **Set the standard first** — read [`skills/simple-first-building/SKILL.md`](skills/simple-first-building/SKILL.md): it fixes the complexity ladder (what "simple" means per discipline), the civil-law default machinery (§ 633 BGB, aarRdT, DIN presumption), how to deviate up or down lawfully, and the Gebäudetyp E / pilot-standard status. Then read [`skills/construction-freecad-bim/SKILL.md`](skills/construction-freecad-bim/SKILL.md) for modeling mechanics; its "How this library fits" table routes every task to the right discipline skill.
+3. **Set the standard first** — read [`skills/simple-first-building/SKILL.md`](skills/simple-first-building/SKILL.md): it fixes the complexity ladder (what "simple" means per discipline), the civil-law default machinery (§ 633 BGB, aarRdT, DIN presumption), how to deviate up or down lawfully, and the Gebäudetyp E / pilot-standard status. It's governing — the root router loads it alongside whatever specialist skill it points you to. Then read [`skills/construction-freecad-bim/SKILL.md`](skills/construction-freecad-bim/SKILL.md) for modeling mechanics; its "How this library fits" table also routes every task to the right discipline skill.
 
 ## The skill library
 
