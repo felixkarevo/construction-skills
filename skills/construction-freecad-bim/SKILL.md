@@ -5,8 +5,9 @@ description: >
   models in FreeCAD 1.x through a live GUI driven by the neka-nat/freecad-mcp bridge —
   Site/Building/Storey hierarchy, live parametric openings via Subtractions (never frozen
   booleans), classified makeStructure members, makeRebar cages, code-gated stairs, MEP
-  risers/shafts, CalculiX FEM verification via run_fem_analysis, IFC export proven by
-  parsing. Verify-by-measurement after every placement; honesty protocol: no member is
+  risers/shafts, CalculiX FEM verification via run_fem_analysis, IFC import (NativeIFC,
+  locked/unlocked modes) and export proven by parsing. Verify-by-measurement after every
+  placement; honesty protocol: no member is
   adequate without solver output. Design values defer to sibling skills
   (concrete-detailing, structural-analysis, geotechnics-foundations, ...); this file owns
   modeling mechanics and MCP bridge behaviour.
@@ -265,7 +266,7 @@ quantify wrong and read as above-grade in IFC.
   `PadFooting_F1`, `Column_C1`, `Wall_W-N-01`, `Win_W1-N01`, `Door_D-G01`, `Rebar_F1-B1` —
   stable IDs matter because verification stamps (§7.5) and bar marks attach by object
   identity.
-- Every object: correct `IfcType` **proven by export+grep** (§4.2), not by property value.
+- Every object: correct `IfcType` **proven by export+grep** (§4.4), not by property value.
 - Helper solids `Void_*` are named, always hidden, and remain part of the parametric
   chain (openings are verified against their BoundBoxes, §3.5) — never rename/delete
   casually.
@@ -280,7 +281,7 @@ quantify wrong and read as above-grade in IFC.
    step depends on it (catches G-13/G-19 at placement time).
 2. **Volume diff** — every boolean cut must move `Shape.Volume` by the expected amount
    (§3.1); a no-op cut is invisible in a screenshot, obvious in a diff.
-3. **Export-and-grep** — every claimed IFC classification must round-trip (§4.2).
+3. **Export-and-grep** — every claimed IFC classification must round-trip (§4.4).
 Asserts print `PASS`/`FAIL`. "No error" is not "it worked".
 
 ### 2.5 Level of Information Need — minimum-information principle
@@ -1226,7 +1227,7 @@ job is making them measurable from one shared project-zero origin (agreed in
 claim only** — tank sizing (population equivalents, retention) must never be inferred
 from a drawn box; without skill numbers, call the tank *schematic, unplaced*.
 
-## 4. IFC export and the bim-management handoff
+## 4. IFC exchange and the bim-management handoff
 
 ### 4.1 The export path (and its one module trap)
 
@@ -1240,7 +1241,87 @@ lists break the spatial tree §2.1 built. If the exporter surfaces a schema opti
 vs IFC4 — **check your build; [unverified] here**), pin it explicitly so consecutive
 exports are comparable; the FILE_SCHEMA header line shows what you actually got.
 
-### 4.2 Verify classification by parsing, not by trusting properties
+### 4.2 Importing and round-tripping IFC files — NativeIFC
+
+FreeCAD 1.0+ can hold an IFC file as its actual data structure instead of
+translating it into Arch objects and back (the old lossy round-trip). No MCP
+tool wraps this directly — drive it through `execute_code`
+(`FreeCAD.openDocument(path)` for a native open, or the legacy
+`from importers import importIFC; importIFC.open(path)` path for the
+old parametric-Arch-object conversion, §4.1's counterpart) — and confirm
+which mode you're in before editing, since the two behave very differently:
+
+- **Locked mode**: the whole FreeCAD document *is* the IFC file — every edit
+  writes straight back, no `exportIFC` call, no `.FCStd`. Toggled by the
+  status-bar lock icon (`BIM_ToggleNativeIFC`) — **GUI-only, no scripted
+  toggle documented**; if an agent needs this mode, ask the human to flip it,
+  don't assume.
+- **Unlocked mode** (default): IFC "project" objects can sit alongside plain
+  BIM/Arch objects in one document. This is the safer default for an agent —
+  it does not silently rewrite someone else's IFC file on every save.
+- Opening an IFC file only renders top-level objects (Site/Building) at
+  first — **an object with no visible children may just be unexpanded, not
+  empty**; double-click (or the equivalent `execute_code` walk) to expand
+  before asserting a model is missing content. Same trap-shape as §6.4's
+  "invisible geometry" list — add this as a fourth entry when triaging.
+- Once bound into a native IFC project, an object is IFC-controlled and
+  **loses this skill's parametric recipes** (§2.2) for anything IFC doesn't
+  model the same way — verify-by-measurement (§2.4) matters *more*, not
+  less, on an imported IFC object, since you can no longer trust the FreeCAD
+  parametric history to have produced the shape.
+- **Comparing two versions of an IFC file** (e.g. before/after a coordination
+  round-trip, or two exports of the same model): **Utils → IFC Diff**
+  (`BIM_Diff`) diffs by IFC GlobalId — red/removed, green/added, yellow/
+  geometry-changed, orange/properties-changed. Also GUI-only; for a
+  scripted check, fall back to §4.4's grep/count discipline on both files.
+- Legacy (non-native) import still exists and is what most non-1.0-workflow
+  guidance elsewhere assumes: `importIFC.open()` with an import-mode
+  preference (full parametric Arch objects / non-parametric Arch objects /
+  Part shapes only / one shape per floor) trading fidelity for load speed on
+  large files — pick full-parametric only when you actually intend to edit
+  what comes in.
+
+### 4.3 Pre-export validation — BIM Preflight (run before every export)
+
+FreeCAD ships a built-in checker for exactly this handoff: **Manage → Preflight
+checks…** (`BIM_Preflight`, GUI-only — no MCP tool wraps it, so either drive it
+by hand or call the underlying Python checks via `execute_code` if scripting
+access is needed). Run **Test All** before every export that leaves this
+session; it catches classes of error grep can't:
+
+- **Project hierarchy** — at least one Site→Building→Storey chain exists and
+  every object sits inside a storey (this is the automated form of §2.1's
+  hierarchy discipline — run it, don't just eyeball the tree).
+- **Undefined objects** — plain `Part`/`Draft` shapes with no BIM type will
+  export with no properties; this is the automated check for the "one source
+  shape... carries no BIM classification" trap flagged at §2.1.
+- **Solids** — invalid/open geometry per object.
+- **Explicit quantities** — objects with Length/Width/Height not flagged for
+  IFC export (**Manage → Manage IFC quantities…**, `BIM_IfcQuantities`); a
+  quantity can silently read zero downstream even though the geometry is
+  correct — this is a distinct failure mode from the volume-verification in
+  §2.4, because it checks the *exported* quantity claim, not the modelled shape.
+- **Common Psets present and complete** — e.g. `Pset_WallCommon`,
+  `Pset_DoorCommon` attached and matching the schema (edit via **Manage →
+  Manage IFC properties…**, `BIM_IfcProperties`; custom Psets live in
+  `$USERAPPDATA/BIM/CustomPsets.csv`).
+- **Materials assigned** to every BIM object.
+- **Standard codes** — classification (Uniclass/Omniclass/etc, via **Manage →
+  Manage classification…**, `BIM_Classification`) present; this is a formal
+  standard-code slot, distinct from this skill's own `IfcType`/naming
+  convention (§2.3) — populate both, they answer different questions
+  (`IfcType` = what it is to the IFC schema; classification code = what it is
+  to the client's cost/FM taxonomy).
+- **Compatibility quirks** worth knowing before a client opens the file in
+  Revit: extrusion-only geometry, "standard case" walls/structural elements,
+  no line segments under 1/32", `IfcRectangleProfileDef` export disabled.
+
+Preflight is advisory (failures don't block export) and does not replace
+§4.4's export-and-grep discipline — it catches structural/organizational
+problems *before* export; §4.4 proves the *specific* claims this skill made
+about an object actually round-tripped. Run both.
+
+### 4.4 Verify classification by parsing, not by trusting properties
 
 ```
 grep -c IFCWINDOW  /tmp/model.ifc
@@ -1252,12 +1333,12 @@ grep -c IFCREINFORCINGBAR /tmp/model.ifc
 `obj.IfcType == "Window"` alone is a claim; the round-trip is the measurement — same
 discipline as the volume diff: an export is an instrument.
 
-### 4.3 Handoff to `bim-management`
+### 4.5 Handoff to `bim-management`
 
 | Item | This skill guarantees | bim-management owns |
 |---|---|---|
 | Spatial tree | Site→Building→Storey, real elevations, elements contained | decomposition vs. project naming/Pset scheme (ISO 19650 flow; AIA/BAP) |
-| Classification | correct `IfcType`, proven by grep (§4.2) | MVD/view fit (Reference vs Design Transfer), model-checker rules |
+| Classification | correct `IfcType`, proven by grep (§4.4) | MVD/view fit (Reference vs Design Transfer), model-checker rules |
 | Geometry | parametric, volume-verified, LOIN-appropriate (§2.5) | exchange format, Data Drops, coordinate/zero-point standard |
 | Semantics | FEM verification stamped on objects (§7.5) | property sets, classification codes, FM information |
 | Open items | §7.3 status block lists all unverified/unmodelled work | issue tracking (BCF-style), coordination, conflict resolution |
@@ -1360,7 +1441,7 @@ fetches.
    re-attach sketches to surviving faces, recompute; if one object poisons the document,
    delete & rebuild from params (§6.2) beats archaeology.
 
-### 6.4 Misplaced or "invisible" geometry — the three classic lies
+### 6.4 Misplaced or "invisible" geometry — the four classic lies
 
 - **Cut did nothing (0.000 m³):** almost always the G-13 footprint shift — void is real,
   slab sits half its size away. Print both BoundBoxes, fix Placement, re-verify.
@@ -1368,6 +1449,10 @@ fetches.
   assignment to Force/Pressure/E; make them strings.
 - **"I rotated it and nothing moved":** you edited a `Base` sketch Placement (G-17) or
   patched a `Normal` (G-16). Own-Placement only.
+- **"This imported IFC object has no children/looks empty":** a freshly opened or
+  imported native-IFC file only renders top-level objects by default (§4.2) —
+  expand (double-click, or the scripted equivalent) before concluding content
+  is missing.
 
 ### 6.5 Stale FEM results
 
@@ -1567,16 +1652,21 @@ become verified ones.
    skill; defaults in check functions are validation-era examples, never code.
 2. **Unverified patterns:** closed-sketch stirrups (§3.4); `ConstraintDisplacement`
    property names (§3.8.7); headroom raycast (§3.6); `Arch.makeVoid`,
-   `insert_part_from_library` templates, §3.9 riser/site/septic blocks and the async
+   `insert_part_from_library` templates, §3.9 riser/site/septic blocks, §4.2's
+   NativeIFC open/import and lock-mode behaviour, and the async
    `commit(fn, timeout=120)` pattern — directionally correct, not yet round-tripped
    through this bridge; verify before shipping into a live deliverable.
 3. **No mesh-convergence second data point was ever taken** on the validated beam —
    §3.8.6 protocol is right, the re-run wasn't; any claim about that beam is single-mesh.
 4. **No two-way slab, raft, pile or lateral workflow exists here at all** —
    engineer-only in the current state.
-5. **IFC validation stops at grep** — entity presence proven; Psets, geometry fidelity
-   and relational integrity in the exported file unchecked; schema-option exposure
-   [unverified].
+5. **IFC validation is grep plus an unwrapped GUI tool** — §4.4 proves entity
+   presence and count; §4.3 (BIM Preflight) covers hierarchy/Psets/materials/
+   classification/compatibility *if someone runs it*, but no MCP tool wraps
+   it, so an agent working headless can't enforce it, only recommend it.
+   Relational integrity of the exported file (does the Pset content match, do
+   IFC relationships resolve) beyond what Preflight's own tests cover is still
+   unchecked; schema-option exposure [unverified].
 6. **Lateral/seismic is a named gap, not a solved handoff** — nothing confirms
    `seismic-design` ran or agrees with the gravity-only sizing here; close it by
    invoking the skill, not by citing its name.

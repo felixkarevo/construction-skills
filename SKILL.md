@@ -78,7 +78,7 @@ build-up, a system, or a standard tier, not just reading off a table.
 | Accessibility/barrier-free design, DIN 18040 audit, wheelchair geometry | `accessibility-universal-design` |
 | Existing buildings: condition assessment, Nachrechnung, strengthening, retrofit | `existing-structures-retrofit` |
 | ISO 19650 BIM process, CDE, LOD/LOIN, IFC/BCF, model coordination | `bim-management` |
-| Actually modeling in FreeCAD via the MCP bridge (objects, storeys, rebar, FEM, IFC export) | `construction-freecad-bim` |
+| Actually modeling in FreeCAD via the MCP bridge (objects, storeys, rebar, FEM, IFC import/export) | `construction-freecad-bim` |
 
 ## Task recipes (multi-skill sequences)
 
