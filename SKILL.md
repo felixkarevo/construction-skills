@@ -69,7 +69,7 @@ build-up, a system, or a standard tier, not just reading off a table.
 | Layer build-ups/junction details, joint grammar, tolerances, movement joints | `construction-detailing` |
 | Material selection/properties: concrete, masonry units, steel, timber, insulation, glass, CE marks | `building-materials` |
 | Roof design (pitched/flat), waterproofing membranes, below-grade tanking (black/white tub) | `roofing-waterproofing` |
-| Lintels, window/door build-ups, U_w calc, sealing joints, mounting classes | `openings-windows-doors` |
+| Lintels, window/door build-ups, U_w calc, sealing joints, mounting classes, structural glazing/DIN 18008, isochoric climatic load | `openings-windows-doors` |
 | Stair geometry/set-out, ramps, lifts, stair structural/acoustic/fire checks | `stairs-vertical-circulation` |
 | Heating/cooling systems, DHW/legionella, ventilation, TGA sizing, heat pumps | `building-services-tga` |
 | Construction sequencing, CPM/Takt scheduling, site layout, crew productivity | `construction-scheduling-site` |
