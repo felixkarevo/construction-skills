@@ -948,7 +948,9 @@ ornamental (-5), wired ornamental (-6), profiled (-7); borosilicate EN 1748.
 Toughened ESG (EN 12150), thermally strengthened TVG (EN 1863), chemically
 strengthened CVG (EN 12337); laminated VSG (EN ISO 12547, PVB/SGP/EVA interlayer).
 Design: **DIN 18008-1…-6** (introducted via MVV TB; VERIFY editions) — not EN
-1999 for building glazing in DE.
+1999 for building glazing in DE. Isochoric climatic load (IGU/MIG sealed-cavity
+pressure), the part map, and a worked action combination are in
+`openings-windows-doors` §7.6 — this table supplies its material/kmod side.
 
 | Property | float FG | TVG | ESG |
 |---|---|---|---|

@@ -687,6 +687,76 @@ concentrate at window perimeters more than anywhere else in the envelope.
   simulation, Übertemperatur-gradstunden 1200 K·h residential **[VERIFY
   current GEG/DIN values]**).
 
+### 7.6 Structural glazing check (DIN 18008) — isochoric climatic load
+
+Beyond Ug/Uw, any insulating glass unit (IGU/MIG) carries a load case with no
+analogue elsewhere in this skill: the sealed gas volume in the SZR
+(Scheibenzwischenraum) responds to temperature and barometric-pressure change
+and to the altitude difference between factory sealing and installation site.
+This "isochoric pressure" acts as an area load on both panes and must be
+combined with wind/snow/self-weight per DIN 18008. Material factors
+(gamma_G by glass type) and edge/category classes already live in
+`building-materials` §4.17 — this is the load case and check sequence that
+consumes them.
+
+**DIN 18008 part map** (verify current editions before quoting a part number):
+- **-1** general basis, actions, combination factors (ψ0/ψ1/ψ2 for
+  climate/mounting-restraint/barrier-and-imposed loads)
+- **-2** vertical glazing (linearly supported)
+- **-3** additional rules — not reproduced here
+- **-4** additional requirements for barrier glazing (Holm-/Personenlasten)
+- **-5** additional requirements for walk-on and overhead (begehbar/überkopf)
+  glazing
+- **-6** additional requirements for fall-protection glazing categories A/B/C
+
+**Isochoric pressure** (DIN 18008-1 eq. 3-1):
+
+```
+p0 = 0.012 kPa/m · ΔH  −  Δp_met  +  0.34 kPa/K · ΔT
+```
+
+Standard summer/winter combinations (flat/near-sea-level site, no special
+absorption or shading):
+
+| Case | ΔT | Δp_met | ΔH |
+|---|---|---|---|
+| Summer | +20 K | −2 kPa | +600 m |
+| Winter | −25 K | +4 kPa | −300 m |
+
+Add ΔT_add on top of the base ΔT for site-specific heat build-up (these stack
+with the standard combination, not replace it): absorption 30–50 % → +9 K;
+absorption > 50 % → +18 K; ventilated internal shading → +9 K; unventilated
+internal shading → +18 K; insulated panel behind the pane → +35 K; unheated
+building → −12 K.
+
+**Worked anchor** (2.40 × 0.80 m vertical IGU, 4/16/4 ESG-float + laminated
+inner pane, absorption > 50 % coating): summer ΔT = 20 + 18 = 38 K →
+p0,ΔH = 0.012·600 = 7.20 kN/m², p0,ΔT+Δpmet = 2 + 0.34·38 = 14.92 kN/m²
+(components summed, not combined by SRSS); winter: p0,ΔH = 0.012·(−300) =
+−3.60 kN/m², p0,ΔT+Δpmet = −4 + 0.34·(−25) = −12.50 kN/m². This climatic
+pressure is superposed on wind (from `building-physics-thermal-moisture`'s
+wind-zone chain) as an independent action, per the ψ-factors in the table
+above — never dropped as "covered by wind."
+
+**Bending/deflection for 4-edge simply-supported rectangular panes**: use
+plate-theory coefficients η_x,q / η_y,q / η_f,q by aspect ratio b/a
+(DIN 18008-2 design charts) — `m_x,q,k = η_x,q · a · b · q_k`, deflection
+analogous. Linear plate theory (Poisson µ = 0.23) is conservative vs
+membrane/shell behaviour; real projects use nonlinear FE for economy, since
+glass edge supports are modelled pin-jointed/free-sliding (no restraint
+credited). Serviceability: deflection limit ~span/100 (e.g. a = 500 mm →
+c_d = 5 mm).
+
+**Two fracture scenarios govern laminated/insulating units** (DIN 18008-5):
+all panes intact (superpose all static actions normally) vs. top pane broken
+(treated as an *accidental* load case per DIN EN 1990 — no combination with
+impact/Stoß loads at the same time).
+
+Not covered here: full plate-theory design charts, SSG (structural sealant
+glazing) joint design, and the -3 supplementary rules — flag as
+"[VERIFY against current DIN 18008 edition]" and hand off to a facade
+engineer for anything beyond a residential window/IGU check.
+
 ---
 
 ## Section 8: The Mounting Joint — Multi-Stage Sealing (Dichtungsstufen / Three-Joint Rule)
@@ -1250,3 +1320,9 @@ Ranked by real-world frequency in DACH execution.
    as flags; detail work belongs to the timber trades' norms.
 10. **All reinforcement quantities are indicative for feel and estimating
     only** — no table here is a Bewehrungsplan.
+11. **§7.6 structural glazing (DIN 18008) is a load-case primer, not a design
+    method**: isochoric-pressure formula and standard combinations are given,
+    but the plate-theory design charts (η_x,q/η_y,q/η_f,q by aspect ratio),
+    full DIN 18008-3 rules, and SSG joint design are not reproduced — verify
+    editions and hand structural glass beyond a simple IGU check to a facade
+    engineer.
