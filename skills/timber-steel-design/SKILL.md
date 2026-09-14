@@ -155,14 +155,25 @@ contract logic (→ construction-detailing), concrete and masonry design
 
 **Timber resistances:** γ_M = **1.3** members (solid, BSH, and most wood-based
 panels incl. CLT/Balkenschichtholz); γ_M = **1.1** dowel-type connections by the
-simplified verification; **1.3** exact yield-theory check; steel connector parts
-in tension/shear 1.3; nail-plate (Nagelplatte) plate check 1.25. Fire design:
-reduced γ_M,fi — solid timber 1.25, glulam 1.15, wood-based panels 1.15, LVL 1.0
-(1.1 in the digest), shear connections with timber side plates 1.15 / outer steel
-plates 1.05, pull-out 1.05; the worked fire example below applies 1.0 to member
-bending.
-> ⚠ **VERIFY**: the source γ_M,fi table and the worked example disagree; check
-> EN 1995-1-2/NA Table 2.2/2.3 before any fire verification.
+simplified verification; **1.3** exact yield-theory check; **1.3** ring/
+shear-plate connectors (§5.7 — different failure mode from dowel bending, do
+not reuse 1.1); steel connector parts in tension/shear 1.3; nail-plate
+(Nagelplatte) plate check 1.25.
+
+**Fire design — CORRECTED, the earlier "γ_M,fi table" was a mislabelling, not
+a real contradiction with the worked example** (Neuhaus, Ingenieurholzbau,
+4th ed. 2017, p.155/159-160/174-176, Tab. 4.12, EN 1995-1-2 Tab. 2.1 +
+DIN EN 1995-1-2/NA NDP to 2.3(2) Note 1): the differentiated table (solid
+1.25, glulam 1.15, panels 1.15, **LVL 1.1** — resolves the "1.0 (1.1 in the
+digest)" ambiguity in favour of **1.1**, shear connections timber-side 1.15 /
+outer-steel-plate 1.05, pull-out 1.05) is actually **k_fi**, the coefficient
+converting the 5 %-characteristic value to the 20 %-quantile fire strength:
+f_20 = k_fi·f_k. **γ_M,fi itself is 1.0, uniformly, for ALL timber materials
+and connections** — so the correct fire design equation is
+f_d,fi = k_mod,fi·(k_fi·f_k)/1.0, with k_fi in the *numerator*, not a γ_M in
+the denominator. The worked fire example (which applies 1.0 to member
+bending) was already right; only the general statement needed relabelling
+and moving k_fi to the correct place in the equation.
 
 **Steel resistances:** γ_M0 = 1.0 (cross-section), γ_M1 = 1.1 (stability:
 buckling, LTB, patch loading per 1993-1-5), γ_M2 = 1.25 (net sections, bolt
@@ -328,9 +339,17 @@ bending with NA uplift ≥ 4 lamellae — VERIFY; wide sections (lamella width
 
 ```
 X_d = X_k · k_mod / γ_M          (ULS)
-k_h (size): bending (600/h)^0.1 ≤ 1.1 ; tension (600/h)^0.2 ≤ 1.3 ; hardwood
-            (300/h)^0.1/0.2 (NA variants; small-section C24 example (150/h)^0.2)
-k_ℓ: BSH flat use, edge-loaded ≥ 4 lamellae → 1.2
+k_h (size) — two DIFFERENT formulas, do not conflate them (Neuhaus,
+  Ingenieurholzbau, 4th ed. 2017, p.313/316-317, EN 1995-1-1 §3.2/§3.3):
+  solid timber (softwood AND hardwood alike), ρ_k ≤ 700: k_h = min[(150/h)^0.2 ; 1.3],
+    h/b in mm, applied to bending (h < 150 mm) and tension (max(h,b) < 150 mm)
+  glulam (both combined "c" and homogeneous "h" grades): k_h = min[(600/h)^0.1 ; 1.1],
+    applied to bending (h < 600 mm, flat/Flachkant loading only) and tension (b < 600 mm)
+  (worked example "C24 14/14 → k_h = 1.014" uses the SOLID-timber formula:
+   (150/140)^0.2 = 1.014 — resolves the earlier ambiguity, not a separate
+   "hardwood variant")
+k_ℓ: homogeneous glulam ONLY (GL·h, not "c" grades), Hochkant/edge-loaded
+  bending, ≥ 4 lamellae side-by-side → +20 % on f_m,k (k_ℓ = 1.2)
 ```
 
 **k_mod — load duration × service/use class (NKL / Nutzungsklasse, EN 1995-1-1
@@ -355,12 +374,34 @@ LVL/2 (dry+humid) same run as solid timber's CL1/CL2 columns, CL3 not
 permitted. German NA wind: k_mod = mean(short, very short) = **1.00** (CL1/2
 solid/BSH), **0.80** (CL3).
 
-**k_def — creep (final deformation, EN 1995-1-1 Table 3.2):** solid timber, BSH,
-Balkenschichtholz (duo/trio), CLT, finger-jointed, LVL-3, plywood EN 636-3:
-**0.60 (CL1) / 0.80 (CL2) / 2.0? (CL3)**; OSB/3: 1.50/2.25?; particleboard P6/P7:
-1.50/2.25; cement-bonded 2.25/3.00; fibreboard MBH 3.00/2.25?; gypsum-fibre
-3.00/4.00 — VERIFY the panel rows (digest partially readable, standard values
-for solid/BSH/CLT are 0.6/0.8).
+**k_def — creep (final deformation, EN 1995-1-1 Table 3.2 + NA Table NA.5),
+CORRECTED and complete (Neuhaus, Ingenieurholzbau, 4th ed. 2017, p.334-335,
+Tab. 7.17):**
+
+| Product | CL1 | CL2 | CL3 |
+|---|---|---|---|
+| Solid timber, glulam (BSH), LVL | 0.60 | 0.80 | **2.00** |
+| Balkenschichtholz (duo/trio), CLT (Brettsperrholz), Massivholzplatten, finger-jointed solid | 0.60 | 0.80 | **not permitted** |
+| Plywood, "Trocken"/dry (NKL1 only) | 0.80 | — | — |
+| Plywood, "Feucht"/humid | 0.80 | 1.00 | — |
+| Plywood, "Außen"/exterior (all 3 NKL) | 0.80 | 1.00 | **2.50** |
+| OSB/2 (NKL1 only) | 2.25 | — | — |
+| OSB/3-4 | 1.50 | 2.25 | not permitted |
+| Particleboard P4 (NKL1 only) | 2.25 | — | — |
+| Particleboard P5 | 2.25 | 3.00 | not permitted |
+| Particleboard P6 (NKL1 only) | 1.50 | — | — |
+| Particleboard P7 | 1.50 | 2.25 | not permitted |
+| Cement-bonded particleboard | 2.25 | 3.00 | not permitted |
+| Fibreboard, medium-hard MBH.LA2 (NKL1 only) | 3.00 | — | — |
+| Fibreboard, hard HB.HLA2 | 2.25 | 3.00 | not permitted |
+| Gypsum board GKB/GKF (NKL1 only) | 3.00 | — | — |
+| Gypsum board GKBI/GKFI, gypsum-fibreboard | 3.00 | 4.00 | not permitted |
+
+**Correction to the earlier digest:** Balkenschichtholz/CLT/Massivholzplatten/
+finger-jointed solid are a **separate row from solid timber/glulam** — they
+share the same CL1/CL2 values but are **not permitted in NKL3 at all** (the
+earlier digest lumped them into the same row as solid/glulam with kdef = 2.0
+in CL3). Plywood's "Außen" (exterior) kdef,CL3 is **2.50**, not 2.0.
 
 ### 3.5 Physical behaviour relevant to detailing
 
@@ -398,14 +439,54 @@ for solid/BSH/CLT are 0.6/0.8).
 
 | Product | Standard | Behaviour / use rule |
 |---|---|---|
-| BSH / glulam | EN 1194/14080 | beams, frames, columns; sizes to ~1.2 m deep, 18-20 m; design values §3.3 |
+| BSH / glulam | EN 1194/14080 | beams, frames, columns; **no code limit on section size** — width in practice to b ≈ 24 cm routine (≤ 2 boards side-by-side per lamella), b ≈ 30 cm as practical max; depth h ≈ 200 cm routine, h_max ≈ 250 cm (limited by planer working width, not strength — beyond ~2.5 m a trussed member usually beats a solid web economically); length effectively unlimited via finger-jointing, practically capped by **transport (~35-40 m standard, ~50-60 m special transport, field-spliced >100 m executed on site)**, not the earlier "~1.2 m / 18-20 m" ceiling (Neuhaus, Ingenieurholzbau, 4th ed. 2017, p.109-110); design values §3.3 |
 | CLT / Brettsperrholz | EN 16351 | odd layers ≥ 3, outer same grain → defined span dir.; walls ~50 % section along grain; floor t ≈ 140-260 mm for 3-6 m; excellent diaphragm; element fabrication with TBE/CAD-CAM cut-outs |
 | LVL | EN 14374 | strongly anisotropic one-way; rib/edge members; k_mod/kdef slightly below solid (LVL-1/2/3 categories) |
-| Balkenschichtholz (duo/trio, parallel laminations) | EN 14080 | beams/sills; settlement like solid; perpendicular-compression categories of BSH in kdef table |
+| Balkenschichtholz (duo/trio, parallel laminations) | EN 14080 | beams/sills; total cross-section ≤ 280 mm; 2-5 parallel-grain laminations of the **same** strength class, each lamination > 45 mm to ≤ 85 mm thick (Neuhaus p.308, Tab. 7.1); settlement like solid; **NKL3 not permitted at all** (§3.4 kdef table) — do not specify duo/trio beams in permanently-wet exposure |
 | Finger-jointed solid (Keilgezinkt) | EN 15497 | continuous sections, columns; joints ≤ 15 % of section length? (VERIFY) |
-| I-joists / wood-based composite beams | ETA | web = board/steel, flange = LVL — bearing stiffeners at supports mandatory (web crippling) |
+| I-joists / wood-based composite beams (mechanically-jointed built-up sections) | ETA / EN 1995-1-1 Annex B | web = board/steel, flange = LVL — bearing stiffeners at supports mandatory (web crippling); **effective stiffness by the γ-("gamma") method**: (EI)_ef = Σ(E_i·I_i + γ_i·E_i·A_i·a_i²), with γ_i = 1/(1+π²·E_i·A_i·s_i/(K_i·l²)) for the mechanically-jointed outer (flange) members and γ=1 for a rigidly-glued middle member; per-fastener design force F_i,d = (V_max,d/(EI)_ef)·(γ_i·E_i·A_i·a_i·s_i); web-buckling limit h_w + 0.5·(h_f,c+h_f,t) ≤ 70·b_w (Neuhaus, Ingenieurholzbau, p.786-789, Tab. 22.5/22.6) — engineered I-joists/box beams are normally bought to a manufacturer ETA rather than hand-designed, but this is the underlying method if a bespoke nailed/screwed built-up section is being modelled |
 | Wood-fibre / particle / OSB / plywood boards as structure | EN 13169?/EN 300/EN 636 | shear diaphragms and diaphragm floors; nailing edge distance rules of §5.8; k_mod/kdef of board type |
 | Nail plates (Nagelplatten), punched-plate connectors | EN 912 + abZ/ETA | truss plates factory only; plate γM 1.25; approved type tables (e.g. 120/10 → 12.5 kN up to 240/22 → 31.8 kN characteristic, with group-reduction by screwed-in pairs; "predominantly static only, wood moisture limit") — **approval validity expired in the digest source — re-check current ETA/abZ** |
+
+**Glued connections (Geklebte Holzverbindungen, EN 1995-1-1 §10, Neuhaus p.301-305)
+— when member continuity is glued rather than mechanically jointed:**
+- **Schäftung (scarf joint):** glue-face slope ≤ 1/10 (α ≤ 5.7°); thin
+  members/veneers only; MC ≤ 15 % at gluing (Δu ≤ 4 % between the two parts);
+  **NKL1+2 only**.
+- **Keilzinkung (finger joint), two forms:** ordinary lamella joints (finger
+  length ℓ_j ≥ 10 mm, typ. 15/20/30 mm, flank angle α ≤ 7.1°, strength
+  reduction factor ν ≤ 0.18 → effective section A_ef = (1−ν)·A) used inside
+  glulam/Balkenschichtholz/finger-jointed-solid laminations — **glulam with
+  ordinary lamella finger joints may be used in all 3 NKL**; and "Universal"
+  full-cross-section splices (ℓ_j ≥ 45 mm) used at frame corners (below) and
+  full-depth member splices — **Balkenschichtholz and full-section Universal
+  finger joints are NKL1+2 only**. Never place a full-section finger splice,
+  or a Balkenschichtholz member of any kind, in continuously-wet (NKL3)
+  exposure.
+
+**Frame corners (Rahmenecken) — moment-resisting corner joints, currently the
+biggest geometric gap for portal-frame/haunch FreeCAD detailing (Neuhaus
+p.663-671, Tab. 17.14-17.16):**
+- **Dowelled (verdübelte) corners:** per-dowel force from the corner moment
+  F_M,Ed = M_d·r/(n·r²) on a single dowel circle, or M_d·r_1/(n_1·r_1²+n_2·r_2²)
+  on a double circle, vector-superposed with the axial/shear share and checked
+  against F_v,Rd (§5.1-5.3); **a double dowel-circle loses 15 % per-dowel
+  capacity (n_ef factor 0.85) unless a splitting reinforcement (Ecksicherung)
+  is added**, in which case n_ef = 1.0 — size the reinforcement for a tie force
+  equal to the outer circle's 30°-sector shear share. Corner-specific min.
+  spacings (no equivalent in the general §5.2 table): within-circle ≥ 6d,
+  between circles ≥ 5d, to end grain ≥ 7d (≥ 80 mm), to loaded/unloaded edge
+  ≥ 3d. **Avoid positive corner moments** (high transverse tension); brace the
+  inner corner against the compression-zone LTB failure mode (Kopfband).
+- **Finger-jointed (keilgezinkte) corners:** interaction check
+  f_c,0,d/f_c,α,d·(σ_c,0,d/(k_c·f_c,0,d) + σ_m,d/f_m,d) ≤ 1 for a **negative**
+  corner moment, but ≤ **0.2 only** for a positive moment (transverse tension
+  at the joint is the governing risk); f_c,α,d taken from the angle-dependent
+  Versatz compression table (§5.10) using the glulam grade values; net section
+  at the joint = **80 %** of gross (20 % finger-joint reduction); **GL28 and
+  higher: ft,0,d/fc,0,d/fm,d further reduced 15 %** (knot risk near the joint);
+  **NKL1+2 only**, no exterior exposure. Joint angle α = β/2 (single zinking)
+  or β/4 (double zinking), β = 90°−γ (γ = frame corner opening angle).
 
 ---
 
@@ -420,10 +501,15 @@ with small eccentricity may ignore local weakening outside the middle third).
 
 ```
 σ_t,0,d = F_t,d / A_net ≤ f_t,0,d          (A_net = (b−weakening)·h)
-size increase k_h = (600/h)^0.2 ≤ 1.3 (NA small-section: worked example C24
-14/14 → k_h = 1.014 on width increase rule (150/h)^0.2 — VERIFY form per NA)
-connection: σ on net section through the fastener line; staggered holes →
-cross-section 50 %? (net-deduction rules EN 1995-1-1 5.1.3 — VERIFY)
+size increase k_h — see §3.4 for the correct, product-split formula: solid
+  timber k_h = min[(150/h)^0.2; 1.3] (worked C24 14/14 → 1.014); glulam
+  k_h = min[(600/h)^0.1; 1.1]
+connection: σ on net section through the fastener line; net-section deduction
+  by fastener type (Neuhaus, Ingenieurholzbau, 4th ed. 2017, p.557, Tab. 15.1):
+  nails ΔA ≈ 0.10·A; bolts/dowels/fit bolts ΔA ≈ 0.15·A; ring/shear-plate
+  connectors ΔA ≈ 0.25·A; single traditional scarf (Versatz, §5.10) ΔA ≈ 0.25·A.
+  Staggered-hole 50 %-of-spacing rule not confirmed against this source —
+  VERIFY EN 1995-1-1 §5.1.3 directly.
 ```
 Worked (C24 14/14, F_t,g=50 + F_t,s=50 kN): F_d = 1.35·50+1.5·50 = 142.5 kN
 (governs: compare F_d/k_mod: 142.5/0.9 = 158 vs snow-only
@@ -435,10 +521,24 @@ Worked (C24 14/14, F_t,g=50 + F_t,s=50 kN): F_d = 1.35·50+1.5·50 = 142.5 kN
 ```
 λ = L_cr / i      (rectangle: i = 0.289·h about the axis; weak axis governs)
 λ_rel = (λ/π)·√(f_c,0,k / E_0,05)
-k_c = 1 / (k + √(k² − λ_rel²)),  k = 0.5·(1 + 0.1·λ + 0.3·λ²)   (
-    NA variants exist — VERIFY)
+k_c = 1 / (k + √(k² − λ_rel²)),  k = 0.5·[1 + β_c·(λ_rel − 0.3) + λ_rel²]
+    β_c = 0.2 (solid timber) ; 0.1 (glulam, LVL)   [CORRECTED — product-
+    dependent imperfection factor, not the earlier fixed "0.1·λ+0.3·λ²" form;
+    Neuhaus, Ingenieurholzbau, 4th ed. 2017, p.583-584, Tab. 16.6]
 σ_c,0,d ≤ k_c · f_c,0,d
 ```
+**Effective (buckling) length l_ef — reference table** (Neuhaus p.588-593,
+Tab. 16.10, digesting NCI NA.13.2 Tab. NA.24): Euler cases as usual —
+fixed-free β=2, pinned-pinned (Pendelstütze) β=1, fixed-pinned β=0.707,
+fixed-fixed β=0.5, l_ef=β·L. Truss members: chords take the system-line
+(node-to-node) length unless a refined buckling check is done; web/diagonal
+members take the system-line length out-of-plane, a pin-dependent length
+in-plane. 2-/3-hinge arches/frames and elastic-spring-base columns have their
+own β_R/β_S expressions (function of E·I, N, spring stiffness K_φ) — read the
+table directly for these, not worth digesting a formula here. A frame corner
+modelled as an elastic (not rigid) spring adds a moment M = N·h/6·(1/k_c − 1)
+at the column head — include this if the corner stiffness (§3.7 Rahmenecken)
+is less than fully rigid.
 Worked (GL28c 16/32, L = 5 m pinned, F_d = 180 kN permanent → k_mod 0.6,
 f_c,0,d = 0.6·2.4/1.3 = 1.11 kN/cm²): y-axis λ = 500/(0.289·32) = 54 → λ_rel
 0.826 → k_c 0.883 → util 0.36; z-axis λ = 108 → λ_rel 1.65 → k_c 0.341 →
@@ -458,11 +558,29 @@ effective laterally unrestrained length l_ef (fork supports, top-flange load):
      height above shear centre (top edge a_z = +h/2, centre 0, bottom −h/2)
      a1, a2 from support/loading table (UDL fork: 1.13 / 1.44)
   simplified: l_ef = 0.9·L + 2·h (use the smaller)
-i_m = √(I_z·I_tor)/W_y   (I_tor = a1'·b³h, a1' from h/b table)
-λ_rel,m = (l_ef/(π·i_m))·√(f_m,k/E_0,05)
-k_crit = 1.0 (λ_rel ≤ 0.2) ; 1.56 − 0.75·λ_rel (0.2 < λ_rel ≤ 1.1) ;
-         1.11/λ_rel²? (λ_rel > 1.1 — VERIFY 3rd branch form)
+i_m = √(I_z·I_tor)/W_y   (I_tor = a1'·b³h, a1' from h/b table; rectangular
+   sections: i_m simplifies to b²/h)
+λ_rel,m = (l_ef/(π·i_m))·√(f_m,k/E_0,05)   — **glulam only: multiply the
+   product E_0,05·G_05 by 1.4 before taking the root** (NCI zu 6.3.3(2) Anm.1,
+   Neuhaus, Ingenieurholzbau, 4th ed. 2017, p.630); this lowers λ_rel,m
+   (raises k_crit) materially for BSH beams — omitting it under-predicts LTB
+   capacity of every glulam beam check.
+k_crit = 1.0 (λ_rel,m ≤ 0.75) ; 1.56 − 0.75·λ_rel,m (0.75 < λ_rel,m ≤ 1.4) ;
+         1/λ_rel,m²  (λ_rel,m > 1.4)
+   [CORRECTED thresholds and 3rd-branch form — was 0.2/1.1/"1.11/λ_rel²?";
+   confirmed against the book's own numeric verification table, Neuhaus
+   p.630-632, Tab. 17.3/17.4]
 ```
+**l_ef (Kipplänge) exact NA formula — extraction of this specific equation
+was unreliable (repeated √-symbol loss in both this digest and the new
+source); do not trust either version blindly, re-derive from EN 1995-1-1/NA
+NCI NA.13.3 Table NA.25 directly before a governing LTB check.** The a1/a2
+coefficient table, however, is independently confirmed (Neuhaus p.640-641,
+Tab. 17.9/17.10) and safe to use as printed: fork-supported single span,
+UDL → a1/a2 = **1.13/1.44** (matches the worked example below); constant
+moment → 1.77/0; point load at midspan → 1.35/1.74; cantilever UDL →
+1.27/1.03, tip load → 2.05/1.50; fixed-fixed → 6.81/0.40 or 5.12/0.40;
+continuous-beam midspan → 1.70/1.60 or 1.30/1.60.
 Worked (GL28c 16/90, L = 15 m, q_d = 12.4 kN/m, restraint at ends + mid-thirds,
 a = 5 m, top-edge load): W = 21 600 cm³, M = 348.8 kNm → σ = 1.61 kN/cm²;
 f_m,d = 0.9·2.8/1.3 = 1.94; single bending util 0.83 ✓. LTB: l_ef = 618 cm
@@ -472,15 +590,40 @@ strength-critical: **add restraint or increase b**. Bearing pressure at the
 20 cm support with k_c,90 = 1.75 (glulam, single support) and A_c,ef =
 (3+20+3)·16 = 416 cm² → util 0.74 ✓.
 
+**Bracing/fly-brace forces for the restrained compression edge** (EC5-specific
+refinement of the generic "1-2 % bracing force" rule of thumb — Neuhaus,
+Ingenieurholzbau, 4th ed. 2017, p.870-873, Tab. 26.4/26.5): individual
+restraint (fly-brace) design force F_d = N_d/50 (solid timber, Balkenschichtholz)
+or N_d/80 (glulam, LVL), where N_d = (1−k_crit)·M_d/h is the destabilising
+force at the restraint; distributed bracing-system load q_d = k_ℓ·n·N_d/(30·l),
+k_ℓ = min(1, √(15/l)) (l in m); permissible in-plane deflection of the bracing
+system u ≤ l/500; minimum restraint spring stiffness C = 4·N_d/a (a = restraint
+spacing). Use this instead of the generic 1-2 % figure whenever the member and
+its k_crit are already known from the LTB check above.
+
 ### 4.4 Shear (Schub) with cracked section
 
 ```
 τ_d = V_d·S/(I·b) ≤ f_v,d;  rectangle τ = 1.5·V/(b_eff·h)
-cracking at interior supports/continuous beams: b_eff = k_cr·b with
-   k_cr = 2.5/f_v,k for BSH (worked 2.5/3.5 = 0.714) — the solid-timber
-   form (2.0/f_v,k?) differs; VERIFY pairing per product.
+cracking at interior supports/continuous beams: b_eff = k_cr·b
 Take V at h from support face where bearing is direct.
 ```
+**k_cr by product (CORRECTED/complete — NDP zu 6.1.7(2), Neuhaus,
+Ingenieurholzbau, 4th ed. 2017, p.685, Tab. 18.1):**
+
+| Product | k_cr |
+|---|---|
+| Solid softwood (Nadelvollholz) | **2.0/f_v,k** |
+| Balkenschichtholz aus Nadelholz (duo/trio) | **2.0/f_v,k** (paired with solid softwood, NOT glulam) |
+| Glulam (Brettschichtholz) | **2.5/f_v,k** (worked below: 2.5/3.5 = 0.714) |
+| CLT (Brettsperrholz) | **1.0** |
+| Solid hardwood (Laubvollholz) | **0.67** (fixed value, not a formula) |
+| Other wood-based products (LVL etc., EN 13986/14374) | **1.0** |
+
+Solid-**softwood-only** bonus: k_cr may be increased **30 %** in zones ≥ 1.5 m
+from the end grain (shrinkage cracks concentrate near member ends) — **not
+permitted for glulam**; can meaningfully relax an over-conservative shear
+check away from bearing zones in solid joists/rafters.
 Worked (same GL28c beam): k_cr = 2.5/f_v,k = 0.714 → b_eff = 11.4 cm;
 f_v,d = 0.9·0.35/1.3 = 0.242 kN/cm²; τ = 1.5·93/(11.4·90) = 0.136 → util 0.56 ✓
 (0.49 with V reduced at h from face).
@@ -540,25 +683,46 @@ worked GL28c L=15 m, k_def 0.6 (CL1), ψ2 snow = 0:
   w_inst,g = 2.71 cm ≤; w_inst = 4.74 ≤ l/200 = 7.5 (0.63)
   w_fin = 4.34 + 2.03 = 6.37 ≤ l/150 = 10 (0.64)
   w_net,fin = 4.34 − 4.0 = 0.34 ≤ l/250? = 6.0 (0.06) ✓
-recommended NA limits (NA table partially lost — VERIFY): beams not
-supporting brittle finishes: w_fin ≤ l/200, w_inst ≤ l/300, cantilever ×2;
-with brittle finishes l/300 / l/250? ; use the NA table of the edition.
+deflection limits (CORRECTED — NDP zu 7.2(2), Neuhaus, Ingenieurholzbau, 4th
+ed. 2017, p.848, Tab. 25.4; classified by member importance/camber status,
+**not** by "brittle finishes present" — that split is an old DIN 1052-era
+concept, not what the current NA table actually uses):
+  general members: w_inst ≤ l/300, w_net,fin ≤ l/300, w_fin ≤ l/200
+    (cantilever: l_k/150, l_k/150, l_k/100)
+  cambered/secondary members (überhöhte Bauteile; agricultural buildings;
+  Sparren/Pfetten rafters+purlins): w_inst ≤ l/200, w_net,fin ≤ l/250,
+    w_fin ≤ l/150 (cantilever: l_k/100, l_k/125, l_k/75)
 ```
-**Vibration (floors, EN 1995-1-1 §7.3):** fundamental frequency f1 per NA
-simplification (digest formula lost — VERIFY); static deflection w1 under
-1 kN at mid-span ≤ a(n) with a = 150/120/77/65/50 mm for n = 0.5/1.0/2.2/3.0/
-4.0 (n = f1; interpolate; ζ = 1 %) plus a velocity bound — **read the NA table
-before a floor vibration check**; long-span timber floors almost always need
-closer joists, a deeper section, or a structural topping for damping.
+**Vibration (floors, EN 1995-1-1/NA §7.3.3) — three-part check, f1 > 8 Hz
+floors (replaces the earlier a(n)-curve digest, which reflected a different/
+older method; Neuhaus, Ingenieurholzbau, 4th ed. 2017, p.854-858):**
+1. **Stiffness:** w/F ≤ a [mm/kN] under a 1 kN point load; recommended
+   0.5 ≤ a ≤ 1.5, a = 1.0 as default.
+2. **Frequency:** f1 = k_f·(π/2l²)·√((EI)_ℓ/m) > 8 Hz (k_f from a continuity
+   table, = 1.0 for a single span).
+3. **Velocity response:** v ≤ b·(f1·ζ)⁻¹, with a tabulated a↔b linkage
+   (anchor points: a=0.5→b=150 … a=1.5→b=100 … a=4.0→b=50, interpolate for
+   intermediate a; ζ = 1 % default damping — read the NA table for the exact
+   curve, these are anchor points not a formula).
+Long-span timber floors almost always need closer joists, a deeper section,
+or a structural topping to pass check 3.
 
 ### 4.9 Notched ends and perpendicular tension (Ausklinkung)
 
 ```
-notched shear: τ_d ≤ k_v·f_v,d with k_v = k_n/√(h_ef/h?)·(…α… ) —
-  k_n = 6.5 (glulam) / 5.0 (solid softwood); α = h_ef/h; x = distance to support
-transverse tension force (must be reinforced if F_t,90 exceeds concrete/
-dowel-free capacity):
-  F_t,90,d = (V_d/2)·(3·√(1+α) − 2·(1+α))
+notched shear (support/loaded side, sloped notch): τ_d ≤ k_v·f_v,d with
+  k_v = min{1 ; k_n·(1+1.1·i^1.5/√h) / [√h·(√(α(1−α)) + 0.8·(x/h)·√(1/α−α²))]}
+  (square notch: drop the i-term); k_n = 5.0 (solid timber) / 6.5 (glulam) /
+  4.5 (LVL/Furnierschichtholz); α = h_ef/h; x = distance from support reaction
+  line to the notch corner; i = notch-slope ratio (0 for square notch)
+  [Neuhaus, Ingenieurholzbau, 4th ed. 2017, p.743, Tab. 21.1 — kn values and
+  formula structure confirmed, incl. the previously-missing LVL value 4.5]
+top-side (unloaded-edge) notch: k_v = 1 by default; if the load point falls
+  within h_ef of the notch, k_v = (h/h_ef)·[1 − (h−h_ef)·x/(h·h_ef)] instead
+transverse tension force (CORRECTED — was structurally wrong):
+  F_t,90,d = 1.3·V_d·[3(1−α)² − 2(1−α)³]      [Neuhaus p.746, Tab. 21.2]
+practice: unreinforced notches NKL1-2 only; NKL3 always requires
+  reinforcement
 ```
 Worked (GL28h 14/110, h_ef = 90, V_d = 120 kN): un-notched util 0.88 ✓; notched
 k_v = 0.358 → util **2.6 → fails → reinforcement required**; F_t,90 = 13.6 kN →
@@ -575,6 +739,30 @@ length ≤ 8·d? (worked used 200 mm) — VERIFY ETA values.
 > avoid re-entrant corners (drill relief holes); rule of thumb h_ef/h ≥ 0.6 for
 > un-reinforced — VERIFY per case.
 
+### 4.10 Holes through beams (Durchbrüche) — glulam/LVL only
+
+Genuinely new geometric ruleset (Neuhaus, Ingenieurholzbau, 4th ed. 2017,
+p.751-753, Tab. 21.3, digesting NCI NA.6.7) — the correct reference for
+sizing/placing a service duct penetration through a glulam or LVL roof
+binder/floor beam. Applies only to **rectangular glulam or LVL beams**, hole
+clear dimension **d > 50 mm** (smaller holes are ordinary local weakening
+per §8.3.3, ignore this ruleset).
+
+**Geometric limits:** end-distance from support l_v ≥ h; hole-to-hole spacing
+l_z ≥ 1.5h and ≥ 300 mm; hole-to-point-load distance l_A ≥ h/2; edge margin
+top/bottom h_ro, h_ru ≥ 0.35h each (i.e. hole confined to the central 30 % of
+the depth); rectangular-hole length a ≤ 0.4h; hole height h_d ≤ 0.15h.
+
+**Transverse tension check** (the hole splits the beam locally, same failure
+mode as a notch): F_t,90,d = F_t,V,d + F_t,M,d, with F_t,V,d = (V_d·h_d/4h)·
+(3−h_d²/h²) (use 0.7·h_d in place of h_d for round holes) and F_t,M,d =
+0.008·M_d/h_r; check against 0.5·l_t,90·b·k_t,90·f_t,90,d.
+
+**NKL1-2 unreinforced only; NKL3 always needs reinforcement** (same logic as
+notches, §4.9). Directly usable in a FreeCAD/BIM model to validate where an
+MEP duct or cable route is allowed to cross a glulam member without a
+strengthening detail.
+
 ---
 
 ## Section 5: Timber connections (Verbindungen)
@@ -588,10 +776,21 @@ single-shear capacity (simplified, α = 0):
 f_h,k = 0.082·(1 − 0.01·d)·ρ_k      [N/mm²] (ρ in kg/m³, d in mm)
 f_h,α,k = f_h,0,k / (k_90·sin²α + cos²α);  k_90: softwood 1.35 + 0.015d,
    hardwood 0.90 + 0.015d, LVL 1.30 + 0.015d
-M_y,Rk: dowels/bolts f_u,k·d³/6 (plastic); nails/screws 0.3·f_u,k·d^2.6
-   (strain-hardening form — VERIFY exponent per EN 1995-1-1 §8.3/8.5)
-f_u,k (N/mm²): dowel S235/S275/S355 → 360/410/470; bolt 4.6/4.8/5.6/8.8 →
-   400/400/500/800; nail/wire ≥ 600
+M_y,Rk = 0.3·f_u,k·d^2.6  — CORRECTED: applies uniformly to dowels, bolts
+   AND nails (round-shank nails factor 0.3, profiled/square-ish-shank nails
+   factor 0.45). The elastic-section-modulus form "f_u,k·d³/6" does not
+   appear in EC5's simplified method at all — it is DIN 1052 (superseded)
+   leaking into the earlier digest. [Neuhaus, Ingenieurholzbau, 4th ed. 2017,
+   p.413, Tab. 11.3]
+f_u,k (N/mm²): dowel S235/S275/S355 → 360/410/470 (p.413); bolt/threaded-rod
+   property class 4.6/4.8/5.6/5.8/8.8 → 400/400/500/500/800 (p.425, Tab. 11.9);
+   nail/wire ≥ 600
+γ_M = 1.1 for bending-stressed dowel-type fasteners — derived as the
+   "worst-case envelope" combining γ_M,Steel=1.1 and γ_M,Holz=1.3 through the
+   k_mod reconciliation (p.407, Gl. 11.19/11.20); this is the basis for the
+   γ_M used throughout §5.1-5.6, but does NOT apply to ring/shear-plate
+   connectors (§5.7 uses γ_M=1.3 — different failure mode, wood embedment
+   governs there, not steel bending).
 F_v,Rk = √(2β/(1+β))·d·√(2·M_y,Rk·f_h,1,k)  single shear; β = f_h,1/f_h,2
    for dissimilar members; double shear: middle-member factor on F_v,Rk
 embedment: side  t_1,req = 1.15·√((2β/(1+β))·M_y,Rk/f_h,1,k) + d/2
@@ -599,44 +798,73 @@ embedment: side  t_1,req = 1.15·√((2β/(1+β))·M_y,Rk/f_h,1,k) + d/2
    (worked: Ø12 S235 dowel in C24 → F_v,Rk 6.08 kN/shear plane; t_req 58 mm)
 ```
 
-### 5.2 Minimum spacing and edge distances (dowels/bolts, EN 1995-1-1 T8.2)
+### 5.2 Minimum spacing and edge distances (dowels/bolts, EN 1995-1-1 T8.2/T8.4)
 
-| Direction | loaded in tension ‖ grain | loaded in compression | perpendicular |
-|---|---|---|---|
-| a₁ (load dir.) | (3 + 2·\|cos α\|)·d | (3 + 2·cos α)d → 3d min? | ≥ 3d |
-| a₂ (transverse) | 3d | 3d | (3 + 2·cos α)d? |
-| a₃ end (grain dir.) | t: max(7d; 80 mm) | c: a₃,t·\|sin α\| (90-150°: 3.5d ≥ 40) | — |
-| a₄ edge | t: max[(2+2·sin α)d; 3d] | c: 3d | — |
+**CORRECTED — the a₁/a₂ rows have NO tension/compression split; only a₃/a₄
+do** (Neuhaus, Ingenieurholzbau, 4th ed. 2017, p.416, Tab. 11.5, EC5 Tab. 8.5,
+for Stabdübel/Passbolzen — d = fastener diameter, α = load-to-grain angle,
+0-360° unless noted):
 
-(EN 1995-1-1 Table 8.2 rows as digested — VERIFY each cell; d = fastener
-diameter; α = load-to-grain angle; worked Ø12 example: a₁ 60 → 71 provided;
-a₂ 36 → 50; a₃t 84 → 99 ✓.)
+| Spacing | Formula |
+|---|---|
+| a₁ (parallel to grain, all α) | (3 + 2·\|cos α\|)·d |
+| a₂ (perpendicular, all α) | 3·d (no angle dependence) |
+| a₃,t (loaded end, −90°≤α≤90°) | max(7d; 80 mm) |
+| a₃,c (unloaded end, 90–150° & 210–270°) | a₃,t·\|sin α\| |
+| a₃,c (unloaded end, 150–210°) | max(3.5d; 40 mm) |
+| a₄,t (loaded edge, 0–180°) | max[(2+2·sin α)d; 3d] |
+| a₄,c (unloaded edge, 180–360°) | 3·d |
+
+(worked Ø12 example: a₁ 60 → 71 provided; a₂ 36 → 50; a₃,t 84 → 99 ✓.)
+
+**Bolts and threaded rods use a separate, larger table** (Neuhaus p.427,
+Tab. 11.12, EC5 Tab. 8.4) — do not reuse the dowel table above for bolts:
+a₁ = (4+\|cos α\|)d; a₂ = 4d; a₃,t = max(7d; 80 mm); a₃,c = (1+6·sin α)d
+[90–150°] / 4d [150–210°] / (1+6·\|sin α\|)d [210–270°]; a₄,t = max[(2+2·sin α)d;
+3d]; a₄,c = 3d.
 
 ### 5.3 Effective number of fasteners n_ef (group effect)
 
 ```
-parallel to grain:      n_ef = min( n ; 0.9·n·(a₁/(13·d))^0.5 )   (worked group
-   of 3 at a₁ = 71, d = 12 → 2.21)
-perpendicular:          n_ef = min( n ; n^0.9 );  α between: interpolate
-   (worked 45° → 1.77); ring connectors have their own row (group 3 → 2.85 —
-   VERIFY formula); digest tier grid 1.0/0.85/0.7/0.5 garbled.
-F_v,Rd = k_mod·n_ef·F_v,Rk/γ_M   (simplified γ_M = 1.1)
+parallel to grain (α=0):  n_ef = min[ n ; n^0.9·⁴√(a₁/(13·d)) ]   — CORRECTED:
+   fourth root, and n raised to the 0.9 power (not "0.9·n·√(...)"); worked
+   check n=3, a₁=71, d=12 → n^0.9=2.688, (a₁/13d)^0.25=0.821 → n_ef=2.21 ✓
+   matches the pre-existing worked number exactly [Neuhaus, Ingenieurholzbau,
+   4th ed. 2017, p.415, Gl. 11.21a]
+perpendicular (α=90°):    n_ef = n   — CORRECTED: full count, no reduction
+   (no splitting risk perpendicular to grain), NOT "min(n; n^0.9)"
+0° < α < 90°: linear interpolation between the α=0 value above and n_ef=n
+   (the earlier "45° → 1.77" worked number could not be reconciled against
+   any plausible input combination — treat as unresolved, don't reuse it)
+nails: n_ef = n·k_ef, k_ef = 1.0 (a₁≥14d) / 0.85 (a₁=10d) / 0.7 (a₁=7d) /
+   0.5 (a₁=4d, pre-drilled only) — CONFIRMS the tier grid exactly, now with
+   the a₁-thresholds attached [Neuhaus p.438, Tab. 11.16]
+ring/shear-plate connectors have their own n_eff rule — see §5.7a
+F_v,Rd = k_mod·n_ef·F_v,Rk/γ_M   (simplified γ_M = 1.1 — see §5.1 basis)
 ```
 
 ### 5.4 Nails (Nägel, EN 14592 + EN 10230-1)
 
 - Shank: ductile wire, f_u,k ≥ 600 N/mm². **Never design a nail for pull-out**
-  (withdrawal is staging aid only): smooth-shaft withdrawal per mm penetration
-  (C24 ρk 350) rises from ~4.9 N/mm at Ø3.0 to ~15 N/mm at large nails
-  (digest grid — **VERIFY d↔value pairing, EN 14592**; head pull-through
-  classes A-F lost in extraction).
+  as the primary load path (withdrawal is a real, code-checkable capacity in
+  EC5, unlike screws it just shouldn't be *relied on* for a primary
+  connection): **CORRECTED — the "N per mm penetration" framing was itself a
+  misdigest; EC5's real method is density-quadratic, not a diameter lookup**
+  (Neuhaus, Ingenieurholzbau, 4th ed. 2017, p.453-454, Tab. 11.23):
+  smooth-shank f_ax,k = 20×10⁻⁶·ρ_k² [N/mm²]; head pull-through f_head,k =
+  70×10⁻⁶·ρ_k²; profiled/special nails (3 load-bearing classes) f_ax,k =
+  30/40/50×10⁻⁶·ρ_k²; **head pull-through classes A–F** (resolves the
+  "classes A-F lost in extraction" flag): f_head,k = 60/80/100/120/140/160
+  ×10⁻⁶·ρ_k² respectively. F_ax,Rk = min{f_ax,k·d·t_pen ; f_ax,k·d·t +
+  f_head,k·d²_h} (smooth) or min{f_ax,k·d·t_pen ; f_head,k·d²_h} (profiled).
 - Characteristic single-shear R_k: 320 N (18 mm) up to ~4120 N (long profile
   specials), un-predrilled vs predrilled sets differ — digest grid garbled,
   **read EN 14592/manufacturer tables.** Worked 3.4×90 (f_u,k 600, C24):
   F_v,Rk = 765 N/shear plane; group n_ef = 29.44/side → F_v,Rd (k_mod 0.6,
   γ_M 1.1) = 12.3 kN; util 0.95 ✓.
-- **Penetration rule: t ≥ 9d** for full capacity; 4d < t < 9d → reduced
-  F_v,Rk (linear — VERIFY form); t < 4d not permitted.
+- **Penetration rule: t ≥ 9d** for full capacity (round nails; profiled nails
+  6-8d); 4d < t < 9d → **F_v,Rk,red = F_v,Rk·t/(9d)** — CONFIRMED linear;
+  t < 4d not permitted [Neuhaus p.~448].
 - Pre-drill when t < max(7d; density term) — split-prone species (spruce):
   t < max(14d; (13d−30)·ρk/200) → drill; edge a₄ ≥ 10d (ρk ≤ 420) / 14d
   (420 < ρk ≤ 500); nail across grain into side faces, never into end grain;
@@ -647,30 +875,65 @@ F_v,Rd = k_mod·n_ef·F_v,Rk/γ_M   (simplified γ_M = 1.1)
 
 ### 5.5 Structural screws (Holzschrauben) and glued-in rods
 
-- Withdrawal (full thread, pre-drilled pilot):
-  `f_ax,k = k_1·d²·(ρ_k/350)^0.8` with k_1 = 0.6 (pre-drilled) / 1.3 (not);
-  `F_ax,Rk = π·d·l_ef·f_ax,k` (worked Ø8 in ρk 425: f_ax,k ≈ 12 N/mm² →
-  19.6 kN at l_ef 175 mm with the α = 90° factor). **Shank tension** f_tens,k
-  (ETA) can govern (worked 17.0 kN) — check both; group n_ef = n^0.9.
-  Spacing a₂ ≥ 5d, a₃,c ≥ 5d, a₄,c ≥ 4d, t ≥ 12d (worked); head pull-through
-  per ETA; no end-grain screwing without ETA. Screws take **withdrawal design
-  forces**; nails do not. Torque window matters — over-torque crushes fibres.
-- **Glued-in threaded bars (Eingeklebte Gewindestangen)** — ETA + NA 12.x:
-  bond-line characteristic f_g,k = **4.0 N/mm²** (digest value); bond shear
-  F_d ≤ π·d_r·l_ad·f_g,d; steel tension F_t,Rd = 0.9·A_s·f_u,k/γ_M (worked
-  γ_M 1.25); bar Ø ≤ 20 mm, effective bond length per ETA (worked 200 mm),
-  pre-drill + edge distances per ETA; **every parameter is ETA-bound — the
-  most fragmented check area in timber design; re-read the product ETA.**
+- **Withdrawal — CORRECTED formula (the earlier `k_1·d²·(ρ_k/350)^0.8` form
+  does not appear in this book edition and is likely a fragment of a
+  different/draft source):** (Neuhaus, Ingenieurholzbau, 4th ed. 2017,
+  p.475-476, Tab. 11.28, EC5 §8.7.2, for 6≤d≤12mm, 0.6≤d₁/d≤0.75):
+  `f_ax,k = 0.52·d^(−0.5)·l_ef^(−0.1)·ρ_k^0.8` [N/mm²]; `k_d = min(d/8, 1)`;
+  `F_ax,α,Rk = (n_ef·f_ax,k·d·l_ef·k_d) / (1.2·cos²α + sin²α)`. Head
+  pull-through: `F_ax,α,Rk = n_ef·f_head,k·d_h²·(ρ_k/ρ_a)^0.8`. **Steel
+  tension** (governs when the head/withdrawal don't): `F_t,Rk = n_ef·f_tens,k`
+  with `f_tens,k = 300·π·d₁²/4` [N] (d₁ = core/thread-root diameter) — a
+  concrete formula replacing the earlier bare worked number. n_ef = n^0.9
+  (confirmed). Spacing (Neuhaus p.477-478, Tab. 11.29): a₁ = 7d (row spacing
+  along grain), a₂ = 5d, **a₁,CG = 10d** (end distance to thread centroid —
+  corrects the earlier "a₃,c ≥ 5d", which used the wrong label and value),
+  **a₂,CG = 4d** (edge distance, corrects "a₄,c ≥ 4d" label), t ≥ 12d. Screws
+  take **withdrawal design forces**; nails do not. Torque window matters —
+  over-torque crushes fibres.
+- **Full-thread screws (Vollgewindeschrauben)** — book's own preface names
+  this a major new-edition topic; **no generalized EC5/NA design table
+  exists — capacity is entirely ETA/abZ-bound per product** (matches the
+  existing framing below). Qualitative guidance worth applying in a FreeCAD
+  detail even without a numeric table (Neuhaus p.479-496): a full-thread
+  screw placed perpendicular to grain behind a "thick" fastener group lets
+  n_ef = n be taken without the §5.3 reduction, sized to carry roughly 30 %
+  of the fastener group's design load in withdrawal; inclined/crossed screw
+  pairs transferring axial tension at a member-to-member joint must be
+  angled so each screw is in **tension**, not compression (wrong inclination
+  reverses this); misplacing the crossing point in a main-beam/secondary-beam
+  joint induces unintended torsion in the connection — model the crossing
+  point deliberately, don't let it fall wherever geometry is convenient.
+- **Glued-in threaded bars (Eingeklebte Gewindestangen)** — **CORRECTED: this
+  is NOT purely ETA-bound; the bond strength has a National-Annex-normed,
+  length-dependent formula** (Neuhaus p.324, Tab. 7.11, DIN EN 1995-1-1/NA
+  NCI NA.6.8.5, Tab. NA.12): l_ad ≤ 250 mm → f_k1,k = **4.0 N/mm²** (matches
+  the earlier digest value, but only in this length band); 250 < l_ad ≤
+  500 mm → f_k1,k = 5.25 − 0.005·l_ad; 500 < l_ad ≤ 1000 mm → f_k1,k =
+  3.5 − 0.0015·l_ad. γ_M,H = 1.3; f_k1,d = k_mod·f_k1,k/γ_M,H. Design:
+  F_ax,Rd = min{f_y,d·A_ef ; π·d·l_ad·f_k1,d}; **the NA explicitly recommends
+  sizing so the steel governs** (F_ax,S,Rd < F_ax,F,Rd) for a ductile,
+  non-brittle failure mode. **l_ad,min = max(0.5·d² , 10·d)** mm; **max
+  effective wood tension area per rod A_ef,max = 36·d²**. (Surface-bonding
+  variants: f_k2,k = 0.75 N/mm² FRP, f_k3,k = 1.50 N/mm² steel plate — same
+  table, different application.) The bar-diameter/pre-drill/edge-distance
+  parameters remain ETA-bound as before — only the bond-strength formula is
+  now normative rather than a single flagged digest value.
 
 ### 5.6 Bolts and dowels (Schrauben, Stabdübel, Passschrauben)
 
 - Steel grades S235/S275/S355 dowels; M-threads property classes 4.6-8.8
   (f_u,k 400-800); threaded rod 5.8. Yield model §5.1 with M_y = f_u·d³/6.
-- **Washers/plates (DIN 436 round / DIN 440 square):** M12→Ø58, M16→Ø68,
-  M20→Ø80, M24→Ø92, M30→Ø105 (thickness ≥ 6 mm, ID 14/18/22/25/27 mm for
-  M12/16/20/24/30 — digest pairing, VERIFY DIN 436). Purpose: spread head/nut
-  pressure f_h,d, prevent embedment losses on shrinkage; **re-tension after
-  drying shrinkage** of members loaded across the bolt group.
+- **Washers/plates — CORRECTED sequence** (Neuhaus, Ingenieurholzbau, 4th ed.
+  2017, p.427, Tab. 11.11, DIN 1052:2008-12 Anhang G.3.4 preferred sizes;
+  general sizing rule EC5 §10.4.3: d_a ≥ 3d, s ≥ 0.3d): **M12→Ø58, M16→Ø68,
+  M20→Ø80, M22→Ø92, M24→Ø105** — the earlier digest kept the right diameter
+  progression but wrongly labelled it M12/16/20/**24**/**30**: the real table
+  stops at **M24** and the second-to-last size is **M22**, not M24; there is
+  no M30 row. Thickness s = 6 mm (M12/M16), s = 8 mm (M20/M22/M24); inner
+  diameter 14/18/22/25/27 mm. Purpose: spread head/nut pressure f_h,d,
+  prevent embedment losses on shrinkage; **re-tension after drying shrinkage**
+  of members loaded across the bolt group.
 - Bolts are SL-analogues (bearing after slip); in timber they need big plates
   because wood crushes ⊥ grain under nuts. End-grain bearing of a bolt is fine;
   loading the timber in bearing ⊥ grain at the plate is the check.
@@ -678,66 +941,83 @@ F_v,Rd = k_mod·n_ef·F_v,Rk/γ_M   (simplified γ_M = 1.1)
 ### 5.7 Ring and shear-plate connectors (Ring-/Scheibendübel, EN 14566 types
 A/B; toothed plate types C)
 
-| Connector | Ø 50 | 65 | 75 | 95 | 117 | 140 | 165 |
+**Diameters and base capacity — CORRECTED (the earlier Ø grid was
+fabricated/from a mismatched catalogue).** Real product sizes (Neuhaus,
+Ingenieurholzbau, 4th ed. 2017, p.510-511, Tab. 12.6, DIN EN 1995-1-1:2010-12
+§8.9): **Type A1 (Ringdübel, two-sided) Ø 65, 80, 95, 126, 128, 160, 190 mm**;
+**Type B1 (Scheibendübel, one-sided) Ø 65, 80, 95, 128, 160 mm**. The earlier
+diameters 50/75/117/140/165 do not exist in this table — drop them.
+
+Characteristic resistance per unit, per shear plane, ρ_k = 350, k_i = 1.0 (N):
+
+| Ø | 65 | 80 | 95 | 126 | 128 | 160 | 190 |
 |---|---|---|---|---|---|---|---|
-| F_v,0,Rk (N, ρk = 350), types A/B | 6360 | 18 300 (A1 Ø65 worked) | 11 700? | 16 700 | 22 800 | 29 800 | 38 200 |
-| ρk = 420 | 6820? | — | 11 200? | 11 200? | 16 300 | 22 100 | 22 100? |
+| A1/B1 | 18 300 | 25 000 | 32 400 | 49 500 | 50 700 | 70 800 | 91 700 |
 
-> ⚠ **VERIFY (hard)**: digest grid rows/columns partially mismatched — use the
-> manufacturer/EN 14566 table. Worked A1-Ø65 check: F_v,0,Rk = min(35·d^1.5
-> ≈ 18.3 kN; 31.5·d·h_e ≈ 30.7 kN) = 18.3 ✓; factors k_1 member thickness
-> (≥ t_min + h_e), k_2 end distance, k_3 = min(1.75; ρk/350), k_4 direction;
-> spacings a₁ = (1.2+0.8cosα)·d_c; a₂ = 1.2·d_c; a₃,t = 2·d_c; a₄,c = 0.6·d_c
-> (d_c = connector Ø; verified by the worked splice: 12 units, n_ef 11.4 → util
-> 0.97 ✓); matched rings both faces, fully tensioned at assembly.
+**No separate ρ_k = 420 table exists** — density is a single multiplicative
+factor k₃ (below), monotonically non-decreasing with ρ_k, so higher density
+can never lower capacity; the earlier "ρk=420" row with cells sometimes
+*below* the ρk=350 row was a fabrication/misalignment artifact — discard it.
 
-### 5.7a Ring connectors & surface dowels (Ringverbinder, Flächendübel /
-Scheibendübel) — capacity values, n_eff, worked design
+Base formula (constants confirmed): F_v,0,Rk = min{k1·k2·k3·k4·35·d_c^1.5 ;
+k1·k3·31.5·d_c·h_e} (worked A1-Ø65, h_e≈15mm: min(18.34; 30.7) = 18.3 kN ✓).
 
-Extends §5.7 with the digested grid, the ring-connector n_eff rule and the
-complete worked splice. Terminology: Ringdübel/Ringverbinder = ring connector;
-Scheiben-/Flächendübel = shear plate; toothed plate = type C.
-
-**Characteristic resistance per shear unit** (both faces, N, ρk = 350 / 420
-kg/m³):
-
-| Connector Ø | 50 | 65 | 75 | 95 | 117 | 140 | 165 |
-|---|---|---|---|---|---|---|---|
-| ρk 350 | 6360 | 18 300 (A1, formula below) | 11 700 | 16 700 | 22 800 | 29 800 | 38 200 |
-| ρk 420 | 6820 | — | 11 200 | 11 200? | 16 300 | 22 100 | 22 100? |
-
-> ⚠ **VERIFY (hard)**: one intermediate Ø row was lost in extraction; the
-> ρk 420 line falls at large diameters, which contradicts the density
-> dependence (higher ρk must not lower Rk — the columns are mismatched);
-> the source attributes the grid to design standard EN 13271 while §1.1
-> names EN 14566 for the product — reconcile editions. Never quote a cell
-> without a manufacturer/EN table look-up.
-
-**Modification factors and analytic unit check** (worked A1 Ø65, embedment
-h_e ≈ 15 mm): F_v,0,Rk = min(35·d^1.5 ≈ 18.34 kN; 31.5·d·h_e ≈ 30.7 kN)
-= 18.3 kN — formula and table agree ✓ (constants **VERIFY**); then
-F_v,Rk = k1·k2·k3·k4·F_v,0,Rk with k1 thickness (t ≥ t_min + h_e),
-k2 end distance, k3 = min(1.75; ρk/350) = **1.086** at ρk 380, k4 direction
-(α = 0 → 1.0).
+**k1-k4 factors — CORRECTED (Neuhaus p.509-510):**
+- k1 (thickness) = **min{1 ; t1/(3·h_e) ; t2/(5·h_e)}** — a continuous ratio,
+  not a binary "t ≥ t_min+h_e" cutoff.
+- k2 (end distance, −30°≤α≤30°) = min{k_a ; a₃,t/(2·d_c)}, k_a = 1.25
+  (single connector/shear plane) or 1.0 (multiple); k2 = 1.0 outside that
+  α range.
+- k3 = min{1.75 ; ρ_k/350} (confirmed as before).
+- **k4 is NOT a direction factor — it is a material-pairing factor**: k4=1.0
+  timber-timber, **k4=1.1 steel-plate-timber**. Angle/direction dependence is
+  handled separately: F_v,α,Rk = F_v,0,Rk/(k₉₀·sin²α+cos²α), k₉₀=1.3+0.001·d_c.
 
 **Spacing / edge distances** (d_c = connector Ø): a₁ = (1.2 + 0.8·|cos α|)·d_c;
-a₂ = 1.2·d_c; a₃,t = 2·d_c; a₄,c = 0.6·d_c (worked check: 130 < 150;
-78 < 80; 130 < 150; 39 < 60 ✓).
+a₂ = 1.2·d_c; a₃,t = 2.0·d_c; a₃,c = (0.4+1.6·|sin α|)·d_c [90-150°,
+210-270°] / 1.2·d_c [150-210°]; a₄,t = (0.6+0.2·|sin α|)·d_c; a₄,c = 0.6·d_c
+(worked check: 130<150; 78<80; 130<150; 39<60 ✓ — matches the earlier
+a₁/a₂/a₃,t/a₄,c figures, now with the previously-missing a₃,c/a₄,t angle
+forms added).
+
+**γ_M = 1.3** for ring/shear-plate connectors — CONFIRMED decisively as the
+book's own consistently-used value (p.510, Gl. 12.3), a *different* row from
+the dowel-type-fastener bending value (γ_M=1.1, §5.1) because failure here is
+governed by wood embedment/crushing, not steel bending. **Never apply the
+§5.3 default γ_M=1.1 to ring/shear-plate connectors.**
+
+### 5.7a Ring connectors & surface dowels (Ringverbinder, Flächendübel /
+Scheibendübel) — n_eff and worked design
+
+Terminology: Ringdübel/Ringverbinder = ring connector; Scheiben-/Flächendübel
+= shear plate; toothed plate = type C (Tabelle 12.10/12.11, p.512-521 —
+diameter/h_e/capacity columns exist analogous to A1/B1 above but were not
+extracted in this pass; add if a Type-C project comes up).
 
 **Effective number n_eff (ring connectors parallel to grain — own rule, NOT
-the §5.3 dowel form):** the digest prints a garbled expression
-("n_ef ≈ (2 + (1 − …))") giving **2.85 per group of 3** at a₁/d_c ≈ 2.3;
-4 groups → 11.4 of 12 — **VERIFY formula** against EN 1995-1-1 8.14.
+the §5.3 dowel form) — CORRECTED formula:**
 
-**Worked tension splice (C30 ρk 380, 12× A1 Ø65, single shear,
-F_d 101.3 kN permanent, k_mod 0.6):**
+```
+n_eff = 2 + (1 − n/20)·(n−2)        (2 < n ≤ 20; max 20 connectors/row)
+```
+
+[Neuhaus p.511, Gl. 12.5, Tab. 12.4] Lookup: n=1→1, 2→2, 3→2.85 (confirms
+the earlier worked digest), 4→3.60, 5→4.25, 6→4.80, 7→5.25, 8→5.60, 9→5.85,
+10→6.00, 11→6.05 (peak), 12→6.00, …, 20→2.00 (symmetric decline). **A row of
+12 connectors gives n_eff = 6.00, not 11.4** — the earlier "4 groups → 11.4
+of 12" combined two parallel rows of 6 (2×6.00=12.0, not a literal 4-group
+sum); re-derive any multi-row worked example from this table rather than
+reusing the old shortcut.
+
+**Worked tension splice (C30 ρ_k 380, 12× A1 Ø65 in two rows of 6, single
+shear, F_d 101.3 kN permanent, k_mod 0.6):**
 1. spacing/edges ✓ (above);
-2. F_v,Rk = 18.3·1.086 = 19.9 kN per unit;
-3. F_v,Rd per unit = 0.6·19.9/γ_M = 9.18 kN — the example uses **γ_M 1.3**,
-   not the simplified-check 1.1 of §5.3 — **VERIFY** which γ_M the introduced
-   NA assigns to ring connectors (steel connector parts are 1.3, §1.2);
-4. capacity = n_eff·F_v,Rd = 11.4·9.18 = 104.7 kN → util 101.3/104.7 =
-   **0.97 ✓**.
+2. k3 = min(1.75; 380/350) = 1.086 → F_v,Rk = 18.3·1.086 = 19.9 kN per unit;
+3. F_v,Rd per unit = 0.6·19.9/1.3 (γ_M = 1.3, confirmed above) = 9.18 kN;
+4. n_eff per row of 6 = 4.80; two rows → n_eff,total = 9.60 → capacity =
+   9.60·9.18 = 88.1 kN → **util 101.3/88.1 = 1.15 — fails at this row
+   count/diameter; add connectors or step up to Ø80** (this re-derivation
+   supersedes the earlier "0.97 ✓" result, which used the wrong n_eff).
 Detailing: matched rings on both faces (Gegenring), central bolt + DIN 440
 plates, full clamping at assembly, re-tension after shrinkage (§5.6 logic).
 
@@ -791,6 +1071,31 @@ a designed anchor group (concrete-edge check → concrete-detailing); steel shoe
 and fork columns bear on plates sized for f_c,90,d with shear keys so anchors
 carry uplift only.
 
+### 5.10 Traditional carpentry joints (Zimmermannsmäßige Verbindungen)
+
+Not folklore — **Versätze, Zapfen and Holznägel are normed under DIN EN
+1995-1-1/NA:2013-08, NCI NA.12**, with real design formulas (Neuhaus,
+Ingenieurholzbau, 4th ed. 2017, p.543-556, Ch.14 — confidence high on
+normative status, medium-high on exact constant transcription, light re-check
+recommended before publishing exact numbers). Relevant to heritage/exposed-
+timber-frame FreeCAD modelling where mechanical fasteners would be visually
+or historically wrong.
+
+- **Versätze (notched/step joints, p.543-551):** compression-only —
+  decompose the force into normal (N_d) and diagonal (D_d) components and
+  check bearing stress on the notch face; Stirnversatz (frontal notch),
+  Fersenversatz (heel notch), Brustversatz variants. **Always needs a
+  secondary connection against sliding** — a Versatz alone never resists
+  tension or lateral slip.
+- **Zapfen (mortise-tenon, p.551-554), Tab. 14.2 (NCI NA.12.2):** for beams
+  h ≤ 300 mm, shear capacity F_Rk = min{(1/k_z)·b_ef·h_e·k_z·k_v·f_v,k ;
+  1.7·b·l_z,ef·f_c,90,k} (checks both wood shear and end-bearing); own
+  min/max tenon geometry table; own splitting/cross-grain-tension check
+  (§4.10-style).
+- **Holznägel (oak dowels, p.554-556), Tab. 14.3:** simple shear formula
+  **F_Rk = 9.5·d²** [N, d in mm], single or double shear; own (smaller than
+  Stabdübel) spacing table, independent of grain direction.
+
 ---
 
 ## Section 6: Timber durability — DIN 68800 use classes and constructional protection
@@ -812,9 +1117,26 @@ core) → GK 0; Kiefer (pine) core → 0-2; Lärche/Douglasie core → 0-3.1; Ei
 core → up to 3.2; Buche → 0 only (not durable, never outside); tropical/very
 durable (teak, Afzelia) → up to 4; Azobé → 5; lapacho (Ipe) → 4. Sapwood (Splint)
 of all species is not durable → treat or avoid.
-> ⚠ **VERIFY** species×GK matrix and the preservative-class table (Iv/P/W/E
-> hazard levels) against DIN 68800-1/-2 of the current edition before specifying
-> any exterior or concealed structural timber.
+
+**CONFIRMS this matrix against the primary source** (Neuhaus, Ingenieurholzbau,
+4th ed. 2017, p.220-221, Tab. 5.8, DIN 68800-1:2011-10 Tab. 5 — the table for
+which GK a species may be used in *without* chemical preservative): the
+species×GK assignments above are essentially correct as written. Refinements:
+plantation-grown teak is explicitly **excluded** from the GK4 allowance
+(natural-forest teak only); Azobé heartwood reaches **GK5**, Ipe heartwood
+**GK4**; **Siberian larch (Larix sibirica, a distinct species from European
+larch) gets an extra allowance to GK3.2 if ρ > 700 kg/m³** (p.221, fn.8) —
+worth specifying explicitly since ordinary European Lärche/Douglasie tops out
+at GK3.1. Several allowances (Kiefer→GK2, Lärche/Douglasie→GK2/3.1) are
+*empirical/practice-based exceptions* under DIN 68800-1 §6.8.2.3, not a
+strength-of-durability-class argument — treat them as fixed rule-book
+entries, not something to extrapolate to an untested species.
+
+> ⚠ **VERIFY remains open**: the preservative-class table (Iv/P/W/E hazard
+> levels, DIN 68800-3) was not found cleanly in this source's scoped chapters
+> (a related but different table — Tränkbarkeitsklassen/treatability class —
+> exists further in the book, outside the mined range); read DIN 68800-3
+> directly before specifying a chemical treatment retention value.
 
 **Chemical wood protection (Präparieren):** only after the constructional
 concept (§6.2) has done its best; use-class ↔ required retention/penetration
@@ -868,22 +1190,72 @@ soffits + burn-off allowance reach F90 without a suspended ceiling.
 ### 7.2 Two verification methods
 
 **Method A — reduced characteristic lines:** d_char,n = β_n·t_n; effective
-d_eff = d_char,n + k_0·d_0 (notional layer d_0 = 7 mm lost strength, k_0 = 1.0
-for t ≥ 20 min — VERIFY branch). β_n (EN 1995-1-2 T3.1, mm/min): softwood
-solid/glulam ρ_k 270-330 → 0.70; solid 350-450 → 0.65-0.80 (worked R30 used
-0.8, conservative NA?); hardwood 420-510 → 0.65-0.70; LVL 450-510 → 0.70;
-board products 0.9-1.0 (VERIFY rows). Then run §4 checks on the reduced
-section with γ_M,fi (§1.2 flag).
+d_eff = d_char,n + k_0·d_0 (notional layer d_0 = 7 mm lost strength). **k_0/d_0
+branch CONFIRMED** (Neuhaus, Ingenieurholzbau, 4th ed. 2017, p.166-167,
+Tab. 4.13): **unprotected surfaces** — k_0 = t/20 for t < 20 min, **k_0 = 1.0
+for t ≥ 20 min**; **protected surfaces** — if the lining's char-onset time
+t_ch ≤ 20 min, k_0 = t/20 (t = t_ch); if t_ch > 20 min, k_0 interpolates
+linearly between 0 and 1 over 0 ≤ t ≤ t_ch.
 
-**Method B — reduced properties:** gross section, k_fi = 1.25 on f_m,k (bending;
-compression/E factors — VERIFY Table 3.2/NA); k_mod,fi = 1 − (1/200)·(p/A).
-Buckling/LTB per EN 1995-1-1 §6.3 with fire-time restraint layout.
+**β_n charring rate — CORRECTED table** (Neuhaus p.141-142, Tab. 4.8, = EN
+1995-1-2 Tab. 3.1), mm/min:
 
-**Protective linings (gypsum EN 520 type A/F/H):** onset time t_prot from the
-thickness/density chart (values lost in digest — read the standard); type F
-2-layer: outer + 80 % inner?; A/H: outer + 50 %; staggered joints. Cavity
-fire-stops in ventilated constructions per trade rules — see
+| Product | β_0 | β_n |
+|---|---|---|
+| Softwood **and beech**, glulam, ρ_k ≥ 290 | 0.65 | **0.70** |
+| Softwood **and beech**, solid, ρ_k ≥ 290 | 0.65 | **0.80** (resolves "worked R30 used 0.8" — this is simply the correct standard value for solid softwood, not a conservative NA add-on) |
+| Hardwood except beech, ρ_k ≥ 290 | 0.65 | 0.70 |
+| Hardwood except beech, ρ_k ≥ 450 | 0.50 | 0.55 (linear interpolation 290<ρ_k<450 permitted) |
+| LVL, ρ_k ≥ 480 | 0.65 | 0.70 |
+| Wood cladding boards, ρ=450, 20mm | 0.90 | — |
+| Plywood, ρ=450, 20mm | 1.00 | — |
+| Other wood-based panels (OSB, particleboard, fibreboard), ρ=450, 20mm | 0.90 | — |
+
+For other density/thickness board products: β_0,ρ,t = β_0·(450/ρ_k)·(20/h_p).
+Minimum width for the 1-D charring method: b_min = 2·d_char,0+80 (if
+d_char,0 ≥ 13mm) or 8.15·d_char,0 (below) — otherwise use β_n instead of β_0.
+Then run §4 checks on the reduced section with γ_M,fi = 1.0 and k_fi (§1.2).
+
+**Method B — reduced properties:** gross section, **k_fi (not γ_M,fi — see
+§1.2) = 1.25 on f_m,k** (bending; compression/E factors per EN 1995-1-2
+Tab. 2.1/NA — not independently re-verified this pass); k_mod,fi =
+1 − (1/200)·(p/A). Buckling/LTB per EN 1995-1-1 §6.3 with fire-time restraint
+layout.
+
+**Protective linings (gypsum EN 520 type A/F/H) — CORRECTED, onset-time
+formula now given** (Neuhaus p.151-152, Tab. 4.10): t_ch [min] = onset of
+charring under a protective layer. Wood cladding/board layers: t_ch =
+h_p/β_0. **Single gypsum layer type A/F/H**: t_ch = 2.8·h_p − 14 (taped
+joints, or open joints ≤ 2mm); t_ch = 2.8·h_p − 23 (open joints > 2mm).
+**Two layers type A or H**: t_ch = 2.8·h_p − 14, h_p = outer thickness + 50 %
+of inner. **Two layers type F**: same formula, h_p = outer + **80 %** of
+inner (confirms the earlier 80 %/50 % split, now with the base equation).
+Mineral wool (≥20mm, ρ≥26 kg/m³, melting point ≥1000°C): t_ch =
+0.07·(h_ins−20)·√ρ_ins (matches `fire-protection-building` §9.1's formula
+independently). Minimum fastener anchorage into unburnt wood l_a ≥ 10mm;
+required fastener length l_f,req = h_p + d_char,0 + l_a. Staggered joints.
+Cavity fire-stops in ventilated constructions per trade rules — see
 fire-protection-building.
+
+**Post-failure charring behaviour (genuinely new, Neuhaus p.148-150,
+Tab. 4.9)** — optional depth beyond the load-bearing fixes above: between
+t_ch and lining failure t_f, type-F gypsum and mineral wool give a *reduced*
+rate via k₂ (gypsum type F: k₂=1−0.018·h_p [inner thickness]; mineral wool:
+k₂=1 at h_ins=20mm down to 0.6 at h_ins≥45mm, interpolate). After lining
+failure (t_f ≤ t ≤ t_a, char depth < 25mm) the rate **doubles**, k₃=2; once
+char depth reaches 25mm, k₃ returns to 1.
+
+**Connection fire resistance (genuinely new, Neuhaus p.194-196, Tab. 4.19,
+EN 1995-1-2 §6.2.2.1)** — more precise than the flat k_fi table above for
+unprotected dowel-type fasteners in shear: F_v,Rk,fi = η·F_v,Rk·k_fi,
+η = e^(−k·t_d,fi), k by fastener type: nails/screws 0.08; bolts wood-wood
+0.065; bolts steel-wood 0.085; dowels wood-wood **0.04** (best-surviving);
+dowels steel-wood **0.085** (worst-surviving). At t_d,fi = 30min,
+**steel-side-plate dowel connections retain only ~9 % of ambient capacity**,
+while wood-wood dowel connections retain ~35 % — materially changes which
+connection type to specify for a fire-rated timber joint: prefer wood-wood
+dowels over steel-side-plate dowels wherever a connection must survive a
+fire rating unprotected.
 
 ### 7.3 Worked example — R30 beam, four-sided exposed
 
@@ -891,10 +1263,11 @@ C24 14/24, l = 5 m, e = 0.60 m tributary; g_k 1.5, q_k 2.0 kN/m²; fire
 combination γG = γQ = 1.0, ψ1 = 0.5 → q_fi = 1.5 kN/m → M_fi = 4.69 kNm.
 
 - **Method A:** d_char,n = β_n·t = 0.8·30 = 24 mm; notional +7 → section
-  7.8/17.8 cm; W = 411.9 cm³ → σ = 11.39 N/mm²; f_m,fi = 1.25·24 = 30? —
-  the example divides by γ_M,fi = 1.0 → f_md,fi = 30/1.0? shown "1,0·30/1,0"
-  → LTB: σ_crit = 0.78·b²/(h·l)·E_eff → 39.5; λ_rel = √(24/39.5) = 0.78 →
-  k_crit = 1.56−0.75·0.78 = 0.975 → util 11.39/(0.975·30) = **0.39 ✓**
+  7.8/17.8 cm; W = 411.9 cm³ → σ = 11.39 N/mm²; f_m,fi = k_fi·f_m,k = 1.25·24
+  = 30 N/mm² (k_fi resolved above, not γ_M,fi); f_md,fi = k_mod,fi·f_m,fi/γ_M,fi
+  = 1.0·30/1.0 = 30 → LTB: σ_crit = 0.78·b²/(h·l)·E_eff → 39.5; λ_rel =
+  √(24/39.5) = 0.78 → k_crit = 1.56−0.75·0.78 = 0.975 → util
+  11.39/(0.975·30) = **0.39 ✓**
 - **Method B:** residual 9.2/19.2, W = 565 cm³, σ = 8.30;
   k_mod,fi = 1−(1/200)(p/A) = 0.839 → f_d = 25.2; λ_rel = 0.69 < 0.75 →
   k_crit = 1 → util **0.33 ✓**
@@ -1488,17 +1861,36 @@ parametric openings and FEM handoff.
    columns were NOT transposed after all; the real errors were a few
    individual cells (C24 f_v,k, C35 f_c,90,k, the CL2 k_mod column, the
    hardwood k_c,90 default, the IPE450 Wpl,y mis-extraction, and the bolt
-   α_v grade-vs-shear-plane rule). §3.3 glulam GL-classes, nail R_k,
-   ring-connector grid, EN 336/14080 tolerance cells were **not** re-checked
-   this pass and still carry their original VERIFY flags — read DIN EN
-   1194/14080/336 cell-by-cell before use. The rest of the §8.2 property
-   excerpt (all rows except IPE 450) is chain-illustration, not a verified
-   catalogue.
-2. **Still-open items from the source, not yet cross-checked:** γ_M,fi
-   timber (1.15-1.25 vs 1.0), plate-buckling k_σ/ρ formula branches (§9.4),
-   warping-torsion κ root order, T-stub mode-2 formula — flagged in place;
-   resolve against the code text. Vibration (§4.8) and lining (7.2) tables
-   partially lost — methods named, numbers not.
+   α_v grade-vs-shear-plane rule). The rest of the §8.2 property excerpt (all
+   rows except IPE 450) is chain-illustration, not a verified catalogue.
+2. **Timber Sections 3-7 received a second, deep cross-check against Neuhaus,
+   Ingenieurholzbau, 4th ed. 2017 (2026 pass)** — this resolved the large
+   majority of the timber VERIFY flags that survived pass 1: k_h/k_ℓ/k_cr
+   size and cracked-width formulas (§3.4), the full k_def panel table (§3.4),
+   BSH size/length limits (§3.7), M_y,Rk exponent and γ_M basis for dowel
+   connections (§5.1), the a₁-a₄ spacing tables incl. a separate bolt/
+   threaded-rod table (§5.2), the n_ef formula incl. the α=90° special case
+   (§5.3), nail withdrawal (now density-quadratic, not a diameter grid) and
+   penetration reduction (§5.4), screw withdrawal formula and spacing (§5.5),
+   the glued-in-rod bond-strength formula (now NA-normed, not purely ETA-
+   bound, §5.5), the washer table (§5.6), the ring/shear-plate connector
+   diameters/capacities/factors/n_eff formula — the single largest VERIFY
+   block in the file (§5.7/5.7a), buckling k_c's β_c factor and l_ef table
+   (§4.2), LTB k_crit thresholds and the glulam 1.4 stiffness factor (§4.3),
+   shear k_cr by product (§4.4), the deflection-limit table and the
+   vibration check method (§4.8), the notch k_v/F_t,90 formulas (§4.9), fire
+   β_n/k_0/gypsum-onset-time/connection-fire-resistance (§7.2), and the
+   γ_M,fi-vs-k_fi relabelling (§1.2). New subsections added: glued
+   connections/finger joints and frame corners (§3.7), a holes-through-beams
+   ruleset (§4.10), traditional carpentry joints (§5.10), and an EC5-specific
+   fly-brace force formula (§4.3). **Still open, not resolved by either
+   pass:** plate-buckling k_σ/ρ formula branches (§9.4), warping-torsion κ
+   root order, T-stub mode-2 formula (steel, unaffected by the timber
+   source), the LTB effective-length l_ef exact algebraic form (§4.3 — table
+   of a1/a2 coefficients is solid, the equation structure is not), the
+   "45°→1.77" n_ef interpolation worked number (§5.3), diagonal-nailing NA
+   reduction percentage (§5.4), staggered-hole net-section rule (§4.1), and
+   the DIN 68800-3 preservative-class/hazard-level table (§6.1).
 3. No seismic (EN 1998) content; connection ductility for dissipative systems
    is a specialist check. Nothing here is a fabrication drawing, cutting list
    or connection design; NA/revision state must be re-verified per project.

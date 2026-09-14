@@ -122,10 +122,19 @@ Language convention: English text, German terms in parentheses for site- and nor
 | Glass | 25 |
 | Water | 10 |
 | Backfill (compacted sand/gravel Schüttung) | 15–20; angle of repose ~35° |
-| Snow (slip/design weight) | 2.0 [VERIFY — one digest prints 3.0 as "design value"; the worked examples use γ = 2.0 kN/m³ consistently] |
+| Snow, shape-factor/drift formulas (μ3 valley cap, μW wind-drift cap, §4.3) | **2.0** |
+| Snow, eave-overhang formula only (§4.3) | **3.0** (denser/wetter snow specifically causes eave overhang — not a conflicting value, a different formula) |
 
 Fresh/reinforced lightweight concrete: +1.0. Rule from worked examples: RC slab self weight =
 thickness·25 (e.g. 0.20 m → 5.0 kN/m²; 0.22 m → 5.5 kN/m²).
+
+Note: DIN EN 1991-1-1/NA Annex A does **not** cover steel trapezoidal-deck or
+green-roof (Dachbegrünung) self-weights — use manufacturer data and the FLL
+*Dachbegrünungsrichtlinie* (2008) respectively (Lastannahmen – Beispiele,
+Ch.3 §3.1). Stair-flight self-weight is computed per horizontal projected
+(Grundfläche) area, same reference area as the imposed load, so it
+superposes directly with qk; steps are a half-triangular add-on over the
+sloped RC waist slab (ibid., Ch.3, worked Example 3.9).
 
 ### 4.2 Imposed loads, buildings (DIN EN 1991-1-1/NA, characteristic)
 
@@ -183,12 +192,20 @@ m). Applies to the **point load Qk only** — the distributed qk is used without
 forklift dimensions (a×b track/wheelbase, m / self-weight / lift load kN): FL1 0.85×1.00/2.60 len,
 21/10; FL2 0.95×1.10/3.00, 31/15; FL3 1.00×1.20/3.30, 44/25; FL4 1.20×1.40/4.00, 60/40;
 FL5 1.50×1.90/4.60, 90/60; FL6 1.80×2.30/5.10, 110/80 — use for worst-position placement on slabs.
+Helicopter-landing-pad point loads also require the φ dynamic factor above
+(Lastannahmen – Beispiele, Ch.4 Tab. 4.7). Forklift **impact** (accidental
+collision, distinct from the 30 %-braking service load above): F = 5·W [kN]
+(W = forklift self-weight + lift load), applied 0.75 m above floor, accidental
+combination — see §10.
 
 Horizontal line loads on parapets/partitions at ≤ 1.2 m height: cat. A, B1, H, F1–F4, T1, Z →
 0.5 kN/m; B2, B3, C1–C4, D, E, Z, FL, HC, T2 → 1.0 kN/m; C5, C6, T3 → 2.0 kN/m. Full in fall
 direction, 50 % (min 0.5) opposite. Diaphragm/bracing horizontal force: braced buildings ≈ 1.5 %
-of maximum vertical load **[VERIFY — formula stripped in source]**; grandstands 1/20 of vertical
-live; scaffolding 1/100; overturning of fittings 1/100 of total at centre of gravity.
+of maximum vertical load **[VERIFY — formula stripped in source; checked against Lastannahmen –
+Beispiele (EN 1991 actions companion), which does not cover this topic at all — it belongs to
+EN 1993/EN 1992 stability/imperfection rules, a different source family; re-attempt with a
+steel/concrete-stability-focused source, not another load-actions book]**; grandstands 1/20 of
+vertical live; scaffolding 1/100; overturning of fittings 1/100 of total at centre of gravity.
 
 Garages/warehouse floors planned for vehicles: bridge-load classes per legacy DIN 1072 (16/16,
 16–30, 30) as noted; fire-service roofs: class 16/16, one vehicle worst position, one wheel load
@@ -196,33 +213,58 @@ Garages/warehouse floors planned for vehicles: bridge-load classes per legacy DI
 
 ### 4.3 Snow (DIN EN 1991-1-3/NA — digested edition; NA maps change, re-verify)
 
-Zone boundary values and altitude formulas reproduced from worked examples:
+Zone boundary values and altitude formulas — cross-checked and substantially
+resolved against Lastannahmen – Beispiele (Springer, worked-examples
+companion on EN 1991 actions), Ch.6 "Schneelasten":
 
-- Zone 1: sk = 0.65 kN/m² (minimum governs at low elevation; altitude formula **not** digested
-  **[VERIFY]** — do not guess one).
-- Zone 2: sk = 0.25 + 1.91·((A + 140)/760)² ≥ 0.85 (A = ground elevation in m; example Passau
-  300 m → 0.89; 50 m → min 0.65→0.85? worked Köln uses zone-1 min).
-- Zone 3: sk = 0.31 + 2.91·((A + 140)/760)² ≥ 1.10 (Garmisch 750 m → 4.30).
-- **Zones 1a / 2a** exist alongside 1/2/3 (DIN EN 1991-1-3/NA map, dibt.de for the current
-  administrative-boundary assignment): sk,1a = **1.25 × sk,zone1**, sk,2a = **1.25 × sk,zone2**
-  (both the altitude-formula output AND the floor/Sockelbetrag are scaled by 1.25) — don't
-  silently treat a 1a/2a site as plain zone 1/2.
-- Above 1500 m and "Norddeutsches Tiefland" exceptional snow: expert/authority decision;
-  exceptional snow = exceptional action; the same exceptional-action treatment applies to
-  specific Zone-3 high ground named in the source (Oberharz, Fichtelgebirge summits,
-  Bayerischer Wald) — flag these even though nominally "just zone 3".
+- **Zone 1: sk = 0.19 + 0.91·((A + 140)/760)² ≥ 0.65** (RESOLVED — was
+  flagged "altitude formula not digested"; valid to ≈ 400 m NN; A = ground
+  elevation in m).
+- Zone 2: sk = 0.25 + 1.91·((A + 140)/760)² ≥ 0.85 (valid to ≈ 285 m —
+  confirmed exactly against the earlier digest).
+- Zone 3: sk = 0.31 + 2.91·((A + 140)/760)² ≥ 1.10 (valid to ≈ 255 m —
+  confirmed exactly; Garmisch 750 m → 4.30).
+- **Zones 1a / 2a:** zone 2a confirmed exactly: sk,2a = 1.25·[0.25+1.91·
+  ((A+140)/760)²] ≥ 1.06. **Zone 1a — use sk,1a = 1.25 × the zone-1 formula
+  above** (i.e. 1.25·[0.19+0.91·(...)²] ≥ 0.81); the source's own literal
+  printed zone-1a formula repeats the 0.19 coefficient instead of 0.91,
+  breaking the pattern zone 2a uses — this reads as a publisher erratum, so
+  keep the "1.25 × zone-1" construction rather than the literal misprint.
+  Both the altitude-formula output AND the floor/Sockelbetrag are scaled by
+  1.25 — don't silently treat a 1a/2a site as plain zone 1/2.
+- **Norddeutsches Tiefland exceptional snow (RESOLVED, was "expert/authority
+  decision"):** sAd = Cesl·sk with **Cesl = 2.3** (confirmed across 5+ worked
+  examples), zones 1/2 only, exceptional-action combination (γ=1.0).
+- Above 1500 m: still expert/authority decision, exceptional-action treatment.
+  Named exceptional Zone-3 high-ground locations (CORRECTED list — swap
+  "Bayerischer Wald" for the source's actual names): **Oberharz, Hochlagen
+  des Fichtelgebirges, Reit im Winkl, Obernach/Walchensee** — flag these even
+  though nominally "just zone 3".
 - sd = cc·cf·sk (cc site, cf = 1.0 default); flat roof 0–10°: μ1 = 0.8; **s = μ·sk**.
 
-Shapes (all digested with worked numbers — see §13 loads chapter and examples):
+Shapes (worked numbers cross-checked, see §13/§16 loads chapters and examples):
 - Mono-pitch/gable α = 30–60°: μ2 = 0.8·(60−α)/30; α > 60°: μ2 = 0 (sliding off); α ≤ 30°: 0.8.
-- Valley/back-to-back roofs: μ3 = 1.6, validity cap μ3 ≤ γ·h/sk + μ2 (γ = 2.0 kN/m³ snow).
+- Valley/back-to-back roofs: μ3 = 1.6, validity cap μ3 ≤ γ·h/sk + μ2 (γ = 2.0 kN/m³ snow — see
+  §4.1 for why this differs from the eave-overhang density below).
 - Drift against taller roof (Δh, width b): wedge length ls = 2·Δh, minimum 5 m governs for small
-  Δh, cap 15 m; sliding load S = 50 % of total snow load of upper roof over ls; μs = 2S/(ls·sk);
-  wind-drift μw = (b1 + 2·b2)/(2·Δh) with cap μw ≤ γ·Δh/sk; combined μ2 = μw + μs, capped at
-  **2.4** in the worked example (garbled cap logic **[VERIFY]** — final printed: μ2 = 3.28 → cap
-  2.4 governs).
-- Snow guards/parapets at eaves: check anchorage for at least the full eaves slip load;
-  F = μmax·sk·A·… formula stripped **[VERIFY]**.
+  Δh, cap 15 m; sliding load S = 50 % of total snow load of upper roof over ls; μs = 2S/(ls·sk)
+  (algebraically equal to the shortcut μs = 0.8·l/ls); **wind-drift μw = (b1 + b2)/(2·Δh)**
+  [CORRECTED — no factor of 2 on b2] with cap μw ≤ γ·Δh/sk; combined μ2 = μw + μs, capped
+  **0.8 ≤ μw+μs ≤ 2.4** (lower bound resolved/added; upper bound confirmed). Two further
+  special-case caps: open, side-accessible canopies with b2 ≤ 3.0 m →
+  0.8 ≤ μw+μs ≤ 2.0; **Alpine region** (DIN EN 1991-1-3 Fig. C.2) with sk ≥ 3.0 kN/m² →
+  1.2 ≤ μw+μs ≤ 6.45/sk^0.9 (relevant for DACH alpine/foothill buildings).
+- Snow guards/parapets at eaves (RESOLVED, was "formula stripped"):
+  **F_S = s·b·sin α** [kN/m] — s = roof snow load computed with **μ = 0.8
+  regardless of pitch** (accumulation behind the guard), b = plan distance
+  from the guard to the ridge/next upslope obstruction, α = roof pitch.
+- Snow overhang at the eave (genuinely new sub-case, distinct from the
+  snow-guard case above): S_e = 0.4·s²/γ [kN/m] (γ = 3.0 kN/m³ — see §4.1),
+  applied as a line load at the cantilever tip for sizing overhanging
+  rafters.
+- Local roof obstructions (solar panels/plant/chimneys — genuinely new,
+  directly usable for FEM load cases with roof-mounted PV/HVAC equipment):
+  μ5 = min{1.0; γ·h/sk}, not less than μ1 or μ2.
 
 ### 4.4 Wind (DIN EN 1991-1-4 + NA — digested values)
 
@@ -272,16 +314,52 @@ resultant at zs = 0.6·h.
 
 Log decrements (vibration susceptibility): RC 0.10; steel 0.05; mixed 0.08; welded steel bridges
 0.02; HS-bolted 0.03; bolted 0.05. Non-vibration-susceptible if dynamic deformation ≤ 110 % of
-static. Friction cf for saturated surfaces: smooth 0.01 / rough 0.02 / very rough 0.04. Annex NA.C
-(csd cd) formulae stripped **[VERIFY]**.
+static. Friction cf for saturated surfaces: smooth 0.01 / rough 0.02 / very rough 0.04.
+
+**Annex NA.C (cs·cd structural factor, RESOLVED)** — use for tall/vibration-
+susceptible buildings instead of the cs·cd=1 shortcut above (Lastannahmen –
+Beispiele, Ch.5 §5.3, Eq. 5.11): cs·cd = [1+2·kp·Iv(zs)·√(B²+R²)] /
+[1+6·Iv(zs)]. Full worked chain (Ch.5 Example 18, h=256.5m coastal RC tower,
+b=d=41m — reproduce the method, not literally these constants, for a
+different building): n1 = 46/h [Hz] (empirical RC fundamental frequency);
+z=0.6h; turbulence length scale L(z)=300·(z/300)^ε, ε=(1/(2000z))^0.15
+(valid z_min<z≤300m); mean wind v_m(z)=1.18·v_b·(z/10)^0.12 (coastal/mixed
+terrain case); f_L=n1·L(z)/v_m(z); non-resonant spectral density
+S_L(z,n)=6.8·f_L/(1+10.2·f_L)^(5/3); background factor
+B²=1/[1+0.9·((b+h)/L(z))^0.63]; log decrement δ (table above); resonant
+response R²=(π²/2δ)·S_L·R_h(η_h)·R_b(η_b), η_h=4.6h/L(z)·f_L,
+η_b=4.6b/L(z)·f_L, R_x=1/η_x−1/(2η_x²)·(1−e^(−2η_x)); peak factor
+k_p=max{√(2·ln(νT))+0.6/√(2·ln(νT)); 3}, T=600s, ν=n1·√(R²/(B²+R²))>0.08s⁻¹;
+turbulence intensity I_v(z)=0.14·(z/10)^(−0.12) (coastal terrain case, adjust
+per terrain category). Worked result of that example: cs·cd = 1.084.
 
 ### 4.5 Thermal and other actions
 
 Temperature (non-fire) enters only the ψ-table (0.6 / 0.5 / 0.0). Digested linear vertical ΔT
 values exist for bridges only (EN 1991-1-5: steel box +18/−13 K; composite +15/−18; concrete box
-+10/−5; girder/slab +15/−8) **[VERIFY for buildings]** — building σ-joint/temperature checks are
-covered in restraint-stress sections (WU) and in siblings; settlement ψ = 1.0/1.0/1.0; "other"
++10/−5; girder/slab +15/−8) — building-envelope values below; settlement ψ = 1.0/1.0/1.0; "other"
 variable 0.8/0.7/0.5.
+
+**Building-specific temperature actions (substantially RESOLVES the earlier
+"[VERIFY for buildings]" gap — Lastannahmen – Beispiele, Ch.10 §10.3.4,
+DIN EN 1991-1-5/NA):** temperature is an **indirect action** — only produces
+internal forces in statically indeterminate systems; determinate systems just
+deform (§10.3.3). Thermal expansion coefficients α_T [×10⁻⁶/K]: aluminium 24;
+structural steel 12 (10 for composite construction); concrete 10; timber
+along grain 5, across grain 30-70 (species-dependent — see timber-steel-design
+§3.5 for the full anisotropy figures); masonry 6-10. Reference temperatures
+(Tab. 10.3): interior T_in — summer 20 °C, winter 25 °C (fixed, heated DACH
+buildings); exterior T_out for above-ground components, by orientation and
+surface finish, NE bright/light/dark → T_max+0/+2/+4 (summer), T_min all
+finishes (winter); SW bright/light/dark → T_max+18/+30/+42 (summer), T_min
+(winter); below-ground components: fixed +6 °C summer / −4 °C winter,
+independent of orientation. Germany reference extremes: **T_max = +37 °C,
+T_min = −24 °C** (NDP 5.3(2)). Worked example (south-facing light-coloured
+external wall, erection temperature T0=10 °C): constant part TN ≈ **+33.5 K
+(summer) / −9.5 K (winter)** [source's printed equation shows TN=0.5·(Tin−Tout);
+the worked numbers are only consistent with TN=0.5·(Tin**+**Tout) — treat the
+minus-sign form as a likely publisher erratum and use the average form];
+linear/through-thickness part TM ≈ **+47 K (summer) / −49 K (winter)**.
 
 Ice (still current: DIN 1991-1-3/NA 2019-04 carries former DIN 1055-5 forward verbatim as NCI
 Annex NA.F — **not a dated/superseded source**): two classification families —
@@ -743,6 +821,86 @@ fragment]**). RC: tabulated (EC2-1-2 T5.2a: μ_fi ≤ 0.7 → b_min 250/a 46 for
 350/48 ✓ if l_fi < 3 m and A_s < 0.4·A_c). Full member fire design → sibling
 fire-protection-building; this skill only supplies the **load combination** and the reduced
 verification format.
+
+### 10.1 Accidental actions (Außergewöhnliche Einwirkungen, EN 1991-1-7) — numeric values
+
+Genuinely new content (Lastannahmen – Beispiele, Ch.12) supplementing
+`structural-systems` §13's qualitative robustness/tie-force framing with
+actual numbers — cross-reference both when a project needs a real accidental-
+action check, not just a robustness narrative.
+
+**Consequence-class triage** (EN 1990 Tab. B.1 + EN 1991-1-7/NA Tab. NA.1.A.1)
+by building height h (floor-to-finished-floor of the highest occupiable
+storey above mean ground, Musterbauordnung Gebäudeklassen convention):
+CC1 (h ≤ 7 m: houses/offices ≤ 2 storeys, halls ≤ 7 m, agricultural
+buildings) — no special accidental treatment beyond standard robustness
+rules; CC2.1/2a (7 < h ≤ 13 m, e.g. 4-storey apartment/office) — simplified
+static-equivalent design; CC2.2/2b (everything else up to 13 m, or CC3-listed
+buildings ≤ 13 m); **CC3 (h > 22 m, OR h > 13 m with retail floor area
+> 2000 m² / > 200 persons excl. residential/office, OR public-assembly
+floors > 1600 m², OR explosive/high-fire-risk storage)** — requires special
+investigation, possibly risk analysis and non-linear/dynamic methods.
+
+**Road-vehicle impact force on supporting substructures** (Tab. 12.4,
+DIN EN 1991-1-7/NA:2019-09), F_dx (travel direction)/F_dy (transverse), kN:
+rural roads 1500/750; urban ≥50 km/h 1000/500; urban <50 km/h at projecting
+corners 500/500, elsewhere 250/250; truck-accessible yards or car areas with
+vehicles >30 kN (e.g. parking structures) 100/100; car areas ≤10 km/h 15/8,
+other 50/25; car-park garages ≤30 kN vehicles — single/double garage & carports
+10/10, other 40/25; fuel-station canopies 100/100. Application height/area
+(Tab. 12.5): PKW at 0.5 m above pavement, LKW at 1.25 m, contact area
+0.5 m × 0.2 m. Separate rule: car-park edge-protection barriers, F=40 kN at
+0.5 m height, corresponding to 5.5 kNm impact energy. Forklift impact
+(distinct from the routine 30 %-braking service case, §4.2): F = 5·W [kN]
+(W = self-weight + lift load), applied 0.75 m above floor.
+
+**Notional tie-force formulas** (EN 1991-1-7 Annex A) — the numbers behind
+`structural-systems` §13's qualitative statement: internal ties T_i =
+max{0.8·(g_k+ψ·q_k)·s_t·L; 75 kN}; peripheral ties T_p =
+max{0.4·(g_k+ψ·q_k)·s_t·L; 75 kN} (s_t = tie spacing, L = tie span, ψ = the
+accidental-combination factor). No explosion pressure/impulse figures were
+found in this source — it defers fully to the norm for Innenraumexplosion.
+
+### 10.2 Construction-phase actions (Einwirkungen während der Bauausführung,
+draft E DIN EN 1991-1-6) — distinct from in-service design
+
+Genuinely new (Lastannahmen – Beispiele, Ch.11); not covered by
+`construction-scheduling-site` (which has scaffold load classes and
+falsework procurement, but not structural wind/imposed-load reduction during
+erection or fresh-concrete casting loads).
+
+**Action classification** (Tab. 11.2): personnel + hand tools Q_ca =
+1.0 kN/m² (uniform, worst position); stacked movable goods Q_cb ≥ 0.5 kN/m²
+for buildings (formwork/scaffolding/plant); heavy vehicles/mobile temp
+structures Q_cd (crane, hoist, generator — per manufacturer); waste
+accumulation Q_ce; "other" Q_cf (fresh concrete, temporary prop effects,
+prestress, hydration).
+
+**Fresh-concrete casting load** (Tab. 11.3, worked Example 1): outside the
+work area, **0.75 kN/m²**; inside a 3.0×3.0 m work area (or the span if
+smaller), 10 % of fresh-concrete self-weight but bounded **0.75-1.5 kN/m²**;
+over the actual footprint, formwork/falsework self-weight + fresh-concrete
+self-weight. Valid for drop height ≤ 1.0 m, local pile-up ≤ 3× slab
+thickness over 1 m². Worked: 20 cm slab, γ=26 kN/m³ (25+1 fresh-concrete
+allowance) → outside area 0.75 kN/m²; inside area 0.10·26·0.20 = 0.52 <
+0.75 → 0.75 kN/m² governs; total-area fresh-concrete self-weight =
+5.2 kN/m² — directly usable for a FEM slab-casting load case.
+
+**Climatic-action duration rule** (§11.3.3): ≤5 days → use forecast data for
+the actual works window; 5 days–1 yr → standard EN1991 98 %-fractile values,
+optionally seasonally reduced; >1 yr → full characteristic values, no
+seasonal reduction.
+
+**Reduced construction-phase wind pressure** (Tab. 11.4, per draft E DIN EN
+1991-1-4/NA Tab. NA.B.5), by duration × safety-measure class (protective/
+strengthening/none): ≤3 days 0.1q/0.2q/0.5q; ≤3 months (May-Aug) 0.2q/0.3q/
+0.5q; ≤12 months 0.2q/0.3q/0.6q; ≤24 months 0.2q/0.4q/0.7q. Worked example:
+WZ1 inland, h=15m, simplified method → q=0.65 kN/m²; ≤12-month construction,
+no securing measures → q_red = 0.6×0.65 = **0.39 kN/m²**.
+
+> Note: this chapter's digest is explicitly based on the 2024-03 **draft** E
+> DIN EN 1991-1-6, replacing the 2010 edition — re-check publication status
+> before citing on a live project.
 
 ## 11. WORKED EXAMPLES (reproduced with all printed steps; decimal commas of source converted)
 

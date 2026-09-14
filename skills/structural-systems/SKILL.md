@@ -1148,7 +1148,11 @@ key elements               where no alternate path is practicable: accidental co
 
 The exact magnitudes are code-table values — present them conceptually here; the engineer picks
 them from the current EN 1991-1-7 + NA (the 70 kN ring-anchor figure and the ≥ 1.2 m edge-distance
-convention are the German-NA anchors this skill actually carries).
+convention are the German-NA anchors this skill actually carries). For the actual EN 1991-1-7
+Annex A formulas behind this (T_i = max{0.8·(g_k+ψ·q_k)·s_t·L; 75 kN} internal,
+T_p = max{0.4·(g_k+ψ·q_k)·s_t·L; 75 kN} peripheral), plus numeric accidental-action values
+(consequence-class height thresholds, vehicle/forklift impact forces), see `structural-analysis`
+§10.1.
 
 ### 13.3 Continuity details that make the concept true
 
