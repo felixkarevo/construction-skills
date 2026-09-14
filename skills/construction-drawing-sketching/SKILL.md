@@ -730,7 +730,11 @@ A zigzag break line may cut any view to save sheet space.
   bending-form codes: 2-digit (1st = number/type of bends 0-7/9, 2nd =
   direction/normalisation; end hooks 0/1/2/3 = none/90°/90-180°/180°; 99 = non-
   standard); dimensions >0, inner diameters/radii inside, others outside; example
-  bar weights Ø10 = 0.617, Ø16 = 1.58, Ø25 = 3.85 kg/m (VERIFY before billing).
+  bar weights Ø10 = 0.617, Ø16 = 1.58, Ø25 = 3.85 kg/m (confirmed verbatim against
+  Wendehorst Tab. 25.x, VERIFY tag dropped for these three).
+  Legacy layer-position codes (DIN 1356-10:1992, older/existing drawings still use
+  these letters) map to the current ISO 3766 set: u=unten(bottom)/o=oben(top)/
+  1.Lage/2.Lage/V=vorn(front)/H=hinten(back) ↔ B/T/1/2/N/F.
 - Demolition/rebuilding symbols per DIN ISO 7518 (VERIFY plate geometry); tolerance
   markings per DIN ISO 6284 (also usable on detail sketches).
 
@@ -743,20 +747,21 @@ A zigzag break line may cut any view to save sheet space.
   execution 1:50-1:20; details 1:20-1:1 (even 5:1, 10:1 for junctions). Always
   check printed output against a known length (druckmaßstab): a 100 mm plot line
   must read 100 mm at 1:1.
-- Sheet formats DIN A0-A4 (DIN EN ISO 5457 + folding per DIN 824): A-series with
-  consistent proportions, landscape dominant in construction; **exact mm border
-  dimensions and the c/e/m margin numerics exist only as graphics in the plates -
-  VERIFY** (common practice reference: A4 210x297 up to A0 841x1189; drawing frame
-  margins c; fold marks; the written-field zone (Schriftfeld) sits bottom-right).
-- Title block (Schriftfeld / Titelblock) content is specified graphically in the
-  plates; field set in DACH practice: project name + address, drawing title +
-  number (Zeichnungsnummer), sheet number of total, scale(s), date + revision
-  status (Stand/Überarbeitung arrow), author/drafter/checker signatures,
-  discipline, format + template code. VERIFY against the current DIN 6771-1
-  edition before enforcing; sheet numbering per DIN EN ISO 5457.
-- Text heights scale with sheet size via the lettering standards (DIN EN ISO 3098
-  series named in the ruleset) - minimum writing heights differ per format;
-  VERIFY numerics.
+- Sheet formats DIN A0-A4 (DIN EN ISO 5457 + folding per DIN 824), confirmed
+  against Wendehorst Tab. 25.1/25.2: sheet sizes A0 841x1189, A1 594x841,
+  A2 420x594, A3 297x420, A4 210x297 mm; drawing area (Zeichenfläche) within
+  the sheet: A0 821x1159, A1 574x811, A2 400x564, A3 277x390, A4 180x277 mm —
+  the difference is the border/fold margin.
+- Title block (Schriftfeld / Titelblock) content per DIN EN ISO 5457 (source
+  does not cite DIN 6771-1 by number — keep that citation VERIFY, but the
+  field set itself is confirmed, Tab. 25.3): client/Bauherr name; project or
+  component designation; date; name of person responsible for the drawing
+  with check/approval marks; type and content of the drawing; scale(s);
+  revision note with date.
+- Text height / line width by drawing scale (DIN EN ISO 3098 series,
+  confirmed against Wendehorst Tab. 25.12, VERIFY tag dropped): scale 1:50
+  and larger (e.g. 1:20) -> text height 5.0 mm, line width 0.35 mm; scale
+  1:100 and smaller (e.g. 1:200) -> text height 3.5 mm, line width 0.25 mm.
 
 ### 7.6 BIM context pointers (what the drawing hands over)
 
@@ -926,6 +931,17 @@ Drawing QA:
 - [ ] Revision status explicit; superseded sheets marked (DIN ISO 7518 logic)?
 - [ ] Derived from model? Then consistency model<->sheet checked (BIM) and CDE
       status transition (WIP->Shared->Published) respected.
+
+Reinforcement drawing (Bewehrungsplan) minimum content — a drawing-deliverable
+checklist, cross-reference `concrete-detailing` for the design values behind
+each item: main dimensions of each RC/PT member; concrete strength + exposure
+class; rebar/prestressing steel grade; position numbers, count, diameter,
+shape, location of bars; bar spacing, vibration gaps (Rüttelgassen), location
+of concreting openings; lap/anchorage lengths at supports; weld locations +
+filler material; cover c_v; position-securing measures (spacer type/
+arrangement, top-bar support details); minimum bending-roller diameter; joint
+detailing; embedded parts not tied to rebar; for prestressed elements:
+prestressing method, tendon count/type/location, anchorage/coupling locations.
 
 ## 12. Common mistakes
 

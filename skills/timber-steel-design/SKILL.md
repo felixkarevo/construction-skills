@@ -255,50 +255,69 @@ Characteristic values N/mm² at reference moisture 12 % (sizes per EN 336). Grad
 per DIN 4074-1: S7 → C16/C18 (fir/larch/Douglasie C16; Fichte/Kiefer C18),
 S10 → C24, S13 → C30/C35 (Douglasie C35); dry-graded (TS) ≤ 20 % MC.
 
-| Class | f_m,k | f_t,0,k | f_t,90,k | f_c,0,k | f_c,90,k | f_v,k | f_r,k | E_0,05 | E_0,mean | G_0,05/G_mean | ρ_k | ρ_mean |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| C18 | 18 | 10 | 0.4 | 18 | 2.2 | 3.4 | 0.8 | 6000 | 9000 | 560 / 375 | 320 | 380 |
-| C24 | 24 | 14.5 | 0.4 | 21 | 2.5 | 4.0 | 0.8 | 7400 | 11000 | 690 / 460 | 350 | 420 |
-| C30 | 30 | 19 | 0.4 | 24 | 2.7 | 4.0 | 0.8 | 8000 | 12000 | 750 / 500 | 380 | 460 |
-| C35 | 35 | 22.5 | 0.4 | 25 | 2.8 | 4.0 | 0.8 | 8700 | 13000 | 810 / 540 | 390 | 470 |
-| C40 | 40 | 26 | 0.4 | 27 | 2.8 | 4.0 | 0.8 | 9400 | 14000 | 880 / 590 | 400 | 480 |
+| Class | f_m,k | f_t,0,k | f_t,90,k | f_c,0,k | f_c,90,k | f_v,k | f_r,k | E_0,05 | E_0,mean | E_90,mean | G_mean/G_0,05 | ρ_k | ρ_mean |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| C18 | 18 | 10 | 0.4 | 18 | 2.2 | 3.4 | 0.8 | 6000 | 9000 | 300 | 560 / 375 | 320 | 380 |
+| C24 | 24 | 14.5 | 0.4 | 21 | 2.5 | 4.0 | 0.8 | 7400 | 11000 | 370 | 690 / 460 | 350 | 420 |
+| C30 | 30 | 19 | 0.4 | 24 | 2.7 | 4.0 | 0.8 | 8000 | 12000 | 400 | 750 / 500 | 380 | 460 |
+| C35 | 35 | 22.5 | 0.4 | 25 | 2.7 | 4.0 | 0.8 | 8700 | 13000 | 430 | 810 / 540 | 390 | 470 |
+| C40 | 40 | 26 | 0.4 | 27 | 2.8 | 4.0 | 0.8 | 9400 | 14000 | 470 | 880 / 590 | 400 | 480 |
 
-> ⚠ **VERIFY (hard)**: the source digest printed the E-columns transposed
-> (an "E0,05" of 9000-14000 with a mean below it is impossible); the table above
-> is de-transposed. f_v,k and the G-values for the higher classes were partially
-> lost in extraction (f_v,k actually rises 3.4 → 4.2? across C18 → C40; the
-> pairs 560/375 … 880/590 are G_0,05/G_mean per the digest's own ordering, which
-> is also suspect). **Do not use without reading DIN EN 338 cell-by-cell.**
+**CONFIRMED against Wendehorst Bautechnische Zahlentafeln (37th ed.) Tab. 12.1,
+itself citing DIN EN 1995-1-1:2016-07 Tab. 3.2 / DIN EN 338:2010-02 Tab. 1** —
+the table above is correct as printed (E_0,05 < E_0,mean, not transposed;
+G_05 = 2/3·G_mean per NA). Two cells corrected against that source: C24 f_v,k
+is **4.0** (not 3.5 — only C18 sits at 3.4, all of C24-C40 are flat at 4.0),
+and C35 f_c,90,k is **2.7** (not 2.8). E_90,mean column added from the same
+table (was previously only a single ⊥-grain estimate in §3.5).
 
 ### 3.2 Solid hardwood (Laubholz, DIN EN 338)
 
-| Class | f_m,k | f_t,0,k | f_t,90,k | f_c,0,k | f_c,90,k | f_v,k | E_0,mean | E_0,05 | ρ_k | ρ_mean | typical species |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| D30 | 30 | 18 | 0.6 | 24 | 5.3 | 3.9 | 11000 | 9200 | 530 | 640 | Eiche (oak), LS10 |
-| D35 | 35 | 21 | 0.6 | 25 | 5.4 | 4.1 | 12000 | 10100 | 540 | 650 | Buche (beech), LS10 |
-| D40 | 40 | 24 | 0.6 | 27 | 5.5 | 4.2 | 13000 | 10900 | 550 | 660 | Buche, LS13 |
-| D60 | 60 | 36 | 0.6? | 33 | 10.5 | 4.8? | 17000 | 14300 | 700 | 840 | Buche (high grade) |
+| Class | f_m,k | f_t,0,k | f_t,90,k | f_c,0,k | f_c,90,k | f_v,k | E_0,mean | E_0,05 | E_90,mean | G_mean/G_0,05 | ρ_k | ρ_mean | typical species |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| D30 | 30 | 18 | 0.6 | 24 | 5.3 | 3.9 | 11000 | 9200 | 730 | 690 / 460 | 530 | 640 | Eiche (oak), LS10 |
+| D35 | 35 | 21 | 0.6 | 25 | 5.4 | 4.1 | 12000 | 10100 | 800 | 750 / 500 | 540 | 650 | Buche (beech), LS10 |
+| D40 | 40 | 24 | 0.6 | 27 | 5.5 | 4.2 | 13000 | 10900 | 870 | 810 / 540 | 550 | 660 | Buche, LS13 |
+| D60 | 60 | 36 | 0.6 | 33 | 10.5 | 4.8 | 17000 | 14300 | 1130 | 1060 / 710 | 700 | 840 | Buche (high grade) |
 
-(f_r,k ≈ 1.2; same de-transposition caveat as §3.1 — VERIFY.)
+f_r,k ≈ 1.2. **CONFIRMED against Wendehorst Tab. 12.2** (DIN EN 338:2016-07
+Tab. 3) — D60 f_t,90,k and f_v,k are exactly 0.6 / 4.8 as printed, not
+uncertain; E/G/ρ columns not transposed. G_mean/G_0,05 and E_90,mean columns
+added from the same source (previously missing for hardwood).
 
 ### 3.3 Glulam / BSH (DIN EN 1194/14080, combined "c" and homogeneous "h" strength)
 
-| Class | f_m,k | f_t,0,k | f_t,90,k | f_c,0,k | f_c,90,k | f_v,k | E_0,mean | E_0,05 | ρ_k | ρ_mean |
-|---|---|---|---|---|---|---|---|---|---|---|
-| GL24c (combined) | 24 | 14.4 | 0.5 | 21.5 | 2.5 | 3.5 | 11000 | 9100? | 365 | 400 |
-| GL28c | 28 | 16.8 | 0.5 | 24 | 2.5 | 3.5 | 12500 | 10400? | 390 | 420 |
-| GL30c | 30 | 18 | 0.5 | 24.5 | 2.5 | 3.5 | 13000 | 10800? | 400 | 430 |
-| GL32c | 32 | 19.5 | 0.5 | 24.5? | 2.5 | 3.5 | 13500 | 11200? | 400 | 440 |
-| GL24h (homogeneous) | 24 | 19.2 | 0.5 | 24 | 2.5 | 3.5 | 11500 | 9600 | 385 | 420 |
-| GL28h | 28 | 22.3 | 0.5 | 28 | 2.5 | 3.5 | 12600 | 10500 | 425 | 460 |
-| GL32h | 32 | 24 | 0.5 | 30 | 2.5 | 3.5 | 13600 | 11300 | 430 | 480 |
-| GL36h | 36 | 25.6 | 0.5 | 32 | 2.5 | 3.5 | 14200 | 11800 | 440 | 490 |
+| Class | f_m,k | f_t,0,k | f_t,90,k | f_c,0,k | f_c,90,k | f_v,k | f_r,k | E_0,mean | E_0,05 | E_90,mean/05 | G_mean/G_05 | G_r,mean/G_r,05 | ρ_k | ρ_mean |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| GL24c (combined) | 24 | 17.0 | 0.5 | 21.5 | 2.5 | 3.5 | 1.2 | 11000 | 9100 | 300/250 | 650/540 | 65/54 | 365 | 400 |
+| GL28c | 28 | 19.5 | 0.5 | 24.0 | 2.5 | 3.5 | 1.2 | 12500 | 10400 | 300/250 | 650/540 | 65/54 | 390 | 420 |
+| GL30c | 30 | 19.5 | 0.5 | 24.5 | 2.5 | 3.5 | 1.2 | 13000 | 10800 | 300/250 | 650/540 | 65/54 | 400 | 430 |
+| GL32c | 32 | 19.5 | 0.5 | 24.5 | 2.5 | 3.5 | 1.2 | 13500 | 11200 | 300/250 | 650/540 | 65/54 | 400 | 440 |
+| GL24h (homogeneous) | 24 | 19.2 | 0.5 | 24 | 2.5 | 3.5 | 1.2 | 11500 | 9600 | 300/250 | 650/540 | 65/54 | 385 | 420 |
+| GL28h | 28 | 22.3 | 0.5 | 28 | 2.5 | 3.5 | 1.2 | 12600 | 10500 | 300/250 | 650/540 | 65/54 | 425 | 460 |
+| GL30h | 30 | 24.0 | 0.5 | 30 | 2.5 | 3.5 | 1.2 | 13600 | 11300 | 300/250 | 650/540 | 65/54 | 430 | 480 |
+| GL32h | 32 | 25.6 | 0.5 | 32 | 2.5 | 3.5 | 1.2 | 14200 | 11800 | 300/250 | 650/540 | 65/54 | 440 | 490 |
 
-> ⚠ **VERIFY** cells. The "h" tension values (f_t,0,k = 0.8·f_m,k) vs "c"
-> (0.6·f_m,k) are the real design difference — homogeneous lay-up (edge lamellae
-> of tension grade) buys the higher tension strength and is the bending-member
-> default; combined for columns/frames. E-columns shown de-transposed
-> (EN 1194 GL24h: E0,mean 11500 > E0,05 9600 ✓).
+Corrected against Wendehorst Tab. 12.3/12.4 (DIN EN 14080:2013-09), two fixes:
+1) "c" tension values f_t,0,k are **17.0/19.5/19.5/19.5**, not the 0.6·f_m,k
+approximation previously shown — GL28c/30c/32c share the same 19.5 ceiling
+(the formula understated all three). 2) The "h" table previously had a
+**row/class mislabelling**: what was printed as "GL32h" actually carried
+GL30h's values, and what was printed as "GL36h" (not a class in this DIN EN
+14080 table at all) actually carried the real GL32h values — both now fixed;
+**GL36h is not in this source table** and should be re-sourced (Studiengem.
+Holzleimbau extended range) before use, not assumed as a linear extrapolation.
+The "h" tension values (higher, edge lamellae of tension grade) vs "c"
+(lower) is the real design difference — homogeneous lay-up buys the higher
+tension strength and is the bending-member default; combined for
+columns/frames. **E_90 and G/G_r are constant across every GL grade** (both
+c and h) — E_90,mean/05 = 300/250 N/mm², G_mean/G_05 = 650/540 N/mm²,
+**rolling-shear modulus G_r,mean/G_r,05 = 65/54 N/mm²** (≈1/10 of in-plane G
+— this is the property that governs CLT out-of-plane shear stiffness/failure
+in a plate FEM model, not the normal shear modulus; missing it silently
+over-stiffens a CLT plate/shell element in the through-thickness direction).
+Rolling-shear strength f_r,k = 1.2 for all grades shown (softwood solid
+timber §3.1: f_r,k = 0.8 — lower than glulam).
 
 **BSH trade rules:** ≥ 3 (typ. 5+) lamellae of 14-45 mm, tension-zone lamellae
 of higher grade; finger joints (Keilzinken) factory only; flat-use (querused)
@@ -319,16 +338,22 @@ Table 3.1; CL1/CL2/CL3 = equilibrium moisture ≤ 12 % / ≤ 20 % / > 20 %):**
 
 | Duration (example actions) | CL1 | CL2 | CL3 |
 |---|---|---|---|
-| permanent (self weight) | 0.60 | 0.50 | 0.50 |
-| long (6 mo-10 a) | 0.70 | 0.60 | 0.60 |
-| medium (1 wk-6 mo; storage E) | 0.80 | 0.70 | 0.70 |
-| short (< 1 wk; snow, live A/B) | 0.90 | 0.80 | 0.80 |
-| very short (< 1 min; wind, impact) | 1.10 | 1.00 | 0.90 |
+| permanent (self weight) | 0.60 | 0.60 | 0.50 |
+| long (6 mo-10 a) | 0.70 | 0.70 | 0.55 |
+| medium (1 wk-6 mo; storage E) | 0.80 | 0.80 | 0.65 |
+| short (< 1 wk; snow, live A/B) | 0.90 | 0.90 | 0.70 |
+| very short (< 1 min; wind, impact) | 1.10 | 1.10 | 0.90 |
 
-German NA wind: k_mod = mean(short, very short) = **1.00** (CL1 solid/BSH).
-Panels take lower columns (cement-bonded 0.30; gypsum-fibre 0.20/0.15).
-> ⚠ **VERIFY**: digest CL2/CL3 columns partially garbled; tiers above are the
-> EN 1995-1-1 pattern — confirm against the introduced NA.
+**CONFIRMED against Wendehorst Tab. 12.5** (DIN EN 1995-1-1:2010-12 Tab. 3.1 +
+NA Tab. NA.4) for solid timber, glulam, LVL/3 and CLT-equivalent panels — CL1
+and CL2 columns are **identical** for these products (only CL3 drops); the
+previous CL2 column here understated capacity at every duration tier. Panel
+products take their own lower columns: LVL/1 and Sperrholz EN 636-1 (dry use
+only) 0.60/0.70/0.80/0.90/1.10 (CL1 only, CL2/3 = "–" not permitted); OSB/2
+(dry) 0.30/0.45/0.65/0.85/1.10 (CL1 only); OSB/3-4 and Sperrholz EN 636-2/3,
+LVL/2 (dry+humid) same run as solid timber's CL1/CL2 columns, CL3 not
+permitted. German NA wind: k_mod = mean(short, very short) = **1.00** (CL1/2
+solid/BSH), **0.80** (CL3).
 
 **k_def — creep (final deformation, EN 1995-1-1 Table 3.2):** solid timber, BSH,
 Balkenschichtholz (duo/trio), CLT, finger-jointed, LVL-3, plywood EN 636-3:
@@ -464,10 +489,21 @@ f_v,d = 0.9·0.35/1.3 = 0.242 kN/cm²; τ = 1.5·93/(11.4·90) = 0.136 → util 
 
 ```
 σ_c,90,d = F_c,90,d / A_c,ef ≤ k_c,90 · f_c,90,d
-k_c,90: 1.25 solid softwood / 1.5 solid hardwood? / 1.75 glulam
-        (continuous support AND l_1 ≥ 2·h; single support: smaller values —
-        EN 1995-1-1 6.1.5(7): solid single support 1.25? worked example uses
-        1.25 solid continuous / 1.75 glulam single — VERIFY row)
+```
+**k_c,90 (CONFIRMED against Wendehorst Tab. — DIN EN 1995-1-1/NA 6.1.5), by
+support condition and product** — default is **1.0** for any l_1 < 2h:
+
+| Product | l_1 < 2h (default) | l_1 ≥ 2h, continuous support (Schwellendruck) | l_1 ≥ 2h, single/discrete support (Auflagerdruck) |
+|---|---|---|---|
+| Hardwood solid (Laubvollholz) | 1.0 | 1.0 (no elevated value) | 1.0 |
+| Softwood solid (Nadelvollholz) | 1.0 | 1.25 | 1.5 |
+| Glulam, softwood (BSH aus Nadelholz) | 1.0 | 1.5 | **1.75** (also applies for bearing length > 400 mm) |
+| Truss node, indirect connection | — | — | 1.5 (NA 6.1.5, all products) |
+
+(Corrects the earlier flagged guess: hardwood does **not** get an elevated
+k_c,90 — it stays at 1.0. The worked example's 1.25 solid-continuous /
+1.75 glulam-single values were both right.)
+```
 A_c,ef = (3 + l_bearing + 3)·b   [cm]  load spreading 3 cm each side along grain
 edge distance a > 3 cm each side required for spreading; otherwise A = b·l
 ```
@@ -878,6 +914,14 @@ combination γG = γQ = 1.0, ψ1 = 0.5 → q_fi = 1.5 kN/m → M_fi = 4.69 kNm.
 
 ## Section 8: Steel — material, sections, member checks
 
+### 8.0 Elastic constants (all structural steel grades, EN 1993-1-1 §3.2.6 — for FEM)
+
+E = **210,000 N/mm²**, G = **81,000 N/mm²**, ν (Poisson) = **0.3**, α_T (thermal
+expansion) = **12·10⁻⁶/K**, ρ = **7850 kg/m³** — grade-independent (S235 through
+S460 share the same elastic constants; only f_y/f_u change). Use these directly
+as the isotropic material definition for a steel member/plate FEM model; do not
+substitute a design f_yd for E — stiffness and strength are separate inputs.
+
 ### 8.1 Grades (EN 10025; nominal f_y for t ≤ 16 mm)
 
 | Grade | f_y [N/mm²] | f_u [N/mm²] | ε = √(235/f_y) | Typical use |
@@ -887,10 +931,28 @@ combination γG = γQ = 1.0, ψ1 = 0.5 → q_fi = 1.5 kN/m → M_fi = 4.69 kNm.
 | S355 (JR/J2/K1…) | 355 | 470 | 0.81 | portals, heavy frames, welded |
 | S420/S460 | 420/460 | 530/550 | 0.75/0.71 | special (thinner plates, buckling limits) |
 
-> ⚠ **VERIFY**: f_u,f_y drop with plate thickness (EN 10025-1 table); delivery
-> condition/impact-energy class (JR/J0/J2/K1-K2) is a toughness-and-weldability
-> decision, not a strength one — winter sites and thick welded plates need J2/K.
-> Weldability: carbon-equivalent limits of EN 1090-2; preheat by thickness.
+**f_y/f_u drop with nominal product thickness t (CONFIRMED against Wendehorst
+Tab. 11.4, N/mm², t ≤ 40 mm / 40 < t ≤ 80 mm — read EN 10025-2 direct for
+t > 80 mm or other delivery conditions):**
+
+| Grade (EN 10025-2) | f_y, t≤40 | f_u, t≤40 | f_y, 40<t≤80 | f_u, 40<t≤80 |
+|---|---|---|---|---|
+| S235 | 235 | 360 | 215 | 360 |
+| S275 | 275 | 430 | 255 | 410 |
+| S355 | 355 | 490 | 335 | 470 |
+| S460 | 460 | 550 | 420 | 550 |
+
+(EN 10025-3 normalized N/NL, -4 thermomech M/ML, -5 weathering W and
+-6 quenched Q/QL run a few N/mm² apart from the -2 values above at the same
+nominal grade — use the -2 table for ordinary hot-rolled sections, switch
+tables only if the mill certificate names a different product standard.)
+Ductility check (EN 10025, all grades to S460): f_u/f_y ≥ 1.10, elongation
+≥ 15 %, uniform elongation ε_u ≥ 15·f_y/E — needed for plastic (Mpl) design
+to be valid; grades > S460 to S700 relax to 1.05 / 10 %.
+> ⚠ **VERIFY**: delivery condition/impact-energy class (JR/J0/J2/K1-K2) is a
+> toughness-and-weldability decision, not a strength one — winter sites and
+> thick welded plates need J2/K. Weldability: carbon-equivalent limits of
+> EN 1090-2; preheat by thickness.
 
 ### 8.2 Profile families (EN 10365 designation)
 
@@ -910,7 +972,7 @@ combination γG = γQ = 1.0, ψ1 = 0.5 → q_fi = 1.5 kN/m → M_fi = 4.69 kNm.
 |---|---|---|---|---|---|---|---|---|---|---|
 | IPE 270 | 45.9 | 429 | — | 11.2 | 3.02 | 5790 | 420 | 70 580 | 15.9 | tf 10.2; S355 example |
 | IPE 360 | — | — | 1019 | — | — | — | — | — | — | Vpl 476 kN; Mpl S235 239.5; IPE330 (189) fails the same check |
-| IPE 450 | — | ~1348? | 363.6?? (suspect) | — | — | — | — | — | — | LTB example, S235; real W_pl,y ≈ 1702 cm³ — **digest cell mangled, VERIFY** |
+| IPE 450 | **98.8** | 1500 | **1702** | 18.5 | 4.12 | 33740 | 1676 | 791 (×10³ cm⁶) | 66.9 | LTB example, S235; **A and W_pl,y confirmed against Wendehorst's IPE profile table (row h=450)** — the earlier "363.6" cell was a mis-extraction, real W_pl,y = 1702 cm³. Other columns are standard EN 10365 catalogue values, not individually re-parsed from the source digest this pass |
 | UPE 400 | 91.9 | — | — | — | — | 20 981 | — | — | I_s 82.2 | channel: y_T = 6.06 cm |
 | HE 240 B / HE 280 A | — | — | — | — | — | — | — | — | — | frame-column and two-span-beam examples (HE280A util 0.95 elastic; Mpl,Rd 261.3; A_v 31.8?) |
 | HE 300 B | — | — | — | — | — | — | — | — | — | S235: Mpl 439, Npl 3502 kN, Vpl 642 kN, b/h? 7.5/5? |
@@ -1055,10 +1117,10 @@ M_b,Rd = χ_LT,mod·W_pl·f_y/γ_M1 ≤ M_pl,Rd? (≤1.0·)
 ```
 **Worked LTB (IPE450 S235, L = 6 m, fork ends, unrestrained, parabolic M,
 M_Ed = 177.5 kNm):** M_cr = 350.9 kNm → λ̄ = 1.07 → χ_LT 0.596 (curve c) →
-k_c 0.94 → χ_LT,mod = 0.612 → M_b,Rd = 0.612·3636?·23.5/100 = **222.5 kNm** →
-util 0.80 ✓ (W_pl read 3636 cm³? — the printed "363.6" is the extraction
-mangling; consistent result needs W_pl ≈ 1702·? → **VERIFY numbers in this
-chain against EN 10365 + recompute**).
+k_c 0.94 → χ_LT,mod = 0.612 → M_b,Rd = 0.612·W_pl,y·23.5/100. With the
+confirmed W_pl,y = 1702 cm³ (§8.2) this gives M_b,Rd ≈ **245 kNm** → util
+177.5/245 ≈ **0.72** — recompute this chain with 1702 (not the earlier
+"363.6" mis-extraction) before quoting the utilization.
 **Coped beam rule (worked):** cope with h_a/h ≥ 0.7 and a/h ≈ 0.5 → reduce
 M_cr by V ≈ 0.68 (interaction chart) and downgrade the buckling curve one
 letter; capacity drop ≈ 30 % → prefer a bolted web-cleat or a smaller cope.
@@ -1167,7 +1229,8 @@ paragraph):**
 |---|---|
 | Property classes | 4.6/4.8 (ordinary), 5.6/5.8/6.8, **8.8/10.9** (preloaded HRSG per EN 14399, "HV"), proof stress f_ub 400/420/500/600/640/800/1040? MPa (worked: 8.8 f_ub = 800, 10.9 = 1000) |
 | Stress area | M16 A_s 157 mm²; M20 245 mm² (worked: M20 11.9 HRSG A_s 2.45 cm² — A_s,nom 3.03? **VERIFY tensile vs nominal shear area, threaded vs unthreaded position**) |
-| Shear (bearing-type SL) | F_v,Rd = α_v·f_u,b·A_s/γ_M2; α_v: 0.60 (4.6/4.8/5.6), 0.55 (6.8), **0.50 (8.8/10.9)** — worked used 0.6 for 8.8 (gives 60.3 kN @M16; **VERIFY α_v grade mapping vs EN Table 3.4**) |
+| Shear (bearing-type SL) | F_v,Rd = α_v·f_ub·A/γ_M2. **α_v is set by WHICH cross-section sits in the shear plane, not by grade tier alone (CONFIRMED against Wendehorst Tab. 11.175 = EN 1993-1-8 Table 3.4):** shank in shear plane → **α_v = 0.6 for every grade** 4.6/5.6/8.8/10.9 (A = shank area); thread in shear plane → α_v = 0.6 for 4.6/5.6/8.8, **α_v = 0.5 only for 10.9** (A = A_s, stress area). The worked 60.3 kN @M16 8.8 with α_v 0.6 is correct (thread-in-plane, 8.8 keeps 0.6). |
+| Tension | F_t,Rd = k_2·f_ub·A_s/γ_M2, k_2 = 0.9 (0.63 for countersunk). **F_t,Rd table (kN, CONFIRMED against Wendehorst Tab. 11.178):** M12/M16/M20/M22/M24/M27/M30/M36 — grade 4.6: 24.3/45.2/70.6/87.3/101.7/132.2/161.6/235.3; grade 8.8: 48.6/90.4/141.1/174.5/203.3/264.4/323.1/470.6; grade 10.9: 60.7/113.0/176.4/218.2/254.2/330.5/403.9/588.2 |
 | Bearing | F_b,Rd = [min(2.8·e_1/d_0; 1.4·p_1/d_0; α_b)] · [min(2.8·e_2/d_0−1.7; 1.4·p_2/d_0−1.7; 2.5)] · d·t·f_u/γ_M2, α_b = min(f_u,b/f_u; 1.0) |
 | Eccentric group | component method: resolve F_x/F_z; vector check √((F_E,x/F_Rd,x)² + (F_E,z/F_Rd,z)²) ≤ 1; or polar I_p method for torsion (worked double-angle: F_v,i = F·(1/n ± e·z/I_p)) |
 | Spacing | min: e_1,e_2 = 1.2·d_0; p_1 = 2.2·d_0 (end, static; 1.6·d_0?); p_2 = 2.4·d_0; max: e_1,e_2 ≤ 4t+40 (≤ 200 mm?); p ≤ 14t (≤ 200 mm compression; VERIFY) |
@@ -1418,15 +1481,24 @@ parametric openings and FEM handoff.
 
 ## Section 16: Known gaps — state these when relevant
 
-1. **§3 characteristic-value tables** (C/D/GL, nail R_k, ring-connector,
-   k_def, EN 336/14080 tolerances) were reconstructed from a digest with the
-   E_0,05/E_0,mean columns transposed and cells lost — flagged in place; read
-   DIN EN 338/1194/14080 cell-by-cell. The §8.2 property excerpt (IPE 450 row
-   demonstrably mangled) is chain-illustration, not a catalogue.
-2. **Open contradictions from the source:** γ_M,fi timber (1.15-1.25 vs 1.0),
-   bolt α_v 8.8 (worked 0.6 vs EN 0.5), k_c,90 pairing, k_h and n_ef forms —
-   flagged in place; resolve against the code text. Vibration (§4.8) and
-   lining (7.2) tables partially lost — methods named, numbers not.
+1. **§3.1/3.2 solid timber tables, §3.4 k_mod, §4.5 k_c,90, §8.1 steel grade
+   thickness table, §8.2 IPE 450 row and §10.1 bolt α_v/F_t,Rd were
+   cross-checked against Wendehorst Bautechnische Zahlentafeln (37th ed.)
+   and corrected/confirmed in place** (2026 pass) — the E_0,05/E_0,mean
+   columns were NOT transposed after all; the real errors were a few
+   individual cells (C24 f_v,k, C35 f_c,90,k, the CL2 k_mod column, the
+   hardwood k_c,90 default, the IPE450 Wpl,y mis-extraction, and the bolt
+   α_v grade-vs-shear-plane rule). §3.3 glulam GL-classes, nail R_k,
+   ring-connector grid, EN 336/14080 tolerance cells were **not** re-checked
+   this pass and still carry their original VERIFY flags — read DIN EN
+   1194/14080/336 cell-by-cell before use. The rest of the §8.2 property
+   excerpt (all rows except IPE 450) is chain-illustration, not a verified
+   catalogue.
+2. **Still-open items from the source, not yet cross-checked:** γ_M,fi
+   timber (1.15-1.25 vs 1.0), plate-buckling k_σ/ρ formula branches (§9.4),
+   warping-torsion κ root order, T-stub mode-2 formula — flagged in place;
+   resolve against the code text. Vibration (§4.8) and lining (7.2) tables
+   partially lost — methods named, numbers not.
 3. No seismic (EN 1998) content; connection ductility for dissipative systems
    is a specialist check. Nothing here is a fabrication drawing, cutting list
    or connection design; NA/revision state must be re-verified per project.

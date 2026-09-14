@@ -157,17 +157,32 @@ qk [kN/m²] on area / Qk [kN] concentrated on 50×50 mm:
 | Z | balconies, roof terraces, loggias | 4.0 | 2.0 |
 | H | roofs, not normally accessible | 2.0 (area), 1.0 (single-person load); no superposition with snow | — |
 
-Partitions (Trennwandzuschlag): walls ≤ 5 kN/m (incl. plaster) may be replaced by an added area
-load; digested worked examples use **Δqk = 1.0 kN/m²** (assembly slab) and **1.2 kN/m²** (office
-2.0 + 1.2 = 3.2; living 1.5 + 1.2). One source prints a step "≤ 3 kN/m → +1.0; > 3–≤ 5 kN/m →
-higher; no add-on if qk ≥ 5.0" — exact formula garbled **[VERIFY]**. Multi-storey reduction factor
-ξn exists (categories A–D, Z) but was stripped in extraction **[VERIFY]**; do not combine with the
-ψ-reduction (use the more favourable one).
+Partitions (Trennwandzuschlag), DIN EN 1991-1-1 §6.3.1.2(8)/NA — confirmed formula: walls ≤ 3 kN/m
+run (incl. plaster) → **Δqk ≥ 0.8 kN/m²**; > 3–≤ 5 kN/m → **Δqk ≥ 1.2 kN/m²**; no add-on if
+qk ≥ 5.0 kN/m². Category A3 areas without adequate load-distribution to supporting members may
+reduce this by 0.5 kN/m². Digested worked examples use 1.0 kN/m² (assembly slab, above the 0.8
+code floor) and 1.2 kN/m² (office 2.0 + 1.2 = 3.2; living 1.5 + 1.2).
+
+Load reduction factors (do not combine the two with each other, and never combine either with
+ψ-reduction — use the single most favourable factor):
+- Area reduction (secondary members: beams/columns/walls/foundations), tributary area A [m²]:
+  categories A/B/Z → **αA = 0.5 + 10/A ≤ 1.0**; categories C–E1.1 → **αA = 0.7 + 10/A ≤ 1.0**.
+- Multi-storey reduction (vertical member carrying n > 2 storeys of the same use category):
+  categories A–D, Z → **αn = 0.7 + 0.6/n**; categories E1.1, E1.2, E2.1–E2.5, T → **αn = 1.0**
+  (no reduction — high/fixed-load categories don't benefit from storey averaging).
 
 Vehicle areas (predominantly static): F1 light vehicles ≤ 30 kN: qk 3.0 (may reduce to 2.5 for load
 transfer to columns/walls/foundations), or axle load 20 kN alternative; ramps F2 5.0. Forklifts
-FL1–FL6 (total weight/wheel load/qk): FL1 31/26/12.5 … FL6 190/170/20.0 kN/m²; horizontal
-acceleration/braking = 30 % of axle load; dynamic amplification ψ formula stripped **[VERIFY]**.
+FL1–FL6 (total allowable load / point load Qk / area qk): FL1 31/26/12.5 … FL2 46/40/15.0 …
+FL3 69/63/17.5 … FL4 100/90/20.0 … FL5 150/140/20.0 … FL6 190/170/20.0 kN(/m²); horizontal
+acceleration/braking = 30 % of the point load (0.3·Qk, no dynamic factor applied to this term).
+**Dynamic amplification factor φ (general rule, all categories with concentrated Qk under
+non-predominantly-static action, §4.3.5.2):** φ = **1.4** by default (no more precise
+verification done); for buried/covered structures φ = 1.4 − 0.1·h_ü ≥ 1.0 (h_ü = cover depth,
+m). Applies to the **point load Qk only** — the distributed qk is used without φ. FL-class
+forklift dimensions (a×b track/wheelbase, m / self-weight / lift load kN): FL1 0.85×1.00/2.60 len,
+21/10; FL2 0.95×1.10/3.00, 31/15; FL3 1.00×1.20/3.30, 44/25; FL4 1.20×1.40/4.00, 60/40;
+FL5 1.50×1.90/4.60, 90/60; FL6 1.80×2.30/5.10, 110/80 — use for worst-position placement on slabs.
 
 Horizontal line loads on parapets/partitions at ≤ 1.2 m height: cat. A, B1, H, F1–F4, T1, Z →
 0.5 kN/m; B2, B3, C1–C4, D, E, Z, FL, HC, T2 → 1.0 kN/m; C5, C6, T3 → 2.0 kN/m. Full in fall
@@ -188,8 +203,14 @@ Zone boundary values and altitude formulas reproduced from worked examples:
 - Zone 2: sk = 0.25 + 1.91·((A + 140)/760)² ≥ 0.85 (A = ground elevation in m; example Passau
   300 m → 0.89; 50 m → min 0.65→0.85? worked Köln uses zone-1 min).
 - Zone 3: sk = 0.31 + 2.91·((A + 140)/760)² ≥ 1.10 (Garmisch 750 m → 4.30).
+- **Zones 1a / 2a** exist alongside 1/2/3 (DIN EN 1991-1-3/NA map, dibt.de for the current
+  administrative-boundary assignment): sk,1a = **1.25 × sk,zone1**, sk,2a = **1.25 × sk,zone2**
+  (both the altitude-formula output AND the floor/Sockelbetrag are scaled by 1.25) — don't
+  silently treat a 1a/2a site as plain zone 1/2.
 - Above 1500 m and "Norddeutsches Tiefland" exceptional snow: expert/authority decision;
-  exceptional snow = exceptional action.
+  exceptional snow = exceptional action; the same exceptional-action treatment applies to
+  specific Zone-3 high ground named in the source (Oberharz, Fichtelgebirge summits,
+  Bayerischer Wald) — flag these even though nominally "just zone 3".
 - sd = cc·cf·sk (cc site, cf = 1.0 default); flat roof 0–10°: μ1 = 0.8; **s = μ·sk**.
 
 Shapes (all digested with worked numbers — see §13 loads chapter and examples):
@@ -237,8 +258,14 @@ F/G/H/I roof):
 
 Force method (cf) for tall buildings ≤ 50 m, non-shaking (cscd = 1): Fw = cf·qp(ze)·Aref,
 cf = cf,0·ψr·ψλ; worked example: d/b = 0.33 → cf,0 = 2.16, r/b = 0 → ψr = 1.0, λ = h/b = 1 →
-ψλ = 0.63 → cf = 1.36; qp profile (mixed II/III): qp = 1.5·qb for z ≤ 7 m;
-qp = 1.7·qb·(z/10)^0.37 for 7 < z ≤ 50 m **[VERIFY exponent — OCR]**; λ ≤ 2 → block behaviour
+ψλ = 0.63 → cf = 1.36; qp(z) profile (Wendehorst Tab. 4.45, DIN EN 1991-1-4/NA — confirmed):
+- Inland (Geländekat. II/III mix): z≤7m → qp=1.5·qb; 7<z≤50m → qp=1.7·qb·(z/10)^0.37;
+  50<z≤300m → qp=2.1·qb·(z/10)^0.24.
+- Coastal/Ostsee islands (Gel.kat. I/II mix): z≤4m → qp=1.8·qb; 4<z≤50m → qp=2.3·qb·(z/10)^0.27;
+  50<z≤300m → qp=2.6·qb·(z/10)^0.19.
+- Nordsee islands (Gel.kat. I): z≤2m → qp=1.1 kN/m² (constant); 2<z≤300m → qp=1.5·qb·(z/10)^0.19.
+
+λ ≤ 2 → block behaviour
 (full area, Völligkeit φ = 1). Bracing-wall distribution: load to walls with eccentricity
 e = b/10; slab as single-span diaphragm → up to 0.6·Fw to one wall; wall as cantilever with
 resultant at zs = 0.6·h.
@@ -254,9 +281,22 @@ Temperature (non-fire) enters only the ψ-table (0.6 / 0.5 / 0.0). Digested line
 values exist for bridges only (EN 1991-1-5: steel box +18/−13 K; composite +15/−18; concrete box
 +10/−5; girder/slab +15/−8) **[VERIFY for buildings]** — building σ-joint/temperature checks are
 covered in restraint-stress sections (WU) and in siblings; settlement ψ = 1.0/1.0/1.0; "other"
-variable 0.8/0.7/0.5. Ice (legacy DIN 1055-5 via NA): G1/G2 all-round glaze, ρice = 9.0; hoar
-R1–R5 = 0.005/0.009/0.016/0.028/0.050 kN/m on member; zone map Küste→R1 … Mittelgebirge R2/R3,
-> 600 m expert opinion **[VERIFY — dated source]**.
+variable 0.8/0.7/0.5.
+
+Ice (still current: DIN 1991-1-3/NA 2019-04 carries former DIN 1055-5 forward verbatim as NCI
+Annex NA.F — **not a dated/superseded source**): two classification families —
+- **Glaze ice (Klareis/Glatteis, classes G):** all-round ice sheath, thickness t = class number
+  in cm (G1 → 1 cm, G2 → 2 cm; **G1 or G2 govern for Germany**); density ρ_ice = **9 kN/m³**.
+- **Rime ice (Raueis, classes R), wind-driven one-sided flag on slender members ⌀ ≤ 300 mm:**
+  R1–R5 = 0.005/0.009/0.016/0.028/0.050 kN/m at **10 m height**; density ρ_raueis = **5 kN/m³**
+  (lower than glaze — larger volume per unit weight); apply height factor k_z (§4.6.3) for other
+  member heights. **R1–R3 govern for German lowland and lower Mittelgebirge** — matches the
+  zone map.
+- Applicability ceiling for these tabulated values: **≤ 600 m NN and ≤ 50 m structure height**;
+  beyond that, or in exposed locations, the ice approach is agreed with the authority
+  case-by-case (not a table lookup). For slender/filigree members, check ice load as an
+  **alternative** to snow (not combined) — governs where wind area gain from the ice sheath
+  matters more than the added weight.
 
 ## 5. Combinations of actions (EN 1990 / NA — digested values)
 

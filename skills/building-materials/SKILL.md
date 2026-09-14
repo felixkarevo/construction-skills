@@ -489,7 +489,21 @@ max C35/45 in bending+axial; VERIFY current NA treatment.)
 | C40/50 | 40/50/48 | 3.5/2.5/4.6 | 35000 | 2.5/3.5 |
 | C45/55 | 45/55/53 | 3.8/2.7/4.9 | 36000 | 2.55/3.5 |
 | C50/60 | 50/60/58 | 4.1/2.9/5.3 | 37000 | 2.6/3.5 |
-| C55/67→C100/115 | fcm 63…108 | fctm 4.2…5.2 | 38000→45000 | eps_cu2 falls 3.2→2.8 (HSC — VERIFY strain rows) |
+| C55/67 | 55/67/63 | 4.2/3.0/5.5 | 38000 | 2.2/3.1 |
+| C60/75 | 60/75/68 | 4.4/3.1/5.7 | 39000 | 2.3/2.9 |
+| C70/85 | 70/85/78 | 4.6/3.2/6.0 | 41000 | 2.4/2.7 |
+| C80/95 | 80/95/88 | 4.8/3.4/6.3 | 42000 | 2.5/2.6 |
+| C90/105 | 90/105/98 | 5.0/3.5/6.6 | 44000 | 2.6/2.6 |
+| C100/115 | 100/115/108 | 5.2/3.7/6.8 | 45000 | 2.6/2.6 |
+
+**HSC rows (C55/67-C100/115) CONFIRMED against Wendehorst Bautechnische
+Zahlentafeln (37th ed.) Tab. 8.3** (DIN EN 1992-1-1 Table 3.1 for f_ck >
+C50/60) — eps_c2/eps_cu2 shown above; the source also gives the non-parabolic
+stress-strain-line values used for HSC design (eps_c1/eps_cu1: 2.5/3.2 →
+2.8/2.8 across C55/67→C100/115; exponent n: 1.75 → 1.4; eps_c3/eps_cu3:
+1.8/3.1 → 2.4/2.6) if a bilinear or non-parabolic model is needed instead of
+the parabola-rectangle line. C100/115 values are empirical (don't follow the
+analytic formulas that generate the lower rows — footnote in source).
 
 Design-line strains: parabola-rectangle eps_c2 = 2.0 ‰, eps_cu2/eps_cu3 = 3.5 ‰
 (≤ C50/60); bilinear 1.75/3.5; C12/15 only for predominantly static loads.
@@ -820,6 +834,11 @@ Standards: **EN 338** strength classes, **EN 336** sizes, **EN 408/1915** gradin
 Material reality: anisotropic (strongest tension ∥ grain); cell wall = cellulose
 40–50 % (tension) + hemicellulose 20–25 % + lignin 20–30 % (compression
 stiffness); extractives drive natural durability (density ≠ durability);
+moisture content u = (m_wet − m_oven-dry)/m_oven-dry × 100 % (oven-dry ref.,
+EN 13183); 5 states dry→wet: oven-dry 0 % → below-FSP (swell/shrink active) →
+FSP ~30 % (fibres saturated, cavities empty — swelling/shrinking starts/stops
+here) → cavities partially wet → fully saturated (fibres + cavities wet, no
+further swelling beyond FSP);
 fibre saturation point FSP ≈ 23–35 % (use 30 %): shrinkage only below FSP;
 movement tangential ~10 %, radial ~5 %, axial 0.1–0.3 % total dry→FSP;
 moisture effect in service 8–18 %: +1 % u → −6 % compression, −4 % bending,
@@ -1066,7 +1085,11 @@ CO2 + H2O + Ca(OH)2 → CaCO3; pH < 9.5 → depassivation → **uniform corrosio
 spalling → failure). Needs moisture: fastest at RH ~50–70 %; dry (< ~85 % RH
 no reaction medium) or saturated (no O2 ingress) barely carbonates; freely
 weathered fastest. Depth law (T4): **d_k = alpha·sqrt(t)**; example 5 mm at
-10 y → alpha = 1.58 mm/√a → 11.2 mm at 50 y. Slow with: low w/z, dense/compacted
+10 y → alpha = 1.58 mm/√a → 11.2 mm at 50 y. Note: carbonation *progress* and
+corrosion *initiation* are separate gates — depassivated rebar only starts
+rusting once ambient RH > ~85 %; dry interior concrete can carbonate fully to
+bar depth and never corrode (no electrolyte), same for water-saturated
+concrete (no O2 ingress). Slow with: low w/z, dense/compacted
 paste, good curing, more cement, SR cements (slag slows carbonation itself but
 worse pH buffer — net by quality); detection on site: phenolphthalein (uncarb.
 = red, < pH 9 colourless). Counter: cover ≥ d_k(50 y) + Δc_dev + margin,

@@ -500,6 +500,11 @@ pendulum impact 20 Nm) · **I** Dämmung (insulation) · **W** radiation (glazin
 (+ cycle class) · **P** circuit integrity (cables). Loadbearing criteria = design use
 load or self-weight + deflection-rate limit (Δf/Δt)_lim = l²/(9000·h) [l, h in m].
 National ↔ EN component shorthand: fh = R30/REI30 · hfh = R60(+K260)/REI60 · fb = R90/REI90.
+**K-symbol disambiguation**: this K260 (combustible-core duct/lining class)
+and the K30–K90 ventilation-duct classes are a **different K-symbol space**
+from K1/K2 "Brandschutzvermögen" (fire-protective capacity of a wall/ceiling
+cladding protecting a combustible substrate, MVV TB 2019/1 Anlage zu Anhang 4)
+— do not conflate the two when reading a spec that names bare "K1"/"K2".
 
 ### 8.5 Eurocode fire design — design philosophy
 
@@ -554,6 +559,12 @@ EN 1995-1-2 3.1 (digested values partly lost — VERIFY before numeric use).
 - Protective gypsum linings (type A/F/H to EN 520): onset time t_prot from
   insulation-thickness/density chart; add **outer layer + 80 % of inner** (type F) or
   + 50 % (A/H); joints offset, inner fixings ≤ outer.
+- Protective mineral-wool (stone wool) insulation, DIN EN 1995-1-2 §3.4.2:
+  min. thickness 20 mm, min. density ρ ≥ 26 kg/m³, melting point ≥ 1000 °C,
+  applied outside joints or at sealed/open joints ≤ 2 mm wide —
+  `t_ch = 0.07·(h_ins − 20)·√ρ_ins` [min] gives the time to onset of charring
+  of the protected member (h_ins = insulation thickness [mm], ρ_ins = density
+  [kg/m³]).
 - Buckling / LTB: check per part 1-1 §6.3 **with the fire-time bracing layout**.
 - Loadbearing timber to F60/F90 is feasible via oversized sections + linings
   (MHolzBauRL governs the building-law route for timber buildings; VERIFY state adoption).
@@ -620,6 +631,14 @@ exposure 1-sided unless noted; h_min = min dimension, a_min = bar axis distance 
 | R180 | 350/45ᵃ · 350/63ᵃ · 450/70ᵃ | 230/55 |
 (ᵃ ≥ 8 bars; prestressed: increase a per 5.2(5); slenderness limits + l_o < 3 m
 conditions of Tab 5.2 apply — check them whenever the table is invoked.)
+
+**Method A effective length in fire (l0,fi), EC2 §5.3.2 — confirmed against
+Wendehorst Tafel 16.19**: applies only to **braced structures**; boundary
+conditions l0,fi ≤ 3 m (rectangular column) / ≤ 2.5 m (circular column) and
+As ≤ 0.04·Ac. Effective length by fire duration: t ≤ 30 min → l0,fi = l0
+(cold-design value, l0 = β·l, β = Euler buckling coefficient per the usual
+cases); t > 30 min, interior-storey column → l0,fi = 0.5·l; t > 30 min,
+top-storey column → 0.5·l ≤ l0,fi ≤ 0.7·l.
 
 **Loadbearing walls (h/a_i, two-sided exposure pairs, μfi 0.35 / 0.70):**
 REI30 120/10·120/10 | 120/10·120/10 · REI60 130/10·140/10 · REI90 140/25·170/25 ·

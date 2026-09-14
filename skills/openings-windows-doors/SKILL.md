@@ -757,6 +757,42 @@ glazing) joint design, and the -3 supplementary rules — flag as
 "[VERIFY against current DIN 18008 edition]" and hand off to a facade
 engineer for anything beyond a residential window/IGU check.
 
+**Laminated glass (VSG) as an FEM plate — effective thickness** (needed to
+model a laminated pane as a single equivalent plate rather than two
+unconnected sheets): without crediting interlayer shear coupling,
+`t_e = ∛(Σ t_i³)` (sum over plies, DIN 18008-1 eq. 3-9). With coupling
+credited, distribute the design stress via load-share factors δ_z/δ_Rres/δ_M/δ_g
+(each ≈ t_i³/Σt_i³-type ratio, Tab. per ply) and take `E_d = max σ_1,d` across
+plies. Interlayer shear modulus is load-duration- and temperature-dependent —
+do not treat VSG as monolithic: PVB computed E-modulus ranges **5–200 N/mm²**;
+stiffer ionomer/SentryGlas-type interlayers **1000–3000 N/mm²**; glass core
+reference E = 69,000 N/mm². Interlayer Poisson's ratio ≈ 0.45 (PVB) /
+0.3–0.4 (stiffer types) vs glass µ = 0.23 (already in `building-materials` §4.17).
+
+**Point-fixed glazing (Tellerhalter/drilled fixings)** — stress concentration
+factor k at the borehole: k = 1.0 if the support sits in a corner with
+edge distance B < L/10; otherwise k = 1.5–1.9 by borehole diameter
+(15–40 mm) × glass thickness (6–15 mm) grid — thinner glass + larger hole
+gives the higher k. Minimum embedment depth for point fixings in VSG:
+25 mm; minimum edge distance borehole-to-borehole or borehole-to-glass-edge:
+80 mm.
+
+**Minimum make-ups**: monolithic float ≥ 4 mm; monolithic TVG/ESG ≥ 3 mm
+(≥ 2 mm only for specific limited applications); VSG built from two single
+panes ≥ 2 mm each. VSG cantilever beyond its support edge ≤ 300 mm.
+3-ply laminated barrier/fall-protection build-ups: top pane ESG (heat-soaked)
+or TVG, lower panes float or TVG, PVB interlayer nominal thickness ≥ 1.52 mm
+per interlayer.
+
+**Enameled (ceramic-fritted) glass** — coating reduces characteristic
+bending strength vs bare glass: enameled TVG f_k = 45 N/mm² (bare TVG 70);
+enameled ESG f_k = 75 N/mm² (bare ESG 120) — check any spandrel/frit panel
+against the coated value, not the bare-glass table.
+
+**Profilbauglas** (structural U-channel glass, DIN EN 15683-1) is a separate
+product with its own design values, not a flat-glass variant: thermally
+toughened profiled glass flange f_k = 120 N/mm², web f_k = 66 N/mm².
+
 ---
 
 ## Section 8: The Mounting Joint — Multi-Stage Sealing (Dichtungsstufen / Three-Joint Rule)
@@ -1321,8 +1357,8 @@ Ranked by real-world frequency in DACH execution.
 10. **All reinforcement quantities are indicative for feel and estimating
     only** — no table here is a Bewehrungsplan.
 11. **§7.6 structural glazing (DIN 18008) is a load-case primer, not a design
-    method**: isochoric-pressure formula and standard combinations are given,
-    but the plate-theory design charts (η_x,q/η_y,q/η_f,q by aspect ratio),
-    full DIN 18008-3 rules, and SSG joint design are not reproduced — verify
-    editions and hand structural glass beyond a simple IGU check to a facade
-    engineer.
+    method**: isochoric-pressure formula, standard combinations, VSG
+    effective-thickness/point-fixing values are given, but the plate-theory
+    design charts (η_x,q/η_y,q/η_f,q by aspect ratio), full DIN 18008-3
+    rules, and SSG joint design are not reproduced — verify editions and
+    hand structural glass beyond a simple IGU check to a facade engineer.

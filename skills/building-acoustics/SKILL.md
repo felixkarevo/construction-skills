@@ -831,9 +831,12 @@ WR 50/40 & 50/35 · WA/WS 55/45 & 55/40 · cemeteries/parks 55 · WB 60/45 ·
 MD/MI/MU 60/50 · MK 63/53 · GE 65/55 · open single window at >45 dB(A) night ≈
 sleep disturbed (design cue for "noise-protected outdoor areas" — no digested
 numerical procedure; treat balcony/garden levels per TA Lärm/18005 locally).
-Lärmindizes (34. BImSchV / EU END): L_day 6–18, L_evening 18–22, L_night 22–6;
-L_DEN = 10lg[1/24(12·10^0.1L_d + 4·10^(0.1(L_e+5)) + 8·10^(0.1(L_n+10)))]
-[evening +5 / night +10 per directive, VERIFY vs digest which lists indices only];
+Lärmindizes (34. BImSchV / EU END, confirmed against Wendehorst eq. 18.91):
+L_day 6–18, L_evening 18–22, L_night 22–6 — **note this 12/4/8 h EU split
+differs from the national day-period convention (day 6–22) used elsewhere in
+this section (TA Lärm, 16./18. BImSchV) — do not mix the two day definitions**;
+L_DEN = 10lg[1/24(12·10^0.1L_d + 4·10^(0.1(L_e+5)) + 8·10^(0.1(L_n+10)))],
+evening penalty +5 dB / night penalty +10 dB before energetic averaging;
 mapping methods VBUSch/VBUS/VBUF/VBUI (2006), VBEB (2007); action plans mandatory.
 DIN 18005 clearance distances (night, free field, no measures) from axis [m] for
 L_r 55/50/45/40: motorway 60 000 veh → 520/900/1400/2000 · federal 15 000 →

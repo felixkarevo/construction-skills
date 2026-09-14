@@ -217,18 +217,34 @@ is nominal cover cnom = cmin,dur + Δcdev, with cmin,b ≥ φ and ≥ 1,25·dagg
 
 ### 3.1 Exposure classes (DIN EN 206-1/DIN 1045-2; EN 206:2021 not yet introduced in DE at digested edition — VERIFY current status)
 
-| Class | Meaning | Typical building member |
-|---|---|---|
-| X0 | no corrosion/frost risk | unreinforced footings, very dry interior (RH ≤ 30%) |
-| XC1 | dry or permanently wet | interior slabs/beams/columns, immersed surfaces |
-| XC2 | wet, seldom dry | water-tank bases, cellar footings |
-| XC3 | moderate moisture | exterior with air contact, kitchens/laundries, membrane-covered flat roofs |
-| XC4 | alternating wet/dry | rain-exposed façades/edges, splash zones |
-| XD1–XD3 | chloride (de-icer/brine), rising severity | garage ramps, de-iced decks |
-| XS1–XS3 | sea chloride | coastal, tidal-splash |
-| XF1–XF4 | frost without/with de-icer, rising saturation | balconies, paving, bridge decks |
-| XA1–XA3 | chemical attack | sewage, slurry, aggressive ground (sulfate > 200/600/3000 mg/l; pH 6,5–5,5/5,5–4,5/4,5–4,0; aggressive CO2 15–40/40–100/>100 mg/l; Mg 300–1000/1000–3000/>3000) |
-| XM1–XM3 | abrasion | forklift floors (pneumatic/solid/track) |
+**CONFIRMED against Wendehorst Bautechnische Zahlentafeln (37th ed.) Tab. 8.34**
+(DIN EN 206 Table 1 / DIN 1045-2), which also gives the minimum concrete
+strength class per exposure class — added as a column here (previously
+absent from this skill):
+
+| Class | Meaning | Typical building member | Min. strength class |
+|---|---|---|---|
+| X0 | no corrosion/frost risk | unreinforced footings without frost, very dry interior (RH ≤ 30%) | C12/15 |
+| XC1 | dry or permanently wet | interior slabs/beams/columns, immersed surfaces | C16/20 |
+| XC2 | wet, seldom dry | water-tank bases, cellar footings, most foundations | C16/20 |
+| XC3 | moderate moisture | exterior with air contact, kitchens/laundries, membrane-covered flat roofs | C20/25 |
+| XC4 | alternating wet/dry | rain-exposed façades/edges, splash zones | C25/30 |
+| XD1 | moderate humidity | spray-mist zone of traffic areas, single garages | C30/37 |
+| XD2 | wet, seldom dry | brine pools, industrial waters with chlorides | C35/45 |
+| XD3 | alternating wet/dry | bridge parts with frequent spray, carriageway slabs | C35/45 |
+| XS1 | airborne salt, no direct seawater contact | coastal exterior members | C30/37 |
+| XS2 | permanently submerged | marine structure parts always under water | C35/45 |
+| XS3 | tidal, splash, spray zones | quay walls in harbours | C35/45 |
+| XF1 | moderate water saturation, no de-icer | exterior members | C25/30 |
+| XF2 | moderate saturation, with de-icer/seawater | spray/splash zone of de-iced traffic areas | C25/30 (air-entrained) or C35/45 |
+| XF3 | high saturation, no de-icer | open water tanks, freshwater tidal zone | C25/30 (air-entrained) or C35/45 |
+| XF4 | high saturation, with de-icer | de-iced traffic areas, tidal marine members | C30/37, air-entrained (mandatory — no non-LP alternative) |
+| XA1–XA3 | chemical attack, rising severity | sewage/slurry tanks; seawater-contact members, aggressive ground; industrial wastewater, chimneys | C25/30 / C35/45 / C35/45 |
+| XM1–XM3 | abrasion, rising severity | industrial floors with pneumatic/solid/steel tyres | C30/37 (all three; cover increment differs, see §3.2) |
+
+Chemical-attack thresholds (XA1/XA2/XA3, unchanged from before): sulfate >
+200/600/3000 mg/l; pH 6.5–5.5/5.5–4.5/4.5–4.0; aggressive CO2
+15–40/40–100/>100 mg/l; Mg 300–1000/1000–3000/>3000.
 
 Moisture classes for ASR: WO (mostly dry) / WF (frequently wet) / WA (wet + alkali
 supply) / WS (only TL Beton-StB). Assignment example: XC1→WO, interiors; exterior
@@ -236,17 +252,29 @@ unprotected → WF/WA. [DIN 1045-2]
 
 ### 3.2 Minimum cover — durability (EC2-NA cmin,dur values)
 
-| Exposure | cmin,dur [mm] | Δcdev [mm] | cnom (=cmin+Δcdev) |
-|---|---|---|---|
-| X0 | 10 | 10 | 20 [VERIFY X0 cell — not fully recovered] |
-| XC1 | 10 | 10 | 20 |
-| XC2 | 20 | 15 | 35 |
-| XC3 | 20 | 15 | 35 |
-| XC4 | 25 | 15 | 40 |
-| XD1/XD2/XD3 | 40 | 15 | 55 |
-| XS1/XS2/XS3 | 40 | 15 | 55 |
-| XF1/XF2/XF3/XF4 | 25…35 | 10/15 | [VERIFY per NA table 8.36 — cells partially recovered] |
-| XA1/XA2/XA3 | 25…40 | 10/15 | [VERIFY] |
+**CONFIRMED against Wendehorst Tab. 8.37 (DIN EN 1992-1-1/NA Table NA.4.4.3.1):**
+cmin,dur is governed **only by the carbonation/chloride/abrasion classes**
+(XC, XD, XS, XM) — **XF (frost) and XA (chemical attack) do not carry their
+own cover row**, they only raise the required strength class / w-z-ratio /
+air content (§3.1). Apply the XC/XD/XS row that coincides with the member's
+actual exposure; if XM abrasion also applies, add the XM increment on top.
+
+| Exposure | cmin,dur (rebar) [mm] | cmin,dur (pretensioned/post-tensioned tendons) [mm] | Δcdev [mm] | cnom (=cmin+Δcdev) |
+|---|---|---|---|---|
+| X0 | *(no cmin,dur row — unreinforced/no embedded metal; if rebar is present anyway, fall back to XC1)* | — | — | — |
+| XC1 | 10 | 20 | 10 | 20 |
+| XC2 | 20 | 30 | 15 | 35 |
+| XC3 | 20 | 30 | 15 | 35 |
+| XC4 | 25 | 35 | 15 | 40 |
+| XD1/XD2/XD3 | 40 | 50 | 15 | 55 |
+| XS1/XS2/XS3 | 40 | 50 | 15 | 55 |
+| XM1 | cmin(of the coincident XC/XD/XS row) **+ 5** | same **+ 5** | as above | +5 on cnom |
+| XM2 | cmin **+ 10** | same **+ 10** | as above | +10 on cnom |
+| XM3 | cmin **+ 15** | same **+ 15** | as above | +15 on cnom |
+
+(The XM increment may alternatively be met with a sacrificial-layer concrete
+mix per DIN 1045-2 instead of extra cover.) Tendon cover is measured to the
+duct surface for post-tensioned members. Aggregate > 32 mm: +5 mm on cmin.
 
 Rules:
 - Δcdev = 10 mm if cmin ≤ 15 mm, else 15 mm [EC2 4.4.1.2].
@@ -546,10 +574,17 @@ redistribution ≤ 15%, min steel + detailing OK): σc quasi-perm 0,45fck / rare
 
 ```
 V_Rd,c = [C_Rd,c·k·(100·ρl·fck)^{1/3} + k1·σcp] · bw·d   ≥ v_min·bw·d
-C_Rd,c = 0,18/γc = 0,12  [EC2 base]   —   German NA commonly 0,15/γc = 0,10
-       (the digested worked examples use 0,15/γc; the tables handbook lists 0,18 —
-        **edition conflict: VERIFY against current NA/NDI before any proof**)
-k = 1 + (200/d)^{0.5} ≤ 2,0 (d in mm) ; ρl = Asl/(bw·d) ≤ 0,02 ; k1 = 0,15 ; σcp ≤ 2 N/mm²
+C_Rd,c = 0,18/γc  [EC2 base document]   vs   0,15/γc  [German NA — deliberate relaxation, not
+       an edition conflict: both values are simultaneously correct, pick per the document you
+       are actually citing against (NA governs DACH practice)]
+k = 1 + (200/d)^{0.5} ≤ 2,0 (d in mm) ; ρl = Asl/(bw·d) ≤ 0,02 ; σcp ≤ 2 N/mm²
+k1 = 0,12 paired with the NA's C_Rd,c = 0,15/γc (Wendehorst Tafel/eq. 8.66, confirmed)
+
+v_min = (0,0525/γc)·√(k³·fck)  for d ≤ 600 mm
+v_min = (0,0375/γc)·√(k³·fck)  for d > 800 mm  (linear-interpolate 600–800 mm)
+
+Concentrated-load shear cap (crushing check, independent of the v_min/C_Rd,c check above):
+V_Ed ≤ 0,5·bw·d·ν·fcd  with  ν = 0,675 (general shear)  /  ν = 0,525 (torsion)
 ```
 
 Design shear position: at d from the face of a directly supported member, at the
@@ -644,8 +679,8 @@ to link/mesh outer wire.)
 
 | Item | Rule |
 |---|---|
-| Min dimension | ≥ 200 mm EC2 [cell stripped — VERIFY]; NA practice ≥ 250? [practice] |
-| As,l min | max(0,10…0,15·N_Ed/f_yd; 0,2%·Ac) [two variants digested — VERIFY 9.5.2] |
+| Min dimension | ≥ 200 mm cast-in-place solid columns; ≥ 120 mm horizontally-cast precast columns (Wendehorst Tab. 8.83, confirmed) |
+| As,l min | **max(0,15·\|N_Ed\|/f_yd ; 0,2%·Ac)** — the two figures are a max() pair, not competing unverified variants (Wendehorst Tab. 8.83, confirmed); longitudinal bar Ø ≥ 12 mm minimum |
 | As,max | 4%·Ac general; **≤ 4,5% only where no 100%-lap** (worked: As,max(100% lap) = 0,045·Ac) [worked-example-digested, VERIFY] |
 | Long. bar spacing | ≤ 200–300 mm on face; bars per face ≤ 5 between links [recovered fragments — VERIFY 9.5.2(5)] |
 | Links φ_w | ≥ max(φ_l/4; 6 mm) [digested] |
@@ -686,13 +721,24 @@ to link/mesh outer wire.)
   (0,5 rough / 0,3 smooth) [stripped — VERIFY]; precast column standard, not
   cast-in-place practice.
 
-### 8.6 Robustness ties (Aussteifungsverbände, NA 9.10) [VERIFY — only fragments digested]
+### 8.6 Robustness ties (Aussteifungsverbände, NA 9.10) — confirmed against Wendehorst Ch.8
 
-Ring/edge anchor: **≥ 70 kN** at ≤ 1,2 m from edge, per NA lower limit [recovered];
-interior tie nets in two directions per storey (F = max(2Ft; 70 kN)? [stripped]);
-edge columns horizontal tie F ≈ 20 kN per façade column [stripped — VERIFY].
-Anchorage of ties uses fyd with splices ≤ 150 mm link spacing [fragments]. Detail
-as continuous bar/mesh, not as afterthought — the tie is the reason a progressive
+**Ringanker** (ring/edge tie, within 1,2 m of the edge, every floor/roof level):
+T_tie,per = l_i·10 kN/m ≥ 70 kN (l_i = end-bay span perpendicular to the tie);
+As,min = 70/50 = 1,4 cm² (e.g. 2⌀10 or 1⌀14); splice l0 = 2·l_b,red at fyk;
+stirrups/links around the splice s ≤ 100 mm (s ≤ 150 mm for Bügelmatten/mesh
+stirrups). Note: EC2 turned the old DIN 1045 **upper** limit of 70 kN into a
+**lower** limit — a common misread, do not cap a ring anchor at 70 kN.
+
+**Innenliegende Zuganker** (interior ties, two directions per storey, within
+0,5 m above/below the slab): T_tie,int = 20 kN/m; at joints without topping
+(e.g. hollow-core floors): T_tie = 20 kN/m·(l1+l2)/2 ≥ 70 kN.
+
+**Horizontal column/wall ties**: F_tie,fac = 10 kN/m per façade metre;
+F_tie,col = 150 kN per column; corner columns tied in both directions.
+
+Anchorage of ties uses fyd with splices ≤ 150 mm link spacing. Detail as
+continuous bar/mesh, not as afterthought — the tie is the reason a progressive
 collapse chain stops.
 
 ---
@@ -819,31 +865,58 @@ Relevant to detailing because restraint cracking, long-term deflection and lap
 stiffness all key off these. Full function per EC2 Annex B exists; the digested
 tabulated end values (Zement 32,5R/42,5N basis):
 
-### 10.1 End creep φ(∞) — C20/25 (C30/37 bracketed), RH50 / RH80
+### 10.1 End creep φ(∞,t0) — C20/25 (C30/37 bracketed), cement class R/N
 
-| t0 [d] \ h0 [cm] | 5 | 25 | 60 | | 5 | 25 | 60 |
-|---|---|---|---|---|---|---|---|
-| 1 | 6,78 (5,54) | 5,57 (4,59) | 4,54 (3,80)? | | 4,43 | 3,77 | 3,51 |
-| 7 | 4,73 (3,89) | 3,89 (3,22)? | 3,17 (2,66)? | | 3,10 | 2,63 | 2,45 |
-| 28 | 3,64 (2,99) | 2,99 (2,45)? | 2,44 (2,01)? | | 2,38 | 2,02 | 1,89 |
-| 90 | 2,91 (2,34)? | 2,34 | 1,95? | | 1,91 | 1,62 | 1,51 |
+Corrected/completed against Wendehorst Tab. 8.5 (clean source, no more garbled
+cells). **Dry and wet columns use different h0 sets** (5/15/60 cm dry vs.
+5/25/60 cm wet — not the same three notional sizes, a previous version of this
+table wrongly shared one h0 row across both):
 
-[Grid partially garbled in extraction (h0 mapping uncertain) — use for order-of-
-magnitude only and **read the current table from the code, never from this file**.]
-h0 = 2·A_c/u (notional size, cm); t0 = age at load. RH50 dry interiors, RH80 normal
-heated buildings (50% worst-case for prestress loss/shrinkage strain).
-
-### 10.2 End drying shrinkage ε_cs,0 [‰] (RH50 | RH80), h0 = 5/15/60 cm
-
-| Cement class × C20/25 … C50/60 | h0 5 | 15 | 60 | h0 5 | 15 | 60 |
+| t0 [d] | h0=5 dry (RH50) | h0=15 dry | h0=60 dry | h0=5 wet (RH80) | h0=25 wet | h0=60 wet |
 |---|---|---|---|---|---|---|
-| R (32,5R/42,5N): C20/25 | 0,77 | 0,71 | 0,53 | 0,44 | 0,36 | 0,32 |
-| R: C30/37 | 0,72 | 0,67 | 0,52 | 0,42 | 0,35 | 0,31 |
-| R: C40/50 | 0,67 | 0,63 | 0,49 | 0,41 | 0,34 | 0,31 |
-| R: C50/60 | 0,64 | 0,60 | 0,48 | 0,40 | 0,34 | 0,31 |
-| S (32,5S…): C20/25 | 0,57…0,48 across classes | ≈ −25% vs R | | | | |
+| 1 | 6.78 (5.54) | 5.57 (4.57) | 4.54 (3.75) | 4.43 (3.67) | 3.77 (3.13) | 3.51 (2.93) |
+| 7 | 4.73 (3.87) | 3.89 (3.20) | 3.17 (2.62) | 3.10 (2.56) | 2.63 (2.19) | 2.45 (2.05) |
+| 28 | 3.64 (2.98) | 2.99 (2.46) | 2.44 (2.02) | 2.38 (1.97) | 2.02 (1.69) | 1.89 (1.58) |
+| 90 | 2.91 (2.38) | 2.34 (1.97) | 1.95 (1.61) | 1.91 (1.58) | 1.62 (1.35) | 1.51 (1.26) |
 
-[Digest gives full R/N/S × 4-class grid; R row shown as representative — VERIFY.]
+h0 = 2·Ac/u (notional size, cm; box girders: u includes 50 % of the inner
+perimeter); t0 = age at load in days. RH50 = dry interior, RH80 = normal
+external/heated-building humidity.
+
+**Creep strain and the applicable modulus (EC2, DIN EN 1992):**
+
+    εcc(∞,t0) = φ(∞,t0) · σc / (1.05 · Ecm)
+
+φ is referenced to the **tangent modulus** Ec = 1.05·Ecm, not Ecm directly —
+don't feed φ straight against Ecm in a long-term FEM stiffness reduction, or
+long-term deformation is under-predicted by ~5 %. Valid for σc ≤ 0.45·fck(t0),
+40 % ≤ RH ≤ 100 %, −40 °C ≤ T ≤ +40 °C. **Nonlinear creep** (prestress with
+immediate bond, or any load stage where σc exceeds that 0.45·fck(t0) linearity
+limit) needs the exponential correction, not the linear φ:
+
+    φ_nl(∞,t0) = φ(∞,t0) · e^(1.5·(kσ − 0.45)),   kσ = σc / fck(t0)
+
+### 10.2 End drying shrinkage ε_cs,∞ [‰] — full grid, cement classes R/N/S
+
+Full grid (previously only the R row was digested; N and S rows are now
+complete, corrected against Wendehorst Tab. 8.6). Sign convention: EC2 prints
+shrinkage without sign, but it is always a **shortening**.
+
+| Cement | Class | h0=5 dry | h0=15 dry | h0=60 dry | h0=5 wet | h0=25 wet | h0=60 wet |
+|---|---|---|---|---|---|---|---|
+| R (CEM 42.5R/52.5N/52.5R) | C20/25 | 0.77 | 0.71 | 0.53 | 0.44 | 0.36 | 0.32 |
+| R | C30/37 | 0.72 | 0.67 | 0.52 | 0.42 | 0.35 | 0.31 |
+| R | C40/50 | 0.67 | 0.63 | 0.49 | 0.41 | 0.34 | 0.31 |
+| R | C50/60 | 0.64 | 0.60 | 0.48 | 0.40 | 0.34 | 0.31 |
+| N (CEM 32.5R/42.5N) | C20/25 | 0.57 | 0.53 | 0.41 | 0.33 | 0.27 | 0.24 |
+| N | C30/37 | 0.53 | 0.50 | 0.39 | 0.32 | 0.27 | 0.24 |
+| N | C40/50 | 0.50 | 0.47 | 0.37 | 0.31 | 0.27 | 0.24 |
+| N | C50/60 | 0.48 | 0.45 | 0.37 | 0.31 | 0.27 | 0.25 |
+| S (CEM 32.5N) | C20/25 | 0.47 | 0.43 | 0.33 | 0.27 | 0.22 | 0.19 |
+| S | C30/37 | 0.44 | 0.41 | 0.32 | 0.27 | 0.22 | 0.20 |
+| S | C40/50 | 0.41 | 0.39 | 0.31 | 0.26 | 0.23 | 0.21 |
+| S | C50/60 | 0.40 | 0.38 | 0.31 | 0.27 | 0.23 | 0.22 |
+
 Rules of thumb that survive any table change [practice/T4]: water content drives
 shrinkage (see §9.4: +10 kg water → +0,1 mm/m); dense reinforcement halves
 long-term curling restraint; autogenous negligible in normal-strength concrete.
@@ -1172,7 +1245,7 @@ editions) before any value leaves the office:
 
 | Item | Where to verify |
 |---|---|
-| C_Rd,c = 0,15/γc vs 0,18/γc (edition conflict seen in sources) | DIN EN 1992-1-1/NA + NAdI, 6.2.2 |
+| ν_min interpolation exact k-power / γc rounding, general-shear ν=0,675 cap (§7.1) | DIN EN 1992-1-1/NA + NAdI, 6.2.2/6.2.3 |
 | fbd table reconciliation with 2,25·η0η1·fctk,005/γc (§4.1) | EC2 8.4.2/NA Bild NA.8.2 |
 | l_b,min & direct-bearing 6φ/6,7φ cells (§4.2/4.4) | NA 8.4 |
 | Bond-condition 30/15 cm wording (§4.1) | EC2 8.4.2(1)/NA |

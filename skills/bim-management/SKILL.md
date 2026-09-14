@@ -540,7 +540,11 @@ Entsorgung/Reuse.
   Wörterbuchdienste (bSDD, nationale Merkmalsserver) statt Freierfindung [VERIFY
   Verfügbarkeit]. **Klassifikation**: Rahmen ISO 12006; DE: DIN SPEC 91400
   (STLB-Bau-/DIN-276-Logik, IFC-verknüpft — Mengen/LV-Anschluss), für FM CAFM-Connect; ohne
-  Klassifikation kein automatisierter Mengen-/CAFM-Layer.
+  Klassifikation kein automatisierter Mengen-/CAFM-Layer. International: Omniclass (Nordamerika),
+  Uniclass (UK) sind die dominanten Systeme außerhalb DACH — bei internationalen Projekten/Tools
+  gegen diese statt DIN SPEC 91400 mappen. DIN 276 wird in DACH gelegentlich als
+  BIM-Klassifikation zweckentfremdet — sie ist für Kostenplanung gebaut und zu grob für die
+  meisten Objektklassifikationsbedarfe; nicht als Klassifikationsersatz verwenden.
 - **Nachbarformate nur einplanen, wenn betroffen**: BCF (Issues), COBie (tabellarischer
   nicht-grafischer FM-Datensatz), CAFM-Connect (DACH-FM) mit BIM-Profilen, gbXML (Energie),
   GAEB (LV), XPlanung/OKSTRA/CityGML (GIS/Behörde).
@@ -554,8 +558,12 @@ Entsorgung/Reuse.
 - bS-IFC-Zertifizierung der Werkzeuge (Test gegen MVD) nutzen — **Zertifizierung ≠
   Fehlerfreiheit**, Abdeckung nur zertifizierte Fälle; kritische Objekte (Tür, Fenster,
   Raumgrenze) über Konsensregeln (Implementers'-Agreement-Logik) absichern [VERIFY
-  Zugänglichkeit der Regel-Datenbanken]. Geometrie-Zwecktrennung: Mesh/Tessellation für
-  Viewer, B-rep/CSG für Weiterbearbeitung; Konsistenzerhaltung ist Herstellerverantwortung.
+  Zugänglichkeit der Regel-Datenbanken]. Geometrie-Zwecktrennung: IFC kennt vier
+  Repräsentationsarten — triangulierte Mesh/Tessellation (Viewer), B-rep (eben oder gekrümmt
+  berandet), CSG und Sweep/Extrusion (Weiterbearbeitung/parametrisch); welche Art ein
+  FreeCAD-Export/Import round-tripped, entscheidet, ob nachgelagerte Bearbeitung (Öffnungen,
+  Booleans) möglich bleibt oder nur noch vermessen werden kann. Konsistenzerhaltung ist
+  Herstellerverantwortung.
 
 ### 8.3 IFC-Datenanforderungen je Disziplin (Prozesssicht)
 

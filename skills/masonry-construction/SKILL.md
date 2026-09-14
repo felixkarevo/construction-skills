@@ -351,12 +351,44 @@ before using fb > 16 with thin-joint KS.]**
 - **fd = zeta * fmk / gammaM** — NA long-term factor **zeta = 0.85**, partial
   factor **gammaM = 1.5** (simplified method uses fmd = 0.85*fmk/1.5; design
   example computes fd = 0.85*fk/1.5 = 1.42 for fmk = 2.5). **[VERIFY gammaM NA cell]**
-- Elastic modulus **Ec,calc = Kennzahl * fk**: Mauerziegel **1100** (range
-  950-1250); KS **950** (800-1250); LB **950** (800-1100); Beton **2400**
-  (2050-2700); PBC **550** (500-650). Used for stiff-centre bracing arithmetic
-  (§8) — e.g. AAC wall fk 1.8 -> E = 550*1.8 = 990 MN/m² (digest example).
+- Elastic modulus — **use the right E for the check, not one number for everything**
+  (DIN EN 1996-1-1/NA (5.12)):
+  - General stiffness/deformation distribution: **Ec,calc = Kennzahl * fk**:
+    Mauerziegel **1100** (range 950-1250); KS **950** (800-1250); LB **950**
+    (800-1100); Beton **2400** (2050-2700); PBC **550** (500-650). Used for
+    stiff-centre bracing arithmetic (§8) — e.g. AAC wall fk 1.8 -> E = 550*1.8
+    = 990 MN/m² (digest example).
+  - Buckling/ULS vertical-load verification (Knicksicherheitsnachweis):
+    **E0 = 700 * fk** — do not use the Kennzahl value here.
+  - Shear-wall edge-strain (Randdehnung) SLS check with eccentricity e > l/6:
+    **E = 1000 * fk** (short-term secant modulus).
 - Initial shear strength for design (§7): **fvk0 = 0.08 (M2.5) / 0.18 (M5) /
   0.22 (M10) / 0.26 (M20) / 0.22 (DM) / 0.18 (LM) N/mm²**.
+
+### 3.7 Deformation properties: creep, shrinkage/swelling, thermal expansion
+
+For FEM/BIM (long-term deflection, restrained-movement stresses, movement-joint
+spacing checks) — DIN EN 1996-1-1/NA (Tab. NA.12), calculation values with the
+normal scatter range in parentheses:
+
+| Unit type | Mortar | Final creep coeff. Φ∞ (εc∞/εel) | Final moisture strain [mm/m] | Thermal expansion αt [10⁻⁶/K] |
+|---|---|---|---|---|
+| Clay (Mauerziegel) | normal mortar | 1.0 (0.5–1.5) | 0 (−0.1†…+0.3) | 6 (5–7) |
+| Clay | lightweight mortar | 2.0 (1.0–3.0) | — | — |
+| Calcium silicate (KS) | normal/thin-bed | 1.5 (1.0–2.0) | −0.2 (−0.3…−0.1) | 8 (7–9) |
+| Concrete (Betonsteine) | normal mortar | 1.0 | −0.2 (−0.3…−0.1) | 10 (8–12) |
+| Lightweight concrete (LB) | normal mortar | 2.0 (1.5–2.5) | −0.4 (−0.6…−0.2) | 10 (8 for expanded-clay LB) |
+| Lightweight concrete (LB) | lightweight mortar | — | −0.5 (−0.6…−0.3) | — |
+| AAC (Porenbeton) | thin-bed | 0.5 (0.2–0.7) | −0.1 (−0.2…+0.1) | 8 (7–9) |
+
+† Units < 2 DF format: moisture-strain floor is −0.2 mm/m, not −0.1. Sign convention:
+negative = shrinkage/contraction, positive = swelling/expansion. Clay masonry is the
+outlier that **expands** slightly with moisture while KS/concrete/LB/AAC **shrink** —
+already flagged qualitatively at §10.7 (never couple leaves/materials of opposite
+sign without a movement joint); this table gives the actual strain magnitude to
+drive movement-joint spacing and restraint-stress calculations, and the Φ∞ column
+feeds long-term (creep) deflection/redistribution in a FEM model alongside the
+E0 = 700·fk buckling modulus (§3.6).
 
 ---
 ## Section 4: Mortar (Mörtel)
@@ -951,10 +983,10 @@ and the mortar group used is on the fmk table it was designed with.
 
 ### 10.11 Render / plaster on masonry (Putz, EN 998-1 / DIN 18550)
 
-- Strength classes CS I >= 0.4-2.5 / CS II 1.5-5.0 / CS III 3.5-7.5 /
-  CS IV >= 6.0 N/mm²; the **render must stay weaker than the substrate**
-  (capillary + stiffness logic): high-strength cement render on PB/LM masonry
-  is a cracking machine. **[VERIFY class bands]**
+- Strength classes (DIN EN 998-1, confirmed against Wendehorst Tafel 10.57)
+  CS I 0.4-2.5 / CS II 1.5-5.0 / CS III 3.5-7.5 / CS IV >= 6.0 N/mm²; the
+  **render must stay weaker than the substrate** (capillary + stiffness
+  logic): high-strength cement render on PB/LM masonry is a cracking machine.
 - Water uptake: Wc1 <= 0.5 / Wc2 <= 2 kg/(m²·min^0.5); thermal groups
   WdT T1 <= 0.1 / T2 <= 0.2 W/(m·K); Leichtputz I rho ~1000-1300, II ~600-1100
   kg/m³; insulating render <= 100 mm, lambda 0.06-0.16.

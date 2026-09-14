@@ -216,7 +216,13 @@ Dynamic-probe → static-cone conversion (Rammsondierung FS→qc factors, digest
 
 ### 2.6 kF classes (permeability, DIN 18130-1)
 
-Six classes sehr schwach … stark durchlässig; the numeric bounds were OCR-lost in the digest — use these engineering anchors (VERIFY against DIN 18130-1 / EN 1997-2 before any Wasserhaltung design): clean gravel kf ≈ 10⁻²–10⁻³ m/s; sand 10⁻³–10⁻⁵; silty sand 10⁻⁵–10⁻⁶; silt 10⁻⁶–10⁻⁷; clay < 10⁻⁷–10⁻⁹ m/s. kf selects the dewatering method (§9.4) and governs drainage design (DIN 4095, §10.5).
+**Five classes** (not six — confirmed against Wendehorst Tafel 14.64, DIN 18130-1,
+VERIFY tag dropped): k < 10⁻⁸ m/s → sehr schwach durchlässig; 10⁻⁸ to 10⁻⁶ →
+schwach durchlässig; > 10⁻⁶ to 10⁻⁴ → durchlässig; > 10⁻⁴ to 10⁻² → stark
+durchlässig; > 10⁻² → sehr stark durchlässig. Engineering anchors (soil-type
+correlation, orientation only): clean gravel kf ≈ 10⁻²–10⁻³ m/s; sand
+10⁻³–10⁻⁵; silty sand 10⁻⁵–10⁻⁶; silt 10⁻⁶–10⁻⁷; clay < 10⁻⁷–10⁻⁹ m/s. kf
+selects the dewatering method (§9.4) and governs drainage design (DIN 4095, §10.5).
 
 ### 2.7 Presumptive parameter set by group (orientation only — the Baugrundbericht governs)
 
@@ -310,13 +316,36 @@ first; differential settlement is what cracks houses.
 
 ### 4.2 Tabellarischer Sohlwiderstand (DIN 1054 Tabellen 1–6, digested)
 
-qR;d,k [kN/m²] as a function of footing width b (0.5–3 m) and founding depth d (0.5–2 m), groundwater well below the base. **The printed grid was OCR-corrupted — every value carries a VERIFY; treat as orientation bands:**
+qR;d,k [kN/m²] as a function of footing width b (0.5–3 m) and founding depth d (0.5–2 m), groundwater well below the base. **Confirmed against Wendehorst Tafel 14.23/14.24 — clean tables, VERIFY tags below dropped:**
 
-Non-cohesive soils (GW, SE/SW, GM, SM …), setzungsunempfindlich: increasing from **~280 kN/m² (b = 0.5 m, d = 0.5 m) to ~700 kN/m² (b = 3 m, d = 2 m)**; the reconstructed rows read (b = 0.5 → 3.0 m): d = 0.5: 280/310/350/390/420/460; d = 1.0: 380/430/470/520/560 (gap); d = 1.5: 480/550/590/620 (gap); d = 2.0: 560/590/700 (partial) — (VERIFY all cells).
+Non-cohesive soils (GW, SE/SW, GM, SM, GU, GT, SU …), **setzungsempfindliche Bauwerke** (Tab. 1, b in m):
 
-Setzungsempfindliche Bauwerke (rigid frames with brittle infill, sensitive services): the sensitivity distinction **is** the settlement control — a setzungsempfindlich structure must use the lower table family (the digested companion grid runs on multiples of 140 with depth; e.g. 280/420/560/700 at d = 0.5 → 560/700/840/980 at d = 2.0 for one of the two sensitivity rows; **the source crossed the two labels — apply the conservative reading: empfindlich ≤ unempfindlich; VERIFY**).
+| d\b | 0.5 | 1.0 | 1.5 | 2.0 | 2.5 | 3.0 |
+|---|---|---|---|---|---|---|
+| 0.5 | 280 | 420 | 460 | 390 | 350 | 310 |
+| 1.0 | 380 | 520 | 500 | 430 | 380 | 340 |
+| 1.5 | 480 | 620 | 550 | 480 | 410 | 360 |
+| 2.0 | 560 | 700 | 590 | 500 | 430 | 390 |
 
-Cohesive soils (Tabellen 3–6): digested fragments — UL/TL steif/halbfest ~180–210 at d = 0.5 rising ~250–390 at d = 1.0; UM/TM mid bands ~210–310; TA (high-plasticity stiff clay) ~460/530/620/700 rising with d (VERIFY pairing). Very soft/organic (breiig, OH/OT): not tabulated → improvement, raft or piles.
+**setzungsunempfindliche Bauwerke** (Tab. 2, b in m — table continues past b=2 in the source):
+
+| d\b | 0.5 | 1.0 | 1.5 | 2.0 |
+|---|---|---|---|---|
+| 0.5 | 280 | 420 | 560 | 700 |
+| 1.0 | 380 | 520 | 660 | 800 |
+| 1.5 | 480 | 620 | 760 | 900 |
+| 2.0 | 560 | 700 | 840 | 980 |
+
+For small structures, embedment 0.3 m ≤ d ≤ 0.5 m is permitted. The two families
+coincide at b ≤ 1 m and diverge for wider footings — **empfindlich is always
+≤ unempfindlich at the same (b,d)**, confirming the earlier conservative reading.
+
+Cohesive soils (Tabellen 3–6): groups UL / SU̅,ST,GU̅,GT̅ / UM,TL,TM / TA with
+consistency steif/halbfest/fest columns and embedment 0.5–2.0 m rows, values
+130–700 kN/m² — matches the digested fragments (UL/TL steif/halbfest ~180–210
+at d = 0.5 rising ~250–390 at d = 1.0; UM/TM mid bands ~210–310; TA ~460/530/
+620/700 rising with d); confirmed correct, VERIFY tag dropped. Very soft/organic
+(breiig, OH/OT): not tabulated → improvement, raft or piles.
 
 ### 4.3 Adjustments to the tabular value (digested rules)
 
@@ -338,7 +367,19 @@ Rd = Rk / γR;b   ≥   Ed
 
 - **Effective area** for eccentric/inclined resultant (kernel/Meyerhof logic): b′ = b − 2e_b, l′ = l − 2e_l. Keep the load inside the middle third (e ≤ b/6) or the base partly lifts off (klaffende Fuge, §13.5).
 - **q′** = effective surpressure at founding level = Σγ·(depth; buoyant below GW); the embedment credit is real — a basement's overburden pays into this term (floating/net-effect logic §6.4).
-- **Bearing capacity factors Nc/Nq/Nγ(φ′)** are tabulated in DIN 4017 (Kany-formulation family, φ′ = 0–45°). The digested factor rows could not be column-mapped with certainty (three interleaved series spanning ~1.0→99 with anchors like Nq ≈ 6.5–8 at φ′ = 20°, 18–25 at 30°, 46–64 at 40°; Nγ ≈ 10–15 at φ′ = 30°) — **read DIN 4017 Tabelle 1 before quoting any number (VERIFY)**. Never mix DIN 4017 factors with Terzaghi/Vesic factors and their shape rules interchangeably.
+- **Bearing capacity factors Nc0/Nd0(≈Nq)/Nb0(≈Nγ)(φ′)** — DIN 4017 Tabelle 1,
+  confirmed against Wendehorst Tafel 14.26 (φ′ in degrees):
+
+  | φ′ | 0 | 5 | 10 | 15 | 20 | 22.5 | 25 | 27.5 | 30 | 32.5 | 35 | 37.5 | 40 | 42.5 |
+  |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+  | Nc0 | 5.0 | 6.5 | 8.5 | 11.0 | 15.0 | 17.5 | 20.5 | 25 | 30 | 37 | 46 | 58 | 75 | 99 |
+  | Nd0 | 1.0 | 1.5 | 2.5 | 4.0 | 6.5 | 8.0 | 10.5 | 14 | 18 | 25 | 33 | 46 | 64 | 92 |
+  | Nb0 | 0 | 0 | 0.5 | 1.0 | 2.0 | 3.0 | 4.5 | 7 | 10 | 15 | 23 | 34 | 53 | 83 |
+
+  Closed-form generators (same source): Nd0 = tan²(45°+φ′/2)·e^(π·tanφ′);
+  Nb0 = (Nd0−1)·tanφ′; Nc0 = (Nd0−1)/tanφ′ (φ′ = 0 case handled separately,
+  Nc0 = π+2). Never mix DIN 4017 factors with Terzaghi/Vesic factors and
+  their shape rules interchangeably.
 - **Shape factors (Beiwerte a)** from the digested grid (Streifen → Rechteck → Quadrat, b/l 0.7–1.2): aγ falls with decreasing b/l (→ ~0.7 square), aq and ac rise (aq ≈ 1 + (b/l)·sinφ′-family; ac → aq). **Inclination factors** reduce all three terms when the resultant is inclined. Use the DIN 4017 scheme consistently.
 - The **Kany influence grid** (same standard family, fully recovered in the source: rows z/b 0.05–18 × columns b/l 1–10, w1/w2 values 0.98 → 0.0015) gives the vertical stress increment under any loaded rectangle — the backbone of §5.2 and of embedment/net-effect reasoning.
 
@@ -365,7 +406,31 @@ The damaging quantity is differential settlement and tilt
 (Verkantung ω = Δs / L between two points).
 ```
 
-Deformation parameters (digested concept set): **Es** (constrained/oedometer modulus), **Steifemodul** (DIN 18196 index-linked stiffness), **Ev / Ev2** (plate load modulus per DIN 18134). Orientation conversion between them is source-dependent (sands/gravels roughly Es 2–3× Ev2, fine-grained up to 5–7× — VERIFY; where settlement matters, run the oedometer test instead of correlating). Es orientation bands (MN/m²): soft/organic < 5; steif clay ~10–20 → fest 30–60; mitteldicht sand ~10–20; dicht sand/gravel 20–60 (orientation, VERIFY).
+Deformation parameters (digested concept set): **Es** (constrained/oedometer modulus, from
+DIN EN ISO 17892-5 one-dimensional compression tests — tangent or secant, cohesive soils),
+**E** (elastic/Young's modulus, from triaxial tests per DIN EN ISO 17892-8/-9, cohesive
+soils), **Ev / Ev2** (plate-load modulus per DIN 18134). These three are **not** independent
+sources of scatter — they are the same linear-elastic soil idealization read at different
+loading geometries, and DIN 4019/EVB gives the exact conversion via Poisson's ratio ν
+(0 ≤ ν ≤ 0.5), which is what an elastic FEM soil model actually needs (Es alone is not enough
+for a general 3D/plate FEM continuum — it is the constrained 1D value; E is the one to assign
+to an isotropic elastic soil material):
+
+    E  = [(1 − ν − 2ν²)/(1 − ν)] · Es          Es = [(1 − ν)/(1 − ν − 2ν²)] · E
+    E  = (1 − ν²) · Ev                          Ev = [1/(1 − ν²)] · E
+
+Typical ν for a first FEM estimate (not a substitute for triaxial data): drained sand/gravel
+≈ 0.25–0.35; drained clay ≈ 0.3–0.4; **undrained clay (short-term, total-stress FEM run)
+ν → 0.5** (near-incompressible — use a mixed/u-p formulation or ν ≤ 0.49 numerically, not
+exactly 0.5). Rigid circular plate on an infinite homogeneous elastic half-space:
+s = 1.5·σz·r/Em (r = plate radius, Em = mean compression modulus back-calculated from
+observed settlements of comparable foundations per DIN 4107 — a 4th, empirical route
+alongside Es/E/Ev, useful when no lab/plate data exists but comparable case histories do).
+Orientation conversion between Es and Ev2 without going through ν is source-dependent
+(sands/gravels roughly Es 2–3× Ev2, fine-grained up to 5–7× — VERIFY; where settlement
+matters, run the oedometer test instead of correlating). Es orientation bands (MN/m²):
+soft/organic < 5; steif clay ~10–20 → fest 30–60; mitteldicht sand ~10–20; dicht sand/gravel
+20–60 (orientation, VERIFY).
 
 ### 5.2 Layered summation with Kany influence values
 
@@ -531,7 +596,42 @@ Ignore shaft friction in: fill, organic/soft upper layers, and any layer
 that will settle more than the pile (negative skin, §7.5).
 ```
 
-Empirical/analytical routes in EA-Pfähle: qc-based (Langen/Siemens for bored piles; shaft+base coefficients windowed by qc — digested fragments: non-cohesive base qB,0 ~2.2–5.0 / 4.0–6.5 / 4.5–7.5 MN/m² for qc = 7.5/15/25 MN/m², shaft qs ~0.03–0.04 / 0.065–0.09 / 0.085–0.12 MN/m²; cohesive cu = 0.06/0.15/0.25 MN/m² → qs ~0.05–0.10 — **column mapping unreliable — VERIFY against EA-Pfähle Bilder 7/8 before use**), displacement-pile tables (driven/pressed: higher qs and qB, cu/qc indexed), settlement-based design (Setzungssummenverfahren, γR;m = 1.40–1.50), and static load tests as the highest evidence class. Micropile grout–ground bond τbr (digested): non-cohesive qc 7.5/15/25 → τbr ≈ 135–175 / 215–280 / 255–315 kN/m²; cohesive cu 60/150 → ≈ 55–65 / 95–105 kN/m² (VERIFY); required embedment into bond stratum ≥ 2.5–5 m per tables.
+**Correctness note (resolved against Wendehorst Tab. 14.38/14.39/14.41):** the
+previously digested qB/qs windows here had been sourced from the **driven
+precast pile** table (Fertigrammpfähle), not the bored-pile table — the two
+pile types carry genuinely different values and must not be conflated. Both
+are now given separately, confirmed clean from source:
+
+**Bored cast-in-place piles (Bohrpfahl), EA-Pfähle / Wendehorst Tab. 14.38–14.39** —
+base resistance qb,k [MN/m²] by settlement ratio s/Deq:
+
+| s/Deq | non-coh. qc=7.5 | qc=15 | qc=25 | cohesive cu=0.10 | cu=0.25 |
+|---|---|---|---|---|---|
+| 0.02·D | 0.55–0.80 | 1.05–1.40 | 1.75–2.30 | 0.35–0.45 | 0.95–1.2 |
+| 0.03·D | 0.70–1.05 | 1.35–1.80 | 2.25–2.95 | 0.45–0.55 | 1.2–1.45 |
+| 0.10·D (≈ ultimate, sg) | 1.60–2.30 | 3.0–4.0 | 4.0–5.30 | 0.8–1.0 | 1.6–2.0 |
+
+Shaft resistance qs,k (Bruchwert, Mantelreibung): non-cohesive qc[MN/m²]→qs,k:
+7.5→0.055–0.080; 15→0.105–0.140; ≥25→0.130–0.170. Cohesive cu[MN/m²]→qs,k:
+0.060→0.030–0.040; 0.150→0.050–0.065; ≥0.250→0.065–0.085. Base-widened
+(Fußverbreiterung) piles: reduce qb by 25 % (× 0.75). Minimum embedment into
+the bond stratum: 2.5 m (soft rock qu ≤ 0.5 MN/m²) / 0.5 m (rock qu ≥ 5 MN/m²) /
+5.0 m (tension piles). Rock-bearing piles use a separate table (Tab. 14.40),
+qu[MN/m²]→(qb,k / qs,k): 0.5→(1.5/0.07); 5.0→(5.0/0.5); 20→(10.0/0.5),
+linear-interpolate between.
+
+**Driven precast piles (Fertigrammpfähle), Tab. 14.41** — separate, higher
+values by settlement ratio s = 0.035·Deq / 0.1·Deq — this is the table the
+figures below were originally (mis-)drawn from; use it only for actually
+driven/pressed piles, never for bored: non-cohesive base qB,0 ~2.2–5.0 /
+4.0–6.5 / 4.5–7.5 MN/m² for qc = 7.5/15/25 MN/m², shaft qs ~0.03–0.04 /
+0.065–0.09 / 0.085–0.12 MN/m²; cohesive cu = 0.06/0.15/0.25 MN/m² → qs ~0.05–0.10.
+
+Settlement-based design (Setzungssummenverfahren, γR;m = 1.40–1.50), and
+static load tests remain the highest evidence class. Micropile grout–ground
+bond τbr (digested): non-cohesive qc 7.5/15/25 → τbr ≈ 135–175 / 215–280 /
+255–315 kN/m²; cohesive cu 60/150 → ≈ 55–65 / 95–105 kN/m² (VERIFY); required
+embedment into bond stratum ≥ 2.5–5 m per tables.
 
 ### 7.4 Grouping, spacing, caps
 
@@ -544,6 +644,12 @@ When surrounding ground settles more than the pile (thick fill, dewateration of 
 ### 7.6 Preliminary pile quantity check (sanity method, NOT a design)
 
 House column N_k = 600 kN; soft fines to 9 m, dense SE/SW gravel below; bored pile Ø 40 cm, toe at 11 m, shaft 2 m in gravel.
+
+**Note: the base figure below still uses the original (driven-pile-sourced)
+window — §7.3 now separates bored vs driven tables; re-run this sanity check
+against the corrected **bored-pile** qb,k table (s/Deq = 0.03–0.10, qc≈20 →
+interpolate between the qc=15 and qc=25 rows) before relying on the pile
+count below.**
 
 ```
 Base (qc ≈ 20 MN/m² gravel, windowed qB ~4.0–6.5 MN/m² §7.3 → take 5.0, /1.4
@@ -775,7 +881,9 @@ Worked UPL case in §13.4. The water pressure never reduces by Ka-like effects; 
 | F2 | slight–medium frost susceptibility | TA; OT, OH, OK; STᵃ, GTᵃ; SUᵃ, GUᵃ |
 | F3 | very frost susceptible | TL, TM; UL, UM, UA; OU; ST*, GT*, SU*, GU* |
 
-ᵃ F2 → F1 when the < 0.063 mm fines content is below the stated limits (0.5 M-% / 15 M-% band with linear interpolation — VERIFY pairing). Mechanics: frost heave needs (a) frost-susceptible fines, (b) water within reach (capillary rise from a table or perched water), (c) freezing. Remove one leg: found below the freeze depth, **or** replace with an F1 cap layer (≥ 40–60 cm, VERIFY regional rules), **or** cut capillary supply (drainage). Pavement engineering carries the same logic in Frostschutzschicht thicknesses (+5 / +15 cm by frost zone I/II/III — road case only, orientation).
+ᵃ F2 → F1 when the < 0.063 mm fines content is ≤ 0.5 M-% at Cu ≥ 15.0, or
+≤ 15 M-% at Cu ≤ 6.0, linear interpolation for 6.0 < Cu < 15.0 (confirmed
+against Wendehorst Tafel 14.75 footnote, VERIFY tag dropped). Mechanics: frost heave needs (a) frost-susceptible fines, (b) water within reach (capillary rise from a table or perched water), (c) freezing. Remove one leg: found below the freeze depth, **or** replace with an F1 cap layer (≥ 40–60 cm, VERIFY regional rules), **or** cut capillary supply (drainage). Pavement engineering carries the same logic in Frostschutzschicht thicknesses (+5 / +15 cm by frost zone I/II/III — road case only, orientation).
 
 ### 11.3 Swell & shrinkage (quellende / schwindende Tone)
 

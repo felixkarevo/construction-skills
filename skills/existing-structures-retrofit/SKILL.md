@@ -256,20 +256,32 @@ trade with notification duties.
 - Rebound discipline: **≥9 valid readings** per area, spacing ≥25 mm, ≥25 mm from
   edges; supplementary only — never the sole basis for a Nachweis [VERIFY scope].
 - Cores: **≥3 per test zone**; diameter ≥100 mm regardless of aggregate size;
-  length/diameter ~1:1 [VERIFY ratio]; avoid longitudinal rebar (transverse bars
-  reduce strength); test dry, defect-free. For new-build sampling the rule
-  ≥1 per casting day per 100 m³ applies; the relaxed 2-core rules are new-build
-  only.
-- Cube→cylinder conversion used in the examples: f_cyl ≈ 0.82·f_cube; the W150/GDR
-  cube basis needs the EN 13791 shape-correction chain [VERIFY appendix values].
+  length = diameter (dry-stored 50/100/150 mm cores equate to wet 150 mm cubes —
+  DIN EN 13791 NA equivalence, the drying and shape-factor corrections cancel
+  approximately); avoid longitudinal rebar (transverse bars reduce strength);
+  test dry, defect-free. For new-build sampling the rule ≥1 per casting day per
+  100 m³ applies (≥3 per concrete composition); the relaxed 2-core rule is
+  new-build only, never for Bestand. Relation f_ck,is,cube ≥ 0.85·f_ck,cube.
+- Cube→cylinder, exact DBV/EN 13791 table (f_ck,is cylinder / cube, N/mm²): C8/10
+  7.0/9.0; C12/15 10.0/13.0; C16/20 14.0/17.0; C20/25 17.0/21.0; C25/30 21.0/26.0;
+  C30/37 26.0/31.0; C35/45 30.0/38.0; C40/50 34.0/43.0; C45/55 38.0/47.0;
+  C50/60 43.0/51.0 — use this table, not a flat 0.82 ratio.
+- Rebound (Schmidt) **without core calibration** is only admissible per DIN EN
+  13791 if carbonation depth ≤ 5 mm (older stock: measure carbonation depth
+  first; if > 5 mm the carbonated layer must be locally ground off before
+  testing — rarely practicable, so calibrate instead).
 
-Statistical reduction of a small test population (5 % fractile estimation):
-- fck,cube,min = fcm − k·s with factor k on n (§ 4.2 table, [VERIFY k-scheme for
-  current edition]): n=3→3.37; 4→2.63; 5→2.33; 6→2.18; 7→2.08; 8→2.00; 9→1.96;
-  10→1.92; 15→1.82; 20→1.76; 30→1.73; ∞→1.64.
-- With n≤8 a cap applies (k-factors 0.70–0.80 on the mean-based estimate) — small
-  zones never beat large-zone precision.
-- Use approach A (≥9 results / ≤8 small COV) vs. B (≤8, capped) per EN 13791.
+Statistical reduction of a small test population (5 % fractile estimation),
+two approaches per DIN EN 13791 NA — **pick by sample size and COV**:
+- **Approach A** (≥9 cores, or 3–8 cores with COV Vx > 0.20): lognormal/normal
+  5 %-fractile, fck,is = fm(n),is·(1 − kn·Vx), Vx = sx/fm(n),is with floor
+  **Vx,min = 0.08**. kn by n (linear interpolation between): n=3→3.37; 4→2.63;
+  5→2.33; 6→2.18; 7→2.08; 8→2.00; 9→1.96; 10→1.92; 15→1.82; 20→1.76; 30→1.73;
+  ∞→1.64.
+- **Approach B** (3–8 cores, only if Vx ≤ 0.20): fck,is = min(fm(n),is·k3 ;
+  f_is,lowest + 4 N/mm²), with k3 by n: n=3→0.70; n=4–5→0.75; n=6–8→0.80. Simpler
+  and less conservative than A but gated on the tighter COV — re-zone or add
+  cores if Vx > 0.20 rather than force B.
 
 ### 4.3 Historic concrete classes → fck (cylinder, N/mm²) — mapping table excerpt
 
@@ -329,14 +341,14 @@ identify the era; strength of the plastic-knot composite mats era is special.
 
 ### 4.6 Modified partial factors for the re-check (qualified inventory only)
 
-Preconditions (all): design working life 50 a; ≥5 a of proper existing use proven;
-inventory damage-free; predominantly static building-type live loads (load ratio ρ
-in the qualifying band [VERIFY ρ-range]); concrete C12/15–C50/60; section tolerances
-per execution standard met (else measure and use as-built geometry). Then — and
-**only with prior agreement of the Prüfingenieur/authority** —:
+Preconditions (all, DBV-Merkblatt "Modifizierte Teilsicherheitsbeiwerte", 03/2013):
+design working life 50 a; ≥5 a of proper existing use proven; qualified survey
+proves damage-free condition; predominantly static live loads Qk ≤ 5 kN/m² and
+point loads (Gk+Qk) ≤ 7 kN; load ratio **1.0 ≥ Gk/(Gk+Qk) ≥ 0.50**; normal
+concrete C12/15–C50/60; section tolerances per DIN EN 13670/DIN 1045-3:2012 met
+(else measure and use as-built geometry). Then — and **only with prior agreement
+of the Prüfingenieur/authority** —:
 
-- permanent-action factors may be relaxed, typical form: γ_G = **−0.25 / +1.15**
-  (favourable/unfavourable) instead of 1.35/1.0 [VERIFY current symbol set];
 - resistance factors γ_M per COV of the measured material (DBV modified-factor
   table):
 
@@ -349,7 +361,21 @@ per execution standard met (else measure and use as-built geometry). Then — an
 
 Extraordinary-situation variant: γ_M concrete 1.10–1.30, steel 1.00. Justification:
 shorter residual life + small geometric scatter of ONE known member beat the
-population-wide calibration of new-design factors.
+population-wide calibration of new-design factors. Floors on the COV itself,
+regardless of test result: **V_y,c ≥ 0.15, V_y,s ≥ 0.06**; without member testing
+(design/Entwurf stage only) default to V_R,c = 0.30 → γ_C,mod = 1.30 and
+V_R,s = 0.10 → γ_S,mod = 1.10. Design values: f_cd,mod = α_cc·f_ck,is/γ_C,mod with
+**α_cc = 0.85 for reinforced concrete, 0.70 for plain/unreinforced concrete**;
+f_yd,mod = f_yk,is/γ_S,mod.
+
+- A separate, simpler route (**DAfStb Belastungsrichtlinie**, for the preparatory
+  capacity assessment, same preconditions) fixes single values instead of the
+  COV table: γ_G reduced **1.35 → 1.15** (permanent actions), γ_Q unchanged at
+  **1.50** (variable actions), γ_C reduced **1.50 → 1.40**, γ_S reduced
+  **1.15 → 1.10**. Never mix this set with the DBV COV-table set in one
+  verification, and never adjust γ_G alone without also reviewing the resistance
+  side — an isolated single-factor cut can silently lower the overall safety
+  level below intent.
 
 ### 4.7 Load tests as last resort
 
@@ -464,19 +490,32 @@ Rules:
 - added bars: small-dense (e.g. Ø6/20 B500B = 1.41 cm²/m) placed near the bottom
   of the topping.
 
-**Joint shear (design value of interface):** V_jd = τ_rd · b_jd · x with
-τ_rd = c·f_ctd + ρ_i·(μ·σ_n + α·f_yd…) — friction + dowel + adhesion terms
-(coefficient naming per current model code [VERIFY symbols]). Roughness classes:
+**Joint shear.** DIN EN 1992-1-1's interface-shear model is validated for
+new-build only ("abgesicherter Bereich"); for strengthening of existing members
+use the **fib Model Code 2010** approach instead (Wendehorst/DAfStb practice).
+Unreinforced interface (rigid bond):
 
-| Joint surface | a | c (adhesion) | μ (friction) | α (dowel) |
-|---|---|---|---|---|
-| sehr rau (very rough, ≥3 mm offset) | 0.50 | 0.2 | 0.5 | 0.9 |
-| rau (rough, 1.6–3 mm) | 0.40 | 0.1 | 0.5 | 0.9 |
-| glatt (smooth, 0.8–1.6 mm) | 0.20 | 0.0 | 0.5 | 1.1 |
-| sehr glatt (≤0.8 mm) | 0.025 | 0.0 | 0.0 | 1.5 |
+τ_Rdi = [c_a·f_ctd + μ·σ_n] ≤ 0.5·ν·f_cd
 
-(ω/β-column values in the source: 0.5/0.8/1.0 · 0.5/0.7/0.7 · 0.4/0.6/0.6 ·
-0.3/0.5/0.5 — reduction/strut parameters [VERIFY meaning per current table].)
+Reinforced interface (perpendicular bond reinforcement, ρ = A_s/A_i):
+
+τ_Rdi = c_r·f_ck^(1/3) + μ·(σ_n + ρ·κ1·f_yd) + ρ·κ2·(f_yd·f_cd)^0.5 ≤ β_c·ν·f_cd
+
+with ν = 0.55·(30/f_ck)^(1/3) ≤ 0.55 (compression-strut strength reduction), and
+roughness classes (R_t = Kaufmann sand-patch depth):
+
+| Joint surface | R_t | c_a (adhesion) | c_r (interlock) | κ1 | κ2 | β_c | μ (f_ck≥20) | μ (f_ck≥30) |
+|---|---|---|---|---|---|---|---|---|
+| sehr rau (very rough) | ≥3.0 mm | 0.50 | 0.2 | 0.5 | 0.9 | 0.5 | 0.8 | 1.0 |
+| rau (rough) | ≥1.5 mm | 0.40 | 0.1 | 0.5 | 0.9 | 0.5 | 0.7 | 0.7 |
+| glatt (smooth) | — | 0.20 | 0.0 | 0.5 | 1.1 | 0.4 | 0.6 | 0.6 |
+| sehr glatt (very smooth) | — | 0.025 | 0.0 | 0.0 | 1.5 | 0.3 | 0.5 | 0.5 |
+
+μ jumps with concrete class (rougher/higher-strength joints get more friction
+credit at f_ck≥30) — don't reuse the f_ck≥20 column once the topping is C30/37+.
+Surface prep and cleanliness governs which row applies; sand-patch method is
+imprecise (an optical roughness method is recommended in practice) — when in
+doubt, classify one row down.
 
 **Worked topping example (2-span 6.25 m, existing h=18 cm, Ø12/11 = 10.28 cm²/m,
 new 5 cm topping):** loads g_k = 7.25, q_k = 1.5 (A2) → r_d = 12.05 kN/m²;
@@ -498,10 +537,39 @@ Function: adds area **and** confinement; shotcrete jackets per tunnel-lining rul
   force closure exists (head & base details);
 - checks: base/head load-transfer zone, mid-height composite section, confinement
   contribution;
-- detailing: closed hoops per EC2NA fig. NA.8.5g/h or welded links, bars at hoop
-  corners, intermediate anchors for wide sides [VERIFY trigger]; effective confined
-  area A_cc,eff via λ_q/λ_l corner-loss factors, ρ_w = A_sw/(s·b·h), k_β rise factor;
-  shotcrete contribution often at ~80 % efficiency [VERIFY DAfStb/ETAG value].
+- detailing (DIN 18551 §9.5 / DAfStb Heft 467): closed hoops per EC2NA fig.
+  NA.8.5g/h or welded links, longitudinal bars concentrated at hoop corners;
+  intermediate anchors (Zwischenverankerungen) required once **h/b > 1.5**;
+  load-introduction zone hoop spacing **≤ 80 mm**, zone length
+  l_c = **30·d_s** (DIN 18551) or **2·d_k** (DAfStb Heft 467, use the larger);
+  shotcrete shell contributes to **mid-height** capacity only, at a
+  **0.80** efficiency factor (shrinkage/bond loss) — never assumed to transfer
+  force at the jacket ends (no lasting force closure there without bearing
+  plates/wedges).
+
+**Confinement gain (effective confined area + capacity add):**
+
+A_c,eff = λ_q·λ_l·A_k, A_k = b_k·d_k
+
+λ_q = 1 − [2(b_k−d_s)² + 2(d_k−d_s)²] / (5.5·A_k) — corner-loss factor (d_s =
+corner longitudinal-bar diameter)
+
+λ_l = (1 − s_bü/2b_k)·(1 − s_bü/2d_k) — hoop-spacing loss factor (s_bü = hoop
+pitch)
+
+ΔN_Rd = 2.3·k_β·ρ_q·f_yd,bü·A_c,eff, with k_β = 1 + (f_ck−20)/100 ≥ 1 and
+ρ_q = A_q/A_k = 2(b_k+d_k)·(A_bü/s_bü)/(b_k·d_k)
+
+Old and new hoop confinement areas are computed **separately** (A_eff,alt +
+A_eff,neu) and their ΔN_Rd contributions summed. Head/base capacity (bearing
+transfer only, no shell credit):
+N_Rd = A_c,alt·f_cd,alt + A_s,alt·f_yd,alt + ΔN_Rd,1 + ΔN_Rd,2
+
+Mid-height capacity (shell credited at 0.80):
+N_Rd = A_c,alt·f_cd,alt + A_s,alt·f_yd,alt + 0.80·A_b,neu·f_cd,neu + A_s,neu·f_yd,neu
+
+Eccentricity reduces the confinement add (DIN 1045:1972-derived, retained in
+practice): ΔN'_Rd = ΔN_Rd·(1 − 8M/(N·d_k)).
 
 **Worked jacket example (30/30 B35→assessed C30/37, IV steel fyk 500, l₀ = 2.8 m,
 N_Ed 1800 → 2300 kN):** existing column N_Rd ≈ 1871 kN (ecc. ω = 0.383 chart) →
@@ -524,9 +592,25 @@ and congestion — detail it first.
   with epoxy (MC-DUR 1280, Sikadur-type, StoPox SK41) or **slot-in
   (Schlitzverfahren)**; system approvals (Z-36.12-xx) carry expiry dates — always
   use the current abP/ETA, never a lapsed one.
-- γ_M (DAfStb bonded-reinforcement guideline): CFRP laminate **1.20**, CFRP
-  sheets/gelege **1.35**; bond-adhesive **1.50 (bonded) / 1.30 (slotted)**;
-  steel-steel and CFRP-CFRP bond 1.30; extraordinary combination: 1.05/1.10/1.20.
+- γ_M (DAfStb-Richtlinie bonded-reinforcement guideline, persistent/transient →
+  extraordinary): CFRP laminate γ_LL **1.20 → 1.05**, CFRP sheets/gelege γ_LG
+  **1.35 → 1.10**; bond adhesive γ_BA **1.50 (bonded) → 1.20**, γ_BE **1.30
+  (slotted) → 1.05**; steel-on-steel or CFRP-on-CFRP bond γ_BG **1.30 → 1.05**.
+- Laminate material properties for FEM/BIM (elastic, ≥-values per abZ, N/mm²
+  unless noted): **CarboDur S** — ultimate strain ε_Luk ≥1.6 %, E_Lk ≥161,900,
+  E_Lm ≥170,000, f_Lk ≥2800; **CarboDur M** — ε_Luk ≥1.3 %, E_Lk ≥200,000,
+  E_Lm ≥210,000, f_Lk ≥2500; **MC-DUR/Carboplus 160/2400** — ε_Luk ≥1.6 %,
+  E_Lk ≥160,000, E_Lm ≥162,000, f_Lk ≥2800; **MC-DUR/Carboplus 160/2800** —
+  ε_Luk ≥1.8 %, E_Lk ≥164,000, E_Lm ≥168,000, f_Lk ≥3200; **MC-DUR/Carboplus
+  200/3000** — ε_Luk ≥1.5 %, E_Lk ≥190,000, E_Lm ≥200,000, f_Lk ≥3200; **S&P
+  150/2000** — ε_Luk ≥1.5 %, E_Lk ≥160,000, E_Lm ≥168,000, f_Lk ≥2350; **S&P
+  200/2000** — ε_Luk ≥1.3 %, E_Lk ≥200,000, E_Lm ≥210,000, f_Lk ≥2500. E_Lk is
+  the characteristic (design-side) modulus, E_Lm the mean — use E_Lm for FEM
+  stiffness/deflection, E_Lk for ULS strength checks. Laminate thickness
+  typically 1.0–3.0 mm, width 10–150 mm (slot-bonded strips narrower,
+  10–30 mm) — geometry per the current abZ/ETA, not the type table alone.
+  All approvals (Z-36.12-xx) carry an expiry date — confirm current before
+  use, never model a lapsed system.
 - Section analysis: plane sections, no concrete tension, perfect bond up to
   debonding; checks per member: **peeling (interfacial crack) / anchorage bond
   line AND tensile rupture line**, plus V Rd,c,max and durability of the adhesive
