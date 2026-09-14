@@ -1268,6 +1268,11 @@ editions) before any value leaves the office:
   attribute spelling (§13) | your installed FreeCAD + ifcopenshell versions |
 | Aggressivity of the actual groundwater/soil | DIN 4030 analysis on the project, never a table |
 | Exposure-class assignment of every member | project durability concept — engineer's decision |
+| Fibre characteristic values, cracked-vs-uncracked FRC route, thickness-flexural-
+  strength model (§17) | DAfStb-Richtlinie Stahlfaserbeton (current edition) / national
+  FRC guideline + fibre-specific Zulassung/ETA — §17 is one author's engineering-office
+  method; confirm applicability with the responsible Tragwerksplaner before any
+  load-bearing use |
 
 ### Standards behind this skill (no commentary — editions per §16)
 
@@ -1276,6 +1281,186 @@ editions) before any value leaves the office:
 - DIN 488-1/-2/-3/-5/-100 (Betonstahl, Matten, Draht, Gitterträger, Bewehrungsplanung)
 - DAfStb WU-Richtlinie (waterproofing concrete), DBV Merkblätter (joint sealing)
 - DIN 18197 (expansion joints) context; DIN 4030 (groundwater aggressivity)
+- DAfStb-Richtlinie "Stahlfaserbeton" / national FRC guideline (§17 — cracked-FRC design route)
+
+## Section 17: Fibre-Reinforced Concrete (Faser-/Stahlfaserbeton) — design & detailing alternative
+
+Source: Wietek, *Beton – Stahlbeton – Faserbeton* (Springer, 2024) — an engineering-
+office comparison, not a harmonized Eurocode. Treat every value here as a
+**starting point for the responsible Tragwerksplaner**, not a citable code table.
+
+### 17.1 Why FRC is a real alternative, not a filler additive
+
+Fibres are dosed to solve what plain concrete cannot: control shrinkage cracking
+during hydration, carry the residual tensile/flexural stress a bar would otherwise
+carry, and (with plastic fibres) survive fire without explosive spalling. Properly
+dosed and *kept uncracked in service*, FRC behaves as a homogeneous material with a
+full compressive AND tensile capacity — unlike plain concrete (tension = 0 in
+design, §1.1) and unlike RC (designed cracked in the tension zone by definition,
+Zustand II). FRC is the one concrete-family member that can be designed to *stay*
+uncracked.
+
+### 17.2 Fibre types and characteristic values to obtain from the supplier
+
+| Fibre material | ø [mm] | Length [mm] | Typical dosage [kg/m³] | Notes |
+|---|---|---|---|---|
+| Steel | 0.6–1.2 | 30–65 | 30–70 | any shape (hooked/crimped/straight) available; highest stiffness |
+| Glass | 0.1–0.5 | 8–16 | 1.5–4 | straight only; alkali-resistant (AR) glass required in cement matrix |
+| Plastic (PP/PVA) | 0.15–1.2 | 8–55 | 3.0–7.0 | straight or waved; best fire behaviour (§17.5) |
+
+Design needs seven fibre-specific parameters from the manufacturer's Zulassung/ETA
+before any Bemessung: length l, diameter d, E-modulus E, dosage D, spatial-
+distribution factor α (≈50–60, batching/compaction dependent), geometry factor cf
+(≈1.0–2.5), form factor δ (≈0–25) and friction factor ρ (≈0.7–1.0) [values as
+printed in the digested source — **VERIFY range against the specific product's
+current Zulassung/ETA/abZ before use; the source's E-modulus range 400–7,000 N/mm²
+plausibly covers plastic-through-glass fibres only, NOT steel (E≈200,000 N/mm²) —
+treat that row with suspicion and confirm against the actual supplier data sheet**].
+
+### 17.3 Two competing design philosophies — pick the one your approval covers
+
+1. **Cracked FRC (the normative route)** — DAfStb-Richtlinie "Stahlfaserbeton" (DE)
+   / comparable AT guideline: concrete carries compression only, fibres carry
+   residual post-crack tension (like conventional Zugbewehrung), large
+   deformations expected before failure. This route has actual code backing, but
+   it explicitly **excludes fibres alone from primary load-bearing flexural
+   members** (beams/slabs/columns) unless combined with conventional rebar — i.e.
+   it produces *doubly reinforced* concrete (fibres + Bewehrungsstahl), more
+   expensive than either system alone and still carrying all of RC's crack/
+   corrosion liabilities (§8.1–8.2 durability, plus the corrosion mechanisms in
+   `existing-structures-retrofit` §8).
+2. **Uncracked FRC (specialist/proprietary route, e.g. the Wietek method)** —
+   treats FRC as a single homogeneous material (§17.1), admitting higher
+   transferable stresses and enabling FRC alone in genuinely load-bearing bending
+   members. This route has **no harmonized EN/DIN Bemessungsnorm** — it requires a
+   case-specific approval (Zustimmung im Einzelfall / individual Prüfstatik
+   acceptance) and is only as good as the fibre characteristic values in §17.2. Do
+   not present it to a client as "coded design" — it is an engineering-office
+   method that must be disclosed and separately signed off.
+
+### 17.4 Thickness-dependent flexural tensile strength (shrinkage-crack model) — cross-check tool
+
+Independent of the EC2/NA fctm,fl formula (building-materials §4.8), this source
+derives allowable flexural tension from the expected shrinkage-crack depth as a
+*fraction of section thickness* — thicker members cure with a deeper, more
+restrained core and lose more section to shrinkage micro-cracking:
+
+| Member thickness | Assumed cracked fraction of section |
+|---|---|
+| < 30 cm | 10 % |
+| 30–60 cm | 20 % |
+| > 60 cm | 30 % |
+
+Resulting f_ctm,fl [N/mm²] by concrete class and thickness band (plain/fibre
+concrete, no bars):
+
+| Class | fck [N/mm²] | <30 cm | 30–60 cm | >60 cm |
+|---|---|---|---|---|
+| C8 | 8 | 2.16 | 1.92 | 1.68 |
+| C12 | 12 | 2.83 | 2.52 | 2.20 |
+| C16 | 16 | 3.43 | 3.05 | 2.67 |
+| C20 | 20 | 3.98 | 3.54 | 3.09 |
+| C25 | 25 | 4.62 | 4.10 | 3.59 |
+| C30 | 30 | 5.21 | 4.63 | 4.06 |
+| C35 | 35 | 5.78 | 5.14 | 4.49 |
+| C40 | 40 | 6.32 | 5.61 | 4.91 |
+| C45 | 45 | 6.83 | 6.07 | 5.31 |
+| C50 | 50 | 7.33 | 6.51 | 5.70 |
+
+Use as a sanity cross-check against the EC2/NA fctm,fl value, never as a
+substitute for it — **VERIFY against EC2 Annex or the current DAfStb/AT guideline
+formula before quoting in a deliverable**; this model is a single author's
+derivation, not a normative table.
+
+### 17.5 Where FRC is the pragmatic choice
+
+- Compression-dominated / low-tension members: basement floor slabs, basement
+  walls without deep excavation surcharge, gravity retaining walls, tunnel inner
+  rings/segments (Tübbinge), shotcrete slope stabilisation (Spritzbeton).
+- Precast stair flights (straight or helical) — plastic-fibre FRC loses far less
+  fire capacity than RC (the surface plasticises and forms micro-channels that
+  relieve vapour pressure → no explosive spalling), so an FRC stair stays usable
+  as an escape route longer than an RC one in the same fire.
+- Water-tightness by design: uncracked FRC can avoid the crack-width verification
+  and joint-detailing burden of Weiße Wanne (§9) for elements where the
+  *uncracked* design route (§17.3.2) has been separately approved — do not use
+  this as a shortcut around §9 without that approval in hand.
+- NOT a default substitute for large-span heavily-loaded flexural members (beams,
+  transfer slabs) — those stay RC/PT until a harmonized FRC-alone design code
+  exists for the project's jurisdiction.
+
+### 17.6 Order-of-magnitude comparison (context, not a citable spec)
+
+A 20 cm in-situ floor slab, C25–C35: plain concrete carries the least moment;
+normally-reinforced RC (50 kg steel/m³) and plastic-FRC (5 kg/m³) land in a
+comparable moment-capacity band; only *highly*-reinforced RC (80 kg/m³) clearly
+exceeds both. Cost order-of-magnitude (Austria, 2023, ±10 % regional scatter —
+**VERIFY current local pricing before any estimate**): concrete ≈140 €/m³,
+reinforcement steel ≈1.80 €/kg, plastic fibre ≈10 €/kg — at these unit prices,
+normally-reinforced RC (50 kg/m³) still costs roughly 40 €/m³ more than the
+comparable plastic-FRC mix, before counting FRC's placement-labour savings (no
+cage fixing).
+
+## Section 18: Carbon/Textile-Reinforced Concrete (Carbonbeton) — non-metallic reinforcement alternative
+
+[Digested from Kompendium Nachhaltige Bauwerke – Hochbauten, Springer 2026, Ch.16 —
+regulatory picture current as of the source; **VERIFY current DAfStb guideline
+edition and product approvals before specifying**.]
+
+### 18.1 Why it changes the detailing, not just the material
+
+Carbon-fibre grid or textile reinforcement does not corrode, so it needs none of
+the corrosion-driven cover this file spends Section 3 on — cover becomes a bond/
+fire/mechanical-protection question only, not a carbonation-depth or chloride-
+diffusion question. That lets cross-sections shrink well beyond what §3.2's
+c_min,dur logic would ever allow for steel: thinner slabs/shells and thinner
+strengthening overlays become structurally legitimate, which is exactly why this
+material is displacing steel mesh in slim precast and in retrofit overlays.
+
+### 18.2 Regulatory status (Germany, at digest time)
+
+- **DAfStb-Richtlinie "Betonbauteile mit nichtmetallischer Bewehrung"** in force
+  since early 2024, 5 parts (design/construction, reinforcement products,
+  execution guidance, verification/approval requirements) — used **together
+  with** the relevant DIN 1045 parts, not standalone. Individual reinforcement
+  products still need their own bauaufsichtliche Zulassung (abZ/aBG) — there is
+  no single harmonized product standard yet, same caveat as §17.3's FRC route.
+- Documented example approvals: **Z-31.10-182** — strengthening of existing RC
+  members with fine-grain concrete (max aggregate ≈2 mm) plus an embedded carbon
+  grid (a retrofit overlay system, directly relevant to
+  `existing-structures-retrofit` §7 strengthening methods). **Z-71.3-42** —
+  prestressed carbon-reinforced (CPC) slabs cast from grout/self-compacting
+  concrete.
+- CUBE Dresden is cited as the first all-carbon-reinforced-concrete building
+  worldwide — treat as a precedent reference, not proof of universal code
+  acceptance.
+
+### 18.3 Performance headline figures (order-of-magnitude, confirm per product abZ)
+
+- Up to **8×** higher tensile load capacity than steel at the same cross-section.
+- Material-use reduction up to **50 %**, CO₂ reduction up to **30 %** — driven
+  jointly by the reduced-cover cross-section saving (§18.1) and the lower
+  material mass itself, not by the carbon fibre's own footprint alone (carbon
+  fibre production is itself energy-intensive — the saving is a *system* saving,
+  not a low-embodied-carbon-material claim; do not quote it as if the fibre were
+  low-carbon per unit mass).
+
+### 18.4 Where to actually use it
+
+- **Retrofit/strengthening overlays** (thin fine-grain-concrete layer with
+  embedded carbon grid, laminated or sprayed onto the tension face) — less
+  invasive than concrete jacketing (§7.1-class methods in
+  `existing-structures-retrofit`) and does not add corrosion risk to the
+  existing structure the way an added steel-reinforced topping can; well suited
+  to heritage-sensitive retrofits where added dead load or thickness is
+  constrained.
+- **New slim precast** (thin slabs, façade panels, prestressed CPC slabs) where
+  the cover-driven thickness penalty of steel reinforcement is the governing
+  cross-section constraint.
+- NOT yet a drop-in replacement for primary steel reinforcement in conventional
+  cast-in-place beams/columns/slabs at building scale — treat every application
+  as abZ/ZiE-governed, exactly like the FRC uncracked route in §17.3.2, and
+  disclose that governance to the client before proposing it.
 
 ### Companion skills
 
@@ -1287,6 +1472,8 @@ editions) before any value leaves the office:
 | Openings, lintels, wall connections | `openings-windows-doors` |
 | Waterproofing build-ups beyond WU (bitumen, membranes) | `roofing-waterproofing` |
 | Tolerances/execution QA in concrete | `construction-scheduling-site` |
+| Cathodic protection / corrosion economics for existing RC | `existing-structures-retrofit` |
+| Carbon-reinforced overlay as a strengthening method | `existing-structures-retrofit` §7 |
 
 ---
 

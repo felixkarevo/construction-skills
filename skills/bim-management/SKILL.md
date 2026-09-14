@@ -995,6 +995,44 @@ Archivierung.
   Hauptblocker; belastbare Betriebs-BIM-ROI-Zahlen fehlen überwiegend — konservativ rechnen,
   Messgrößen **vorher** definieren.
 
+### 14.9 Materialpass / Ressourcenpass (Madaster-Modell)
+
+[Digest aus Kompendium Nachhaltige Bauwerke – Hochbauten, Springer 2026, Kap. 35
+— Plattform-Mechanik, kein Normtext; **aktuellen Funktionsumfang vor Zusage
+prüfen**.]
+
+Ein Gebäuderessourcenpass ist kein Sustainability-Add-on, sondern ein **weiterer
+Datenabnahmepunkt** mit eigenem Feldkatalog — gehört strukturell neben COBie/
+CAFM-Connect in § 14.4, nicht als Nachgedanke ins LCA-Reporting.
+
+- **Datenherkunft:** Direktimport aus dem BIM-Modell (bevorzugt) oder aus Excel;
+  das Ergebnis ist ein **Gebäuderessourcenpass** je Objekt mit Feldern für
+  Rückbaubarkeit/Recyclingfähigkeit, CO₂-Fußabdruck und Materialzusammensetzung
+  je Bauteil/Produkt.
+- **Getrackte Kennzahlen je Gebäude** — als Ziel-Feldliste für den
+  Materialpass-Abschnitt eines Pflichtenhefts direkt verwendbar: Materialmengen/
+  -massen je Bauteil, CO₂-Fußabdruck, **Zirkularitätsquote**, **Rohstoff-
+  Restwert** (Madaster-eigene Kennzahl, keine Norm-Größe — in Vertragswerken
+  als "informativ" kennzeichnen, nicht als Bewertungsgrundlage ohne
+  Herleitungsnachweis).
+- **Regulatorischer Treiber:** Koalitionsvereinbarung (DE) sieht einen
+  verpflichtenden digitalen Ressourcenpass für Gebäude/Bauprodukte ab 2025 vor
+  [VERIFY Umsetzungsstand]; EU-Taxonomie verlangt für künftige Bauprojekte
+  ≥ 50 % recycelte/erneuerbare Materialien als Schwellenwert-Kriterium —
+  beides gehört als AIA-Anforderung dokumentiert, nicht nur als
+  Nachhaltigkeits-Wunsch formuliert.
+- **Praxisfolge fürs Datenmodell:** die Materialpass-Feldliste ist ein
+  eigenständiger LOI-Layer (§ 5.1) — Bauteil-GUID, Materialtyp/-menge, Herkunft
+  (Neu/Wiederverwendet, Klasse nach `existing-structures-retrofit` § 16.1),
+  Rückbaufähigkeit (lösbare vs. stoffschlüssige Verbindung) und Dokument-Link
+  (Prüfzeugnis bei wiederverwendeten Bauteilen) — bei Neuplanung von Anfang an
+  als Pset-Erweiterung vorsehen, nicht nachträglich in ein fertiges Modell
+  zurückmodellieren.
+- **Cross-Referenz:** die materialseitige GWP-/Zirkularitäts-Bewertung selbst
+  (Faktoren, Zertifizierungslogik DGNB/BNB/QNG) liegt in `sustainable-construction`
+  — dieser Abschnitt behandelt nur, WELCHE Felder das Modell für einen
+  Materialpass tragen muss und WANN sie zu befüllen sind.
+
 ---
 
 ## Abschnitt 15: 4D/5D — Datenvoraussetzungen (Querreferenzen)

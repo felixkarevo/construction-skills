@@ -619,6 +619,15 @@ and congestion — detail it first.
   survives edge delamination better.
 - Steel lamellae follow the same composite logic with steel γ_M0-type factors;
   unbonded post-tensioned strips are a prestress variant (§ 7.5).
+- **Carbon-textile-reinforced overlay (Carbonbeton) alternative:** a thin fine-
+  grain-concrete layer (≈2 mm max aggregate) with an embedded carbon grid,
+  laminated or sprayed onto the tension face — less invasive than jacketing and
+  adds no corrosion risk to the existing member (non-metallic reinforcement).
+  German route: DAfStb-Richtlinie "Betonbauteile mit nichtmetallischer
+  Bewehrung" (in force since early 2024) combined with the relevant DIN 1045
+  parts; individual products still need their own abZ/aBG (documented example:
+  Z-31.10-182). Detail parameters in `concrete-detailing` §18. **VERIFY current
+  guideline edition and product approval before specifying.**
 
 ### 7.4 Steel sections / plates to existing members
 
@@ -670,6 +679,66 @@ cantilevers without continuity): introduce shear discs or a core.
 - Adjacent-structure protection follows excavation logic (prestressed struts,
   diaphragm/pile walls for sensitive neighbours) — geotechnics skill.
 
+### 7.9 Cathodic protection (Kathodischer Korrosionsschutz, KKS)
+
+For chloride-driven corrosion (§8.2) that patch repair cannot outrun — chlorides
+already diffused past the bar depth, so cutting out contaminated cover just
+exposes fresh chloride-laden concrete next to it — KKS **stops the electrochemical
+process itself** instead of removing/replacing contaminated concrete: a protective
+current (surface-applied or embedded anode mesh, impressed-current or sacrificial)
+polarises the reinforcement cathodically, halting further metal loss without
+removing sound concrete. [Digested from Wietek, *Beton – Stahlbeton – Faserbeton*,
+2024 — case-study level, not a design code; the technique itself is standardised
+in DIN EN ISO 12696, **VERIFY current design values there**.]
+
+- **Monitoring:** embed a reference electrode (CMS-type, silver/silver-chloride)
+  in the at-risk zone before or during the KKS retrofit; it reads pore-water
+  content, chloride content and active corrosion rate at the bar. Install it
+  **before** corrosion is visible — KKS is most effective started early — and use
+  ongoing potential mapping to trigger the decision rather than waiting for visible
+  rust staining, which already means active section loss.
+- **Approximate unmaintained service life by exposure** (years, order-of-magnitude,
+  single-source digest — **VERIFY against project-specific durability design /
+  DIN EN 1990 design-life classes before use in a report**):
+
+| Exposure | Plain concrete | Ordinary RC | Fibre-reinforced concrete |
+|---|---|---|---|
+| Dry air | 300 | 150 | 200 |
+| Humid air | 300 | 120 | 200 |
+| Damp soil | 250 | 40 | 200 |
+| Acid rain | 250 | 40 | 200 |
+| De-icing salt spray | 200 | 30 | 200 |
+| Salt mist | 200 | 40 | 200 |
+
+  With one traditional repair cycle, RC life extends by roughly +50 a (dry/humid
+  air), +30 a (damp soil/acid rain) or +25 a (salt exposure) — always shorter than
+  a comparable new build, because residual cracks and material mismatch remain.
+  **With KKS instead of traditional repair, the digest reports a flat +100 a**
+  across every moisture/chloride exposure class — the gap is largest, and KKS is
+  most worth considering, exactly where salt exposure is present.
+- **Whole-life economics (documented case, Wietek 2024):** conventional periodic
+  Sanierung of a chloride-exposed RC bridge typically needs full replacement after
+  ≈35–40 a once bar corrosion undermines capacity (a "Sanierung → Abriss/Neubau"
+  cycle repeats); continuously-monitored + polarised KKS avoided that endpoint at
+  roughly **1.8× lower whole-life cost** than the repeat-repair-then-rebuild cycle
+  in that case — the saving comes from never reaching demolition. Treat the factor
+  as an order-of-magnitude planning input, not a quotable ratio for a new case.
+- **Track record:** proven >100 years on buried steel pipelines; used on German-
+  speaking-area road bridges since the 1990s (documented case: 9 Brenner-Autobahn
+  bridges fitted with KKS as an early large-scale DACH application). **KKS only
+  works if kept running and monitored** — a documented case of KKS systems being
+  switched off without recorded technical justification put the affected bridges
+  back at corrosion risk with no active protection. If you inherit or recommend a
+  KKS system in a Bestandsaufnahme, verify it is live, monitored and its records
+  are current — a de-commissioned-but-unflagged KKS system is worse than assuming
+  none was ever installed, because it hides an unprotected chloride exposure
+  behind an apparently-solved problem.
+- **When to reach for it vs. §7.1–7.2:** KKS is the arrest-in-place option when
+  concrete removal would be extensive/structurally risky or chlorides are already
+  deep (pitting risk, §8.2); Aufbeton/jacketing (§7.1–7.2) stay the default when
+  the deficiency is capacity, not active ongoing corrosion — the two are not
+  mutually exclusive (KKS can protect a jacketed member going forward).
+
 ### 7.8 Method-selection cheat sheet
 
 | Deficit | First-choice options | Watch |
@@ -681,6 +750,7 @@ cantilevers without continuity): introduce shear discs or a core.
 | beam shear deficit | CFRP U-jackets/side bonded; steel flange straps | anchorage against peel |
 | hall unbraced | added bracing/wall (§ 7.6) | diaphragm chords, transfer at foundations; bearing deficit → widen/underpin (§ 7.7) with 5 mm settlement honesty |
 | deflection/serviceability | prestress strips (§ 7.5) | old-concrete bearing at deviators |
+| active chloride corrosion, chlorides already past bar depth | Cathodic protection / KKS (§ 7.9) | needs continuous power + monitoring; verify any inherited system is still live before relying on it |
 
 ## 8. Defect catalog — mechanism, signature, first action
 
@@ -1067,18 +1137,153 @@ Monitor:
   **structural-analysis**; U-value/blower-door models in
   **building-physics-thermal-moisture**.
 
-## 16. Related skills
+## 16. Component reuse & circular deconstruction (Wiederverwendung von Bauteilen)
+
+[Digested from Kompendium Nachhaltige Bauwerke – Hochbauten, Springer 2026, Ch.32
+(Forschung: Wiederverwendung von Stahlbetonbauteilen) — research-level, not yet a
+harmonized code; **VERIFY current guideline status before relying on any number
+here in a submittal**.]
+
+This is a *different* workflow from § 7 strengthening: instead of upgrading an
+existing member in place, you are qualifying a donor member (from this building
+or another) for reuse as a structural component elsewhere. Treat it as an
+additional gate before demolition sign-off, not an afterthought once a building
+is already scheduled for the crusher.
+
+### 17.1 5-class reusability system (Küpfer & Fivet 2023)
+
+| Class | What survives | Reuse route |
+|---|---|---|
+| 1 | Component group, connections preserved, existing rebar statically usable, no/minor damage | Direct reuse (group), highest value |
+| 2 | Like 1 but connections not preserved | Individual component reuse |
+| 3 | Only concrete compressive strength usable; rebar not statically creditable | "Weiterverwendung" as blocks/whole elements (non-structural credit for the steel) |
+| 4 | Demolition + recycling | Aggregate compressive strength only (RC-aggregate, ballast, backfill — cross-ref `building-materials` recycled-aggregate rules) |
+| 5 | Demolition + disposal | No recycling possible (contamination, e.g. asbestos) |
+
+Two operating scenarios: **direct extraction** from a single donor building
+(iterative design coordinated with the client, components go straight to the new
+project) vs. **pooled storage/warehouse** (standardized modules held for future
+demand — needs a Standard-ID/QR-code and issued test certificate per element).
+
+### 17.2 3-stage investigation process
+
+1. **Screening:** visual/dimensional survey + archival document chase (same
+   record sources as § 3.1) — first pass at class assignment.
+2. **Detailed survey:** full geometric/material survey, preliminary class
+   assignment, contamination screening (§ 3.3 periods apply), deconstruction
+   concept drafted.
+3. **Final testing:** geometry, mechanical properties and damage tested on the
+   *actually recovered* elements (not just predicted from the donor building) —
+   issue test certificates (origin + measured properties) before the element is
+   released for reuse design.
+
+### 17.3 Modified partial safety factors for reused elements (APFM)
+
+The Adjusted Partial Factor Method (fib Bulletin 80, 2016) lets γc and γs be
+reduced below the new-build defaults when the *measured* coefficient of variation
+on the salvaged elements is lower than the new-build assumption used to derive
+those defaults — more data (destructive + non-destructive testing on the actual
+donor elements) buys a smaller safety margin, while holding the same target
+reliability index **β = 3.8 (CC2, DIN EN 1990)**. Order of magnitude: γc
+reducible by up to ≈10 % under low scatter; γs reduction is much smaller (steel
+properties are already tightly controlled at manufacture, so there is less
+"unknown" to buy down with testing). This is the analytical route that makes
+class-1/2 reuse economically viable instead of over-conservative — do not
+default to full new-build γ-factors on tested salvaged material, but do not
+invent a reduction without the underlying test programme either.
+
+### 17.4 Sustained-load caveat (αcc for old concrete)
+
+The standard German NA value **αcc = 0.85** (reinforced) / **0.70**
+(unreinforced) per DIN EN 1992-1-1 bakes in a post-hardening strength benefit
+that is real for *young* concrete (concrete gains ≈75–80 % of its long-term
+sustained strength within days-to-weeks of loading, Rüsch 1960) but may **not**
+still apply to old concrete recovered decades later, because that post-hardening
+window has long since closed. Tests on 52-year-old core samples (from a retaining
+wall) loaded to 62–82 % of mean strength for up to 70 days showed only ≈70–75 %
+sustained-strength ratio — i.e. **αcc = 0.85 can overestimate capacity for old/
+existing concrete**. Treat this as a flag to discuss with the Prüfingenieur on
+any reuse or Nachrechnung (§ 4) job with concrete older than ~40–50 years, not as
+a ready-made reduced αcc value — testing on the specific donor concrete is the
+only way to quantify it for a given project. [Further testing on 1990s wall
+elements and a 1966 prestressed bridge near tendons was ongoing at source
+publication — check for a published follow-up before citing a specific number.]
+
+### 17.5 Dry-joint friction in reused unreinforced concrete (first dedicated tests)
+
+Mecka et al. 2025, specimens from a 1972 C45/55 riverbank wall, in-plane (pure
+shear) and out-of-plane (bending+shear) tests, sawn (smooth) vs. shot-blasted
+(rough) joints, 6 tests each:
+
+- Sliding friction coefficient at 17.8 MPa normal stress: up to **0.68**
+  (shot-blasted, in-plane) vs. **0.56** (sawn, in-plane).
+- Static friction coefficient stays roughly constant at **≈0.4–0.5** regardless
+  of surface treatment; sliding friction increases with compressive utilisation
+  then drops slightly at very high loads (micro-spalling at the joint face).
+- **Smooth (sawn) joints** reach high friction early at small displacements but
+  fail brittle/suddenly under bending (out-of-plane) — suited to combined
+  bending+shear connections where a stiff, low-slip joint matters more than
+  ductility.
+- **Rough (shot-blasted) joints** are more ductile under pure shear (in-plane)
+  but weaker under bending because the joint-gap opening reduces effective
+  contact — suited to pure-shear modular connections, not bending-dominated
+  ones.
+- Headline: **joint friction in old unreinforced concrete measures significantly
+  lower than literature/code assumptions for new construction joints** —
+  component-specific testing is required before crediting friction capacity in a
+  reuse connection design; do not carry over a new-concrete Reibungsbeiwert.
+
+### 17.6 Deconstruction / separation method choice (per DIN 18007)
+
+| Method | Resulting joint surface | Suited to | Relative cost |
+|---|---|---|---|
+| Sawing (band/diamond-chain/rope/wall saw) | Clean, smooth | Combined bending+shear connections (§ 17.5) | € |
+| High-pressure water (cutting or jetting) | Uneven-to-rough (jetting rougher) | Shear-only connections when rough | €€ |
+| Press-splitting | Heavily interlocked, needs rework; can plastically deform donor rebar | Special cases only | €€€ |
+| Oxygen lance | Thermally damages near-surface microstructure | Underwater/confined spaces only | €€€€ |
+
+Sawing and high-pressure water are the default choices (handling, output, cost);
+reserve press-splitting and oxygen-lance for the special cases their column
+names — never pick a method by habit when the joint's structural role (§ 17.5)
+should drive it.
+
+### 17.7 Design-for-disassembly process note
+
+A reuse project does not fit the standard German HOAI waterfall (design detail
+is needed too early for reused-component decisions, which depend on what a
+donor building actually yields). The literature proposes an **agile/iterative
+loop through LPH 0–5**: requirements workshop up front, iterative LCA/LCC
+refinement each loop, ending in logistics/installation planning + QA — and flags
+that this needs a different contract model (pre-construction/consulting
+agreements) because standard HOAI fee structure does not map cleanly onto
+iterative reuse design work. Flag this to the client/PM early — a reuse
+component strategy decided at LPH 3 like a normal material choice arrives too
+late to actually secure the donor elements.
+
+### 17.8 CO₂ savings (context for the business case)
+
+Component reuse reports **40–80 % CO₂ savings** vs. conventional new build,
+depending on component type, transport distance and repair effort; cut/reused
+cast-in-place slabs specifically reach up to **85 %** reduction (Küpfer et al.
+2023/2024). Use these as order-of-magnitude business-case numbers, not
+project-specific LCA substitutes — run the actual A1-A3+transport comparison
+per `sustainable-construction` for a real number.
+
+## 17. Related skills
 
 - Structure: `structural-analysis` (altered systems, 2nd order), `concrete-detailing`
-  (post-installed anchors § 7.4), `masonry-construction` (Ringanker, repointing),
-  `timber-steel-design` (member strengthening), `seismic-design` (ductility upgrade
-  shares the § 7.6 logic).
+  (post-installed anchors § 7.4, carbon-reinforced overlay § 7.3), `masonry-construction`
+  (Ringanker, repointing), `timber-steel-design` (member strengthening), `seismic-design`
+  (ductility upgrade shares the § 7.6 logic).
 - Ground & envelope: `geotechnics-foundations` (§ 7.7), `roofing-waterproofing`
   (§ 10.3 roofs), `building-physics-thermal-moisture` (Glaser/interior-insulation
   proofs § 9 and § 10.3).
 - Services & compliance: `building-services-tga` (§ 10.4–10.5),
   `fire-protection-building` (§ 10.3 fire constraints), `cost-management-din276`
   (§ 11 LCC), `bim-management` (§ 15 phase/condition data).
+- Circular/reuse: `sustainable-construction` (whole-project LCA/circularity
+  framing, material passports), `building-materials` (recycled-aggregate concrete
+  rules for Class-4 material, § 17.1).
 
 ---
 

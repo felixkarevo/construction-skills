@@ -8,7 +8,7 @@ description: >
   Kostenfeststellung — and the outdated Kostenvoranschlag), benchmark logic
   (derive €/m² BGF / €/m³ BRI from local price levels and own Nachkalkulation —
   never copy foreign rates), unit-price buildup per KLR Bau (Lohngruppen,
-  Mittellohn, Lohnzusatzkosten 85–95%, Gerät costs BGL-style, Stoffe, Gemeinkosten
+  Mittellohn, Lohnzusatzkosten 80-100% (typical 85-95%), Gerät costs BGL-style, Stoffe, Gemeinkosten
   Zuschläge, BGK/AGK, two calculation methods, p→p′ conversion, Deckungsbeitrag),
   VOB/C ATV numbering (DIN 18299 general + 18300 earthworks … 18451 scaffolds,
   Neben-/Besondere Leistungen, Aufmaß/Abrechnung), quantity takeoff from a
@@ -383,6 +383,69 @@ DIN 1045-1 (exposure-class driven — typically 20 mm slabs interior, 30–40 mm
 beams/columns **[practice]**) and lap-splice lengths (≥ 40–65 × bar Ø depending on
 concrete, coverage and bar Ø) change tonnage by ±15 % more easily than any ratio here.
 
+**Cross-check against a primary source** (Zahlentafeln für den Baubetrieb, 10th
+ed. 2024, Tab. 12.18, p.907–908) — the table above is planning-grade practice;
+the primary source gives wider bands and, for slabs and columns specifically, a
+materially different picture, so use both and understand *why* they diverge
+before quoting a single number:
+
+| Element (source terms) | kg per m³ concrete | kg per m² (where given) |
+|---|---|---|
+| Fundamente (footings, generic) | 25–60 (mean **40**) | — |
+| Bodenplatten (ground-bearing slab-on-grade) | 25–35 | 5–7 kg/m² |
+| Geschosswände (storey walls, normal) | 15–20 | 3–4 kg/m² |
+| Geschosswände, größere Scheiben (larger shear walls) | 20–30 | — |
+| Stützen (columns) | **100–800** (mean 300–400) | — |
+| Decken (suspended slabs, generic) | 37–45 | 4.5–6.5 kg/m² (3–6 m span → 12–20 cm thick, 4.0–9.5 kg/m² depending on Trennwände) |
+| Skelettbau office plate-beam decks | 115–130 | — (by 5×5 / 7.5×5 / 7.5×7.5 m grid) |
+| Whole-building average, Mauerwerksbau | 30–55 | 2–5 kg/m³ BRI |
+| Whole-building average, Stahlbetonskelettbau office | 80–90 | 8–10 kg/m³ BRI |
+
+Read the divergences as *terminology and scope*, not error: this file's "Raft /
+Bodenplatte" (70–120) means a load-bearing mat foundation carrying full building
+loads, while the source's "Bodenplatten" (25–35) means a simple ground-bearing
+slab-on-grade — confirm which one the drawing actually is before picking a row.
+The **columns** spread (100–800, mean 300–400 vs. this file's 120–200) is real
+and large: small, highly-loaded columns (upper floors of tall frames, transfer
+columns) run far above typical wall-like RC columns — never apply one flat
+column ratio across a whole building; bucket columns by utilisation before
+ratio-costing them. Suspended slabs also diverge (37–45 kg/m³ vs. 80–110) —
+likely a span/loading-class difference (source figures skew toward lighter
+residential/office spans); use the source's span/thickness sub-table when the
+actual span is known, and this file's higher band as the conservative default
+when it isn't.
+
+**Concrete-demand ratio, whole-building level** (same source, Tab. 12.17,
+p.907) — an early-plausibility check against §3.3's per-m² BGF bands, driven
+off enclosed volume (BRI) instead: Wohnungsbau (masonry walls + concrete
+slabs) **0.05–0.08 m³ concrete/m³ BRI**; Skelettbau (RC frame) **0.06–0.12
+m³/m³ BRI** (0.07–0.09 for 5.0–7.5 m spans specifically). Run this alongside
+§4.2's model takeoff as a sanity bound before trusting a BIM-derived concrete
+volume — a model result outside this band by more than the span/type
+explanation above warrants a double-count check (§4.4) before it goes into an
+estimate.
+
+### 4.3a Masonry material quantities (stones + mortar per m²)
+
+[Zahlentafeln für den Baubetrieb, 10th ed. 2024, Tab. 12.19, p.908–909 — a full
+stones-per-m² and mortar-litres-per-m² grid by block format (DF…20 DF) and wall
+thickness (11.5–36.5 cm); one representative row below, pull the full grid from
+the source for a real BOQ.]
+
+| Format / thickness | Steine/m² | Mörtel l/m² | Steine/m³ | Mörtel l/m³ |
+|---|---|---|---|---|
+| 2DF, d = 24 cm | 66 | 50 | 273 | 200 |
+
+Explicit **waste/allowance factors** to apply on top of the geometric quantity:
+**+2–4 %** stone quantity for gegliederte Wände (broken-up wall geometry —
+returns, piers, offsets multiply cut losses); mortar quantity **−40 %** for
+unvermörtelte Stoßfugen (dry-jointed perpend joints, common with modern
+thin-bed/tongue-and-groove block systems); mortar **+25 %** if Grifftaschen
+(hand-grip pockets in large-format blocks) are mortar-filled rather than left
+void. A FreeCAD masonry BOQ that skips these three adjustments will be
+systematically wrong in a predictable direction — apply them as a percentage
+step on the raw geometric count, not as a vague contingency line.
+
 ### 4.4 The double-count traps (model version)
 
 1. **Beam–slab overlap:** either measure beams at full depth and slabs **net of beam
@@ -436,19 +499,41 @@ and are economically different: 3 % Skonto for paying in 10 instead of 30 days i
 
 - Construction wage cost = Tariflohn (Lohngruppen of the collective agreement) + Bau-
   zuschläge + overtime/night/Sunday/holiday premiums.
-- **Lohnzusatzkosten (social-wage surcharge): 85–95 % on the Grundlohn** in practice —
-  sickness, weather downtime, holiday/ALT levy mechanics. Charge it on productive hours
-  of actual working days. **[VERIFY band; tariff-dependent]**
+- **Lohnzusatzkosten (social-wage surcharge): 80–100 % on the Grundlohn**
+  (Zahlentafeln für den Baubetrieb, 10th ed. 2024, p.824 — confirms and widens
+  the earlier 85–95 % digest; treat 85–95 % as the typical band and 80–100 % as
+  the full Bundesland/company-dependent range) — sickness, weather downtime,
+  holiday/ALT levy mechanics. Charge it on productive hours of actual working
+  days. Worked anchors: 85 % (2009 example), 87 % (2020 example, §5.2 below).
 - Lohnnebenkosten per §7 BRTV-type rules (travel/meal allowances) are a further charge
   line for workers away from home.
 - Symbols convention: `A` base → `AS` +Lohnzusatzkosten → `ASL` +Lohnnebenkosten →
   `AP/APS/APSL` +Polier (foreman) share.
 - **Mittellohn:** because you cannot know the exact crew mix at tender time, price the
   **weighted average hourly cost** of the planned crew. Distinguish:
-  - *Lohn ASL* — bare crew average (a digested worked example used ≈ 34 €/h),
+  - *Lohn ASL* — bare crew average,
   - *Kalkulationslohn* — average loaded with overhead and profit so the job recovers its
-    Schlüsselkosten (same example: ≈ 64 €/h). **Never compare these two numbers across
-    offers without knowing which one is quoted.**
+    Schlüsselkosten. **Never compare these two numbers across offers without knowing
+    which one is quoted.**
+  - **Corrected worked example** (Zahlentafeln für den Baubetrieb, 10th ed. 2024,
+    p.868–869 — Projekt "16 Einfamilienhäuser Bayernallee," Stand 2020, alte
+    Bundesländer — supersedes the earlier ≈34 €/h digest, which undercounted):
+    mittlerer Gesamttarifstundenlohn (blended crew) **20.64 €/h** → + 87 %
+    Lohnzusatzkosten → Mittellohn APS **38.60 €/h** → + 0.42 €/h
+    Lohnnebenkosten → **Mittellohn APSL = 39.02 €/h** (final, fully-loaded crew
+    rate). This crew mix skews toward higher Lohngruppen (1 Vorarbeiter, 3
+    Spezialfacharbeiter, 1 Facharbeiter, 1 Fachwerker, 1 Werker) — treat 39 €/h
+    as a 2020/West-Germany anchor for a similarly senior crew, not a universal
+    constant, and escalate for current wage levels before quoting. Supporting
+    Gesamttarifstundenlohn floor/ceiling by Lohngruppe (ab 1.1.2021, alte
+    Bundesländer, Tab. 12.2, p.822–823): LG6 Werkpolier 24.19 €/h; LG5
+    Vorarbeiter 22.10 €/h; LG4 Spezialfacharbeiter 21.06 €/h; LG4
+    Baumaschinenführer 21.40 €/h; LG3 Facharbeiter 19.27 €/h; LG2a 18.78 €/h;
+    Mindestlohn LG2 (ab 1.5.2021) 15.70 €/h; LG1 12.85 €/h.
+  - **Lohnzusatzkosten range confirmed but wider than stated**: the source gives
+    **80–100 %** (not 85–95 %) depending on Bundesland/company, with worked
+    examples at 85 % (2009) and 87 % (2020, above) — widen the planning band to
+    80–100 % and treat 85–95 % as the typical, not the full, range.
 - Aufwandswerte (man-hour values) anchor durations and crew prices — digested BAS-style
   bands **[VERIFY per current table collection]**:
 
@@ -531,7 +616,9 @@ p′ = p · 100 / (100 − p)  auf Herstellkosten   e.g. 12 → 13.64 %  (NU-onl
 **Schlüsselkosten logic:** the overhead not directly attributable to positions
 (= Angebotssumme − EKT) must be recovered somewhere. Pre-allocate factors on
 material/device/SoKo/NU, and push the **residual onto labour** — this is why the
-Kalkulationslohn (≈ 64 €/h in the digested job) can double the Mittellohn (≈ 34 €/h).
+Kalkulationslohn (the same logic that pushed §5.2's worked Mittellohn from
+20.64 €/h base to 39.02 €/h fully loaded, p.868–869) can run well above the
+Lohn ASL Mittellohn it started from.
 Consequence: **on a job with reduced labour share, the same absolute overhead costs you
 more per unit** — the reason low-concrete, high-NU jobs must be re-loaded, not copy-priced.
 
@@ -1107,7 +1194,7 @@ STAGES         Rahmen→Überschlag→Schätzung(LPH2)→Berechnung(LPH3=fee+agr
                "Kostenvoranschlag" = OLD word; Reserve OUTSIDE KG sums
 AREAS          always €/m² BGF or NF (DIN 277) — NF/BGF 0.65-0.80 → rate error!
 PRICE STACK    EKT(Lohn/Mat/Gerät/NU/SoKo)+BGK+AGK+G =netto; Wagnis in G; +19% USt
-LOHN           +85-95% Lohnzusatzkosten; A/AS/ASL; Mittellohn vs Kalkulationslohn
+LOHN           +80-100% Lohnzusatzkosten (typical 85-95%); A/AS/ASL; Mittellohn vs Kalkulationslohn
 GERÄT          A/v + 6.5% Zins + R(30/70); Monat=170h; idle>10d: 75%A+V
 GK example     Lohn 40.12% Mat+Ger 18.65% SoKo 17.60% NU 15.50%
 METHOD 2       p(AGK+G auf Summe) → p′ = p·100/(100-p)   12% → 13.64% auf HK

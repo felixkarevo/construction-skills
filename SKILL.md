@@ -58,7 +58,7 @@ build-up, a system, or a standard tier, not just reading off a table.
 | Building law, permits, Bauleitplanung, Bauvorlagen, HOAI Leistungsphasen, VOB/BGB contract basics | `building-regulations-permits` |
 | Choosing the structural concept, load paths, spans, grids, bracing systems | `structural-systems` |
 | Actions/load combinations (EN 1990/1991), beam/slab/column sizing, worked static checks | `structural-analysis` |
-| RC reinforcement detailing, bar scheduling, anchorage, laps, cover, WU/Weiße Wanne | `concrete-detailing` |
+| RC reinforcement detailing, bar scheduling, anchorage, laps, cover, WU/Weiße Wanne, fibre/steel-fibre concrete (Faserbeton), carbon/textile-reinforced concrete | `concrete-detailing` |
 | Masonry wall design (EC6), unit/mortar groups, shear walls, wall typologies | `masonry-construction` |
 | Timber (EC5) or steel (EC3) member/connection design, CLT, profiles, bolted/welded joints | `timber-steel-design` |
 | Soil, foundations, bearing capacity, settlement, piles, earth pressure, excavation/shoring | `geotechnics-foundations` |
@@ -76,8 +76,8 @@ build-up, a system, or a standard tier, not just reading off a table.
 | Cost estimating/planning (DIN 276), unit-price buildup, VOB/C, HOAI fees | `cost-management-din276` |
 | Whole-life carbon/LCA, EPDs, GEG energy duties, circularity, sustainability certification | `sustainable-construction` |
 | Accessibility/barrier-free design, DIN 18040 audit, wheelchair geometry | `accessibility-universal-design` |
-| Existing buildings: condition assessment, Nachrechnung, strengthening, retrofit | `existing-structures-retrofit` |
-| ISO 19650 BIM process, CDE, LOD/LOIN, IFC/BCF, model coordination | `bim-management` |
+| Existing buildings: condition assessment, Nachrechnung, strengthening, retrofit, cathodic protection (KKS), component reuse/circular deconstruction | `existing-structures-retrofit` |
+| ISO 19650 BIM process, CDE, LOD/LOIN, IFC/BCF, model coordination, material passports/Ressourcenpass data schema | `bim-management` |
 | Actually modeling in FreeCAD via the MCP bridge (objects, storeys, rebar, FEM, IFC import/export) | `construction-freecad-bim` |
 
 ## Task recipes (multi-skill sequences)

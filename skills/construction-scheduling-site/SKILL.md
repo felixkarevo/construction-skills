@@ -59,7 +59,7 @@ This skill covers the execution-planning layer (Arbeitsvorbereitung, AV) between
 2. **Scheduling is not shoring, and plant selection is not a lift plan.** Excavation support beyond DIN 4124 simple cases, falsework (Traggerüst) design, crane foundations/anchoring, and load-rigging are **engineered, life-safety deliverables** by qualified persons (Tragwerksplaner, Kransteller, Gerüstnehmer), not table lookups. A tower crane's load chart at the actual radius of the heaviest pick governs; a heuristic count of cranes never does.
 3. Contract-relevant statements — Bauzeit, Fertigstellungstermin, Vertragsstrafen, Behinderungsanzeigen, Nachträge — must go through the actually agreed contract terms (VOB/B vs. BGB; editions change; VOB/B only privileged when adopted wholly and unmodified) and professional review. Cited clauses here are pointers for a human to verify in the current edition.
 4. **Never present FreeCAD output, a Gantt chart, a network plan or these tables as construction-ready.** If the user appears to treat any output from this skill as a final, buildable or approved programme, state immediately and plainly: *"This is a planning model — dates, capacities and shoring decisions need review by the responsible engineers and the contracting parties before anyone digs."*
-5. Values flagged **VERIFY** were digested from sources whose printed table grids were partially corrupted or dated (equipment catalogues 1994–2017, factor tables); re-check against current BGL/Zahlentafeln, manufacturer catalogues and the standard text before quoting in a deliverable.
+5. Values flagged **VERIFY** were digested from sources whose printed table grids were partially corrupted or dated (some equipment catalogues 1994–2017; crane/equipment-costing figures refreshed against Zahlentafeln für den Baubetrieb 10th ed. 2024 — BGL 2020 framework, price basis ≈2021, §9.4–9.6 — still re-check against the current BGL edition before pricing); re-check against current BGL/Zahlentafeln, manufacturer catalogues and the standard text before quoting in a deliverable.
 6. Known gap, stated openly: the **week-by-week house programmes in §15 are modelled estimates** built from the digested crew-productivity values and cycle times — no authoritative single-family-house week plan exists as a cited standard. Treat them as plausibility baselines.
 
 ---
@@ -257,6 +257,36 @@ GL is already a *long-run* value net of interruptions. In a mixed crew+machine w
 
 (thin/small pours cost more per m³ — rig-up amortisation; values drop with thickness and area.)
 
+**Cross-check against the primary source:** Zahlentafeln für den Baubetrieb (10th
+ed. 2024, Tab. 12.16 "Richtwerte für Stundenansätze gegliedert nach
+Bauarbeitsschlüssel (BAS)", p.893–905) is a ~230-line-item primary BAS table
+this section's digested values should trace back to. Spot-checks land close but
+not identical — e.g. reinforcement in walls Ø<10 mm: this table 24–27 h/t vs.
+source 26.5–40 h/t (source runs wider/higher); concrete walls d=10–15 cm: this
+table 1.0–1.4 h/m³ vs. source 1.00–1.50 h/m³ (close). Treat this section as
+planning-grade and the source page range above as the reference to re-derive a
+fuller table from if higher precision is needed for a specific BOQ.
+
+**Earthworks (h/m³ excavated, DIN 18300 soil classes; h/m² for shoring) — gap-fill, not previously in this file** (same source, BAS 2, p.893–905):
+
+| Work | h per unit |
+|---|---|
+| Excavation, leicht lösbarer Boden (Kl.3) | 1.1–1.3 h/m³ |
+| Excavation, schwer lösbarer Boden (Kl.5+) | 2.0–2.4 h/m³ |
+| Normverbau (standard trench shoring) | 0.35–1.10 h/m² |
+
+**Masonry (h/m², by unit format and wall thickness) — gap-fill** (BAS 5, p.893–905):
+
+| Unit format / thickness | h/m² |
+|---|---|
+| d = 17.5 cm, 3DF block | 0.8–1.77 |
+
+These two gap-fill rows are illustrative anchors from the source, not a full
+masonry/earthworks BAS table — cross-check `masonry-construction` and this
+file's §12 (ground improvement, in `geotechnics-foundations`) before committing
+a bid on either trade, and pull the fuller p.893–905 grid directly from the
+source for a real tender.
+
 ### 2.3 Derived planning bands — what a crew does per day
 
 Using `output/day = K × h_T ÷ LSA`, at 9-h day:
@@ -325,6 +355,9 @@ European scheduling is seasonal scheduling: winter stops or surcharges unheated 
 |---|---|
 | Fresh concrete must not freeze | Keep above ~+5 °C until it has reached ~10 N/mm² (approx. 3 days at +20 °C, far longer cold — the strength-vs-temperature clock slows roughly with every 10 K drop). Frost damage in the first days is permanent: strength loss, scaling, freeze-thaw failure of the surface. |
 | Measures (in order of preference) | Insulated formwork/quilt covers (Schalungsbatterien, thermohaube), heated enclosure or scaffolding with tarps + heaters, warm mixing water/heated aggregate, insulation over finished surfaces, wind-tight protection; accelerators/admixtures only per the concrete supplier's written winter recipe (chloride-free) — **VERIFY per DIN EN 13670 / DIN EN 206 winter-concreting rules and the current national annex — not fixed in the digested sources** |
+| Minimum fresh-concrete temperature at placement (Zahlentafeln für den Baubetrieb, 10th ed. 2024, p.135) | Air +5 to −3 °C → concrete ≥ **+5 °C** (general), or ≥ **+10 °C** if cement content < 240 kg/m³ or a low-heat (LH) cement is used; air < −3 °C → concrete ≥ **+10 °C**, held ≥ **3 days**. Mandatory concrete-temperature testing (Überwachungsklasse 2/3 per DIN EN 206/DIN 1045-3) triggers whenever air temperature at placement is below +5 °C **or above +30 °C**; ÜK1 tests only "in Zweifelsfällen." |
+| Ausschalfristen (formwork-strike time) by concrete temperature and hardening-rate class (schnell/mittel/langsam), same source p.136 | At ≥15 °C: 4 / 8 / 14 days; at 5–15 °C: 6 / 12 / 20 days (planning defaults for vertical/soffit strike — confirm against the project's actual strength-development class and required striking strength, not just elapsed time) |
+| Nachbehandlungsdauer (curing duration) by exposure class and surface temperature, same source p.136–137 | E.g. XC2–XF1 at 5–10 °C surface temp: 3–15 days depending on hardening-rate class; XM (abrasion) classes roughly double the value — use as a planning default, confirm the governing exposure class per member |
 | Programme effect | Cold weather lengthens every chemical wait in §1.1: striking, prop release, screed drying, paint drying all extend. Expect +20–50% on concrete-cycle activities Nov–Feb unless heated. |
 | Cost effect | Winter surcharge (Winterbaukosten: insulation, heating energy, enclosures, slower crews) is a **time-independent site-overhead item** (BGK special costs) — it must be priced at tender, not discovered in January. |
 | Mortar/masonry | No masonry or rendering below ~+5 °C sustained (mortar frost damage); typical stop Nov 15–Feb 15 unless site-heated. External render: only above +5 °C day and night, not on frozen or sun-hot substrate, no rain for the drying window. |
@@ -342,7 +375,7 @@ Same physics as the universal practice, retargeted to Central-European summers (
 
 | Control | Guidance |
 |---|---|
-| Placement temperature | Request ≤ ~26–28 °C fresh concrete in summer (supplier: shaded aggregate stock, chilled water/ice flake) — **VERIFY per DIN EN 13670/206; limits are spec-dependent** |
+| Placement temperature | Fresh concrete temperature must generally not exceed **+30 °C** (Zahlentafeln für den Baubetrieb, 10th ed. 2024, p.135, footnote to the placement-temperature table); above this — or below +5 °C air temperature — concrete-temperature testing becomes mandatory (§3.1 above). Request shaded aggregate stock, chilled water/ice flake from the supplier well before hitting the limit, not as a recovery measure |
 | Pour window | Early morning; never midday slab pours in heat waves |
 | Plastic shrinkage | Start protection immediately after finishing — wind + low humidity cracks the surface in the first hours, before the concrete is hard: fogging, immediate covering, foil or curing agent (curing agent = bond-breaker: never under bonded screed/tanking — abrade off) |
 | Curing | Keep moist ≥ 2–3 days minimum, longer for slabs in sun/wind; in summer the failure window is the weekend (nobody waters Sat/Sun) — ponding, foil, or curing membrane instead |
@@ -728,7 +761,27 @@ f_E = product of derating factors fH1 (swing) · fH2 (dig depth) · fH3 (dump
       target) · fH4 (task type) · fB (site/operating condition matrix)
 ```
 
-- **Volumes default to bank ("fest") state.** The swell factor fS (Auflockerung: loose ÷ in-situ) is ≈ 1.1–1.4 for soils, up to ≥ 2 for blasted rock; shrink factor fV (compacted ÷ loose) ≈ 0.75–0.9. Bucket fullness fF by soil: free sand/gravel ≈ 1.0–1.2; sticky/clayey lower (~0.6–0.9). Exact grids in machine tables were ambiguous in the digest — **VERIFY before publishing numbers (digested range across classes ~0.6–2.1).**
+- **Volumes default to bank ("fest") state.** Corrected against Zahlentafeln für den
+  Baubetrieb (10th ed. 2024, Tab. 8.19–8.20, p.433–435), keyed to DIN 18300 soil
+  classes — supersedes the earlier digested range:
+  - **fS (Auflockerungsfaktor, loose ÷ in-situ)** ranges from **1.00** (loose
+    reference state, not 1.1) up to a source ceiling of **2.00** (not "≥2"),
+    e.g. Kl.1 Oberboden 1.00–1.45; Kl.3 leicht lösbar 1.00–1.23; Kl.4 mittelschwer
+    lösbar 1.00–1.43 (nichtbindig)/1.00–1.25 (bindig); Kl.5 schwer lösbar
+    1.00–1.45 (nichtbindig)/1.00–1.22 (plastic clays); Kl.6 leicht lösbarer Fels
+    1.00–1.67; Kl.7 schwer lösbarer Fels **1.33–2.00** (the only class reaching
+    the ceiling — treat 2.00 as a source maximum, not a blasted-rock floor).
+  - **A separate "shrink factor fV (compacted ÷ loose)" is not a concept this
+    source uses at all** — its system defines only fS (Auflockerung) and fF/fL
+    (Füllung/Ladefaktor); drop fV from planning calculations unless sourced
+    elsewhere, and do not conflate it with fS's inverse.
+  - **fF (Füllungsfaktor, bucket/bowl fullness)** by soil class and machine type
+    (Tab. 8.20) ranges **≈0.55 to 1.40**, not 0.6–1.2: hydraulic excavators run
+    1.13–1.20 on loose/sandy soils down to 0.55–0.78 on stony/cohesive
+    fest-zusammenhängende material with Geröll; scrapers reach the top of the
+    range (up to 1.40) on bindige Sand-Kies-Gemische. fL = fF ÷ fS (current
+    ISO 9245 definition, 1995+ — the pre-1995 DIN 24095 fA used a different,
+    reciprocal formula; do not mix the two systems).
 - **Swing fH1 (digested):** 30°→1.12 · 45°→1.08 · 60°→1.05 · 90°→1.00 · 120°→0.96 · 150°→0.92 · 180°→0.88.
 - **Dig-depth fH2 (soil class BK3–4 / legacy; modern contracts use Homogenbereiche):** 1 m→1.00 · 2 m→0.93 · 3 m→0.87 · 4 m→0.84 · 5 m→0.82 (BK5–6 milder: 1.00/0.95/0.91/0.87/0.85). Optimal dig depth ≈ 1–2 × bucket size.
 - **Dump target fH3:** onto ground/heap 1.00; into truck by truck/bucket volume ratio: 2→0.69 · 3→0.73 · 4→0.76 · 5→0.79 · 6→0.81 · >6→0.83.
@@ -773,7 +826,9 @@ area potential: A_max ≈ ψ × A_avg, ψ = 1.3–1.5
 
 A single-family house never needs the formula — one small Untendreher or even a truck-mounted loader crane covers it; the formula sizes apartment blocks and tells you when a second crane pays for itself against crew-queueing (§7.1). Tower-crane cycle base **T0 = 150–300 s** in shell work; operator skill/machine-condition matrices and η_G ≤ ~50% useful share of standing time (it is a Vorhaltegerät — it idles, distributes, waits, and is repaired; its money is in the rent month, not the productive minute).
 
-Types: top-slew with trolley jib (**Obendreher** — the housing default; telescopic/folding/runway variants) vs luffing-jib base-slew (**Untendreher** — self-erecting trailers, tight plots, no over-sail); climbing variants (§8.4); overlapping cranes need interlocks. **Data caveat: mobile-crane catalogue figures digested from 1994–2017 sources — refresh from current catalogues/BGL (VERIFY).**
+Types: top-slew with trolley jib (**Obendreher** — the housing default; telescopic/folding/runway variants) vs luffing-jib base-slew (**Untendreher** — self-erecting trailers, tight plots, no over-sail); climbing variants (§8.4); overlapping cranes need interlocks.
+
+**Refreshed reference data** (Zahlentafeln für den Baubetrieb, 10th ed. 2024, Tab. 8.12/8.15, p.417–427 — current-generation examples, supersedes the earlier 1994–2017 digest): tower-crane classification threshold ≈**200 tm** Nennlastmoment — below it, treat as a "Bereitstellungsgerät" (staging only); above it, usable as a "Leistungsgerät" for precast-erection cycles. Example model range: 22 tm (Liebherr L1-24, 25 m jib, 2.5 t max) up to 1000 tm (Liebherr 1000 EC-H50, 80 m jib, 50 t max, 110 kW/153 kVA). Power/fuel: tower crane 0.10–0.25 kWh per installed kW-hour; typical Einsatzfaktor (useful standing-time share) ≤50 %, worked split Betonieren 20 % / Mauerarbeiten 15 % / Schalen+Bewehren 10 % / Sonstiges 5 % / Wartezeiten 50 % — corroborates the η_G ≤~50 % figure above rather than replacing it. Unit crane-hour consumption: 0.13 h/m² formwork, 0.12 h/m³ skip-placed concrete, 0.08 h/m³ masonry.
 
 ### 9.5 Mobile cranes (indicative classes — VERIFY current catalogues)
 
@@ -782,6 +837,37 @@ Types: top-slew with trolley jib (**Obendreher** — the housing default; telesc
 | 2/3-axle ~24 t | ≈ 11 × 7 m | 45 m hoist, 40 m radius; 35 t @ 3 m / 0.5 t @ 40 m | precast lintels, roof panels on a house |
 | 4/5-axle ~50 t | ≈ 13 × 8 m | 75 m / 60 m; 100 t @ 3 m / 1 t @ 50 m | beams, large elements, crane assist |
 | 6–8 axle ~75 t+ | ≈ 20 × 10 m | 115 m / 90 m; 300 t @ 3 m | hall/bridge lifts; crawler for multi-day heavy sites with truck-crane assist |
+
+Current-generation span (Zahlentafeln für den Baubetrieb, 10th ed. 2024, p.417–427,
+supersedes the 1994–2017 digest): compact end at **6 t** (MK 73-3.1), heavy end at
+**1200 t** (LTM 11200-9.1, 188 m boom) — use as bracketing examples, not a
+replacement for the class table above. Fuel/power: diesel 0.05–0.10 l/kWh (crane
+operation) + 0.16–0.19 l/kWh (driving); lubricants ≈10–12 % of energy/fuel cost.
+
+### 9.6 Equipment costing — Vorhaltekosten method (BGL 2020 framework)
+
+[Zahlentafeln für den Baubetrieb, 10th ed. 2024, p.829–842 — method + price basis
+≈2021; **VERIFY current BGL edition and rates before quoting a tender price**.]
+
+- Formula: Vorhaltekosten = (Abschreibung + Verzinsung, monthly factor k) +
+  Reparaturkosten (BGL repair-cost rate r, split ≈60 % labour/40 % material) +
+  Lohnzusatzkosten on the repair-labour share. **1 Vorhaltemonat = 30
+  Kalendertage = 170 Vorhaltestunden** (the conversion every €/month ↔ €/h figure
+  in this file should use).
+- Key BGL 2020 parameters: Zinssatz **6.5 %**; Vorhaltemonate average ≈**60 %** of
+  Nutzungsdauer (range: ≈40 % for boring rigs up to ≈94 % for trucks — i.e. do
+  not assume one ratio fits all equipment classes); Kaskoversicherung
+  ≈**1.5 %/year** of replacement value (10 % deductible); geringwertige
+  Wirtschaftsgüter threshold **€400 net** (BAL 2001, fully depreciated in the
+  acquisition year).
+- Worked anchor (45 tm Schnellmontagekran): Vorhaltekosten **€4,414/month ≈
+  26.00 €/h** on the BGL basis, vs. **€3,313/month ≈ 19.50 €/h**
+  company-internal (discounted purchase), vs. **€3,200/month** rental incl.
+  service — use the spread, not a single number, as the sanity-check band for
+  any crane/equipment rate in a first-pass estimate.
+- Diesel/power basis in the source's own worked examples: diesel ≈**1.35 €/l**
+  incl. VAT; Baustrom ≈**0.25 €/kWh** net (2021 price level — escalate before
+  use).
 
 Mobile = Leistungsgerät (mobilise on demand, demob after the lift; outrigger pads + ground check mandatory — an outrigger on a backfilled trench line is an incident waiting to be scheduled). For precast/steel delivery days the tower crane often lacks capacity — a truck crane arrives for the day precisely so the tower crane stays in the shell cycle.
 
@@ -872,9 +958,9 @@ Occupational safety runs on two rails: **state** (ArbSchG + BetrSichV, BaustellV
 
 | Element | Requirement |
 |---|---|
-| Temporary side protection (Seitenschutz) | per **EN 13374**: three parts — top rail (Geländerholm, ≥ ~1.0 m above deck, 0.7 m at low-risk edges per class — VERIFY class table), mid rail (Zwischenholm), toe board **Bordbrett 15 cm** |
+| Temporary side protection (Seitenschutz) | per **EN 13374**: three parts — top rail (Geländerholm), mid rail (Zwischenholm), toe board **Bordbrett 15 cm**; BG (Berufsgenossenschaft) rules give force requirements rather than heights — 0.3 kN horizontal on rails, 1.25 kN point load, 0.15 kN on the toe board (Zahlentafeln für den Baubetrieb, 10th ed. 2024, p.693–694) — the ≥1.0 m/0.7 m rail-height figures are **not confirmed by that source**; VERIFY heights against EN 13374 itself |
 | Access scaffolds | EN 12811 series (+ protective roofs where people pass below); prefabricated facade scaffolds EN 12810; assembly/use/dismantling instruction (Montageanweisung) derived from GB + manufacturer guide (BetrSichV); daily visual check by user before use |
-| Scaffold load class | working scaffolds: distributed load limits by class — light trades (painter/plasterer tier) ≈ 2 kN/m² in one deck (material stacked on decks beyond class = the common failure; VERIFY current class grid EN 12811-1) |
+| Scaffold load class | Confirmed grid (Zahlentafeln für den Baubetrieb, 10th ed. 2024, Tab. 10.28, p.690): Class 1 q=0.75 kN/m²; Class 2 q=1.50; Class 3 q=2.00; Class 4 q=3.00 (partial load 5.00 kN/m² over ap=0.4 of span); Class 5 q=4.50 (partial 7.50, ap=0.4); Class 6 q=6.00 (partial 10.00, ap=0.5). Typical assignment (Tab. 10.29): façade welding → Class 1; stone cladding → Class 2; plastering → Class 3; masonry (24 cm block) → Class 4; PT-tensioning → Class 5; precast erection → Class 6. Material stacked on decks beyond the assigned class is the common failure. Also: Breitenklassen W06–W24, Höhenklassen H1/H2 (Tab. 10.26–10.27); Fanggerüst (catch scaffold) FL1 ≤2.0 m fall height / FL2 ≤3.0 m (bracket/suspended only), Schutzwand SWD1/SWD2 (p.695) |
 | Falsework (Traggerüst) | EN 12812 (not 12811) for support structures incl. traffic loads; props steel EN 1065 / alu EN 16031; box beams EN 13377; formwork ties DIN 18216; **design + erection scheme by competent person; the "who computes the slab propping" question must have a documented answer before the first prop lands** |
 | Floor openings / stair voids | guarded or rigidly covered (marked as load-bearing); no working over or through uncovered voids |
 | Ladders | access only, short reach, tied; work from ladders is time-limited by GB logic — tower scaffolds/MEWPs for real work |
@@ -1145,7 +1231,7 @@ When this skill is used alongside the BIM modelling skill:
 | **BaustellV + RAB 30/31/32/33** | SiGeKo, SiGePlan, Vorankündigung, Unterlage |
 | **ArbSchG, BetrSichV, ArbStättV/ASR A4.1, DGUV rules (BG BAU)** | GB, PPE, welfare, accident insurance system |
 | **EN 13374 / EN 12810-12812 / EN 1065 / EN 16031 / EN 13377 / DIN 18216** | side protection, scaffolds/falsework, props, beams, ties |
-| **BGL (Baugeräteliste) + machine catalogues** | equipment rates/outputs — digested catalogue data 1994–2017, **refresh before pricing (VERIFY)** |
+| **BGL (Baugeräteliste) + machine catalogues** | equipment rates/outputs — Vorhaltekosten method + parameters refreshed to BGL 2020 framework (§9.6); underlying rates at ≈2021 price level, **escalate + refresh the edition before pricing (VERIFY)** |
 | **HOAI LPH 8 (fee freely negotiable since 2021)** | Bauüberwachung duties incl. schedule upkeep |
 | **DIN 276:2018** | cost/quantity structure feeding the programme's money curve |
 | **DIN 18710-x (Ingenieurvermessung) / DIN 18709 / DIN 18703 / DIN 18202** | execution surveying quality parts, terms, levelling staffs, building tolerances (§8A; cited editions 1996–2013 — VERIFY current) |

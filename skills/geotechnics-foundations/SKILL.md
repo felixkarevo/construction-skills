@@ -914,6 +914,67 @@ Required degree of compaction (10 %-fractile of Proctor): **100 %** from Planum 
 
 Earthworks are described in **Homogenbereiche** since 2016 (replacing Bodenkennziffer BK 1–7): per zone give DIN 18196 group, state, moisture, boulder/stone content, and environmental class (LAGA assignment values Z0 (unrestricted reuse) → Z1.1/Z1.2 (structural fill, hydrogeology-dependent) → Z2 (sealed) → Z3–Z5 (landfill)) — disposal cost explodes with the class; state it before pricing. Machine planning (excavator, DIN ISO 9245): useful output QA = Grundleistung × derates — swing (30°→1.12 … 180°→0.88), dig depth (BK3/4: 1 m→1.00 … 5 m→0.82), dump target (into truck ~0.69–0.83), task type (braced trench 2 m: 0.55 / 4 m: 0.44 — the Verbau tax), site/condition matrix (0.83→0.52); swell factor fS (loose/bank) 0.6–2.1 across classes (sandy ~1.5; cohesive ~1.7; rock breaks 2+ — grid ambiguous, VERIFY). Load-chain rule of thumb: truck/bucket volume ratio 3–5 economic; excavator is the Leitgerät — size truck count to its QA.
 
+### 12.4 Disposal-capacity constraint (Deponiekapazität) — a live planning risk, not a footnote
+
+[Digested from Kompendium Nachhaltige Bauwerke – Hochbauten, Springer 2026, Ch.13 — case-study level, **VERIFY current landfill-capacity status per Bundesland before quoting**.]
+
+- In 5 of the 6 largest German Bundesländer (Bayern, NRW, Baden-Württemberg,
+  Niedersachsen, Hessen, Sachsen), DK0/DK1 landfill capacity for non-hazardous
+  excavated soil/rubble (the destination for anything above LAGA Z1.2/Z2 in §12.3)
+  is forecast to run out by **2029** (Siekemeyer 2022/2025 simulation study) —
+  budget rising haul distance and disposal cost into any project completing after
+  that date, not only the ones starting now.
+- Documented case (Hessen): average one-way haul distance 47 km; 13.9 Mt/year
+  construction & demolition waste generates ≈550,000 truck trips (40 t GVW)/year,
+  51.7M km/year, ≈215,000 t CO₂/year — roughly the annual CO₂ binding capacity of
+  36,000 ha mixed forest (≈4 % of all Hessian forest). Use this order of magnitude
+  to size the transport-emissions line of a large earthworks package, not just the
+  tipping fee.
+- Excavated soil (Bodenaushub, Abfallschlüssel 17.05) is ≈70–80 % of all C&D waste
+  by mass and the least-recycled fraction — unlike rubble (Bauschutt), which
+  already has established circular routes. This is where a project's disposal
+  cost and carbon risk concentrate; keeping material Z0/Z1.1 by not co-mingling it
+  with contaminated fill is a design/site-logistics decision, not an afterthought.
+- Mitigation route worth flagging to the client: **ZFSV** (zeitweise fließfähige,
+  selbstverdichtende Verfüllbaustoffe) — engineered flowable self-compacting
+  backfill made from processed rubble/excavated soil + water + binder, validated
+  via suitability testing → contaminant-immobilisation testing → mechanical
+  testing → field trial before approval; replaces virgin fill in trench/void
+  backfill and keeps material out of the landfill queue. Also: dynamic/deep
+  compaction (fallweight, Rüttelstopfsäulen built from rubble/excavated soil)
+  extends usable landfill volume in place instead of hauling it away — the same
+  LAGA contamination-testing precondition applies either way.
+
+### 12.5 FEM-based foundation optimisation & soil-model choice — precision notes
+
+[Digested from the same source, Ch.13 — orientation for the modelling decision,
+not a substitute for the Fachgeotechniker's calibration.]
+
+- Combined pile-raft foundations (**KPP**, Kombinierte Pfahl-Plattengründung)
+  sized by FEM optimisation of pile length/cross-section/position under the
+  load-introduction points report **30–50 % foundation material savings** vs.
+  conventional shallow/deep foundations, with lower and more even settlement and
+  reduced raft bending — a genuine design lever, not only a sustainability claim.
+  It is squarely **Geotechnische Kategorie GK3**: requires both a structural
+  checking engineer AND an independent geotechnical (Fachgeotechniker) reviewer —
+  never present a KPP result as a GK1/GK2-style deliverable. Named DACH
+  precedents (i.e. an established, not experimental, method): Messeturm
+  Frankfurt, Post Tower Bonn, ADAC-Zentrale München, Skyper/WestendDuo Frankfurt,
+  BahnTower Berlin.
+- Soil constitutive-model choice decides whether a material-optimised result like
+  KPP is trustworthy at all: **Hardening-Soil-Small-Strain (HSS)** is the
+  standard choice for stiffness-critical/settlement-governed optimisation (KPP
+  among them) because it captures small-strain stiffness degradation that a
+  simple Mohr–Coulomb model misses; **SANISAND**-family models belong to cyclic/
+  offshore or seismic-repetition loading, not static building foundations — do
+  not reach for SANISAND on a house or office raft.
+- Calibration is not optional: the Nicoll Highway (Singapore, 2004) collapse is
+  attributed in part to inadequately calibrated FEM soil parameters. Treat it as
+  the standing counter-example whenever a design leans on FEM-optimised
+  (material-minimised) geotechnical members — every material saving the
+  optimisation extracts is exactly the safety margin that would otherwise have
+  absorbed a calibration error.
+
 ---
 
 ## Section 13: Worked Examples
