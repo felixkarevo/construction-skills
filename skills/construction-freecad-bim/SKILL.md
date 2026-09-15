@@ -6,7 +6,9 @@ description: >
   Site/Building/Storey hierarchy, live parametric openings via Subtractions (never frozen
   booleans), classified makeStructure members, makeRebar cages, code-gated stairs, MEP
   risers/shafts, CalculiX FEM verification via run_fem_analysis, IFC import (NativeIFC,
-  locked/unlocked modes) and export proven by parsing. Verify-by-measurement after every
+  locked/unlocked modes) and export proven by parsing, renovation/retrofit modeling
+  (Bestand baseline, Sanierungsstatus phase tagging, delta-volume tracking, degraded-
+  material FEM overrides). Verify-by-measurement after every
   placement; honesty protocol: no member is
   adequate without solver output. Design values defer to sibling skills
   (concrete-detailing, structural-analysis, geotechnics-foundations, ...); this file owns
@@ -23,7 +25,7 @@ description: >
 > standard or the aarRdT only via the documented risk-acceptance machinery
 > (`simple-first-building` §3) — public permission never cures the private default.
 
-This is the **core** file of a 26-skill construction-design library. It teaches an
+This is the **core** file of a 30-skill construction-design library. It teaches an
 MCP-capable agent to produce honest, parametric, solver-checked building models inside a
 live FreeCAD 1.0.x GUI. Everything geometry-technical here was validated against FreeCAD
 1.0.1 through the MCP bridge (CalculiX `ccx` and `gmsh` present) and against the
@@ -67,7 +69,7 @@ contractor"*, *"is this safe"*, *"final footing size"*, *"can I pour this"* — 
 
 ## How this library fits
 
-This file is the modeling engine. The other 27 skills own the *why* behind every number.
+This file is the modeling engine. The other 29 skills own the *why* behind every number.
 When a question here becomes a design question, switch to the owning skill — never
 improvise a design value from a modeling recipe.
 
@@ -98,6 +100,8 @@ improvise a design value from a modeling recipe.
 | `building-regulations-permits` | Bylaws, setbacks, GRZ/GFZ, permit workflow, submissions. |
 | `sustainable-construction` | Embodied carbon, circularity, material passports, certification systems. |
 | `existing-structures-retrofit` | Building in existing conditions: assessment, Nachrechnung, strengthening, envelope retrofit. |
+| `building-renovation-refurbishment` | Component-level renovation technique: Bestandsaufnahme, repair systems per building element, energetic/ecological retrofit workflow, Abbruch/Rückbau — the source of what §3.10's renovation modeling pattern renders. |
+| `timber-building-renovation` | Historical timber diagnosis and repair: Schadensanalyse/-bewertung, Ertüchtigung technique, Fachwerk/Umgebindebau — the source of §3.10's degraded-material override numbers for timber. |
 | `bim-management` | The BIM **process**: naming, LOIN/LOI/LOG (DIN EN 17412), MVD, CDE, IFC validation — the deep data discipline touched only lightly here. |
 | `construction-drawing-sketching` | Drawing and sketch representation of the model: line weights, hatching, sheet craft. |
 
@@ -1226,6 +1230,98 @@ job is making them measurable from one shared project-zero origin (agreed in
 `building-services-tga`/`geotechnics-foundations`. The box is a **volume and position
 claim only** — tank sizing (population equivalents, retention) must never be inferred
 from a drawn box; without skill numbers, call the tank *schematic, unplaced*.
+
+### 3.10 Renovation & retrofit modeling — Bestand baseline, status tagging, delta tracking
+
+> Component-level renovation technique (what to repair, how) is owned by
+> **`building-renovation-refurbishment`** and **`timber-building-renovation`**; structural
+> condition assessment/Nachrechnung is owned by **`existing-structures-retrofit`**. This
+> file owns only the *modeling pattern* that emulates a renovation process on a parametric
+> model — never invent a repair method or a residual-strength number here.
+
+**Establishing the Bestand baseline.** Two paths, both feeding the same spatial hierarchy
+(§2.1):
+
+- **Survey-derived IFC exists** — import it with NativeIFC (§4.2) as the Bestand document;
+  do not flatten it, keep the link live so corrections from a re-survey round-trip.
+- **No IFC, only a paper/photo survey** (the normal renovation case) — reconstruct the
+  Bestand manually as ordinary parametric objects (§3.1–3.9) from the Bestandsaufnahme
+  data (`building-renovation-refurbishment`'s survey workflow, or
+  `timber-building-renovation` §Schadensanalyse for timber-specific condition mapping).
+  A hand-reconstructed Bestand model is geometry the surveyor measured, not a design —
+  tag it as such (§7.3 status-block vocabulary: *"Bestand, as-surveyed"*, never *"as-built
+  verified"* unless it was).
+
+**Status tagging — every object gets a renovation-phase property** [template, not
+round-tripped through this bridge]:
+
+```python
+for obj in [wall, slab, window]:
+    if not hasattr(obj, "Sanierungsstatus"):
+        obj.addProperty("App::PropertyEnumeration", "Sanierungsstatus", "Renovation",
+                         "Phase status of this element in the renovation process")
+    obj.Sanierungsstatus = ["Bestand-erhalten", "Bestand-rueckbau", "Neu"]
+    obj.Sanierungsstatus = "Bestand-erhalten"   # set per element from the survey/concept
+```
+
+Organize by three top-level `App::DocumentObjectGroup` containers — `Bestand`, `Rueckbau`,
+`Neu` — mirroring the property, not replacing it (the property survives a regroup; a
+Group alone does not carry the phase if an object is moved). Toggle
+`group.ViewObject.Visibility` per group to render an "as-found" view (only `Bestand` +
+`Rueckbau` visible), a "demolition" view (`Rueckbau` isolated), and an "as-built" view
+(`Bestand-erhalten` + `Neu`, `Rueckbau` hidden) from one shared document instead of three
+divergent files — the single-source-of-truth rule in §2.2 applies across renovation phases
+too.
+
+**Delta tracking — quantify what changes, don't eyeball it** [template]. Same
+verify-by-measurement discipline as §2.4/§3.1, applied per phase:
+
+```python
+# before editing a Bestand element, snapshot its volume
+vol_before = wall.Shape.Volume
+# ... apply the renovation edit (resize, add/subtract opening, etc.) ...
+doc.recompute()
+vol_after = wall.Shape.Volume
+delta_mm3 = vol_after - vol_before
+print(f"{wall.Label}: {delta_mm3/1e9:.3f} m³ delta "
+      f"({'added' if delta_mm3 > 0 else 'removed'})")
+```
+
+For a full Rückbau (element removed, not resized), record the pre-removal `Shape.Volume`
+on a small log object or in the FreeCAD document's `Comment`/a dedicated
+`App::PropertyQuantity` before deleting — once deleted, the geometry is gone and the
+Abbruch-volume figure (needed for `building-renovation-refurbishment`'s
+Abbruch/Rückbau section and any DIN 276 cost re-take-off) cannot be recovered from the
+model.
+
+**Degraded-material property override for FEM.** A Schadensbewertung
+(`timber-building-renovation` §5, residual cross-section/strength for decayed timber) or a
+historic material class (`existing-structures-retrofit` §4.3–4.4, reduced fck/fyk for old
+concrete/reinforcement) is a number computed *outside* this file — never re-derive it
+here. Apply it to the existing object's material definition before `run_fem_analysis`
+instead of creating a parallel "damaged copy" object, so the FEM input and the visible
+model geometry never drift apart [template]:
+
+```python
+mat = FreeCAD.ActiveDocument.getObject(beam.Material.Name) if beam.Material else None
+# or: assign a fresh App::MaterialObject carrying the reduced values from the
+# Schadensbewertung / historic-class lookup, then point beam.Material at it
+mat.Material = {**mat.Material,
+                 "YoungsModulus": "7000 MPa",   # e.g. reduced E for decay-affected timber
+                 "CompressiveStrength": "12 MPa"}
+doc.recompute()   # re-run run_fem_analysis after the override — a stale result is §7.4
+```
+
+Log the source of the override in the object's `Description` property (e.g. *"E reduced
+per Schadensbewertung §5.3, Braunfäule Klasse 2"*) — a reduced number with no traceable
+source is exactly the kind of unverified claim §7.2's honesty rule forbids presenting as
+a check.
+
+**LOD/LOI implications.** A Bestand model is typically **lower geometric fidelity, higher
+condition-data fidelity** than a new-build model — a wall's exact thickness may carry
+±20 mm survey uncertainty while its `Sanierungsstatus` and damage notes are precise. State
+this asymmetry explicitly when handing off; see `bim-management` for how to declare it in
+the LOIN.
 
 ## 4. IFC exchange and the bim-management handoff
 
