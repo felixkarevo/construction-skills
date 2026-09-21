@@ -1417,6 +1417,16 @@ Preflight is advisory (failures don't block export) and does not replace
 problems *before* export; §4.4 proves the *specific* claims this skill made
 about an object actually round-tripped. Run both.
 
+Preflight and §4.4 are both *author-side* and both partial. The machine-side
+proof of the exported file — STEP syntax, EXPRESS schema, buildingSMART
+normative rules, and the project's IDS information requirements — belongs to
+`ifc-model-validation`, together with the gates that decide whether an export
+may be delivered and the finding→repair mapping for what comes back red. For
+generated models that check chain is not optional: the failures it catches
+(missing storey containment, invalid GUIDs, proxy classes, zero quantities,
+empty Psets, degenerate faces) are exactly the ones that never show up in a
+viewer.
+
 ### 4.4 Verify classification by parsing, not by trusting properties
 
 ```
@@ -1438,6 +1448,7 @@ discipline as the volume diff: an export is an instrument.
 | Geometry | parametric, volume-verified, LOIN-appropriate (§2.5) | exchange format, Data Drops, coordinate/zero-point standard |
 | Semantics | FEM verification stamped on objects (§7.5) | property sets, classification codes, FM information |
 | Open items | §7.3 status block lists all unverified/unmodelled work | issue tracking (BCF-style), coordination, conflict resolution |
+| Proof of the export | Preflight (§4.3) + grep round-trip (§4.4), author-side | — machine validation of the file itself is `ifc-model-validation` (syntax/schema/normative rules/IDS) |
 
 The DACH process frame (details in `bim-management`): **AIA**
 (*Auftraggeber-Informationsanforderungen* ≈ EIR) and **BAP** (*BIM-Abwicklungsplan* ≈

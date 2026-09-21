@@ -16,7 +16,14 @@ description: >
   Clash-Detection-Workflow mit Kollisionsmatrix und Servicezonen; IFC-/MVD-/
   Pset-Anforderungen je Disziplin inkl. Versionspindung IFC2x3/IFC4,
   Klassifikation (ISO 12006, DIN SPEC 91400, CAFM-Connect) und Nachbarformaten
-  (BCF, COBie, gbXML, GAEB); Vergabe und Vertrag (AIA als Vertragsbestandteil,
+  (BCF, COBie, gbXML, GAEB); IFC-Schema-Nachschlagewerk — die vier
+  Informationsschichten des Schemas, Occurrence/Type und GUID, Klassenkarte
+  Bauteil→Entity mit PredefinedType für den DACH-Hochbau, die Common Psets je
+  Bauteilklasse mit ihren Merkmalen, Qto-Mengengrößen und die
+  Gross/Net-Fallen gegenüber VOB/C und DIN 277, Versionsbrüche IFC2x3/IFC4/IFC4.3
+  (IfcBuildingElement→IfcBuiltElement, StandardCase-Deprecation) sowie die
+  kanonischen, maschinenlesbaren Schemaquellen samt Abrufrezept (Release-PSD-Anhang,
+  EXPRESS-Schema, bSDD für deutsche Benennungen); Vergabe und Vertrag (AIA als Vertragsbestandteil,
   Eignungs-/Zuschlagskriterien, Angebots-BAP-Wertung, HOAI Besondere Leistung,
   BIM-BVB-Muster, Datenrechte/UrhG, Haftung, reliance level, Herstellerdaten);
   digitale Objektübergabe (PIM→AIM, As-Built-QA, Betriebsmodell-Reduktion,
@@ -515,7 +522,7 @@ Entsorgung/Reuse.
 
 ---
 
-## Abschnitt 8: Datenaustausch — IFC, MVD, BCF, Formatlandschaft
+## Abschnitt 8: Datenaustausch — IFC-Schema, MVD, BCF, Formatlandschaft
 
 ### 8.1 Formatrollen
 
@@ -576,6 +583,248 @@ Entsorgung/Reuse.
 | Energie | Zonengeometrie + Hülle | Space-Boundary-MVD (2nd level), gbXML-Export | Anlagentechnik unvollständig; Zonen nicht automatisch |
 | Betrieb/FM | Anlagen-/Raumdaten, Dokumente am Objekt | FM-Handover-View; projektspezifische Psets, Klassifikation | Standard-Psets reichen nicht; GUID-Verlust bei Konvertierung |
 | AVA/LV | Positionsbezug, Mengenverteilung | DIN SPEC 91400, GAEB-Ausleitung | frühe Mengen ≠ Vergabereife (Warnung + Version) |
+
+### 8.4 Was im IFC-Schema tatsächlich steht (Einordnung vor dem Nachschlagen)
+
+Verbreiteter Denkfehler: „CAD ist die Geometrie, IFC sind die Eigenschaften“. **IFC
+transportiert vier Informationsschichten gleichzeitig**; Eigenschaften sind nur eine davon.
+Wer IFC als Attributanhang behandelt, modelliert Klassen und Beziehungen falsch und merkt
+es erst in der Prüfung.
+
+| Schicht | Träger im Schema | Was verloren geht, wenn sie fehlt |
+|---|---|---|
+| **Klasse/Semantik** | Entity (`IfcWall`, `IfcBeam`) + `PredefinedType` | Regelprüfung, Mengenfilter, Klassifikations-Mapping — ein Quader als `IfcBuildingElementProxy` ist unprüfbar |
+| **Beziehung/Struktur** | `IfcRelAggregates`, `IfcRelContainedInSpatialStructure`, `IfcRelVoidsElement`, `IfcRelFillsElement`, `IfcRelSpaceBoundary` | Geschosszuordnung, Öffnung-in-Wand, Raumgrenze — ohne sie keine Raum-/Hüllenauswertung |
+| **Geometrie** | vier Repräsentationsarten (§ 8.2): Tessellation, B-rep, CSG, Sweep/Extrusion | Weiterbearbeitbarkeit; Mesh-Export ist vermessbar, nicht bearbeitbar |
+| **Eigenschaft/Menge** | `IfcPropertySet` (`Pset_*`), `IfcElementQuantity` (`Qto_*`), Material, Klassifikationsbezug | LV-Anschluss, Nachweisführung, FM-Übergabe |
+
+Größenordnung (Stand der jeweils referenzierten Schema-Fassung):
+
+| Fassung | Entitäten (`ENTITY`-Deklarationen im EXPRESS-Schema) |
+|---|---|
+| IFC2x3 TC1 | 653 |
+| IFC4 ADD2 TC1 | 776 |
+| IFC4.3 ADD2 (`IFC4X3_ADD2`) | 876 |
+
+Dazu im Release IFC4.3 ADD2: **645 `Pset_*`- und 115 `Qto_*`-Definitionen** (760 Dateien im
+Property-Set-Anhang). Eine gedruckte „Tabelle aller IFC-Parameter“ existiert deshalb nicht
+und ist auch in keinem Fachbuch zu erwarten — die Quelle ist maschinenlesbar (§ 8.9).
+
+**Zwei Regeln, die die meisten Modellfehler erklären:**
+
+1. **Occurrence vs. Type.** Jedes Bauteil existiert zweimal: als Vorkommnis (`IfcWall`) und
+   optional als Typ (`IfcWallType`). Die Common-Psets sind als
+   `templatetype="PSET_TYPEDRIVENOVERRIDE"` deklariert: am Typ gesetzte Werte gelten für
+   alle Vorkommnisse, am Vorkommnis gesetzte Werte **überschreiben** den Typwert. Wer nur
+   das Vorkommnis prüft, übersieht typgeführte Daten; wer nur den Typ prüft, übersieht
+   Abweichungen. Prüfregeln müssen beide Ebenen auflösen.
+2. **GUID ist die Identität.** `GlobalId` (`IfcGloballyUniqueId`, 22-stellig base64-kodiert)
+   ist der einzige stabile Objektschlüssel über Phasen und Werkzeuge hinweg. Jede
+   Re-Konvertierung, die GUIDs neu vergibt, zerschneidet BCF-Referenzen (§ 11) und
+   CAFM-Verknüpfungen (§ 14.x) — das ist der in § 14 benannte GUID-Verlust, hier ist seine
+   technische Ursache.
+
+### 8.5 Klassenkarte Hochbau DACH — welches Bauteil wird welche Entity
+
+Nicht die vollständige Liste (876 Entitäten), sondern die Klassen, die in einem
+DACH-Hochbauprojekt real vorkommen. `PredefinedType`-Werte sind die Enumerationen des
+IFC4.3-Schemas; `USERDEFINED` verlangt zusätzlich `ObjectType` als Klartext,
+`NOTDEFINED` ist in einer Lieferung fast immer ein Mangel.
+
+| Bauteil (DE) | Entity (IFC4.3) | `PredefinedType` — typische Werte | Merkposten |
+|---|---|---|---|
+| Wand | `IfcWall` | `SOLIDWALL`, `PARTITIONING`, `SHEAR`, `MOVABLE`, `PARAPET`, `ELEMENTEDWALL`, `RETAININGWALL`, `PLUMBINGWALL` | `IfcWallStandardCase` ist in IFC4.3 `DEPRECATED` — für Neulieferungen `IfcWall` vereinbaren |
+| Decke / Bodenplatte / Dachscheibe | `IfcSlab` | `FLOOR`, `BASESLAB`, `ROOF`, `LANDING` | Podest ist `LANDING` am `IfcSlab`, nicht am Treppenobjekt |
+| Unterzug / Sturz / Ringbalken | `IfcBeam` | `BEAM`, `JOIST`, `LINTEL`, `HOLLOWCORE`, `T_BEAM`, `EDGEBEAM` | Sturz ist `LINTEL` am `IfcBeam` — nicht Teil der Wand |
+| Stütze | `IfcColumn` | `COLUMN`, `PILASTER` | |
+| Stab/Sekundärglied (Sparren, Pfette, Ständer, Pfosten, Riegel) | `IfcMember` | `RAFTER`, `PURLIN`, `STUD`, `POST`, `MULLION`, `BRACE`, `STRUT`, `COLLAR`, `STRINGER`, `PLATE` | Holzbau-Tragwerk läuft fast vollständig über `IfcMember`, nicht über `IfcBeam` |
+| Platte / Ausfachungspaneel / Knotenblech | `IfcPlate` | `CURTAIN_PANEL`, `SHEET`, `GUSSET_PLATE`, `BASE_PLATE`, `STIFFENER_PLATE` | |
+| Fundament | `IfcFooting` | `PAD_FOOTING`, `STRIP_FOOTING`, `PILE_CAP`, `FOOTING_BEAM`, `CAISSON_FOUNDATION` | Einzel-/Streifen-/Pfahlkopffundament sauber trennen (Anschluss `geotechnics-foundations`) |
+| Pfahl | `IfcPile` | `BORED`, `DRIVEN`, `FRICTION`, `COHESION`, `JETGROUTING`, `SUPPORT` | |
+| Dach (Aggregat) | `IfcRoof` | `FLAT_ROOF`, `GABLE_ROOF`, `HIP_ROOF`, `MANSARD_ROOF`, `SHED_ROOF`, `BARREL_ROOF`, `PAVILION_ROOF` | `IfcRoof` ist die **Zusammenfassung**; die Schichten/Tragglieder bleiben eigene Objekte darunter |
+| Treppe (Aggregat) | `IfcStair` | `STRAIGHT_RUN_STAIR`, `HALF_TURN_STAIR`, `QUARTER_TURN_STAIR`, `SPIRAL_STAIR`, `TWO_STRAIGHT_RUN_STAIR`, `LADDER` | Lauf = `IfcStairFlight`, Podest = `IfcSlab/LANDING`, alles unter `IfcStair` aggregiert |
+| Treppenlauf | `IfcStairFlight` | — | |
+| Rampe / Rampenlauf | `IfcRamp` / `IfcRampFlight` | — | gleiche Aggregatlogik wie Treppe |
+| Geländer / Handlauf | `IfcRailing` | `HANDRAIL`, `GUARDRAIL`, `BALUSTRADE`, `FENCE` | |
+| Bekleidung / Belag / Dämmung / Abdichtung | `IfcCovering` | `CEILING`, `FLOORING`, `CLADDING`, `ROOFING`, `INSULATION`, `MEMBRANE`, `SKIRTINGBOARD`, `COPING`, `MOLDING` | Abgehängte Decke und Estrich sind `IfcCovering`, **nicht** `IfcSlab` — häufigster Mengenfehler |
+| Vorhangfassade | `IfcCurtainWall` | nur `USERDEFINED` / `NOTDEFINED` | Pfosten = `IfcMember/MULLION`, Feld = `IfcPlate/CURTAIN_PANEL`, aggregiert unter `IfcCurtainWall` |
+| Fenster | `IfcWindow` | `WINDOW`, `SKYLIGHT`, `LIGHTDOME` | sitzt **in** einem `IfcOpeningElement` (`IfcRelFillsElement`) |
+| Tür / Tor | `IfcDoor` | `DOOR`, `GATE`, `TRAPDOOR`, `BOOM_BARRIER`, `TURNSTILE` | dito |
+| Öffnung / Aussparung / Durchbruch | `IfcOpeningElement` | `OPENING`, `RECESS` | eigenes Objekt, per `IfcRelVoidsElement` am Bauteil — TGA-Durchbrüche **nicht** als Boolesche Geometrie liefern (§ 8.3) |
+| Bewehrungsstab / Matte | `IfcReinforcingBar` / `IfcReinforcingMesh` | `MAIN`, `SHEAR`, `LIGATURE`, `ANCHORING`, `EDGE`, `PUNCHING`, `RING`, `STUD` | Anschluss `concrete-detailing` |
+| Schornstein | `IfcChimney` | nur `USERDEFINED` / `NOTDEFINED` | |
+| Sonnenschutz | `IfcShadingDevice` | `AWNING`, `JALOUSIE`, `SHUTTER` | |
+| Möbel / Einbau | `IfcFurniture` | — | |
+| Baugruppe (Fertigteil, Fachwerkträger) | `IfcElementAssembly` | `TRUSS`, `GIRDER`, `BEAM_GRID`, `RIGID_FRAME`, `BRACED_FRAME`, `CROSS_BRACING`, `SLAB_FIELD`, `REINFORCEMENT_UNIT`, `ARCH` | fasst Teilobjekte zusammen, ersetzt sie nicht |
+| Nicht klassifizierbares Bauteil | `IfcBuildingElementProxy` | — | **Jedes Vorkommnis ist begründungspflichtig.** Proxy-Anteil gehört als Prüfkriterium in die AIA (§ 10) |
+| Grundstück | `IfcSite` | — | |
+| Gebäude | `IfcBuilding` | — | ab IFC4.3 daneben `IfcFacility` für Infrastrukturbauwerke |
+| Geschoss | `IfcBuildingStorey` | — | reale Höhenlage, kein Zählwert (§ 4.3-Anschluss) |
+| Raum | `IfcSpace` | `SPACE`, `INTERNAL`, `EXTERNAL`, `PARKING`, `GFA` | Räume sind Objekte, keine Flächen; Flächen entstehen aus `Qto_SpaceBaseQuantities` (§ 8.7) |
+| Zone / Nutzungseinheit | `IfcZone`, `IfcSpatialZone` | `IfcSpatialZone`: `FIRESAFETY`, `THERMAL`, `VENTILATION`, `OCCUPANCY`, `LIGHTING`, `SECURITY`, `CONSTRUCTION`, `RESERVATION`, `INTERFERENCE`, `TRANSPORT` | `IfcZone` gruppiert Räume ohne eigene Geometrie; `IfcSpatialZone` ist der geometrisch begrenzte Bereich (Arbeitsraum-Platzhalter, § 12) |
+| Raumgrenze | `IfcRelSpaceBoundary`, `IfcRelSpaceBoundary1stLevel/2ndLevel` | — | 2. Grades = Voraussetzung der Energiesimulation (§ 8.3) |
+
+Die vollständige Hierarchie ist
+`IfcRoot → IfcObjectDefinition → IfcObject → IfcProduct → IfcElement → IfcBuiltElement →`
+die Bauteilklassen oben. **`IfcBuildingElement` heißt ab IFC4.3 `IfcBuiltElement`** — der
+Bruch trifft jede Regel, jedes Skript und jede Prüfdefinition, die auf den alten Namen
+filtert (§ 8.8).
+
+### 8.6 Common Psets — die Pflichtmenge je Bauteilklasse
+
+Reproduziert aus den Property-Set-Definitionen IFC4.3 ADD2. `Reference` (DE: „Bauteiltyp“)
+und `Status` (Enumeration `NEW | EXISTING | DEMOLISH | TEMPORARY | OTHER | NOTKNOWN |
+UNSET`) wiederholen sich in praktisch allen Bauteil-Psets und werden unten nicht jedes Mal
+wiederholt. `Status` ist der Träger der Bestand/Neu/Abbruch-Unterscheidung — für
+Sanierungsprojekte die zentrale Eigenschaft (Anschluss `building-renovation-refurbishment`,
+`existing-structures-retrofit`).
+
+| Pset | gilt für | Eigenschaften (über `Reference`/`Status` hinaus) |
+|---|---|---|
+| `Pset_WallCommon` | `IfcWall` | `AcousticRating` (Schallschutzklasse), `FireRating` (Feuerwiderstandsklasse), `Combustible` (bool), `SurfaceSpreadOfFlame` (Brandverhalten), `ThermalTransmittance` (U-Wert), `IsExternal` (bool), `LoadBearing` (bool), `ExtendToStructure` (raumhoch, bool), `Compartmentation` (brandabschnittsdefinierend, bool) |
+| `Pset_SlabCommon` | `IfcSlab` | `AcousticRating`, `FireRating`, `PitchAngle` (Dachflächenneigung), `Combustible`, `SurfaceSpreadOfFlame`, `Compartmentation`, `IsExternal`, `ThermalTransmittance`, `LoadBearing` |
+| `Pset_BeamCommon` | `IfcBeam` | `Span` (Spannweite), `Slope` (Neigungswinkel), `Roll` (Kippwinkel), `IsExternal`, `ThermalTransmittance`, `LoadBearing`, `FireRating` |
+| `Pset_MemberCommon` | `IfcMember` | identisch zu `Pset_BeamCommon` |
+| `Pset_ColumnCommon` | `IfcColumn` | `Slope`, `Roll`, `IsExternal`, `ThermalTransmittance`, `LoadBearing`, `FireRating` |
+| `Pset_PlateCommon` | `IfcPlate` | `AcousticRating`, `IsExternal`, `ThermalTransmittance`, `LoadBearing`, `FireRating` |
+| `Pset_CoveringCommon` | `IfcCovering` | `AcousticRating`, `FlammabilityRating`, `FragilityRating`, `Combustible`, `SurfaceSpreadOfFlame`, `Finish` (Oberflächengüte), `IsExternal`, `ThermalTransmittance`, `FireRating` |
+| `Pset_RoofCommon` | `IfcRoof` | `AcousticRating`, `IsExternal`, `ThermalTransmittance`, `LoadBearing`, `FireRating` |
+| `Pset_CurtainWallCommon` | `IfcCurtainWall` | `AcousticRating`, `FireRating`, `Combustible`, `SurfaceSpreadOfFlame`, `ThermalTransmittance`, `IsExternal` |
+| `Pset_WindowCommon` | `IfcWindow` | `AcousticRating`, `FireRating`, `SecurityRating`, `IsExternal`, `Infiltration` (Luftdurchlässigkeit, Volumenstrom), `ThermalTransmittance`, `GlazingAreaFraction`, `HasSillExternal`/`HasSillInternal`, `HasDrive`, `SmokeStop`, `FireExit`, `WaterTightnessRating`, `MechanicalLoadRating`, `WindLoadRating` |
+| `Pset_DoorCommon` | `IfcDoor` | wie Fenster, zusätzlich `DurabilityRating` (Beanspruchungsklasse), `HygrothermalRating` (Klimaklasse), `HandicapAccessible`, `SelfClosing`, `FireExit`, `SmokeStop`, `HasDrive`, `GlazingAreaFraction`, `Infiltration`, `ThermalTransmittance` |
+| `Pset_StairCommon` | `IfcStair` | `NumberOfRiser`, `NumberOfTreads`, `RiserHeight` (Steigung), `TreadLength` (Auftritt), `NosingLength` (Überstand), `WalkingLineOffset`, `TreadLengthAtOffset`, `TreadLengthAtInnerSide`, `WaistThickness` (Laufplattendicke), `RequiredHeadroom` (Durchgangshöhe), `HandicapAccessible`, `HasNonSkidSurface`, `IsExternal`, `FireRating`, `FireExit` |
+| `Pset_StairFlightCommon` | `IfcStairFlight` | Geometriegruppe wie oben, statt `RequiredHeadroom` das Merkmal `Headroom` |
+| `Pset_RailingCommon` | `IfcRailing` | `Height`, `Diameter` (Handlaufdurchmesser), `IsExternal` |
+| `Pset_FootingCommon` / `Pset_PileCommon` | `IfcFooting` / `IfcPile` | nur `LoadBearing` — Gründungsdaten müssen fast vollständig projektseitig ergänzt werden |
+| `Pset_SpaceCommon` | `IfcSpace` | `Reference` (Raumtyp), `IsExternal`, `GrossPlannedArea`, `NetPlannedArea`, `PubliclyAccessible`, `HandicapAccessible` |
+| `Pset_SpaceThermalRequirements` | `IfcSpace`, `IfcZone`, `IfcSpatialZone` | `SpaceTemperature` (+ `Max`/`Min`/`SummerMax`/`SummerMin`/`WinterMax`/`WinterMin`), `SpaceHumidity` (+ `Max`/`Min`/`Summer`/`Winter`), `DiscontinuedHeating`, `NaturalVentilation`, `NaturalVentilationRate`, `MechanicalVentilationRate`, `AirConditioning`, `AirConditioningCentral` — die Schnittstelle zu `building-services-tga` |
+| `Pset_BuildingStoreyCommon` | `IfcBuildingStorey` | `EntranceLevel`, `AboveGround` (logical), `SprinklerProtection`(`Automatic`), `LoadBearingCapacity` (Deckentragfähigkeit, Flächenkraft), `GrossPlannedArea`, `NetPlannedArea` |
+| `Pset_BuildingCommon` | `IfcBuilding` | `BuildingID`, `IsPermanentID`, `ConstructionMethod`, `FireProtectionClass` (Gebäudeklasse Brandschutz), `SprinklerProtection`(`Automatic`), `OccupancyType`, `GrossPlannedArea`, `NetPlannedArea`, `NumberOfStoreys`, `YearOfConstruction`, `YearOfLastRefurbishment`, `IsLandmarked` (Denkmalschutz, logical) |
+| `Pset_SiteCommon` | `IfcSite` | `BuildableArea` (bebaubare Fläche), **`SiteCoverageRatio` = GRZ**, **`FloorAreaRatio` = GFZ**, `BuildingHeightLimit`, `TotalArea` — direkter Träger der B-Plan-Kennwerte aus `building-planning-spatial` |
+| `Pset_ConcreteElementGeneral` | alle Betonbauteile (`IfcBeam`, `IfcColumn`, `IfcSlab`, `IfcWall`, `IfcFooting`, `IfcPile`, `IfcMember`, `IfcPlate`, `IfcStair`, …) | `StrengthClass` (Betonfestigkeitsklasse), `ExposureClass` (Expositionsklasse), `ConcreteCover`, `ConcreteCoverAtMainBars`, `ConcreteCoverAtLinks`, `ReinforcementVolumeRatio`, `ReinforcementAreaRatio`, `ReinforcementStrengthClass`, `ConstructionMethod`, `StructuralClass`, `DimensionalAccuracyClass`, `ConstructionToleranceClass` — die IFC-Seite von `concrete-detailing` |
+| `Pset_ManufacturerTypeInformation` | `IfcElement` | `Manufacturer`, `ModelReference`, `ModelLabel`, `ArticleNumber`, `GlobalTradeItemNumber`, `ProductionYear`, `AssemblyPlace` (`FACTORY`/`OFFSITE`/`SITE`), `OperationalDocument`, `SafetyDocument`, `PerformanceCertificate` (Dokumentreferenzen) — FM-Übergabe-Minimum (§ 14) |
+| `Pset_ServiceLife` | `IfcElement` | `ServiceLifeDuration` (Bounded), `MeanTimeBetweenFailure` |
+| `Pset_EnvironmentalImpactIndicators` | `IfcElement` | `LifeCyclePhase` (Enumeration u. a. `PRODUCTION`, `TRANSPORT`, `USAGE`, `MAINTENANCE`, `DECONSTRUCTION`, `DISPOSAL`, `RECOVERY`, `WHOLELIFECYCLE`), `FunctionalUnitReference`, `Unit`, `ExpectedServiceLife`, `ClimateChangePerUnit`, `AtmosphericAcidificationPerUnit`, `EutrophicationPerUnit`, `PhotochemicalOzoneFormationPerUnit`, `StratosphericOzoneLayerDestructionPerUnit`, `ResourceDepletionPerUnit`, `TotalPrimaryEnergyConsumptionPerUnit`, `RenewableEnergyConsumptionPerUnit`, `NonRenewableEnergyConsumptionPerUnit`, `WaterConsumptionPerUnit`, `HazardousWastePerUnit`/`NonHazardousWastePerUnit`/`InertWastePerUnit`/`RadioactiveWastePerUnit` — der IFC-Träger für LCA/Ressourcenpass (`sustainable-construction`); **Achtung:** die Indikatorenliste deckt sich nicht 1:1 mit den EN-15804-A2-Indikatoren [VERIFY Mapping gegen aktuelle EPD-Systematik] |
+
+**Lücken, die man planen muss** (Grund, warum Standard-Psets „selten reichen“, § 14):
+Gründungsbauteile, Bestandsdiagnose, Ökobilanz-Detailtiefe, Mängel-/Zustandsbewertung und
+jede DACH-spezifische Nachweisgröße fehlen oder sind zu grob. Projektdefinierte Psets
+**nicht frei erfinden** — Merkmale nach ISO 23386 definieren, Datenvorlagen nach ISO 23387,
+Referenzierung über bSDD oder nationalen Merkmalserver (§ 8.1). Ein projektdefiniertes Pset
+braucht: Name mit Projektpräfix (nicht `Pset_`, das ist der bS-Namensraum — Konvention ist
+ein eigener Präfix), anwendbare Klassen, Datentyp je Merkmal, Einheit, Wertebereich/Enum,
+verantwortliche Rolle, Data Drop, ab dem es gefüllt sein muss.
+
+### 8.7 Mengen (`Qto_*`) — warum „prüfbare Mengen“ eine Schemafrage ist
+
+Mengen im IFC sind **nicht** automatisch aus Geometrie abgeleitet, sondern eigene, explizit
+geschriebene Werte in `IfcElementQuantity`. Die QTO-MVD (§ 8.3) verlangt genau deshalb
+explizite Mengenattribute: sonst rechnet jedes Auswertewerkzeug selbst und kommt zu einem
+anderen Ergebnis.
+
+| Qto | Größen |
+|---|---|
+| `Qto_WallBaseQuantities` | `Length`, `Width`, `Height`, `GrossFootPrintArea`, `NetFootPrintArea`, `GrossSideArea`, `NetSideArea`, `GrossVolume`, `NetVolume`, `GrossWeight`, `NetWeight` |
+| `Qto_SlabBaseQuantities` | `Depth`, `Length`, `Width`, `Perimeter`, `GrossArea`, `NetArea`, `GrossVolume`, `NetVolume`, `GrossWeight`, `NetWeight` |
+| `Qto_SpaceBaseQuantities` | `Height`, `FinishCeilingHeight`, `FinishFloorHeight`, `GrossPerimeter`, `NetPerimeter`, `GrossFloorArea`, `NetFloorArea`, `GrossWallArea`, `NetWallArea`, `GrossCeilingArea`, `NetCeilingArea`, `GrossVolume`, `NetVolume` |
+
+Regeln, die vor dem LV-Anschluss geklärt sein müssen:
+
+- **`Gross` vs. `Net` ist die eigentliche Falle.** `NetVolume` einer Wand = nach Abzug der
+  Öffnungen **und** nach Berücksichtigung der Anschlussgeometrie; `GrossVolume` ohne beides.
+  VOB/C-Übermaßregeln (Öffnungen unter einer Grenzgröße werden **nicht** abgezogen) sind im
+  IFC-Schema **nicht** abgebildet — die Netto-Modellmenge ist nicht die
+  Abrechnungsmenge. Wer das nicht in der AIA fixiert, liefert Mengen, die niemand
+  gegenzeichnet (§ 8.3, Zeile AVA/LV).
+- **Bedingte Größen.** `Height`/`Width` einer Wand gelten laut Definition nur, wenn sie über
+  den Wandverlauf konstant sind; `Length` wird an der Mittellinie gemessen, auch wenn die
+  Wandachse davon abweicht. Bei nicht-prismatischen Bauteilen fehlen Flächengrößen
+  legitim — eine Prüfregel „Menge muss vorhanden sein“ erzeugt dort Falschmeldungen.
+- **`Qto_SpaceBaseQuantities` ≠ DIN 277.** `NetFloorArea` schließt von Bauteilen belegte
+  Flächen aus, berücksichtigt aber keine Höhenstaffelung und keine Anrechnungsfaktoren —
+  NUF/BGF nach DIN 277 und Wohnfläche nach WoFlV sind daraus **abzuleiten**, nicht
+  auszulesen [VERIFY Ableitungsregel gegen aktuelle DIN-277-Fassung]. Die Ableitungsregel
+  gehört als Rechenvorschrift in den BAP, nicht in die Köpfe der Auswertenden.
+- **Einheiten.** Modellweit über `IfcUnitAssignment` gesetzt; Längen im IFC üblicherweise in
+  Metern, während Autorenwerkzeuge Millimeter anzeigen. Einheitenabgleich Modell ↔ AVA ist
+  der in § 8.3 genannte Stolperstein — er ist hier lokalisierbar.
+
+### 8.8 Versionsfallen IFC2x3 ↔ IFC4 ↔ IFC4.3
+
+§ 8.1 fordert die Versionspindung. Das sind die Brüche, die sie nötig machen:
+
+| Bruch | IFC2x3 TC1 | IFC4 ADD2 TC1 | IFC4.3 ADD2 | Folge |
+|---|---|---|---|---|
+| Oberklasse der Bauteile | `IfcBuildingElement` | `IfcBuildingElement` | **`IfcBuiltElement`** (umbenannt) | jeder Filter/jede Regel auf `IfcBuildingElement` läuft gegen 4.3 ins Leere |
+| Bauwerk | `IfcBuilding` | `IfcBuilding` | `IfcBuilding` + neu `IfcFacility` (Infrastruktur) | 4.3 ist die Infrastruktur-Erweiterung; im Hochbau ändert sich die Verortung nicht, Prüfregeln müssen beide kennen |
+| Raumgrenzen 2. Grades | nicht vorhanden | `IfcRelSpaceBoundary2ndLevel` | vorhanden | Energiesimulation aus IFC2x3 heraus ist nicht schemakonform möglich |
+| Raumzone | nicht vorhanden | `IfcSpatialZone` | vorhanden | |
+| `StandardCase`-Klassen | nur `IfcWallStandardCase` | zusätzlich `IfcSlabStandardCase`, `IfcDoorStandardCase`, `IfcWindowStandardCase`, `IfcBeamStandardCase`, `IfcColumnStandardCase`, `IfcMemberStandardCase`, `IfcPlateStandardCase`, `IfcOpeningStandardCase` | alle noch im Schema, aber **`DEPRECATED`** („will be removed in a future major release“) | empfängerseitige Filter müssen Basis- **und** StandardCase-Klasse abdecken; für Neulieferungen nur die Basisklasse vereinbaren |
+| Entfallene Klassen | `IfcElectricDistributionPoint` u. a. | entfallen | entfallen | Downgrade 4 → 2x3 ist kein Format-, sondern ein Mapping-Problem |
+| Property-Set-Umfang | 317 `Pset_`, **keine** eigenständigen `Qto_`-Definitionen | 420 `Pset_` + 93 `Qto_` | **645 `Pset_` + 115 `Qto_`** | ein 2x3-Empfänger kennt die Hälfte der 4.3-Psets nicht und hat für Mengen kein Schema-Pendant |
+
+Merksatz: **Ein „IFC-Export“ ohne Angabe von Version + MVD + Serialisierung ist keine
+Lieferung.** Die Prüfung beginnt mit dem HEADER (`FILE_SCHEMA`, MVD-Deklaration), nicht mit
+der Geometrie.
+
+### 8.9 Kanonische Quellen und Abrufrezept
+
+Keine Sekundärliteratur, kein Erinnerungswissen: Entity-Definitionen, Psets, Qtos und
+Enumerationen werden **am Schema nachgeschlagen**. Die Quellen sind offen und
+maschinenlesbar.
+
+Die vier Adressen, aus denen sich alles ableiten lässt:
+
+| Rolle | Adresse |
+|---|---|
+| Lesefassung der Norm (IFC4.3, Menschen) | `https://standards.buildingsmart.org/IFC/RELEASE/IFC4_3/HTML/` bzw. `https://ifc43-docs.standards.buildingsmart.org/` |
+| **Build-Repository** — dieselben Seiten und Anhänge als Dateien (Maschinen) | `https://github.com/buildingSMART/Standards-builds` |
+| Entwicklungsstand, Quelltext der Spezifikation, Versionsordner | `https://github.com/buildingSMART/IFC4.x-development` |
+| Übersetzungen (Stand beachten, s. u.) | `https://github.com/buildingSMART/IFC-translations` |
+
+Die Dateiabrufe unten sind relativ zum Roh-Präfix
+`https://raw.githubusercontent.com/buildingSMART/` notiert (`…/` = dieses Präfix); die
+Pfadbestandteile `main` bzw. `ifc4.3-main` sind die jeweiligen Standardzweige.
+
+| Zweck | Abruf |
+|---|---|
+| Einzelne Entity oder Pset nachschlagen | `…/Standards-builds/main/IFC/RELEASE/IFC4_3/HTML/lexical/<Name>.htm` (roh, z. B. `IfcWall.htm`, `Pset_WallCommon.htm`) — identisch zur Lesefassung, aber ohne Bot-Abwehr |
+| **Alle** Psets + Qtos am Stück | `…/Standards-builds/main/IFC/RELEASE/IFC4_3/HTML/annex-a-psd.zip` — ein Archiv, ≈ 0,8 MB, 760 XML-Dateien (645 `Pset_*` + 115 `Qto_*`), je mit Name, Definition, anwendbaren Klassen, Datentyp und Enumerationen |
+| EXPRESS-Schema (alle 876 Entitäten, Enumerationen, `WHERE`-Regeln) | `…/Standards-builds/main/IFC/RELEASE/IFC4_3/HTML/IFC4X3_ADD2.exp`; ältere Fassungen als `IFC2X3_TC1.exp`, `IFC4_ADD2_TC1.exp` unter `…/IFC4.x-development/ifc4.3-main/reference_schemas/` — Textdateien, direkt durchsuchbar |
+| Versionsvergleich Pset-Umfang | Ordner `reference_schemas/psd`, `psd_IFC2x3`, `psd_IFC4_ADD2_TC1`, `psd_IFC4x1`, `psd_IFC4x2` im Entwicklungs-Repository — Ordnerdiff statt Handarbeit |
+| Prosa-Quelltext einer Entity/eines Psets (Definition, Hinweise) | `…/IFC4.x-development/ifc4.3-main/docs/schemas/<Layer>/<Schema>/{Entities, PropertySets, QuantitySets}/<Name>.md` |
+| Deutsche Benennungen + Definitionen | bSDD, IFC-Wörterbuch `https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3`; REST-API `https://api.bsdd.buildingsmart.org/api/Class/v1?Uri=<Klassen-URI>&languageCode=de-DE`, ohne Anmeldung. Liefert für `IfcWall` den Namen „Wand“, die deutsche Definition und die Merkmale mit Pset-Zuordnung |
+| Merkmale eines Bauteils vollständig (über **alle** anwendbaren Psets) | dieselbe bSDD-Abfrage mit `&IncludeClassProperties=true` — für `IfcWall` über 200 Merkmale; die Common-Psets aus § 8.6 sind daraus die Pflichtmenge, der Rest ist fallweise |
+
+**Fallstricke beim Abruf:**
+
+- Der Dokumentationsserver von buildingSMART steht hinter einer Bot-Abwehr; automatisierte
+  Abrufe erhalten **HTTP 403**, auch für öffentliche Seiten. Dieselben generierten
+  Dokumentationsseiten und dieselben Anhangsdateien liegen zusätzlich im öffentlichen
+  Build-Repository von buildingSMART und sind von dort ohne Sperre abrufbar — das ist der
+  Weg, den ein automatisierter Abruf nehmen muss [VERIFY Sperrverhalten, ändert sich ohne
+  Ankündigung].
+- **Der Release-Stand der Property-Set-Dateien enthält keine deutschen Benennungen.** Im
+  geprüften Umfang trägt keine der 760 Dateien des Release-Anhangs einen `de-DE`-Alias,
+  während die älteren Entwicklungsstände (`IFC4x3_RC4`-Vintage) deutsche Namens- und
+  Definitionsaliase führen. Wer deutsche Merkmalsnamen braucht, nimmt **bSDD** (aktuell,
+  gepflegt) — nicht den Release-Anhang.
+- Das Übersetzungs-Repository von buildingSMART (`IFC-translations`) ist als Quelle für
+  deutsche Begriffe derzeit **unbrauchbar**: die ausgelieferten Übersetzungsdateien des
+  Zweigs `translations` sind im geprüften Umfang leer (Stichprobe `IfcSharedBldgElements`:
+  0 von 970 Einträgen gefüllt, und zwar in allen geprüften Sprachen, nicht nur Deutsch —
+  die gepflegten Übersetzungen laufen über die Crowdin-Plattform in die bSDD, nicht in
+  dieses Repository) [VERIFY erneut, wenn ein Sprachstand gebraucht wird].
+- Entwicklungs- gegen Release-Stand trennen: der Ordner `reference_schemas/psd` des
+  Entwicklungs-Repositories deklariert intern `IFC4x3_RC4`, der Anhang der Release-Doku
+  `IFC4X3_ADD2`. Für Lieferpflichten gilt der Release-Stand; der Entwicklungsstand ist für
+  Versionsvergleiche und für die deutschen Aliase nützlich.
+
+**Was daraus in die AIA gehört** (statt „Lieferung als IFC“): Schema-Fassung, MVD,
+Serialisierung, Pflicht-Entitäten je Disziplin (§ 8.5), Pflicht-Psets und -Merkmale je
+Objektklasse und Data Drop (§ 8.6), Pflicht-Mengen mit Rechenvorschrift (§ 8.7),
+zulässiger Proxy-Anteil, Einheiten, Nullpunkt/Georeferenzierung — maschinell prüfbar
+formuliert, damit die Prüfung nach § 10 nicht zur Sichtkontrolle wird.
 
 ---
 
@@ -648,6 +897,15 @@ Beschlüsse.
 | automatisch formal | Schema-/MVD-Konformität, GUID-Stabilität | Validator gegen MVD |
 | automatisch fachlich | Kollision, Raum-/Flächenregeln, Code-Regeln | Regel-Engine, ACCC |
 | Soll-Ist | Modell ↔ Vermessung/Fortschritt | Abgleich-Werkzeuge |
+
+**Ausführung der drei automatischen Zeilen:** `ifc-model-validation` — dort sind die
+vierstufige Prüfkette (STEP-Syntax → EXPRESS-Schema → normative buildingSMART-Regeln →
+IDS), die vollständige IDS-1.0-Referenz und die Aufrufe der Prüfwerkzeuge beschrieben.
+**IDS (Information Delivery Specification, buildingSMART-Standard seit 2024)** ist die
+maschinenlesbare Form der Informationsanforderung: die Element-/Attributmatrix aus § 5.3
+und die Pflicht-Psets aus § 8.6 gehören als `.ids`-Datei an die AIA, sonst ist die
+Lieferung nicht prüfbar. Dieses Skill regelt **was** geprüft wird und mit welcher Folge;
+`ifc-model-validation` regelt **wie**.
 
 ### 10.2 Was vertraglich geprüft wird
 
@@ -1192,6 +1450,13 @@ Lernkurven, keine Naturgesetze:
 | LOIN / Grad des Informationsbedarfs | Level of Information Need | EN 17412, zweck-/meilensteinbezogen |
 | Modellfertigstellungsgrad | milestone maturity | VDI 2552, ≠ Dauerzunahme |
 | IDM / MVD / Pset | Information Delivery Manual / Model View Definition / property set | Use Case → Process → ER → MVD; IFC-Teilmenge + Regeln |
+| IDS | Information Delivery Specification | maschinenlesbare Informationsanforderung (`.ids`), prüfbar; siehe `ifc-model-validation` |
+| Objektklasse / Entität | entity | `IfcWall` etc.; trägt die Semantik, nicht nur die Form (§ 8.4) |
+| Bauteiltyp-Enumeration | `PredefinedType` | Untertyp am Objekt; `NOTDEFINED` in einer Lieferung meist ein Mangel (§ 8.5) |
+| Vorkommnis / Typ | occurrence / type | `IfcWall` ↔ `IfcWallType`; Typwert gilt, Vorkommniswert überschreibt (§ 8.4) |
+| Merkmalsgruppe / Mengengruppe | `Pset_*` / `Qto_*` | 645 + 115 Definitionen in IFC4.3 ADD2 (§ 8.6, § 8.7) |
+| Globale Objekt-ID | `GlobalId` / GUID | 22-stellig; einziger stabile Schlüssel über Werkzeuge und Phasen (§ 8.4) |
+| Merkmalswörterbuch | bSDD (buildingSMART Data Dictionary) | Nachschlagequelle inkl. deutscher Benennungen (§ 8.9) |
 | BCF | BIM Collaboration Format | Issue-Referenz ohne Modellkopie |
 | COBie | COBie | 16 Tabellen, nicht-grafisch |
 | KKS / AKS | tag scheme | Anlagen-/allg. Kennzeichnung |
@@ -1213,6 +1478,8 @@ Lernkurven, keine Naturgesetze:
 | Situation | Zuständiges Skill |
 |---|---|
 | Modell/Geometrie in FreeCAD erzeugen, IFC exportieren | `construction-freecad-bim` |
+| Entity-/Pset-/Qto-Definition nachschlagen, Schemaversion vergleichen | hier, § 8.4–8.9 (Quelle am Schema, nicht aus Sekundärliteratur) |
+| Modell maschinell prüfen, IDS schreiben/ausführen, Prüfbefund reparieren | `ifc-model-validation` |
 | TGA-Inhaltskoordination (Leitungen, Schächte, Wartungsräume) | `building-services-tga`, `building-services-tga` |
 | Kostengruppen, LV, Aufmaß/Abrechnung | `cost-management-din276` |
 | Bauablauf, Takt, CPM, Baustelleneinrichtung, Fortschritt | `construction-scheduling-site` |
@@ -1237,7 +1504,10 @@ ist jede Prüfaussage Schein.
 Rahmen: DIN EN ISO 19650-1/-2 (Informationsmanagement, CDE, Rollen, Statusmodell) + -3
 Betriebsphase [VERIFY -3-Stand]; DIN EN ISO 16739 (IFC); DIN EN ISO 29481 (IDM); DIN EN
 17412 (LOIN); DIN EN ISO 23386/23387 (Merkmale/Datenvorlagen); ISO 12006 (Klassifikation);
-ISO 21597 (ICDD); DIN SPEC 91391 (CDE-Funktionen/-austausch); DIN SPEC 91400
+ISO 21597 (ICDD); IFC4.3 ADD2 (`IFC4X3_ADD2`) als aktuell referenzierter Schemastand
+mit 876 Entitäten, 645 `Pset_`- und 115 `Qto_`-Definitionen [VERIFY gegen laufende
+Fassung]; bSDD als Merkmalswörterbuch zu ISO 23386/23387; DIN SPEC 91391
+(CDE-Funktionen/-austausch); DIN SPEC 91400
 (STLB-Klassifikation); VDI 2552 Blätter 1/3/4/5/7/8/10/11 (Grundlagen, Mengenermittlung,
 Fertigstellungsgrad inkl. LOD 600, Datenmanagement, Prozesse/Rollen, Qualifikation,
 AIA/BAP, IDM-Anwendungsblätter wie Schlitz-/Durchbruchs- und Schalungs-/Gerüsttechnik)
