@@ -299,6 +299,30 @@ Still-air layer resistance R_g [m²K/W] by thickness (up / horizontal / down):
   hollow-core 100 mm: 0.15/0.05) — use table values, not 1D calc, for
   unreinforced-rib decks. VERIFY edition.
 
+**Generic material-property cross-check** (non-edition-specific; Neufert, *Architects' Data*
+(Neufert_2002.pdf excerpt), p.114): thermal resistance 1/Λ [m²K/W] by construction thickness for
+unplastered reinforced-concrete and hollow-clay-block floor systems, given as (average value in
+the field / worst-point value through the rib or web) — a physical-property cross-check against
+the DIN 4108-4 catalogue above, not a substitute for it. **VERIFY every row against the current
+DIN 4108-4 material table before quoting in a deliverable** (source predates current editions and
+is a UK/international handbook digest, not a DIN table):
+
+| Floor system (unplastered) | Thickness (mm) | 1/Λ average (m²K/W) | 1/Λ worst point (m²K/W) |
+|---|---|---|---|
+| RC ribbed floor (Rippendecke) | 120 / 140 / 160 / 180 / 200 / 220 / 250 | 0.20 / 0.21 / 0.22 / 0.23 / 0.24 / 0.25 / 0.26 | 0.06 / 0.07 / 0.08 / 0.09 / 0.10 / 0.11 / 0.12 |
+| RC beamed floor (Balkendecke) | 120 / 140 / 160 / 180 / 200 / 220 / 250 | 0.16 / 0.18 / 0.20 / 0.22 / 0.22 / 0.24 / 0.28 | 0.06 / 0.07 / 0.07 / 0.08 / 0.09 / 0.09 / 0.10 |
+| Hollow clay blocks, no cross webs | 115 / 140 / 165 | 0.15 / 0.16 / 0.18 | 0.06 / 0.07 / 0.08 |
+| Hollow clay blocks, with cross webs | 190 / 225 / 240 / 265 / 290 | 0.24 / 0.26 / 0.28 / 0.30 / 0.32 | 0.09 / 0.10 / 0.11 / 0.12 / 0.13 |
+| RC + hollow clay blocks, partly grouted joints | 115 / 140 / 165 / 190 / 225 / 240 / 265 / 290 | 0.15 / 0.18 / 0.19 / 0.24 / 0.27 / 0.30 / 0.33 / 0.36 | 0.06 / 0.07 / 0.08 / 0.09 / 0.10 / 0.11 / 0.12 / 0.13 |
+| RC + hollow clay blocks, fully grouted joints | 115 / 140 / 165 / 190 / 225 / 240 / 265 / 290 | 0.13 / 0.16 / 0.19 / 0.22 / 0.25 / 0.28 / 0.31 / 0.34 | 0.06 / 0.07 / 0.08 / 0.09 / 0.10 / 0.11 / 0.12 / 0.13 |
+| RC hollow beams (unplastered) | 65 / 80 / 100 | 0.13 / 0.14 / 0.17 | 0.03 / 0.04 / 0.05 |
+
+Reading: "average" is the field value including the insulating effect of the hollow block/void;
+"worst point" is the value through the solid rib/web alone (no block credit) — the same
+average/worst-point split the DIN 4108-4 catalogue above uses, so the two sources cross-check
+row-for-row where constructions coincide (e.g. RC ribbed floor ≈ 200 mm lands at 0.24/0.10 in
+both digests).
+
 ## 3. U-value requirements, targets and minimum thermal protection
 
 ### 3.1 GEG new-build reference level (T1, GEG 2020 Referenzgebäude; VERIFY current GEG/BEG-era text — amendments 2024+ shift these)

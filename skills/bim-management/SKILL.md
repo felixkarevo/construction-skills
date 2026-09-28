@@ -28,7 +28,10 @@ description: >
   BIM-BVB-Muster, Datenrechte/UrhG, Haftung, reliance level, Herstellerdaten);
   digitale Objektübergabe (PIM→AIM, As-Built-QA, Betriebsmodell-Reduktion,
   AKS/KKS-IDs, Raumbuch/Anlagenliste, drei CAFM-Integrationsszenarien,
-  Fortschreibungs-Loop, Scan-to-X, Wirtschaftlichkeit); 4D/5D-
+  Fortschreibungs-Loop, Scan-to-X, Wirtschaftlichkeit); Digitaler Zwilling
+  (Abgrenzung zum statischen AIM, Reifegrade Digital Model/Shadow/Twin und
+  Descriptive/Informative/Predictive/Comprehensive/Autonomous, IoT-/
+  Echtzeitschicht über der CDE, Vertragsanforderungen je Sensor); 4D/5D-
   Datenvoraussetzungen mit Querreferenzen zu construction-scheduling-site und
   cost-management-din276; Pilotprojekt-Regeln; Checklisten (EIR-Review,
   BAP-Audit, CDE-Setup, Data-Drop-Abnahme, Handover-Abnahme) und Glossar.
@@ -1291,6 +1294,90 @@ CAFM-Connect in § 14.4, nicht als Nachgedanke ins LCA-Reporting.
   — dieser Abschnitt behandelt nur, WELCHE Felder das Modell für einen
   Materialpass tragen muss und WANN sie zu befüllen sind.
 
+### 14.10 Digitaler Zwilling (Digital Twin) — Reifegrade und Abgrenzung zum AIM
+
+[Digest aus Konferenzband *Building Digital Twins — Proceedings of BDTSC 2025*,
+Springer LNCE 775, 2026 (Kap. „DWELT Framework“, Kap. „A Digital Twins Model Based
+on IFC Open BIM Models“) sowie aus *Digital Twin Technologies in Transportation
+Infrastructure Management*, Springer 2024, Abschn. 2.1.1 (Reifegradbegriffe
+Descriptive/Informative/Predictive/Comprehensive/Autonomous Twin — dort am
+Infrastruktur-Asset entwickelt, hier als domänenneutrales Begriffsgerüst
+übernommen) — Forschungs-/Marktdigest, **kein Normtext**; im Gegensatz zu LOD/LOIN
+(§ 5) existiert für den Digitalen Zwilling **keine** einheitliche ISO-Reifegraddefinition
+für Gebäude [VERIFY Normstand, z. B. ISO 23247 ist Fertigungsdomäne].]
+
+Ein „Digital Twin“ ist in Projektsprache oft ein Etikett für ein gut gepflegtes
+As-Built-Modell (§ 14.2) — das ist **zu wenig**: ein AIM ist ein **statischer**
+Stand zum Übergabezeitpunkt, ein Digitaler Zwilling ist eine **laufende
+Datenverbindung** zum physischen Objekt. Die Unterscheidung ist vertraglich
+relevant, weil sie unterschiedliche Leistungen, Kosten und Betriebspflichten
+auslöst — „Digital Twin liefern“ ohne Reifegradangabe ist so wenig prüfbar wie
+„Modell liefern“ ohne LOD-Angabe (§ 5.4).
+
+**Begriff:** ein Digitaler Zwilling ist eine raumzeitliche virtuelle Repräsentation
+eines physischen Objekts/Systems, die über Datenverbindungen mit seinem
+physischen Gegenstück verknüpft bleibt und dadurch Monitoring, Analyse,
+Entscheidungsunterstützung und Prognose über den gesamten Lebenszyklus
+ermöglicht — nicht nur einen Zeitpunkt.
+
+**Reifegrad A — Datenflussrichtung** (Kritzinger et al. 2018, in der Literatur
+die meistzitierte Dreiteilung; bestimmt, was technisch/vertraglich überhaupt
+„Zwilling“ heißen darf):
+
+| Stufe | Datenfluss real ↔ digital | Was es faktisch ist |
+|---|---|---|
+| **Digital Model** | keiner (manuelle Übertragung) | das AIM aus § 14.2 selbst — ein gepflegtes, aber statisches Betriebsmodell |
+| **Digital Shadow** | automatisiert, **unidirektional** (real → digital) | CAFM-Szenario 1 „Handover by Extraction“ **plus** laufende Sensor-/Monitoring-Anbindung (§ 14.3) — das Modell beobachtet, greift nicht ein |
+| **Digital Twin** (im engen Sinn) | automatisiert, **bidirektional** (real ↔ digital, inkl. Rückwirkung auf Aktorik/Steuerung) | CAFM-Szenario 2/3 (§ 14.3) mit geschlossenem Regelkreis — das ist die Ausbaustufe, die tatsächlich Vorhaltekosten für Sensorik, Middleware und Datenpflege rechtfertigt |
+
+**Reifegrad B — Funktionsumfang** (Descriptive/Informative/Predictive/
+Comprehensive/Autonomous — ergänzt A um die Frage, wofür der Zwilling genutzt
+wird, nicht nur wie die Daten fließen):
+
+| Stufe | Leistung | Entspricht Reifegrad A | Voraussetzung aus diesem Skill |
+|---|---|---|---|
+| Descriptive | 3D/BIM-Struktur, Beziehungen, Bauteildaten sichtbar — kein Echtzeitbezug nötig | Digital Model | AIM nach § 14.2, AKS/KKS durchgängig (§ 14.2) |
+| Informative | Echtzeit-Sensor-/Betriebsdaten am Objekt sichtbar (Dashboards, Monitoring) | Digital Shadow | jeder Messpunkt auf eine stabile Objekt-GUID gemappt (§ 8.4, § 14.3) — ohne GUID-Erhalt bricht die Zuordnung beim ersten Re-Export |
+| Predictive | Vorhersagemodelle (physikalisch oder ML-basiert) für Zustand, Restlebensdauer, Anomalieerkennung | Digital Shadow (Analytik zusätzlich) | belastbare historische Zeitreihen **und** vollständige Common-Psets/Qtos als Modellparameter (§ 8.6 f.) — Prognose aus lückenhaften Psets ist Kaffeesatzleserei |
+| Comprehensive | ganzheitliche Sicht über Entwurf, Bau **und** Betrieb; Was-wäre-wenn-Simulation, präskriptive Handlungsempfehlungen | Digital Shadow/Twin je nach Rückkopplung | Fortschreibungs-Loop (§ 14.6) tatsächlich gelebt — ein Comprehensive Twin auf veraltetem As-Built ist nur eine teurere Simulation |
+| Autonomous | automatisierte Entscheidungen mit Rückwirkung auf Aktorik (z. B. Regelparameter, Wartungsauslösung) ohne Mensch im Loop | Digital Twin (bidirektional) | Freigabe-/Haftungsregelung für automatisierte Eingriffe **vor** Inbetriebnahme (Anschluss § 13.3/13.4) — dieses Skill regelt dafür nur die Datengrundlage, nicht die Steuerungssicherheit |
+
+**Architekturmuster, das in der Praxis tatsächlich reicht** (belegt am
+Laborprototyp mit Open-BIM-Webplattform, IFC/IDS/bSDD als Open-CDE-Schicht und
+MQTT als Publish/Subscribe-Integrationsschicht zwischen Gebäudeautomation und
+Webplattform): CDE-Bestand (§ 3) bleibt die Quelle der Semantik (Klassen, Psets,
+Klassifikation); eine zusätzliche **Echtzeitschicht** (Broker/Middleware, z. B.
+MQTT) verbindet Sensorik/Aktorik mit denselben Objekt-IDs; die
+Informationscontainer-Logik der CDE (§ 3.1) wird dadurch **nicht ersetzt**,
+sondern um einen zeitreihenfähigen Container-Typ ergänzt — DIN SPEC 91391 (§ 3.1)
+deckt strukturierte/unstrukturierte Container bereits ab, Zeitreihendaten sind
+in der Praxis meist eine dritte, separat zu vereinbarende Kategorie [VERIFY
+Normstand].
+
+**Was zusätzlich zur AIA/LIA gehört, wenn ein Digital Twin (nicht nur ein AIM)
+beauftragt wird:**
+
+- Zielreifegrad explizit benennen (Tabelle A **und** B), nicht „Digital Twin“ als
+  unspezifizierten Sammelbegriff — sonst ist weder Preis noch Abnahme prüfbar.
+- Je Sensor/Messpunkt: zugeordnete Objekt-GUID, Messgröße, Frequenz,
+  Aufbewahrungsdauer, Eigentum an den Rohdaten (Anschluss § 13.3 Datenrechte —
+  Sensordaten sind dort bislang **nicht** mitgedacht).
+- Schnittstellenprotokoll + Betreiber der Echtzeitschicht (analog § 3.5
+  „wer betreibt die Betriebs-CDE“ — hier zusätzlich: wer betreibt den
+  Broker/die Middleware, welche Partei haftet bei Ausfall der Rückkopplung).
+- IT/OT-Trennung und Zugriffsschutz der Echtzeitschicht — Cybersecurity von
+  Gebäudeautomation ist in diesem Skill **nicht** behandelt [VERIFY, ggf. an
+  `building-services-tga` oder IT-Sicherheitsberatung verweisen].
+- Kein Predictive/Comprehensive/Autonomous ohne vorher funktionierenden
+  Fortschreibungs-Loop (§ 14.6) und vollständige Common-Psets (§ 8.6) —
+  Reifegrad B baut auf Reifegrad A auf, nicht umgekehrt; ein „Predictive Twin“
+  über einem nicht gepflegten AIM ist ein Vertragsrisiko, kein Funktionsmerkmal.
+
+**Verhältnis zu § 14.3:** die dortige Zeile „Szenario 3 … Basis Digital Twin“
+ist die technische Kurzform von Reifegrad A/Stufe „Digital Twin“ oben; dieser
+Abschnitt liefert die Begriffsschärfe und die Vertragsklausel-Checkliste dazu,
+ersetzt aber nicht die Szenario-Entscheidung aus § 14.3.
+
 ---
 
 ## Abschnitt 15: 4D/5D — Datenvoraussetzungen (Querreferenzen)
@@ -1467,6 +1554,7 @@ Lernkurven, keine Naturgesetze:
 | Wie-Gebaut / Bestandsmodell | as-built | ≠ as-planned; verifiziert |
 | Föderationsstrategie | federation strategy | BAP-Kernblock |
 | Raumbuch / Anlagenliste | room book / asset register | Übergabe-Mindestinhalt |
+| Digitaler Zwilling | Digital Twin | laufende Datenverbindung ≠ statisches AIM; Reifegrade Digital Model/Shadow/Twin und Descriptive/Informative/Predictive/Comprehensive/Autonomous (§ 14.10) |
 | Arbeitsraum-Platzhalter | service space dummy | Soft-Clash-Objekt |
 | Informationscontainer | information container | kleinste CDE-Einheit (ISO) |
 | Elementmatrix | element/LOD matrix | Prüfmaßstab der Abnahme |

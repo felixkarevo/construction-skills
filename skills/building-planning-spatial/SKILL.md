@@ -7,7 +7,9 @@ description: >
   Abstandsflächen der LBO — B-Plan-dependent figures marked VERIFY), envelope test
   (coverage vs. plot-ratio vs. setback bindingness), brief fitting at generic
   international room minimums (retagged, not German law) plus family-house /
-  single / duplex / multifamily sizing heuristics, orientation and sun geometry
+  single / duplex / multifamily sizing heuristics, Neufert anthropometric body-
+  dimension and movement-envelope tables backing furniture/circulation
+  clearances, orientation and sun geometry
   (solar altitude h = 90 − φ ± 23.5°, shading formulas, winter/summer contrast,
   DACH latitude table Berlin/München/Hamburg/Frankfurt), circulation % and NTG
   targets, wet-zone stacking and structural-grid coordination (span rules tagged to
@@ -534,6 +536,12 @@ circulation overlap + sideboard.
 (16 m² hard floor); 25–35 m² is the norm because German Wohnen also carries
 the Essplatz or a desk corner.
 
+**Where these numbers come from:** every clearance above is a derived rule; the
+raw anthropometric body-posture and reach envelopes underneath it (the actual
+Neufert "little man" pages) are tabulated in **3.9** — use that table when a
+brief squeezes a clearance below what's printed here and you need the body
+geometry it will violate, not just the market convention.
+
 ### 3.4 Ceiling heights and floor-to-floor (German defaults)
 
 | Space | LBO-ish floor (T2, VERIFY per state) | Market practice (T4) |
@@ -629,6 +637,87 @@ that would be resolved HERE (drop/merge/plot), never by shrinking every room.
 client in exactly this form. It converts a taste argument into a numbers
 argument, and the numbers win.
 
+### 3.9 Anthropometric basis — body dimensions and movement envelopes (T4, Neufert Measurement-Basis chapter)
+
+3.2's room bands and 3.3's furniture clearances are *derived* numbers. This
+subsection tabulates the primary anthropometric data they were derived from —
+the "Man: Dimensions and Space Requirements" plates of Neufert's
+Measurement-Basis chapter (English ed., Neufert_2002.pdf excerpt, pp. 16–17;
+the classic "little man diagram" lineage referenced generically at 3.3 and in
+the tier table, Section 0). **These are body-and-movement geometry, not a
+DIN standard and not German law** — where DIN 18040-2 (barrier-free) requires
+a larger clearance, DIN 18040-2 wins; route `accessibility-universal-design`.
+Use this table when a brief pushes a clearance below the 3.2/3.3 market band
+and you need to show the client the body it will no longer fit, not just the
+convention it violates.
+
+**Static body-posture envelopes** (p.16, figs 1–12 — average adult, normal
+dress):
+
+| Posture | Plan envelope | Height | Planning use |
+|---|---|---|---|
+| Standing, arms at side (profile) | 300 mm | — | baseline silhouette; cf. Modulor 1.75 m figure (Section 0/p.15) |
+| Standing, arms akimbo / hands on hips | 875 mm | — | dressing-area, WC-cubicle sizing |
+| Standing, one arm raised overhead | 875 mm | reach to 1.50–1.75 m | wall-cupboard top shelf |
+| Standing, both arms spread sideways | 1125 mm sweep (500 mm shoulder box) | to 1.75 m | wardrobe/workbench full-reach arc |
+| Bending forward, hands to floor | 875 mm | 1.375 m | bed-making, cleaning-access strip |
+| Kneeling upright, sitting on heels | 875 mm | 1.00 m | floor-level storage/work |
+| Squatting, full crouch | 625 mm | — | low-shelf/low-cupboard access |
+| Sitting cross-legged on the floor | 750 mm | 0.875 m | — |
+| Sitting cross-legged, upright | 700 mm | 1.125 m | — |
+
+**Furniture-envelope dimensions** (p.16, figs 13–20):
+
+| Item / task | Plan footprint or reach | Heights | Cross-ref |
+|---|---|---|---|
+| Work table, seated | 875 mm width | seat 450–480; table 750–800; overhead reach 1350 | validates 3.3's desk/table sizing |
+| Dining/side chair, pulled out | 875 mm depth | seat 400–450; back 750 | ≈ 3.3's dining "≥900 behind chairs / 700 to pull out" |
+| Small easy chair | 900–1000 mm depth | seat 375–400; arm 600; back 700 | Wohnen seating footprint (3.2's 25–35 m²) |
+| Armchair | 1250 mm depth | seat 250–350; arm 625 | — |
+| Standing work-counter, forward reach | 660 mm | counter 900; overhead shelf 1500; standing eye ~1930 | validates the 900/1000 mm kitchen-counter/sill pair (3.3) |
+| Kneeling reach (low unit) | 710 mm depth | reach band 460–1220 | |
+| Seated reach | 860 mm | to 1450 | |
+| Squatting reach | 710 mm | 300–1020 | |
+
+**Bed and sleeping-zone envelopes** (p.16, figs 21–24 — read together with
+3.3's bed-clearance arithmetic):
+
+| Activity at the bed | Zone | Clear height | Cross-ref |
+|---|---|---|---|
+| Sitting on the edge, reaching a bedside shelf | 1250 mm | 875 mm to shelf | underlies 3.3's foot-of-bed 900 mm swing zone |
+| Reclining, reading | 1500 mm | 750 mm to any overhead obstruction | headboard-side shelf clearance |
+| Sitting up in bed | 1625 mm | 625 mm | matches a 1.60 m-wide bed + one-side reach |
+| Lying full length, arm extended | 2000 mm envelope; 1875 mm clear length; 300 mm past the feet | — | sets the **minimum clear depth behind a bed at ≈2.0 m**, before 3.3's 750/600 mm side clearances are even added |
+
+**Circulation and passing widths** (p.17, "Space Requirements" plate — captioned
+explicitly: **"for moving people, add >10 % to widths"**):
+
+| Configuration | Width | DACH cross-ref (this skill) |
+|---|---|---|
+| One person, sideways/profile | 375 mm | — |
+| One person, facing | 625 mm | ≈ the T3 absolute-floor corridor width (4.1) |
+| One person, arms akimbo | 875 mm | — |
+| Two people passing | 1000 mm | = the T4 "Flur serving 1–2 rooms" 1000 mm width (4.1) |
+| Two people abreast | 1150 mm | ≈ the 1100–1250 mm "Flur serving 3+ rooms" band (4.1) |
+| Three people abreast | 1700 mm | Diele/entrance-hall scale (4.4's 1400–1800 mm) |
+| Four people abreast | 2250 mm | public-corridor/landing scale, not residential Flur |
+| Closely packed standing row | 1250 mm/person-row | crowd reference only |
+| Waiting queue | 2125 mm | — |
+| Pace length, walking in step | 750 mm | stride cross-check against the stair tread band (5.1, 260–300 mm) |
+| Reach, kneeling down | 1125 mm | under-stair storage clearance cross-check (5.2) |
+| Reach, standing at full stretch | to 2250 mm | ceiling/top-shelf planning |
+| Person carrying one case | 800–1000 mm | Diele shoe/coat niche depth (4.4) |
+| Person with an open umbrella (two together 2375 mm) | 1125 mm | entrance canopy / vestibule depth (7.5 Windschutz) |
+
+**Reading it for this skill:** none of this table overrides 3.2's market
+targets or 4.1's Flur widths — it is the body-geometry floor those numbers
+were built on, and it is what to show a client who wants to cut a passage to
+700 mm or a bed clearance to 400 mm: below the one-person-facing envelope
+(625 mm) or the two-people-passing envelope (1000 mm), the room stops working
+as a room, independent of any code minimum. **Cite as:** Neufert, Architects'
+Data (English ed., Neufert_2002.pdf excerpt), p.16 (body measurements/
+furniture) or p.17 (space requirements/circulation).
+
 ---
 
 ## Section 4: Circulation — Flurs, Doors, Windows
@@ -645,6 +734,11 @@ or a Flur serving two doors.
 | Flur serving 1–2 rooms | 900 | 1000 | **1000 mm** |
 | Flur serving 3+ rooms / main | 900 | 1100–1250 | **1100–1250 mm** |
 | Diele (coat + pass-through) | 900 | 1200–1800 | 1400 with 600-deep wardrobe wall |
+
+**Body geometry behind these widths:** one person facing = 625 mm, two people
+passing = 1000 mm, two abreast = 1150 mm (Neufert space-requirement plate,
+add >10 % for movement) — see 3.9 for the full anthropometric table this and
+3.3's furniture clearances are built on.
 
 **Mechanics:** widths are finished-surface to finished-surface (frame rough
 +30–60 mm); keep 1200 mm + 885 clear doors as **barrier-free reserve** (90°
@@ -1356,7 +1450,7 @@ Atrium/L/split items (2.6) need explicit Tragwerksplaner review."*
 | **DIN 18040-2; DIN 1946-2; DIN 1986-100** | barrier-free (claimed-only); Lüftungskonzept / drainage gradients | T2, VERIFY editions |
 | **DIN EN 1998-1/NA** | seismic zones (mostly 0; Oberrheingraben/Alpine fringe) | T2, VERIFY |
 | **conception digest (structural rules)** | spans 5–7 m, one-way/30, 62.5 cm stud grid, ring-beam anchors, lintel spans | T2-rules-of-thumb, VERIFY |
-| **Neufert Architects' Data / market norms** | furniture clearances, room-size bands (3.2–3.3) | T4 |
+| **Neufert Architects' Data / market norms** | furniture clearances, room-size bands (3.2–3.3); body-dimension/movement-envelope tables, English ed. Neufert_2002.pdf pp.16–17 (3.9) | T4 |
 | WoFlV; generic international habitable minimums (7.5/9.5 m²) | WFL bands; sanity floor ONLY | T1 / T3 |
 
 ## Appendix B — Rules of thumb (metric)

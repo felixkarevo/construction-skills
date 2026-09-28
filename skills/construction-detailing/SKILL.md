@@ -503,6 +503,55 @@ industrial build (cast-in anchors vs later steel = the classic collision and lia
   dissimilar fixings, sliding bearings, compression travel of seals — mark them in the detail
   so site does not "helpfully" grout them solid.
 
+### 3.5 Modular coordinate system — vocabulary and a worked example (digest-backed)
+
+The basic module is **M = 100 mm**; multi-modules in DACH/international practice run 3M
+(300 mm), 6M (600 mm), 12M (1200 mm) — the same 1 M = 100 mm anchor already used in §3.4 and
+Appendix A (ISO 1006/2848, DIN 4172), restated here with the reference-point vocabulary that
+resolves *where inside its coordination space* a component sits (Neufert, *Architects' Data*
+(Neufert_2002.pdf excerpt), p.34):
+
+- **Coordinate space:** a coordinate system is a set of planes at right angles to each other,
+  spaced per the coordinate dimensions; a component's nominal size, plus the joint/tolerance
+  allowance to its neighbours, is what fills one coordinate dimension.
+- **Boundary reference:** the component is specified **fully by its size and position at once**
+  — it is arranged to exactly fill the space between two parallel coordinate planes, joints and
+  tolerance included. This is the default for repeating trade components (panels, blockwork
+  courses, window/door coordination zones per §4.3).
+- **Axis reference:** the component's **central axis coincides with one coordination plane**;
+  the component is specified with reference to that axis **in position only** — its size is
+  independent information. This is the same logic as the Achsmaß set-out rule already stated
+  above (wall axis at half thickness) generalised to any component, not only walls.
+- **Non-modular zone:** components that are not worth modularising individually (an individual
+  stair tread, a window, a door) are grouped into a **non-modular zone**, which splits the
+  coordinate system into two sub-systems either side of it. The assumption is that the
+  component's dimension inside that zone is already fully known and fixed at the time the
+  surrounding coordinate system is set out — so the modular grid on either side does not need to
+  "solve for" the non-modular component's exact size, only for the zone's outer boundaries.
+
+**Worked example — sizing a precast RC staircase unit inside a fixed 30M floor-to-floor module**
+(digest, p.34): floor-to-floor height 300 cm = 30 M.
+
+```
+Provisional riser ≈ 19 cm (assumed comfortable riser) → n = 300/19 = 15.8 → round UP to 16 risers
+Actual riser:      h = 300 cm / 16 = 18.75 cm  (fixed by the modular floor height, not chosen freely)
+Provisional going: 16 risers × ≈26 cm assumed going ≈ 416 cm → round UP to the next module,
+                   420 cm = 42 M (the staircase's own plan-length module)
+Actual going:      b = (420 − 1 cm joint) / 16 = 419/16 = 26.2 cm
+```
+
+Reading the method, not just the numbers: the **floor-to-floor module (30 M) is fixed and
+non-negotiable** (it is set by the storey-height coordinate system of the whole building); the
+riser count is chosen to divide it evenly (round to a whole number of risers first, THEN compute
+the exact riser height — never the reverse); the going is sized second, against its own 6M/12M-
+style modular plan length, with the standard 1 cm joint/tolerance allowance subtracted before
+dividing by the riser count. This is boundary reference applied twice in series (floor-to-floor
+height, then plan length) with the stair unit itself treated as one non-modular component sized
+to fit exactly between two coordination planes. Sanity-check any hand-run stair against the
+step-safety formula 2h + b ≈ 59–65 cm (`structural-systems`/ergonomics literature) — the modular
+fit and the ergonomic fit are two independent constraints that must both pass; a module-driven
+riser/going pair that fails 2h+b needs a different riser count, not a fudged tread.
+
 ---
 
 ## Section 4: The Junctions (Anschlüsse) — Detail-by-Detail

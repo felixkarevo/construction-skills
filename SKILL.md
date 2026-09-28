@@ -52,7 +52,7 @@ build-up, a system, or a standard tier, not just reading off a table.
 | If the task involves... | Use skill |
 |---|---|
 | Default complexity tier, "keep it simple", contract/defect liability, § 633 BGB, aarRdT, DIN presumption, Gebäudetyp E | `simple-first-building` (governing — see Rule zero) |
-| Plot/B-Plan reading, GRZ/GFZ, envelope test, room sizing, orientation/sun, staircase-first layout | `building-planning-spatial` |
+| Plot/B-Plan reading, GRZ/GFZ, envelope test, room sizing, orientation/sun, staircase-first layout, anthropometric/ergonomic clearances | `building-planning-spatial` |
 | Choosing house form (EFH/DHH/Reihenhaus/MFH/atrium), plan-depth/daylight, compactness, density | `building-typology` |
 | Freehand/CAD drawing conventions, projections, hatching, dimensioning, plan-set types | `construction-drawing-sketching` |
 | Building law, permits, Bauleitplanung, Bauvorlagen, HOAI Leistungsphasen, VOB/BGB contract basics | `building-regulations-permits` |
@@ -79,7 +79,7 @@ build-up, a system, or a standard tier, not just reading off a table.
 | Existing buildings: condition assessment, Nachrechnung, strengthening, retrofit, cathodic protection (KKS), component reuse/circular deconstruction — the structural-engineering side of Bauen im Bestand | `existing-structures-retrofit` |
 | Home renovation/refurbishment (Sanierung, Renovierung, Modernisierung, Instandsetzung) at the building-component level: Bestandsaufnahme workflow, Naturstein/Beton/Metall/Mauerwerk/Dach/Decken/Fenster/Türen/Fugen/Putz repair, Sanierungsfahrplan (iSFP) and GEG Nachrüstpflichten, ökologisches Sanieren, Abbruch/Rückbau, bautechnischer Artenschutz, ÖNORMEN supplement | `building-renovation-refurbishment` |
 | Historical/existing timber construction: Schadensanalyse (fungal/insect/moisture diagnosis, Hausschwamm), Schadensbewertung (residual strength of decayed members), Ertüchtigung/Instandsetzung technique, Fachwerk, Umgebindebau, historische Zimmermannsverbindungen and Dübelnormung | `timber-building-renovation` |
-| ISO 19650 BIM process, CDE, LOD/LOIN, IFC/BCF, model coordination, material passports/Ressourcenpass data schema; IFC schema lookup — which entity a component becomes, `PredefinedType`, which `Pset_*`/`Qto_*` properties exist, IFC2x3/IFC4/IFC4.3 version breaks, where to fetch the schema | `bim-management` |
+| ISO 19650 BIM process, CDE, LOD/LOIN, IFC/BCF, model coordination, material passports/Ressourcenpass data schema, digital twin/Digitaler Zwilling maturity and IoT/real-time data layer; IFC schema lookup — which entity a component becomes, `PredefinedType`, which `Pset_*`/`Qto_*` properties exist, IFC2x3/IFC4/IFC4.3 version breaks, where to fetch the schema | `bim-management` |
 | Actually modeling in FreeCAD via the MCP bridge (objects, storeys, rebar, FEM, IFC import/export) | `construction-freecad-bim` |
 | Proving an IFC export correct instead of assuming it: model checking, IDS (`.ids`) authoring and running, buildingSMART normative/Gherkin rule failures, `ifcopenshell.validate` / `ifctester` / `ifcpatch`, quality gates for an automated author→export→check→repair loop | `ifc-model-validation` |
 

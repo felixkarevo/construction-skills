@@ -124,6 +124,16 @@ Minimum depth of representative boreholes (Aufschlusspunkte) **below the planned
 | Piles | ≥ 5 × pile diameter below pile toe, and through any expected weak layer (VERIFY) |
 | Cuts / embankments | cut: 20–40 % of cut depth below formation; embankment: below the potential slip surface |
 
+**Generic cross-check for retaining-wall trial bores** (non-DACH-specific, international
+handbook rule of thumb — Neufert, *Architects' Data* (Neufert_2002.pdf excerpt), p.54): minimum
+trial-bore depth T below the base of a retaining structure, measured from the bore-hole
+reference level, T ≥ 3b or ≥ 6 m for a free-standing or rear-anchored in-situ-concrete or
+sheet-pile retaining wall (b = the greatest embedment/bore depth among the walls being
+investigated), and T ≥ 1.5B or ≥ 6 m where the wall is built into or against the structure
+(B = wall height). Use this only as an order-of-magnitude sanity check on the DIN 4020
+exploration-depth logic above — it is not DIN/EN-specific and does not substitute for the §1.2
+table or the investigating engineer's judgement on strata variability.
+
 ### 1.3 Number and spacing of Aufschlusspunkte
 
 Design the grid to answer the design questions (layer boundaries, dip, weak-layer depth, water table): small regular house plot on expected uniform glacial/alluvial ground → **at least one representative deep borehole**, two where strata are variable or the plan is irregular; with basement → boreholes around the excavation corners and mid-sides; supplement with continuous probe profiles (Rammsondierung / dynamic penetration) between boreholes to catch lenses and gravel pockets. Spacing logic: 3–5 m in erratic made ground, 15–25 m in uniform natural deposits (planning heuristic, VERIFY against DIN 4020 tables).
@@ -637,6 +647,17 @@ embedment into bond stratum ≥ 2.5–5 m per tables.
 
 Minimum centre-to-centre spacing per EA-Pfähle Bild 3 (values not reliably digested): the working anchors used here are **≥ 1.5–2 × shaft diameter for driven/displacement piles, larger (~2.5–3×) for bored friction piles in cohesive ground** (VERIFY exact grid). A pile cap (Fundamentkopf / cross-cap or a continuous Streifen under a wall line) ties piles into one unit and transfers the load including its own weight; cap concrete ≥ C25/30, embedment of pile head into cap ≥ ~10–15 cm plus reinforcement coupling (detailing is engineer work). Heave: driving displacement piles into soft clay lifts neighbouring pile positions — sequence from the centre outward and check uplift on already-cast piles (Reibungsminderung / Zuglast).
 
+**Generic cross-check (non-DACH-specific, international handbook rule of thumb):** Neufert,
+*Architects' Data* (Neufert_2002.pdf excerpt), p.54, gives simple minimum centre-to-centre pile
+spacings independent of soil/EA-Pfähle load-transfer classification — useful only as a sanity
+check on the EA-Pfähle-derived spacings above, never a substitute: bored piles (Bohrpfähle),
+shaft spacing ≥ 3d (d = shaft diameter), widened-base spacing ≥ 2d_r (d_r = base/toe diameter),
+absolute minimum ≥ 1.10 m; driven piles (Rammpfähle), spacing e ≥ 3d and ≥ (1 m + d), with
+widened/driven-tube spacing ≥ 2d_r. These values explicitly do not apply to load-bearing
+plugged or secant/tangent bored-pile walls (kontinuierliche Bohrpfahlwände), which are designed
+to touch or overlap. Where this generic rule and the EA-Pfähle-derived §7.4 figures above
+diverge, the EA-Pfähle/geotechnical-engineer figure governs for DACH design.
+
 ### 7.5 Negative skin friction & tensile loads
 
 When surrounding ground settles more than the pile (thick fill, dewateration of compressibles, embankment), shaft friction reverses and **loads** the pile. Response: drive/anchor through the settling layer, reduce design qs near the top (EA-Pfähle Reibungsminderung logic — VERIFY the layer-reduction grid), and check the pile head and cap for the added downward drag plus any structural tension: **tension piles / anchors use γR;z 1.35 → 1.00 by test count (§3.3)**; bond length and coupling detail govern tension.
@@ -702,6 +723,20 @@ Cohesion is **not** counted for at-rest pressure (digested rule). Wall friction:
 A basement wall cast against a floor slab and base slab cannot move enough to mobilise active pressure (active requires ~H/1000–H/500 outward yielding; the excavation already happened). DIN 4085 / DIN 1054 answer: **increased active** — the published worked example uses the German practice of averaging with at-rest: e_a,erh = ½·(Ka + K0)·γ·z + ½·(Ka + K0)·q on the surcharge — with K0 = 0.5 for φ′ = 30° vs Ka = 0.333, a ~25 % load increase over active. Design the wall accordingly (worked example §13.2). Never carry over the free-standing-wall Ka into a cellar wall — that is the classic under-design.
 
 ### 8.4 Retaining wall proportioning & checks
+
+**Generic wall-type typology (non-DACH-specific cross-reference):** Neufert, *Architects' Data*
+(Neufert_2002.pdf excerpt), p.54, groups retaining structures rated for soil-pressure retention
+into six built-practice types — useful for classifying which DIN 4085 earth-pressure case
+(§8.2) applies before any proportioning arithmetic: (a) free-standing in-situ concrete or
+sheet-pile wall, ground retained on one side only; (b) as (a) but rear-anchored; (c) in-situ
+concrete or sheet-pile wall built into the structure (propped top and bottom — the cellar-wall
+case of §8.3); (d) a concrete structure bearing against an independent retaining wall; (e) plain
+gravity wall (mass alone resists overturning/sliding, no tension anywhere in the section); (f)
+retaining wall with heel and toe (the cantilever L/T-shape proportioned below, using the
+retained soil's own weight on the heel to help resist overturning). Types (a)/(e)/(f) are free
+to yield and take **active** pressure (§8.2 top row); (b)/(c)/(d) are restrained and take
+**increased-active or at-rest** pressure (§8.2 middle/lower rows) — matching the built type to
+the earth-pressure case is the first design decision.
 
 ```
 Cantilever (Stützwand) prelim: base width B ≈ (0.4–0.7)·H; stem base t ≈ B/10…B/12;
