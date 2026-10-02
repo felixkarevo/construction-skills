@@ -25,7 +25,7 @@ description: >
 > standard or the aarRdT only via the documented risk-acceptance machinery
 > (`simple-first-building` §3) — public permission never cures the private default.
 
-This is the **core** file of a 30-skill construction-design library. It teaches an
+This is the **core** file of a 32-skill construction-design library. It teaches an
 MCP-capable agent to produce honest, parametric, solver-checked building models inside a
 live FreeCAD 1.0.x GUI. Everything geometry-technical here was validated against FreeCAD
 1.0.1 through the MCP bridge (CalculiX `ccx` and `gmsh` present) and against the
@@ -69,7 +69,7 @@ contractor"*, *"is this safe"*, *"final footing size"*, *"can I pour this"* — 
 
 ## How this library fits
 
-This file is the modeling engine. The other 29 skills own the *why* behind every number.
+This file is the modeling engine. The other 31 skills own the *why* behind every number.
 When a question here becomes a design question, switch to the owning skill — never
 improvise a design value from a modeling recipe.
 
@@ -103,6 +103,7 @@ improvise a design value from a modeling recipe.
 | `building-renovation-refurbishment` | Component-level renovation technique: Bestandsaufnahme, repair systems per building element, energetic/ecological retrofit workflow, Abbruch/Rückbau — the source of what §3.10's renovation modeling pattern renders. |
 | `timber-building-renovation` | Historical timber diagnosis and repair: Schadensanalyse/-bewertung, Ertüchtigung technique, Fachwerk/Umgebindebau — the source of §3.10's degraded-material override numbers for timber. |
 | `bim-management` | The BIM **process**: naming, LOIN/LOI/LOG (DIN EN 17412), MVD, CDE, IFC validation — the deep data discipline touched only lightly here. |
+| `ifcopenshell-bim-authoring` | Sibling modeling skill without FreeCAD: IFC as source of truth via `ifcopenshell.api` / `ifcmcp`, one file per discipline — use it when the deliverable is native IFC. |
 | `construction-drawing-sketching` | Drawing and sketch representation of the model: line weights, hatching, sheet craft. |
 
 ### Reading order
