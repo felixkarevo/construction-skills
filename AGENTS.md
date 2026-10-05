@@ -1,6 +1,6 @@
 # AGENTS.md
 
-This repo is a reference library, not an application — 32 discipline `SKILL.md`
+This repo is a reference library, not an application — 33 discipline `SKILL.md`
 files under `skills/*` covering DACH (Germany/Austria/Switzerland) building
 design and engineering, plus a live FreeCAD BIM demo under `example/`.
 
@@ -14,7 +14,7 @@ is in scope alongside whatever specialist skill it points you to, whenever a
 design decision (not a pure lookup) is being made.
 
 If the router's keyword table doesn't resolve an ambiguity, `README.md`'s
-"The skill library" table gives the same 32 skills grouped by category with
+"The skill library" table gives the same 33 skills grouped by category with
 one-line descriptions.
 
 ## Working in this repo

@@ -25,7 +25,7 @@ description: >
 > standard or the aarRdT only via the documented risk-acceptance machinery
 > (`simple-first-building` §3) — public permission never cures the private default.
 
-This is the **core** file of a 32-skill construction-design library. It teaches an
+This is the **core** file of a 33-skill construction-design library. It teaches an
 MCP-capable agent to produce honest, parametric, solver-checked building models inside a
 live FreeCAD 1.0.x GUI. Everything geometry-technical here was validated against FreeCAD
 1.0.1 through the MCP bridge (CalculiX `ccx` and `gmsh` present) and against the

@@ -1,7 +1,7 @@
 ---
 name: construction-skills-router
 description: >
-  Router / index for the 32 discipline skills in this DACH construction-design
+  Router / index for the 33 discipline skills in this DACH construction-design
   library (skills/*). Consult this FIRST for any building-design, structural,
   building-physics, cost, scheduling, legal/permit, BIM, FreeCAD- or IfcOpenShell-modeling
   task in this repo — before opening any single discipline skill — so the
@@ -15,7 +15,7 @@ description: >
 
 # Construction Skills Router
 
-This repo is 32 dense reference skills (`skills/*/SKILL.md`) covering the
+This repo is 33 dense reference skills (`skills/*/SKILL.md`) covering the
 whole DACH (Germany/Austria/Switzerland) building-design stack, plus a live
 FreeCAD BIM workflow. No single skill covers a whole project — this file maps
 a task or question to the skill(s) that actually answer it, so you load the
@@ -72,6 +72,7 @@ build-up, a system, or a standard tier, not just reading off a table.
 | Lintels, window/door build-ups, U_w calc, sealing joints, mounting classes, structural glazing/DIN 18008, isochoric climatic load | `openings-windows-doors` |
 | Stair geometry/set-out, ramps, lifts, stair structural/acoustic/fire checks | `stairs-vertical-circulation` |
 | Heating/cooling systems, DHW/legionella, ventilation, TGA sizing, heat pumps | `building-services-tga` |
+| Electricity at the house: wiring, circuits/fusing/RCDs, DIN 18015 zones, distribution boards, Zs/Δu checks, TN-C-S/TT/IT, earthing & SPD, bathroom IP/zones, lighting design, PV/battery/wallbox/wind, house network/KNX/DALI, existing-installation renovation, IFC/ELT entities & cable psets | `electrical-installations` |
 | Construction sequencing, CPM/Takt scheduling, site layout, crew productivity | `construction-scheduling-site` |
 | Cost estimating/planning (DIN 276), unit-price buildup, VOB/C, HOAI fees | `cost-management-din276` |
 | Whole-life carbon/LCA, EPDs, GEG energy duties, circularity, sustainability certification | `sustainable-construction` |
@@ -101,7 +102,9 @@ order (skip phases that don't apply):
    `concrete-detailing` / `masonry-construction` / `timber-steel-design`,
    `roofing-waterproofing`, `openings-windows-doors`, `stairs-vertical-circulation`.
 7. `building-services-tga` + `construction-scheduling-site` +
-   `cost-management-din276` — services, sequencing, cost.
+   `cost-management-din276` — services, sequencing, cost; load
+   `electrical-installations` alongside for any real ELT depth (circuits, RCD/SPD
+   design, PV/EV, lighting, IFC/ELT data).
 8. `construction-freecad-bim` (+ `bim-management` for data discipline) — build
    the model; or `ifcopenshell-bim-authoring` when IFC files are the source of
    truth (no FreeCAD, one file per discipline).
@@ -112,12 +115,13 @@ order (skip phases that don't apply):
 Round out with `accessibility-universal-design`, `sustainable-construction`,
 `existing-structures-retrofit` whenever the brief touches those concerns. For a
 renovation/refurbishment project specifically, load `building-renovation-refurbishment`
-(+ `timber-building-renovation` where timber is involved) alongside step 5's physics
-skills and step 6's detailing skills, and use `construction-freecad-bim` §3.10 to model
-the Bestand→Neu transition.
+(+ `timber-building-renovation` where timber is involved, + `electrical-installations` §14
+for the existing-installation/trust-protection doctrine and the VDE 0100-610 test protocol)
+alongside step 5's physics skills and step 6's detailing skills, and use
+`construction-freecad-bim` §3.10 to model the Bestand→Neu transition.
 
 ## Full skill index
 
-See the table in `README.md` ("The skill library") for the same 32 skills
+See the table in `README.md` ("The skill library") for the same 33 skills
 grouped by category with one-line descriptions each — read that if this
 router's keyword table doesn't resolve the ambiguity.
