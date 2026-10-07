@@ -4,3 +4,6 @@ __pycache__/
 *.pyc
 .DS_Store
 sources/
+docs/
+extraction/
+prompt-update-skill.txt
