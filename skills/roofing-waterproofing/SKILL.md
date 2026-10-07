@@ -160,7 +160,8 @@ Derived rules that hold universally:
    joints; one joint line through underlay + battens + covering is one leak path.
 5. **Top layer replaceable** - detail so the weather skin can be renewed without touching the
    air/water layers below.
-6. **Even a small overhang keeps walls nearly dry** - but a deep eave *without gutter* blows
+6. **Even a small overhang keeps walls nearly dry** (rule to size it by: driving rain at 60° to the
+   horizontal, an overhang of depth d shelters about 1.7 · d of wall, S.1) - but a deep eave *without gutter* blows
    roof water onto the wall = concentrated damage, worse than rain. Interrupt the water film:
    gutters, drip edges (Abreiß-/Tropfkante), sharp arrises under mouldings; concentrated
    discharge (gargoyles/waterspouts) must throw clear of the facade, downpipes to ground.
@@ -1196,7 +1197,8 @@ Each line below was read again in the source books (`sources/`) in October 2026,
 place it stands at. "Confirmed" means: a dated book prints the rule and names the standard
 or law; it does not mean the current edition of that standard was opened. State law
 (LBO) and local rules still override; `VERIFY` tags elsewhere in this skill stay in force
-unless a line here names the edition.
+unless a line here names the edition. Where a line here differs from a section of this
+skill, that section was corrected and names the line ("S.n"); the appendix governs.
 
 ### S.1 Roof overhang against driving rain
 
@@ -1205,7 +1207,26 @@ unless a line here names the edition.
   overhang of depth d shelters the wall over a height of d · tan 60° ≈ 1.7 · d below it. —
   *Kompendium Nachhaltige Bauwerke* 12.5.3.3.
 
+- Confirmed (DIN 68800-1:2011-10, 3.22, "unter Dach"): a timber member counts as protected
+  from the weather by a roof overhang when the line from the front edge of the cover to the
+  lower edge of the member makes at most 60° with the horizontal. — *Ingenieurholzbau* 5.2.3.
+  The same angle as the rule of thumb above, here with a standard behind it.
+
 ### S.2 Stack vent through the roof
 
 - Confirmed: the mouth of a drainage vent is at least 15 cm above the roof, measured
   vertically from the roof surface; more where snow lies. — *Gebäudetechnik* 3.1.9.
+
+### S.3 Defaults of this library for a simple house model
+
+**Not from a book.** These are choices of this library, made so that a simple house can be
+modelled at all where the literature gives a frame and no number. Tier T4, massing only:
+any plan clause, product sheet, engineer's or carpenter's figure replaces them, and nothing
+here is a design value.
+
+- Pitch of the roof of a simple house: 35°. It lies inside the usual bands of tile coverings
+  and inside the yield band for PV to the south (`building-planning-spatial` §7.1); the plan
+  clause of the B-Plan overrides it.
+- Overhang at eaves and verge: 0.50 m. By S.1 it shelters about 0.85 m of wall below it.
+- The pitched roof is drawn as one plate 0.30 m thick (rafters, battens, covering, lining):
+  a body for volume and clashes, not a build-up.

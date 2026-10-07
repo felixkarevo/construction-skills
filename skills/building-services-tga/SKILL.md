@@ -430,6 +430,10 @@ Anchors: reference COP ≈ 3.3 (air) / 4.2 (brine); SPF/JAZ incl. auxiliaries �
 3.6–4.2, air 2.7–3.2. Flow temperature is the annual lever: FBH 35/28 or oversized radiators (§9.1/§9.2)
 buy the JAZ; every −1 K lift ≈ +2.5 % JAZ ⚠ VERIFY.
 
+Generator output: Φ_SU = Φ_HL + Φ_DHW + Φ_AS, the heat load plus an allowance for hot water
+(sized after DIN 4708-1 to -3) plus other systems such as air heating coils (S.6). A model that
+sizes on Φ_HL alone must say that the hot water allowance is missing.
+
 | Mode | Changeover θ | HP size | Boiler size | HP heat share |
 |---|---|---|---|---|
 | **Monovalent** | none (to ≈ −16 °C without back-up) | 100 % | — | 100 % — realistic only with ground/water source; air mono needs > 3× exchanger, uneconomic |
@@ -604,7 +608,8 @@ Workplaces (ASR A3.6): one-sided depth ≤ 2.5 h (≤ 10 m if h > 4 m), cross �
 Air-change need: living/bed **0.5–1.0 h⁻¹**, internal bath/WC **4–5 h⁻¹**, kitchen shock to 25 ⚠ VERIFY
 (conversion per room volume; DIN 1946-6 tables govern). Tiers: **reduction (Feuchteschutz, 24 h) /
 nominal / intensified**; humidity-demand control allowed. Windowless rooms per **DIN 18017-3**: kitchen
-basic 40–60 m³/h (intensive ≈ 200), bath 20–30 m³/h ⚠ VERIFY anchors. Systems: **Abluft** (extract +
+basic 40–60 m³/h (intensive ≈ 200), bath and WC room 40 m³/h running continuously or 60 m³/h with
+demand control (S.5; the 20–30 m³/h printed here before was too low). Systems: **Abluft** (extract +
 inlet vents; cheap; extract-air HP makes it a heat source), **ZAB central with plate WRG ≥ 80 %** (90 %
 = Passivhaus class; EFH balance example ≈ 125 m³/h), **decentral alternating units** (regenerative core,
 ~40 s cycles; example unit 990×322×762 mm ≈ 120 m³/h ⚠ VERIFY vendor) = the retrofit standard. Transfer
@@ -704,6 +709,7 @@ stacks ≤ 100, DN70 (125), DN80 (150), DN100 (200).
 | Vented branch (EAL/SAL) | **0.5 %** | the workhorse value |
 | **Unvented** branch | **1.0 %**, run ≤ 4 m, ≤ 3×90° | 1 WC + basin only, ≤ 4 m drop, straight to under-drain |
 | Grundleitung / Sammelleitung inside | 0.5 % | fill ≤ 0.5 (0.7 after pump inflow) |
+| Site drain outside the building | ≥ DN 100, slope ≥ 1/DN (DN 100: 1.0 %) | S.1; a ground drain that leaves the house is drawn at 1.0 % throughout |
 | DN90 main with 4.5–6 l WCs | 1.5 % | low-flush needs velocity |
 | Outdoor rain to ≥ DN250 | 1/d_i | ≤ DN200: 0.5 % at fill 0.7 |
 | Velocity window | ~0.7–2.5 m/s | > 2.5 scours, < self-cleansing silts |
@@ -713,7 +719,8 @@ drops; no back-fall, no sags — uniform slope, water-test before closing the fl
 
 ### 12.4 Venting, stack feet, traps, cleanouts
 
-- Stack vented **through the roof**; termination ≥ 1 m above openings to occupied rooms or ≥ 2 m
+- Stack vented **through the roof**, its mouth at least 15 cm above the roof surface, measured
+  vertically, more where snow lies (S.1); termination ≥ 1 m above openings to occupied rooms or ≥ 2 m
   horizontally; vent bends from ~6 storeys at 45°; vent offsets sloped (drip!). Loop/re-ventilation
   (Umlüftung/ Sekundärlüftung) for long or heavily loaded stacks; hotels may merge vents.
 - **Stack base:** ≥ 4 storeys or ≥ 10 m drop → spur piece ≥ 25 cm between the bend and the horizontal,
@@ -1525,7 +1532,7 @@ EMITTERS (§9)  FBH ≤100 W/m² · surf ≤29 °C · loop ≤100 m ≤20 m² ·
 W551 (§10)  grow 30–45 · stop ≥50 · kill min 60–65/sec ≥70 · set 60 never <50 · Großanlage >400 l or
   >3 l lines → ≥60 always · circ ≤5 K, 8 h sleep · CW ≤25 °C · 300 l HP tank · 30–60 l/p·d @60
 VENT (§11)  <1000 ppm ok · Δ550→10 Δ800→7 Δ1350→4 l/s·P · min 4 l/s·P · 20 l/h·P · windowless 18017
-  (K 40–60/200 · bath 20–30 m³/h) · 1946-6 tiers · ZAB WRG ≥80–90 % SFP ≤500 · A=V̇/v · LP 4–12 m/s ·
+  (K 40–60/200 · bath 40 m³/h continuous, 60 demand) · 1946-6 tiers · ZAB WRG ≥80–90 % SFP ≤500 · A=V̇/v · LP 4–12 m/s ·
   flat-duct double area · flex ≤Ø400/20×Ø · EN 1366-2 damper per compartment · AHU room F90
 DRAINAGE (§12)  Q=K√ΣDU K 0.5 dwelling · vented 0.5 % unvented 1.0 % · DN100 4.0 l/s · WC6l 2.0 DU ·
   spur ≥25 cm (≥4 sto/10 m) · bypass >8 sto · vent ≥1 m/2 m · trap ≥50 · cleanout 30–40 cm · no 90°
@@ -1570,7 +1577,8 @@ Each line below was read again in the source books (`sources/`) in October 2026,
 place it stands at. "Confirmed" means: a dated book prints the rule and names the standard
 or law; it does not mean the current edition of that standard was opened. State law
 (LBO) and local rules still override; `VERIFY` tags elsewhere in this skill stay in force
-unless a line here names the edition.
+unless a line here names the edition. Where a line here differs from a section of this
+skill, that section was corrected and names the line ("S.n"); the appendix governs.
 
 ### S.1 Drainage (DIN EN 12056-2, DIN 1986-100)
 
@@ -1639,6 +1647,23 @@ unless a line here names the edition.
 
 - Typical: the connected load of a heat pump heating system of a one- or two-family house
   as a rule does not exceed 6 kW. — *Gebäudetechnik* 4.2.5.
+- Confirmed: the output of the heat generator is Φ_SU = Φ_HL + Φ_DHW + Φ_AS: the standard heat
+  load, where needed the extra output for hot water (sized after DIN 4708-1 to -3) and that
+  for other systems (air heating coils, process heat). With static heating and natural
+  ventilation the standard heat load alone is the basis. The book gives no number for
+  Φ_DHW. — *Gebäudetechnik* 4.1.1.
 - Typical, new dwellings: heat load 10 to 70 W/m² (passive house to legal minimum); hot
   water share 12.5 kWh/(m²a). — *Gebäudetechnik* Tab. 8.1; *Allgemeine Grundlagen des
   Bauwesens* 2.14.6.
+
+### S.7 Defaults of this library for a simple house model
+
+**Not from a book.** These are choices of this library, made so that a simple house can be
+modelled at all where the literature gives a frame and no number. Tier T4, massing only:
+any plan clause, product sheet, engineer's or carpenter's figure replaces them, and nothing
+here is a design value.
+
+- Outdoor unit of an air heat pump: 0.30 m of free air between unit and house wall. The
+  maker's sheet decides; the distance to the boundary follows the noise check of §19.3.
+- Stack vent drawn 0.50 m above the roof surface (the least is the 15 cm of S.1).
+- Inspection chamber drawn 1.50 m outside the outer wall.

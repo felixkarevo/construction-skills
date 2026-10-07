@@ -385,7 +385,7 @@ which route (with/without covering, single/double-sided exposure) you used.
 ### 7.1 When a Brandwand is required (digested)
 
 - As **Gebäudeabschlusswand** (building-end wall): where the gable stands close to the
-  boundary — digested threshold: boundary distance < 2.5 m unless ≥ 5 m of the
+  boundary — threshold of MBO § 30 (2) Nr. 1, read again in two books (S.1): boundary distance < 2.5 m unless ≥ 5 m of the
   adjoining wall is secured (NRW-flavoured — VERIFY per Land; many Länder instead
   require fb outer wall + no openings).
 - To subdivide into **Brandabschnitte**: maximum compartment length **40 m**
@@ -862,7 +862,7 @@ provided 6·2.11 = 12.66 ✔; supply air ≥ 12 m² in lower third on ≥ 2 side
 
 | Type (typical GK) | Loadbearing OG / KG | Slabs | Stair | Corridor | Special triggers |
 |---|---|---|---|---|---|
-| Single house (GK1) | none / F30-B | none / F30-B | none required | none required | harte Bedachung or 12/15/24 m distances; gable → Brandwand if boundary < 2.5 m (VERIFY Land); loft ladder ok |
+| Single house (GK1) | none / F30-B | none / F30-B | none required | none required | harte Bedachung or 12/15/24 m distances; gable → Brandwand if boundary < 2.5 m (MBO § 30, S.1; VERIFY Land); loft ladder ok |
 | Two-family house (GK2) | F30-B all / F30-B | F30-B (attic if rooms above) | F30 enclosure variant, no shaft needed ≤ rules | only basement big units | second escape per NE (appliance ≤ 8 m or 2nd stair) |
 | Row/duplex terraces (GK2–3) | party wall = Richtungswand/Brandwand route: inner fh + outer fb, or full fb | FB between units on slab line | per unit | — | roof continuity at party line; openable lights ≥ 2 m from wall |
 | Multi-unit ≤ 7 m (GK3) | F30-B / F90-AB | F30 / F90 KG | F30-B shaft, fh walls, 0.5 m² vent/floor, T30-RS to KG | required > 4 dwellings, 30 m smoke sections, F30 walls (KG F90) | NE > 400 m² pushes GK5! |
@@ -1014,7 +1014,8 @@ Each line below was read again in the source books (`sources/`) in October 2026,
 place it stands at. "Confirmed" means: a dated book prints the rule and names the standard
 or law; it does not mean the current edition of that standard was opened. State law
 (LBO) and local rules still override; `VERIFY` tags elsewhere in this skill stay in force
-unless a line here names the edition.
+unless a line here names the edition. Where a line here differs from a section of this
+skill, that section was corrected and names the line ("S.n"); the appendix governs.
 
 ### S.1 Fire wall at the boundary
 

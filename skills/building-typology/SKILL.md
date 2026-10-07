@@ -573,7 +573,7 @@ Typology and structure are not separable: **the type selects the load-bearing lo
 
 ### 11.3 Storey heights (T4 design targets + T1 minima)
 
-- **Min headroom for Aufenthaltsräume is LBO territory (pattern: 2.50 m; Länder relax to 2.30–2.40 in defined cases — VERIFY)**; sloped-ceiling DG counted by surface/height fractions (Bremen-style full-height rules differ — VERIFY).
+- **Min headroom for Aufenthaltsräume is LBO territory (pattern: 2.50 m; Länder relax to 2.30–2.40 in defined cases — VERIFY; MBO: at least 2.40 m, see `building-planning-spatial` S.1)**; sloped-ceiling DG counted by surface/height fractions (Bremen-style full-height rules differ — VERIFY).
 - Comfortable German practice: **floor-to-floor 2.75–2.90 m for MFH** (2.60 clear + 15–25 cm construction: screed + HI + install level), **EFH 2.70–2.80**; senior/funding product and any barrierefrei claim → plan the install level and ceiling heights for it once, not by accident; Gewerbe EG 3.5–4.5 (Section 7).
 - Timber: +1–2 cm per exposed-soffit honesty; concrete: the flat-slab temptation eats the install zone — coordinate with `openings-windows-doors` reveals and `building-physics-thermal-moisture` surface-temperature margins at slab edges.
 

@@ -36,7 +36,7 @@ The repository also bundles a real, verifiable demo: a complete residential BIM 
 
 **Reading order for a project:** `simple-first-building` (tier + ladder profile as contract text!) → `building-regulations-permits` + `building-planning-spatial` → `building-typology` → `structural-systems` → physics skills as governing constraints → detailing/materials skills → `building-services-tga` (+ `electrical-installations` for ELT depth) + `construction-scheduling-site` + `cost-management-din276` → `construction-freecad-bim` (+ `bim-management` for data discipline) → verification per `structural-analysis`.
 
-Every skill carries a **reality check** (what the output may and may not be used for) and an **evidentiary tier system** that separates law (`GEG`, `MBO`/`LBO`, Eurocode + NA as recognized rules of technique), standards-of-practice and tagged `VERIFY` placeholders — so a planning placeholder is never confused with a binding figure. Values that depend on jurisdiction or edition are explicitly marked for confirmation.
+Every skill carries a **reality check** (what the output may and may not be used for) and an **evidentiary tier system** that separates law (`GEG`, `MBO`/`LBO`, Eurocode + NA as recognized rules of technique), standards-of-practice and tagged `VERIFY` placeholders — so a planning placeholder is never confused with a binding figure. Values that depend on jurisdiction or edition are explicitly marked for confirmation. Ten skills end with an **Appendix S: Source Check** (sections `S.1`, `S.2`, …): figures read again in the source books, with book and place; they govern over older figures, and library defaults that no book gives are labelled as such (see the router, [`SKILL.md`](SKILL.md)).
 
 ## The example model (`example/`)
 

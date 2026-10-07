@@ -4,7 +4,7 @@ description: >
   Stairs, ramps and lifts (Treppen, Rampen, Aufzüge) for DACH design — stair
   set-out from OKFF-to-OKFF height, Steigungsverhältnis 2s+a=60–65 cm
   (Schrittmaß/Blondel), tread ≥26 cm, rise ≤19(–21) cm as German practice
-  values (VERIFY against DIN 18065 current), lichte Durchgangshöhe ≥2.10 m,
+  values (VERIFY against DIN 18065 current), lichte Durchgangshöhe ≥2.00 m (design 2.10 m),
   floor-opening length algorithm, Gehlinie winder geometry with derived
   minimum inner radius, flight/Podest/door rules (no door onto flight, Podest
   ≥ door width, escape width ≥1.00 m per digested MBO/LBO), type selection
@@ -144,7 +144,7 @@ STEP 5 — Straight-flight going (Auftrittslänge) = (n − 1) × a
 STEP 6 — Fits with ≥ 900–1000 mm Podest at each end? → gerader Lauf.
     Else → §8 selection tree.
 STEP 7 — Headroom / floor-opening check (§5). lichte Durchgangshöhe
-    ≥ 2.10 m [VERIFY DIN 18065]. Skipping this is how you get a 1.8 m soffit
+    ≥ 2.00 m by MBO and DIN 18065 (S.2); design to 2.10 m. Skipping this is how you get a 1.8 m soffit
     over the fourth-from-top step.
 STEP 8 — Flight rules (§5.4, §6): ≤ ~18 rises per Lauf [VERIFY]; Podest
     depth ≥ stair width and ≥ door leaf width; no door onto the flight [T3].
@@ -237,8 +237,8 @@ never instead of it.
 Headroom is measured **vertically from the Setzgerade (line joining the step
 nosings)** to the nearest obstruction — slab soffit, Unterzug, duct, fitting,
 soffit of the Lauf above — never perpendicular to the flight, never from the
-back of a tread. At Podeste: from the finished surface. Floor: **2.10 m
-[VERIFY DIN 18065]**; design to 2.10 m. Routinely-hit obstructions: opening-edge
+back of a tread. At Podeste: from the finished surface. Floor: **2.00 m
+(MBO and DIN 18065, S.2)**; design to 2.10 m. Routinely-hit obstructions: opening-edge
 downstand beam, soffit of the upper Lauf (stacked straight runs), mid-Podest
 soffit of a dogleg with circulation beneath, Lüftungsduct/Fallleitung above
 the Treppenraum, pendant lights, Dachausstieg head.
@@ -296,7 +296,7 @@ swing the door away.
 
 | Rule | Value | Basis |
 |---|---|---|
-| Max rise between Podeste | keep ≤ ~18 steps (≈ 3.3 m) | [T4 — VERIFY exact Laufhöhe in DIN 18065] |
+| Max rise between Podeste | at most 18 steps (≈ 3.3 m), at least three | confirmed in a book (S.2) |
 | Min "flight" | < 4 steps = stumbling hazard | practice |
 | Antritt/Austritt | unmistakable: same rise, contrast nosing, good light | practice |
 
@@ -788,7 +788,8 @@ The core (Treppe + Aufzug + Schächte) is fixed **before** apartment layouts:
 | Handrail height | **90 cm** above the Setzgerade; Geländer 110 cm at large fall heights | [T4 German practice; VERIFY vs DIN 18065/LBO — old generic band was 864–965 mm] |
 | Graspable | circular **30–45 mm**, wall gap ≥ 40–50 mm, continuous, returned at ends | [T4; old skill 32–51 mm carried] |
 | Flat top rail ≠ Handlauf | 100×50 or 50 mm square cap not graspable — add a separate 40 mm grab rail | the most-violated rule |
-| Geländer height design | ≥ 90 cm; **design 100 cm throughout** so one detail covers Lauf + Podeste | [T4 default; VERIFY] |
+| Geländer height design | ≥ 90 cm; **design 100 cm throughout** so one detail covers Lauf + Podeste | MBO § 38: 0.90 m for a fall height of 1 to 12 m, 1.10 m above; BGI 561: 1.00 m (S.3). State law decides |
+| Window parapet (Brüstung) | ≥ 0.80 m up to 12 m fall height, ≥ 0.90 m above | MBO § 38 (S.3); state law decides |
 | Openings | **no 120 mm sphere** [VERIFY vs DIN 18065; old 100 mm sphere carried]; design baluster gaps ≤ 100 mm; **vertical bars only** | child head rule |
 | Bottom triangle | rail ≤ 100 mm above nosing line or infill down to it | practice |
 | Extensions | +30 cm beyond Antritt/Austritt (altengerecht) | [T4] |
@@ -1099,7 +1100,8 @@ Each line below was read again in the source books (`sources/`) in October 2026,
 place it stands at. "Confirmed" means: a dated book prints the rule and names the standard
 or law; it does not mean the current edition of that standard was opened. State law
 (LBO) and local rules still override; `VERIFY` tags elsewhere in this skill stay in force
-unless a line here names the edition.
+unless a line here names the edition. Where a line here differs from a section of this
+skill, that section was corrected and names the line ("S.n"); the appendix governs.
 
 ### S.1 DIN 18065 — limits by building (table as printed in the book)
 

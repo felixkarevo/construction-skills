@@ -466,6 +466,8 @@ Restraint from slabs/beams at top and bottom; h = clear storey height:
 Bearing-depth conditions (digest set): a >= 100 mm for t < 125 mm; a >= 2/3 t
 for t >= 125 mm; simplified method needs a >= max(2/3 t; 85 mm) and t >= 36.5 cm
 exception rules — read NA 5.2 with the applicability list before use. **[VERIFY]**
+Read again in two books (S.2): the floor of the simplified method is a >= 0.5 t, at least
+100 mm (t = 365 mm: a >= 0.45 t); 2/3 t is the stricter rule and stays the drawing default.
 
 ### 5.3 Reduction factor Phi (simplified NA tables)
 
@@ -1347,7 +1349,8 @@ Each line below was read again in the source books (`sources/`) in October 2026,
 place it stands at. "Confirmed" means: a dated book prints the rule and names the standard
 or law; it does not mean the current edition of that standard was opened. State law
 (LBO) and local rules still override; `VERIFY` tags elsewhere in this skill stay in force
-unless a line here names the edition.
+unless a line here names the edition. Where a line here differs from a section of this
+skill, that section was corrected and names the line ("S.n"); the appendix governs.
 
 ### S.1 Simplified method (DIN EN 1996-3/NA:2019-12) — application limits
 

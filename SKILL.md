@@ -47,6 +47,30 @@ build-up, a system, or a standard tier, not just reading off a table.
    `skills/*/SKILL.md` frontmatter (one paragraph each) before picking —
    they are dense and specific, cheaper to skim than to guess wrong.
 
+## Source Check appendices ("S.n") — where a number was read again
+
+Ten skills end with an **Appendix S: Source Check** (`building-planning-spatial`,
+`masonry-construction`, `building-physics-thermal-moisture`, `building-services-tga`,
+`electrical-installations`, `structural-systems`, `timber-steel-design`,
+`fire-protection-building`, `roofing-waterproofing`, `stairs-vertical-circulation`). Its
+sections are numbered `S.1`, `S.2`, …; other skills point to them by name
+(`structural-systems` S.1).
+
+- A line marked **Confirmed** was read again in a dated source book, with the place it
+  stands at and the standard or law it prints. It governs over an older figure in the body
+  of the skill; the body was corrected and names the line.
+- A line marked **Typical**, **Practice** or **Rule of thumb** is what a book reports, not a
+  rule.
+- A section headed **Defaults of this library** is not from a book: it holds the choices
+  made so that a simple house can be modelled where the literature gives a frame and no
+  number (roof pitch, overhang, rafter spacing). Treat them as T4 massing values and replace
+  them with any plan clause, product sheet or engineer's figure.
+- Software that derives its values from this library quotes the skill passage beside each
+  value; a value without a passage must be marked as having no source here. Add a missing
+  value to the owning skill first (book line or library default), then use it.
+- State law (LBO), the B-Plan and the current edition of a standard still override
+  everything; `VERIFY` tags stay in force unless a Confirmed line names the edition.
+
 ## Lookup table: task/keyword → skill
 
 | If the task involves... | Use skill |

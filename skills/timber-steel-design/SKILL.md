@@ -226,7 +226,7 @@ wind NA 1.0, medium 0.8, very short 1.1).
 | Truss (steel) | depth ≈ L/10 … L/16 | 10 m → >100 m |
 | Timber binder (truss) | depth ≈ L/6 … L/12 | 8-25 m |
 | Glulam beam | h ≈ L/15 … L/20 | ~20 m practical with restraint |
-| Timber joist | h ≈ L/18 … L/24 | 3-6 m; box/trough elements to 14 m |
+| Timber joist | h ≈ L/18 … L/24 | 3-6 m; box/trough elements to 14 m; rafters and purlins of a house: spacings and preferred sections in S.1 to S.3 |
 | CLT one-way floor | t ≈ L/30 … L/35 | 3-6 m (5-ply typical) |
 
 > ⚠ **VERIFY** at analysis: at the ends of every band, buckling, LTB, deflection,
@@ -1919,7 +1919,8 @@ Each line below was read again in the source books (`sources/`) in October 2026,
 place it stands at. "Confirmed" means: a dated book prints the rule and names the standard
 or law; it does not mean the current edition of that standard was opened. State law
 (LBO) and local rules still override; `VERIFY` tags elsewhere in this skill stay in force
-unless a line here names the edition.
+unless a line here names the edition. Where a line here differs from a section of this
+skill, that section was corrected and names the line ("S.n"); the appendix governs.
 
 ### S.1 Purlin roof of a house — spacings
 
@@ -1943,3 +1944,17 @@ unless a line here names the edition.
   of at least 6 cm. — *Zahlentafeln für den Baubetrieb* 1.6.2 (p. 32).
 - Typical: for insulation between and under the rafters choose a rafter depth of 16 to
   20 cm. — *Sanierung von baulichen Anlagen* 4.3.5.2.
+
+### S.3 Defaults of this library for the purlin roof of a simple house
+
+**Not from a book.** These are choices of this library, made so that a simple house can be
+modelled at all where the literature gives a frame and no number. Tier T4, massing only:
+any plan clause, product sheet, engineer's or carpenter's figure replaces them, and nothing
+here is a design value.
+
+- Rafter spacing 0.80 m: between the 60 cm of the example and the 1.25 m bracing limit of S.1.
+- Rafter depth from the joist ratio of §2.3, rounded up in steps of 2 cm from 16 cm (the
+  depths of the row of width 8 in S.2).
+- Purlin of width 12 cm: depth from the glulam ratio of §2.3, at least 16 cm, rounded up in
+  steps of 4 cm (the row of width 12 in S.2).
+- Posts 12/12 cm and eaves plate (Fußpfette) 12/12 cm: a preferred section of S.2.

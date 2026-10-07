@@ -100,7 +100,7 @@ System        load-bearing masonry (tragende Wand): 30–36.5 cm KS/HLz (24–30
               internal bearing 11.5–15 cm (≤3 kN/m walls → 1.0 kN/m² surcharge covers them)
 Floors        Holzbalkendecke or RC 20–22 cm · Roof: trusses/rafters on plate, tied (§5.6)
 Bracing       walls both directions + floor discs · Ringanker every floor + gable ≥ 70 kN (NA)
-Foundation    strip ~0.8 × 0.3 below frost (0.8–1.2 m, VERIFY region) · storey 2.70–2.90 m
+Foundation    strip ~0.8 × 0.3 below frost (≥ 0.80 m by DIN 1054, S.1; practice 0.8–1.2 m, VERIFY region) · storey 2.70–2.90 m
 ```
 
 **Multi-storey residential (MFH), 4–6 storeys, parking basement, spans 5–7 m:**
@@ -1083,7 +1083,7 @@ Geotechnical report exists? ──NO──► STOP. DIN 4020 exploration (GK 1�
 
 ### 12.2 The ground is also a load
 
-Ground moves (frost heave where water can't drain — found below frost, DACH ~0.8–1.2 m VERIFY
+Ground moves (frost heave where water can't drain — found below frost, at least 0.80 m by DIN 1054 (S.1), DACH practice ~0.8–1.2 m VERIFY
 region, or drained/filtered), pushes (at-rest/active/passive earth pressure →
 `geotechnics-foundations`), and loses strength when saturated. σz spreads ~1:1.5–1:2 bulbs; soft
 lenses → tilt; settlement = immediate + consolidation + creep.
@@ -1519,7 +1519,8 @@ Each line below was read again in the source books (`sources/`) in October 2026,
 place it stands at. "Confirmed" means: a dated book prints the rule and names the standard
 or law; it does not mean the current edition of that standard was opened. State law
 (LBO) and local rules still override; `VERIFY` tags elsewhere in this skill stay in force
-unless a line here names the edition.
+unless a line here names the edition. Where a line here differs from a section of this
+skill, that section was corrected and names the line ("S.n"); the appendix governs.
 
 ### S.1 Frost depth of a foundation
 
@@ -1527,6 +1528,12 @@ unless a line here names the edition.
   surface to the footing base is at least 0.80 m (DIN 1054). — *Formeln und Tabellen
   Bauphysik* 2.6.6 (p. 138); *Wendehorst Bautechnische Zahlentafeln* 14.7.1; *Werkstoffe im
   Bauwesen* 1.6.1 (p. 170).
+- Method (DIN EN ISO 13793): the frost penetration depth of undisturbed ground is taken from
+  national maps or tables, or estimated as H0 = √(7200 · Fd · λf / (L + C · θe,m)), with Fd the
+  design frost index in K·h, λf = 2.5 W/(mK), L = 150·10⁶ J/m³ and C = 3·10⁶ J/(m³K) where
+  nothing better is known, θe,m the mean annual outside air temperature. — *Formeln und
+  Tabellen Bauphysik* 2.6.6 (p. 140), Gl. (2.6.6-5). Read the root in the printed formula
+  before use (VERIFY: the scan does not show it clearly).
 - Practice: often set to a minimum depth of 100 cm. — *Building Construction Design: From
   Principle to Detail*, vol. 2, 6.2.4.2. Buried water lines lie deeper (1.0 to 1.8 m cover).
 
@@ -1544,3 +1551,14 @@ unless a line here names the edition.
   vol. 2, 4.2.1.1.4.
 - Reading: the schedule of §4.2 (20 cm to 4.5 m, 24 cm to 6.5 m) is thicker than these
   and stays the default: it also covers sound and fire without a check.
+
+### S.4 Defaults of this library for a simple house model
+
+**Not from a book.** These are choices of this library, made so that a simple house can be
+modelled at all where the literature gives a frame and no number. Tier T4, massing only:
+any plan clause, product sheet, engineer's or carpenter's figure replaces them, and nothing
+here is a design value.
+
+- Which wall bears, where no engineer has said: a slab field spans the short way of the room
+  below it (§3.2), and a wall counts as a support of that field when it runs along at least
+  half (0.5) of the field's edge. The other walls are drawn as partitions.

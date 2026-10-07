@@ -221,7 +221,7 @@ Dynamic-probe → static-cone conversion (Rammsondierung FS→qc factors, digest
 - Read a **standpipe over a season**, not "water struck at" in a single borehole. Design water level = highest seasonal level; perched water (Stauwasser on a clay lens) presses on walls and slabs even when the main table is far below.
 - Buoyancy: below the table use γ′ = γ_sat − γw with γw = 9.81 ≈ 10 kN/m³. This roughly halves the γ·b·Nγ term in DIN 4017 — the tabular −40 % water reduction of §4.3 is its practical cousin.
 - Fluctuating level: the permanent low level is a permanent action; fluctuation above it is variable (EAU/EA logic).
-- Freezing: water in the freeze zone generates Frosthebung (frost heave). Footings in F2/F3 soil (§11.2) must sit below the seasonally frost-affected zone; the depth is regional (local practice / authority guidance — commonly assumed ~0.5–0.8 m in temperate lowland Central Europe, **not fixed in the digested sources — VERIFY**), or frost is neutralised by an F1 replacement layer.
+- Freezing: water in the freeze zone generates Frosthebung (frost heave). Footings in F2/F3 soil (§11.2) must sit below the seasonally frost-affected zone; the depth is regional (local practice / authority guidance — at least 0.80 m from the frost-exposed surface to the footing base by DIN 1054 unless frost safety is proven otherwise, read again in three books: `structural-systems` S.1; practice often 1.0 m, more in cold regions — VERIFY region), or frost is neutralised by an F1 replacement layer.
 - Underground geometry: a basement below the table raises the permanent questions — UPL (uplift), HYD (hydraulic heave at the pit base), seepage past the wall (§8.6, §9.4, §11.1).
 
 ### 2.6 kF classes (permeability, DIN 18130-1)
@@ -488,7 +488,7 @@ pattern, not only of the soil.
 
 | Rule | Value / source |
 |---|---|
-| Below the frost-affected zone in F2/F3 soil (or neutralised by F1 replacement layer) | regional frost depth — local practice/authority (commonly ~0.5–0.8 m temperate lowland; VERIFY) — §11.2 |
+| Below the frost-affected zone in F2/F3 soil (or neutralised by F1 replacement layer) | regional frost depth — local practice/authority (at least 0.80 m by DIN 1054, `structural-systems` S.1; VERIFY region) — §11.2 |
 | Fully below topsoil, humus, peat, recent uncontrolled fill (Auffüllung) | always |
 | Minimum edge embedment below finished ground | ~0.5 m (splash, frost, mechanical) (planning value) |
 | Adjacent shallower trench/service invert | keep the footing base above a 1V:2H line from the trench bottom (loses lateral support below it) |

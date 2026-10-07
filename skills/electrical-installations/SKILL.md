@@ -339,7 +339,8 @@ seal** — all EVU-routed, baulast owner.
 Order: service cable → **HAK/NHN (network fuses NH 3-pole or D0/E27 ⚠ TAB)** → house cable (typically
 NYY 4×25…50 mm² CU ⚠ size by utility on load, common 25–35 mm² for EFH) → **Zählerschrank/Platz
 (DIN 43870-1 layout, niche DIN 18013: meter centre 1.10–1.85 m per TAB wording ⚠ vs DIN 18013
-"Sturzhöhe 1.80 m, Nischentiefe 20–40 cm, Breite ≥ 80 (100) cm" readings differ by edition)** →
+"Sturzhöhe 1.80 m, Nischentiefe 20–40 cm, Breite ≥ 80 (100) cm" readings differ by edition; both
+readings confirmed in a book, S.4)** →
 main switch (SH load-break or Trenner; 63 A) → protective devices → **Wohnungs-/Hauptverteilung**.
 Location rules: HAK/Zähler not in garages, wet rooms, ≥50 kW boiler rooms, explosion-risk rooms,
 living rooms or inside flats (MFH), over stairs; accessible, dry, ~0–30 °C, no through-route.
@@ -362,7 +363,8 @@ reserve §13.6; separate meter for HP interruptible tariff (Rundsteuer TRE spot)
 **not behind a shared RCD group** (freezer must survive a bathroom trip), HP, lift, sewage pump,
 garage/exterior). Every lighting+socket circuit ≤ **16 A = 3.68 kW**; fixed-device connection box ≥
 3.7 kW is 3-pole (or perilex 400 V socket as the exchangeable variant). Socket counts per room by
-equipment level: living 5/**10**/12 · kitchen ≥5 double (DIN 18015 minimums), bed/child/work per room
+equipment level: living 5/**10**/12 · kitchen ≥5 double (DIN 18015 minimums; the full room table of
+DIN 18015-2 with bedroom, hall and utility room is S.1), bed/child/work per room
 (1/2/3 lighting outlets etc.), bath 2 sockets (one may share mirror luminaire), + telecom/data
 counts §13. RAL-RG 678: level 1 = DIN minimum, 2 = standard, 3 = comfort; **\*plus = bus-ready
 (DIN 18015-4 functional areas: switching/dimming, scenes, blind control, HVAC control, security)** —
@@ -1248,7 +1250,8 @@ Each line below was read again in the source books (`sources/`) in October 2026,
 place it stands at. "Confirmed" means: a dated book prints the rule and names the standard
 or law; it does not mean the current edition of that standard was opened. State law
 (LBO) and local rules still override; `VERIFY` tags elsewhere in this skill stay in force
-unless a line here names the edition.
+unless a line here names the edition. Where a line here differs from a section of this
+skill, that section was corrected and names the line ("S.n"); the appendix governs.
 
 ### S.1 DIN 18015-2 minimum equipment per room (level 1 of RAL-RG 678)
 
@@ -1268,6 +1271,10 @@ unless a line here names the edition.
 
 — *Gebäudetechnik* Tab. 6.6 (after HEA), Tab. 2.3 and Tab. 2.9. This fills the counts
 §5.3 left open for bedrooms, halls and utility rooms.
+
+Notes to the table, as printed: a room with a dining corner gets one socket and one outlet
+more; the sockets at beds and at the work surfaces of kitchens, cooking niches and utility
+rooms are at least double sockets and count as one each.
 
 ### S.2 Circuits and protection
 
@@ -1291,3 +1298,12 @@ unless a line here names the edition.
 - Confirmed (DIN VDE 0100-701): in zones 0 to 2 of a tub or shower, as a rule up to 60 cm
   beside the tub and up to 2.25 m high, switches, sockets, junction boxes and concealed
   cables are not allowed. — *Gebäudetechnik* 6.2.
+
+### S.4 Meter place
+
+- Confirmed: meter places are laid out after DIN 43870-1; the model wording of the TAB puts
+  the middle of the meter at least 1.10 m and at most 1.85 m above the floor; DIN 18013
+  (niches for meter places) sets a lintel height of 1.80 m, niche depth 20–40 cm, niche
+  width at least 0.80 m (1.00 m recommended); meter cabinets are at most 22.5 cm deep. —
+  *Gebäudetechnik* 6.2. The two heights are two rules, not two editions: agree the place
+  with the network operator.

@@ -31,6 +31,12 @@ one-line descriptions.
   worked examples) over prose description; no vendor/agent branding inside
   skill content (the library is agent-neutral — OpenCode, Claude Code, Codex,
   Cursor, etc. all load the same files).
+- **Appendix S (Source Check).** A skill may end with "Appendix S: Source Check", sections
+  `S.1`, `S.2`, …: values read again in the books under `sources/`, each with book and
+  place. When such a line changes a figure, correct the body section too and let it name
+  the line; never leave the body and the appendix in disagreement. A section "Defaults of
+  this library" inside the appendix holds choices that are **not** from a book and says so.
+  The root router explains the wording (Confirmed / Typical / Defaults).
 - **Numbers are jurisdiction- and edition-sensitive.** Anything tagged
   `VERIFY` in a skill is a placeholder that must be checked against the
   current standard text or the local Bundesland/B-Plan before real use —

@@ -97,7 +97,7 @@ subsidised/rental stock, programme definitions. State the tier when quoting.
 | **T1** | **Legally binding for THIS parcel** | Bebauungsplan (text + plan), örtliche Bauvorschriften, Erschließungsvertrag; state LBO | Enforceable; approval fails against it | GRZ, GFZ, OWZ, Bauweise, Zahl der Vollgeschosse, Wandhöhe, Baufenster, setbacks, Stellplatzsatzung |
 | **T1-V** | **Legally binding in kind, but UNVERIFIED placeholder in this file** | Same category, but this document could not check the figure against a specific B-Plan/LBO text | **Planning placeholder only. Confirm from the parcel's own B-Plan extract / state LBO before anything beyond first-pass massing** | Everything in Sections 1.6, 2, 5.1 that carries a VERIFY tag |
 | **T2** | **Codified technical rules (DIN / Eurocode / MBO §-level)** | MBO §§ (Abstandsflächen, Treppen §35), DIN 4108, DIN 4109, DIN 18040, DIN 1986 | Law by reference (Verwaltungsvorschrift) or recognised rules of technology — but **state adoption varies**; digest sources cover only parts | Stair step bands, minimum thermal R-values, sound classes, drainage gradients — VERIFY per state/standard edition |
-| **T3** | **International reference floor** | Generic habitable-room minimums (7.5/9.5 m² lineage), openable-window 1/10 practice | **Not German law.** Sanity floor only | Proving a tight room is not absurd; daylight/vent sanity checks |
+| **T3** | **International reference floor** | Generic habitable-room minimums (7.5/9.5 m² lineage), openable-window 1/10 practice (German pattern: rough window opening ≥ 1/8 of the floor area, MBO § 47, S.1) | **Not German law.** Sanity floor only | Proving a tight room is not absurd; daylight/vent sanity checks |
 | **T4** | **Built practice / market norm** | German housing market: Neufert-derived furniture clearances, common EFH/DHH/MFH sizes | No legal force; reflects buyer/tenant expectation | All room sizes you quote clients; unit-mix sizing |
 | **T5** | **Physics / study-backed** | Solar geometry (exact), thermal/moisture research | Geometry is certain; performance numbers are study-specific | Sun altitudes, overhang math, courtyard daylight, overheating logic |
 
@@ -468,7 +468,8 @@ houses. The table below is the generic international habitable-room lineage
 | WC only | 1.1 m² | |
 | Combined bath + WC | 2.8 m² | ≈ 1.5×1.9 m |
 | Window openable sanity | ≥ 1/10 of floor area | practice rule, not DIN |
-| Ceiling height | 2.50 m | state LBOs commonly require "angemessene Höhe"; many fix ≥ 2.40–2.50 m for Wohnräume — **T2, state-specific, VERIFY** |
+| Window size, German pattern | rough opening ≥ 1/8 of the net floor area | MBO § 47, read again in three books (S.1); some states accept 1/10. Governs where the two differ |
+| Ceiling height | 2.50 m | state LBOs commonly require "angemessene Höhe"; many fix ≥ 2.40–2.50 m for Wohnräume — **T2, state-specific, VERIFY**. MBO: at least 2.40 m clear (S.1) |
 
 **German-law adjacents you must not confuse with these:** DIN 18040-2
 (barrier-free — binding only if claimed/subsidised), state Wohnraum definitions
@@ -768,6 +769,8 @@ turns need more — `accessibility-universal-design`, DIN 18040-2 binding only i
 **Window head:** align with the door-head band (2.00–2.25 finished) → one
 lintel line, calmer façade, continuous shading line (7.3).
 
+**Size first:** the rough opening of the windows is at least 1/8 of the net floor
+area of the room (MBO § 47, S.1); the openable 1/10 below is the second, weaker test.
 **Two arithmetic traps:** 1. **Openable ≥ 1/10 floor-area bites on big rooms**
 — 32 m² Wohn, 2.4×1.75 glazed → openable half = 2.1 m² = 6.6 %; add a second
 leaf; compute. 2. **Sliders halve openable; Kipp is not full ventilation.**
@@ -1302,7 +1305,7 @@ would give full height** (then the room is 60 % WFL per WoFlV bands — VERIFY).
 - [ ] Stair: riser/tread/2S+A computed from the real F2F; headroom ≥ 2000
       checked under the flight; landings ≥ width
 - [ ] Every bath over a bath/kitchen/HWR; stacks model-traced
-- [ ] Bedrooms ≥ 10 m² (never below T3 7.5 m²); openable window ≥ 1/10 floor,
+- [ ] Bedrooms ≥ 10 m² (never below T3 7.5 m²); rough window opening ≥ 1/8 floor (S.1), openable window ≥ 1/10 floor,
       **openable counted**; escape geometry per sleeping room (4.5)
 - [ ] Circulation % and NTG computed from areas, not vibes (10.2)
 - [ ] Court/Lichthof W/H stated (6.2 band) and *not sold as* winter-sun tech
@@ -1381,7 +1384,7 @@ CAVEAT   GRZ/GFZ/VGS/Wandhöhe/Baufenster/DG-counting/measure-line/GRZ-anrechnun
 | 14 | Unlit stair | landing window/rooflight (5.4) |
 | 15 | Under-stair WC with < 2 m head over the whole move zone | 5.2 headroom math |
 | 16 | Flur 850 mm "because code says so" | market sells 1000–1250; 4.1 |
-| 17 | Window sized by eye | compute openable ≥ 1/10 floor; sliders halve (4.3) |
+| 17 | Window sized by eye | compute rough opening ≥ 1/8 floor (S.1) and openable ≥ 1/10 floor; sliders halve (4.3) |
 | 18 | Winter sun promised to an Atrium floor at φ>48° | 6.1/6.2 math says no; reframe as daylight+privacy |
 | 19 | Lichtschacht sold as Innenhof | 6.5 naming honesty |
 | 20 | Atrium off-centre, edge beams "later" | 2.6/9.4: centre + continuous edge, flag engineer |
@@ -1469,7 +1472,7 @@ Atrium/L/split items (2.6) need explicit Tragwerksplaner review."*
 | Stair | 17 R @ ~170 / A ~280 (2S+A≈620); dog-leg well ~2.0×3.4 m |
 | South canopy | D ≈ H/tan(h_s); DACH 2.1 m window → ~1.0–1.2 m (6.1/7.3) |
 | Court winter sun to floor | W/H = 1/tan(90−φ−23.5°) ≈ 3.0–4.4 (DACH) — garden-scale |
-| Lichtschacht min | 1.2×1.2; openable window ≥ 1/10 floor (sliders halve) |
+| Lichtschacht min | 1.2×1.2; rough window opening ≥ 1/8 floor (S.1), openable ≥ 1/10 floor (sliders halve) |
 | Cross-vent | outlet:inlet ≥ 1.25:1, low-in/high-out; night purge = summer strategy |
 | Car bay / drive | 2.5×5.0 / 3.0 — GRZ-counted! |
 | RC span economics | ≤ ~6–8 m one-way (conception) |
@@ -1509,7 +1512,8 @@ Each line below was read again in the source books (`sources/`) in October 2026,
 place it stands at. "Confirmed" means: a dated book prints the rule and names the standard
 or law; it does not mean the current edition of that standard was opened. State law
 (LBO) and local rules still override; `VERIFY` tags elsewhere in this skill stay in force
-unless a line here names the edition.
+unless a line here names the edition. Where a line here differs from a section of this
+skill, that section was corrected and names the line ("S.n"); the appendix governs.
 
 ### S.1 Habitable rooms in the model building code (MBO)
 
@@ -1526,3 +1530,17 @@ unless a line here names the edition.
 
 - Confirmed: the depth of the setback area is 0.4 H, at least 3 m (0.2 H, at least 3 m in
   commercial and industrial areas). — *Bauphysik* 4.2. State codes deviate; VERIFY per state.
+
+### S.3 Defaults of this library for a simple house model
+
+**Not from a book.** These are choices of this library, made so that a simple house can be
+modelled at all where the literature gives a frame and no number. Tier T4, massing only:
+any plan clause, product sheet, engineer's or carpenter's figure replaces them, and nothing
+here is a design value.
+
+- Least width of a living room: 3.5 m. §3.1 and §3.3 give widths for bedroom, bath and hall
+  only.
+- Finished ground floor 5 cm above the highest ground at the house: the entrance stays
+  step-free and the ground can fall away from the building. The plinth and the door
+  threshold then need their waterproofing detail (`roofing-waterproofing`).
+- Base slab drawn 250 mm thick: the "slab 250" of the default set in §9.3.

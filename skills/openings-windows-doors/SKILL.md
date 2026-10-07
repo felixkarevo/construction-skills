@@ -200,6 +200,9 @@ Notes:
   locking the Fensterliste.
 - Clear width for accessibility: a 885 mm door gives ~875 mm clear; 900–1010
   is the visitable choice. See `accessibility-universal-design`.
+- Brüstungshöhe: a window parapet is at least 0.80 m high up to a fall height of 12 m
+  and at least 0.90 m above (MBO 2016 § 38, read again in a book: see
+  `stairs-vertical-circulation` S.3; VERIFY per state). A lower sill needs a guard.
 - Brüstungshöhe guard logic (LBO/Tabellen, VERIFY per state): glazing in
   doors and low sills needs safety glass (ESG/TVG/VSG per DIN EN 12600) and,
   outside ground level, fall-prevention measures depending on drop height.
