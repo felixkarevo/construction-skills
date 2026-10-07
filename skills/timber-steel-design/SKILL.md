@@ -1910,3 +1910,36 @@ parametric openings and FEM handoff.
 | layer build-up, joints, water-shedding of timber/steel envelopes | construction-detailing |
 | modelling workflow, IFC QA, FEM pipeline | construction-freecad-bim |
 | framing-system alternatives catalogue (which system, spans, costs) | timber-steel-design |
+
+---
+
+## Appendix S: Source Check 2026-10 — values re-read from the literature
+
+Each line below was read again in the source books (`sources/`) in October 2026, with the
+place it stands at. "Confirmed" means: a dated book prints the rule and names the standard
+or law; it does not mean the current edition of that standard was opened. State law
+(LBO) and local rules still override; `VERIFY` tags elsewhere in this skill stay in force
+unless a line here names the edition.
+
+### S.1 Purlin roof of a house — spacings
+
+- Typical: purlins are needed every 4 to 5 m across the building to support the rafters;
+  the plain rafter roof was built with rafter lengths up to 4.5 m, longer rafters got a
+  collar beam or purlins. — *Holzbausanierung beim Bauen im Bestand* 3.2.1.1 and Tab. 3.1
+  (a typology of built roofs, not a design rule).
+- Typical: purlins, posts and rafters form a frame (Gebinde); the frames stand about 3.5 to
+  4.5 m apart. — same book 5.4.4.
+- Confirmed (DIN EN 1995-1-1/NA, NA.13.2): battens may be taken to brace rafters only with
+  rafter spacing e ≤ 1.25 m, rafter width b ≥ 40 mm and depth h ≤ 4·b. — *Wendehorst
+  Bautechnische Zahlentafeln* Tab. 12.24. An example build-up uses rafters 16/8 at a rafter
+  spacing of 60 cm. — *Bausanierung* Abb. 10.1.
+
+### S.2 Sections
+
+- Preferred sections of structural solid timber (KVH, C24), width b: depths h in cm —
+  6: 10/12/14/16/18/20/22/24; 8: 12/16/18/20/22/24; 10: 10/16/20/24; 12: 12/16/20/24;
+  14: 14. — *Wendehorst Bautechnische Zahlentafeln* Tab. 12.111 (state 09/2015).
+- Rule of thumb: sections of good static use have b/h = 1:2; squared timber has sides
+  of at least 6 cm. — *Zahlentafeln für den Baubetrieb* 1.6.2 (p. 32).
+- Typical: for insulation between and under the rafters choose a rafter depth of 16 to
+  20 cm. — *Sanierung von baulichen Anlagen* 4.3.5.2.

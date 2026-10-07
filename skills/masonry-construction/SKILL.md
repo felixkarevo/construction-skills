@@ -1338,3 +1338,35 @@ print("PLANNING AID ONLY — not a construction quantity.")
 | 22 | Mortar-group downgrade rule for CE-markings lacking EC6 properties (§2.5) |
 | 23 | Ausfachungsflächen column-to-height mapping (§9.1) |
 | 24 | Current NA editions (digests reflect ~2021/22 state: EC6 2010/NA 2012, EN 1991/NA 2011-2019) |
+
+---
+
+## Appendix S: Source Check 2026-10 — values re-read from the literature
+
+Each line below was read again in the source books (`sources/`) in October 2026, with the
+place it stands at. "Confirmed" means: a dated book prints the rule and names the standard
+or law; it does not mean the current edition of that standard was opened. State law
+(LBO) and local rules still override; `VERIFY` tags elsewhere in this skill stay in force
+unless a line here names the edition.
+
+### S.1 Simplified method (DIN EN 1996-3/NA:2019-12) — application limits
+
+- Confirmed: building height above ground ≤ 20 m; span of the supported slabs l ≤ 6.0 m
+  (two-way slabs: the shorter span); imposed load including partition surcharge
+  qk ≤ 5.0 kN/m². — *Zahlentafeln für den Baubetrieb* 1.5.2 (p. 26); *Wendehorst
+  Bautechnische Zahlentafeln* 10.3.4.1, Tab. 10.36.
+- Confirmed: walls of t ≥ 115 mm and below 240 mm: clear wall height ≤ 2.75 m; exterior
+  walls of t ≥ 240 mm: clear wall height ≤ 12·t. — same places; *Wendehorst Beispiele aus
+  der Baupraxis*, Mauerwerksbau, Tafel 1.1 (p. 283). The Wendehorst table allows up to
+  3.6 m for thicker walls of higher strength; open it before going above 2.75 m.
+
+### S.2 Bearing depth of a slab on a masonry wall
+
+- Confirmed, simplified method: slab bearing depth a ≥ 0.5·t, at least 100 mm (for
+  t = 365 mm: a ≥ 0.45·t). — *Zahlentafeln für den Baubetrieb* 1.5.2 (p. 26);
+  *Wendehorst Bautechnische Zahlentafeln* 10.3.4.1.
+- Confirmed, general rules (DIN EN 1996-1-1/NA), RC slab: a ≥ 2/3·t gives the buckling
+  factor ρ2 = 0.75. — *Wendehorst Beispiele aus der Baupraxis*, Mauerwerksbau, Tafel 1.2
+  (p. 284).
+- Reading: the 2/3·t of §5.2 is the stricter of the two rules and stays the drawing
+  default; 0.5·t (min. 100 mm) is the floor of the simplified method.

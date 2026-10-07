@@ -1005,3 +1005,22 @@ the digested tables stop at the standard building.
 | Sicherheitstreppenraum overpressure figures (1.5/3) | garbled in digest — VERIFY |
 | Garage/hotel/school ordinance specifics | not digested — outside this skill's guarantee |
 | Rescue-window sloped-roof "tread ≤ 1 m from eave" variant | extension by agreement noted — VERIFY |
+
+---
+
+## Appendix S: Source Check 2026-10 — values re-read from the literature
+
+Each line below was read again in the source books (`sources/`) in October 2026, with the
+place it stands at. "Confirmed" means: a dated book prints the rule and names the standard
+or law; it does not mean the current edition of that standard was opened. State law
+(LBO) and local rules still override; `VERIFY` tags elsewhere in this skill stay in force
+unless a line here names the edition.
+
+### S.1 Fire wall at the boundary
+
+- Confirmed: a building end wall nearer than 2.50 m to the boundary must be a fire wall
+  (MBO § 30 (2) Nr. 1, version of November 2002; the state code of NRW adds: unless a
+  distance of at least 5 m to existing or permissible buildings is secured under public
+  law). — *Wendehorst Beispiele aus der Baupraxis*, Brandschutz 2.2 (p. 667); *Formeln und
+  Tabellen Bauphysik* 7.4.2 (p. 593). Building classes 1 to 3 get reliefs in most states;
+  VERIFY per state.

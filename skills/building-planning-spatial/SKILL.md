@@ -1500,3 +1500,29 @@ massing + roof zone; route physics); 16 PV + Wallbox + Wärmepumpe positions.
 **Context:** 17 city → φ (sun math 6.1) + climate region (DIN 4108-2 A/B/C —
 digest); 18 neighbours' windows/noise on all four boundaries (7.6 — go look,
 measure); 19 slope (8.6/2.6); 20 budget band (Keller yes/no, DHH vs freistehend trade-off). **Then start Section 0.5 Step 1.**
+
+---
+
+## Appendix S: Source Check 2026-10 — values re-read from the literature
+
+Each line below was read again in the source books (`sources/`) in October 2026, with the
+place it stands at. "Confirmed" means: a dated book prints the rule and names the standard
+or law; it does not mean the current edition of that standard was opened. State law
+(LBO) and local rules still override; `VERIFY` tags elsewhere in this skill stay in force
+unless a line here names the edition.
+
+### S.1 Habitable rooms in the model building code (MBO)
+
+- Confirmed: a habitable room needs a clear height of at least 2.40 m (MBO); building
+  classes 1 and 2 and attics may deviate (most state codes: 2.30 m, attics 2.20 m). —
+  *Formeln und Tabellen Bauphysik* 2.7.4 (p. 150); *Gebäudetechnik* 2.1.1.
+- Confirmed: the rough opening of the windows of a habitable room is at least 1/8 of the
+  net floor area of the room (MBO § 47); some states accept 1/10. — *Bausanierung* 14.4.2;
+  *Kompendium Nachhaltige Bauwerke* 12.7.2; *Gebäudetechnik* 2.1.1. The "1/10 openable"
+  of §3.1 and §4.3 is the weaker practice rule; where the two differ, 1/8 of the rough
+  opening governs.
+
+### S.2 Distance to the boundary (MBO 2019 § 6)
+
+- Confirmed: the depth of the setback area is 0.4 H, at least 3 m (0.2 H, at least 3 m in
+  commercial and industrial areas). — *Bauphysik* 4.2. State codes deviate; VERIFY per state.

@@ -1090,3 +1090,41 @@ with Brandschutz plan [ ] vendor shaft layout before fixing walls.
 
 *End of skill. When a number decides a submission or a signed Nachweis, open
 the current DIN 18065 / state LBO / Eurocode NA and re-derive it there.*
+
+---
+
+## Appendix S: Source Check 2026-10 — values re-read from the literature
+
+Each line below was read again in the source books (`sources/`) in October 2026, with the
+place it stands at. "Confirmed" means: a dated book prints the rule and names the standard
+or law; it does not mean the current edition of that standard was opened. State law
+(LBO) and local rules still override; `VERIFY` tags elsewhere in this skill stay in force
+unless a line here names the edition.
+
+### S.1 DIN 18065 — limits by building (table as printed in the book)
+
+| Building | Stair | Rise mm | Going mm | Usable width cm |
+|---|---|---|---|---|
+| Dwelling house with at most 2 dwellings | necessary stair | 140 to 200 | 230 to 370 | 80 |
+| Dwelling house with at most 2 dwellings | not necessary | 140 to 210 | 210 to 370 | 50 |
+| Other buildings | necessary stair | 140 to 190 | 260 to 370 | 100 |
+| Other buildings | not necessary | 140 to 210 | 210 to 370 | 50 |
+
+— *Bausanierung* Tab. 13.1. The targets of §3 and §4 (rise 175, at most 190; going from
+260) are the comfort values of this skill and lie inside the table.
+
+### S.2 Headroom, flights, width
+
+- Confirmed: clear headroom of a stair at least 2.00 m (MBO and DIN 18065). — *Bausanierung*
+  13.1.3. The 2.10 m of §5.1 is a design target, not the standard.
+- Confirmed: a flight has at most 18 steps and at least three; the usable width in dwelling
+  houses is taken as at least 1.0 m, small-house straight stairs down to 0.85 m. —
+  *Bausanierung* 13.2.1.
+
+### S.3 Guards and window parapets
+
+- Confirmed (MBO 2016-05 § 38): window parapets with a fall height up to 12 m at least
+  0.80 m high, above 12 m at least 0.90 m; guards of areas with a fall height of 1 m to
+  12 m must be 0.90 m high, above 12 m 1.10 m. — *Bausanierung* 14.6.5.
+- Confirmed (BGI 561, workplaces): guard height at least 1.00 m up to a fall height of
+  12 m, 1.10 m above; horizontal force at least 500 N/m. — *Bausanierung* 13.6.1.

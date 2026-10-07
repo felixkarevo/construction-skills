@@ -1321,3 +1321,39 @@ FreeCAD/BIM handoff (no geometry needed for physics data):
       deviations between digest variants shown rather than silently averaged.
 - [ ] Reality-check sentence appended when output might be treated as final;
       sibling skills referenced for acoustics/fire/waterproofing/geometry.
+
+---
+
+## Appendix S: Source Check 2026-10 — values re-read from the literature
+
+Each line below was read again in the source books (`sources/`) in October 2026, with the
+place it stands at. "Confirmed" means: a dated book prints the rule and names the standard
+or law; it does not mean the current edition of that standard was opened. State law
+(LBO) and local rules still override; `VERIFY` tags elsewhere in this skill stay in force
+unless a line here names the edition.
+
+### S.1 GEG reference building, residential (book state: GEG 2020)
+
+- Confirmed: exterior wall and ceiling against outside air U = 0.28 W/(m²K); wall against
+  ground, floor slab, walls and ceilings to unheated rooms U = 0.35 W/(m²K); roof, top-floor
+  ceiling U = 0.20 W/(m²K); windows and French doors Uw = 1.3 W/(m²K) with g = 0.60;
+  exterior doors U = 1.8 W/(m²K); thermal bridge surcharge ΔU_WB = 0.05 W/(m²K). —
+  *Wendehorst Bautechnische Zahlentafeln* Tab. 17.9 (rows 1.1 to 1.7 and 2); *Bausanierung*
+  Tab. 3.2. A later book (*Gebäudetechnik* 8.2) prints the same 0.28 for the exterior wall
+  under the successor law; check the text in force.
+
+### S.2 Design thermal conductivity (DIN 4108-4)
+
+- Confirmed: gypsum plaster without aggregate (ρ 1200) λ = 0.51 W/(mK); lime, lime-cement
+  plaster (ρ 1800) λ = 1.0 W/(mK); sand-lime brick masonry ρ 1400 / 1600 / 1800 / 2000:
+  λ = 0.70 / 0.79 / 0.99 / 1.1 W/(mK). — *Wendehorst Bautechnische Zahlentafeln* Tab. 17.25;
+  *Allgemeine Grundlagen des Bauwesens*, plaster table in ch. 2.
+- Books that use 0.70 or 0.99 for sand-lime brick are using another density class, not
+  another rule: name the density with the value.
+
+### S.3 Doors: reference value and design value are different things
+
+- Confirmed: the design value for the heat-loss calculation of an exterior door of wood,
+  wood-based material or plastic is U = 2.9 W/(m²K), of metal 4.0 W/(m²K) (DIN 4108-4). —
+  *Wendehorst Bautechnische Zahlentafeln* Tab. 17.46. The 1.8 of S.1 is the reference
+  building, not a product default.

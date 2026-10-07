@@ -1510,3 +1510,37 @@ roof terrace) · every assumption made here, listed explicitly.
     decision drivers / order-of-magnitude for modelling — not schedules or ratings; those live in
     their own skills (`concrete-detailing`, `fire-protection-building`, `building-acoustics`). **Liquefaction, slopes, excavation support, existing buildings
     and retrofit** are out of scope entirely: report + inspection + engineer, always.
+
+---
+
+## Appendix S: Source Check 2026-10 — values re-read from the literature
+
+Each line below was read again in the source books (`sources/`) in October 2026, with the
+place it stands at. "Confirmed" means: a dated book prints the rule and names the standard
+or law; it does not mean the current edition of that standard was opened. State law
+(LBO) and local rules still override; `VERIFY` tags elsewhere in this skill stay in force
+unless a line here names the edition.
+
+### S.1 Frost depth of a foundation
+
+- Confirmed: unless frost safety is proven otherwise, the distance from the frost-exposed
+  surface to the footing base is at least 0.80 m (DIN 1054). — *Formeln und Tabellen
+  Bauphysik* 2.6.6 (p. 138); *Wendehorst Bautechnische Zahlentafeln* 14.7.1; *Werkstoffe im
+  Bauwesen* 1.6.1 (p. 170).
+- Practice: often set to a minimum depth of 100 cm. — *Building Construction Design: From
+  Principle to Detail*, vol. 2, 6.2.4.2. Buried water lines lie deeper (1.0 to 1.8 m cover).
+
+### S.2 One-way or two-way slab
+
+- Confirmed (EC2-1-1 5.3): a slab supported on all sides may be taken as one-way when
+  lmax/lmin > 2. — *Wendehorst Bautechnische Zahlentafeln* Tab. 8.15. The 1.5:1 of §4.2 is
+  the earlier, conservative switch of this skill.
+
+### S.3 Solid slab thickness by span — what the cost books assume
+
+- Typical, dwellings: span 3.0 / 4.0 / 5.0 / 6.0 m → slab 12–13 / 13–15 / 14–18 / 16–20 cm.
+  — *Zahlentafeln für den Baubetrieb* Tab. 12.18. Favourable thickness to span about 1:30,
+  solid slabs reasonable up to about 8 m at about 30 cm. — *Building Construction Design*,
+  vol. 2, 4.2.1.1.4.
+- Reading: the schedule of §4.2 (20 cm to 4.5 m, 24 cm to 6.5 m) is thicker than these
+  and stays the default: it also covers sound and fire without a check.

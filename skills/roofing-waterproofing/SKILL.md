@@ -1188,3 +1188,24 @@ transition in the digested sources.
 - [ ] every [VERIFY] item either resolved against the current norm or left visibly flagged
 - [ ] no superseded norm (18195/EnEV-era) cited as if current
 
+---
+
+## Appendix S: Source Check 2026-10 — values re-read from the literature
+
+Each line below was read again in the source books (`sources/`) in October 2026, with the
+place it stands at. "Confirmed" means: a dated book prints the rule and names the standard
+or law; it does not mean the current edition of that standard was opened. State law
+(LBO) and local rules still override; `VERIFY` tags elsewhere in this skill stay in force
+unless a line here names the edition.
+
+### S.1 Roof overhang against driving rain
+
+- Rule of thumb (DIN 4108-3 context): to size a roof overhang, a canopy or a recess that
+  keeps a wall dry, the driving rain may be taken to fall at 60° to the horizontal: an
+  overhang of depth d shelters the wall over a height of d · tan 60° ≈ 1.7 · d below it. —
+  *Kompendium Nachhaltige Bauwerke* 12.5.3.3.
+
+### S.2 Stack vent through the roof
+
+- Confirmed: the mouth of a drainage vent is at least 15 cm above the roof, measured
+  vertically from the roof surface; more where snow lies. — *Gebäudetechnik* 3.1.9.

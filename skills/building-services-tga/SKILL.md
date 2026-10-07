@@ -1561,3 +1561,84 @@ PRIORITY  structure > gravity drainage > ducts > insulated trunks > water > elec
 *End of skill. All numbers are planning aids from German practice standards; the ⚠ VERIFY marks are
 load-bearing — replace them with current standard text and project data before any drawing leaves the
 office.*
+
+---
+
+## Appendix S: Source Check 2026-10 — values re-read from the literature
+
+Each line below was read again in the source books (`sources/`) in October 2026, with the
+place it stands at. "Confirmed" means: a dated book prints the rule and names the standard
+or law; it does not mean the current edition of that standard was opened. State law
+(LBO) and local rules still override; `VERIFY` tags elsewhere in this skill stay in force
+unless a line here names the edition.
+
+### S.1 Drainage (DIN EN 12056-2, DIN 1986-100)
+
+- Confirmed: discharge units DU in l/s and single connection pipe: basin, bidet 0.5 (DN 40);
+  shower without plug 0.6 (DN 50); shower with plug, bath tub, kitchen sink, dishwasher,
+  washing machine up to 6 kg 0.8 (DN 50); WC with 6.0 l cistern 2.0 (DN 80 to DN 100). —
+  *Gebäudetechnik* Tab. 3.2.
+- Confirmed: discharge coefficient K = 0.5 for irregular use (dwellings, guest houses,
+  offices); Q_ww = K · √ΣDU. — *Gebäudetechnik* Tab. 3.5 and 3.1.23.
+- Confirmed: a foul stack is at least DN 70, with a WC DN 80, DN 90 or DN 100; a DN 100
+  stack with main venting carries 4.0 l/s. — *Gebäudetechnik* 3.1.8 and Tab. 3.10.
+- Confirmed: unvented single connection pipe: at most 4.0 m long, at most three 90° bends,
+  at most 1.0 m drop, slope at least 1.0 %; vented connection pipes 0.5 %; ground and
+  collector pipes for foul water inside the building 0.5 %. — *Gebäudetechnik* Tab. 3.6
+  and Tab. 3.4.
+- Confirmed: site drainage outside the building: at least DN 100, slope at least 1/DN
+  (DN 100: 1.0 %). — *Wendehorst Bautechnische Zahlentafeln* 22.3.5.2.2. A ground drain
+  that leaves the building is safe on both rules at 1.0 %.
+- Confirmed: the stack vent ends at least 15 cm above the roof, measured vertically; more
+  where snow lies. — *Gebäudetechnik* 3.1.9.
+- Confirmed: inspection chambers from 80 cm depth: rectangular ≥ 0.75 m × 1.20 m, square
+  ≥ 0.90 m × 0.90 m, round ≥ 1.00 m diameter. — *Gebäudetechnik* 3.1.13.
+
+### S.2 Water supply and house connection
+
+- Typical: connections of fixtures and storey pipes in dwellings are DN 15, 20, 25; storey
+  pipes branch from the risers at least 1.10 m above the floor. — *Gebäudetechnik* 3.4.5.
+- Confirmed (DIN 18012): a single-family house without basement may have a connection
+  niche of 0.875 m × 2.00 m at 0.30 m depth, at most 3 m from the outside wall. —
+  *Gebäudetechnik* 1.3.
+- Typical: hot water use in households 30–60 l per person and day, 40 l in the mean, at
+  60 °C; store for a single-family house about 80–200 l, two-family house 200–300 l
+  (large stand tanks charged once a day). — *Gebäudetechnik* 3.4.10.
+
+### S.3 Sanitary fixtures (VDI 6000-1, as printed)
+
+- Standard sizes width × depth in cm: single basin 60 × 55 (top 85 to 90 above the floor);
+  WC with cistern in the wall 40 × 60, with cistern in front of the wall 40 × 75; shower
+  tray 80 × 80; bath tub 170 × 75; washing machine or dryer 60 × 60. — *Gebäudetechnik*
+  Tab. 2.8.
+- Side distance between two fixtures 20–25 cm, between fixture and wall as a rule 20 cm;
+  in front of a fixture a free depth of at least 75 cm (after DIN 18022, withdrawn in
+  2007 and still used where no barrier-free rule applies). — *Gebäudetechnik* 2.1.3.
+
+### S.4 Underfloor heating
+
+- Confirmed: floor systems heat up to 100 W/m²; a loop should not exceed 100 m of pipe,
+  which is 15–20 m² of floor; larger rooms get several loops. — *Gebäudetechnik* 4.4.2
+  and 4.4.3.
+- Confirmed (DIN 18560-2): screed at least 45 mm plus the pipe diameter. — same 4.4.3.
+- Typical: manifold about 1 m wide, in a niche about 12 cm deep and 80 cm high. — same.
+- Typical design temperatures, underfloor heating: flow 35–55 °C, return 30–45 °C, spread
+  5–10 K. — *Gebäudetechnik* Tab. 4.36.
+
+### S.5 Ventilation
+
+- Confirmed (DIN 18017-3): the minimum extract air flow is 40 m³/h for baths and WC rooms
+  with continuous running, or 60 m³/h with demand control; kitchen base ventilation
+  40–60 m³/h. — *Gebäudetechnik* 5.4 and Tab. 5.10. This replaces the 20–30 m³/h of §11.2
+  for a bath.
+- Worked example, single-family house, 125 m³/h in all: living room supply 45, kitchen
+  extract 40, shower/WC extract 35, rooms supply 40 and 20 m³/h. — *Gebäudetechnik* Tab. 5.9.
+- Typical: air runs in insulated ducts of about 10–15 cm diameter. — *Gebäudetechnik* 5.3.
+
+### S.6 Heat pump and load figures
+
+- Typical: the connected load of a heat pump heating system of a one- or two-family house
+  as a rule does not exceed 6 kW. — *Gebäudetechnik* 4.2.5.
+- Typical, new dwellings: heat load 10 to 70 W/m² (passive house to legal minimum); hot
+  water share 12.5 kWh/(m²a). — *Gebäudetechnik* Tab. 8.1; *Allgemeine Grundlagen des
+  Bauwesens* 2.14.6.

@@ -1239,3 +1239,55 @@ der elektrischen Energietechnik (Springer 2026); cross-checked against DIN VDE 0
 IFC4.3.2 (ADD2) official schema documentation, retrieved October 2026. The underlying books are
 edition-sensitive: numbers marked ⚠ VERIFY must be re-read from the current standard text and the
 local TAB before any drawing, order or signature.*
+
+---
+
+## Appendix S: Source Check 2026-10 — values re-read from the literature
+
+Each line below was read again in the source books (`sources/`) in October 2026, with the
+place it stands at. "Confirmed" means: a dated book prints the rule and names the standard
+or law; it does not mean the current edition of that standard was opened. State law
+(LBO) and local rules still override; `VERIFY` tags elsewhere in this skill stay in force
+unless a line here names the edition.
+
+### S.1 DIN 18015-2 minimum equipment per room (level 1 of RAL-RG 678)
+
+| Room | Sockets | Lighting outlets |
+|---|---|---|
+| Kitchen | 5 (double) | 2 |
+| Cooking niche | 3 | 1 |
+| Bath | 2 | 2 |
+| WC room | 1 | 1 |
+| Utility room (Hausarbeitsraum) | 3 | 1 |
+| Living room up to 20 m² / over 20 m² | 4 / 5 | 2 / 3 |
+| Dining room | 3 | 1 |
+| Bedroom, child's room, guest room, study up to 20 m² / over 20 m² | 4 / 5 | 1 / 2 |
+| Hall up to 3 m / over 3 m long | 1 / 1 | 1 / 2 |
+| Storage room | 1 | 1 |
+| Hobby room | 3 | 1 |
+
+— *Gebäudetechnik* Tab. 6.6 (after HEA), Tab. 2.3 and Tab. 2.9. This fills the counts
+§5.3 left open for bedrooms, halls and utility rooms.
+
+### S.2 Circuits and protection
+
+- Confirmed (DIN 18015-2): lighting and socket circuits by living area: up to 50 m² 3,
+  50–75 m² 4, 75–100 m² 5, 100–125 m² 6, over 125 m² 7. — *Gebäudetechnik* Tab. 2.3.
+- Confirmed: one own circuit for each appliance from 2 kW (water heaters, cookers,
+  dishwashers), also when it is plugged in; up to 4.6 kW a 20 A fuse on one phase, above
+  that three phases. — *Gebäudetechnik* 6.2.
+- Confirmed (DIN 18015-1): main line fuse without electric water heating, 1 to 5 dwellings:
+  63 A. — *Planung von Elektroanlagen* Tab. 15.8.
+- Confirmed (DIN VDE 0100-410): final circuits are protected by an RCD of 30 mA. — *Planung
+  von Elektroanlagen* 17.2; *Elektrotechnik* 1.3.3.5.
+- Confirmed (DIN VDE 0100-530): RCD type AC is not admitted in Germany; type A is the floor.
+  — *Grundlagen der elektrischen Energietechnik* 5.2.2 (p. 392).
+- Typical connected loads in kW: cooker 12, dishwasher 3.5, washing machine 3.5, dryer
+  3.3–3.5, refrigerator 0.2, freezer 0.3. — *Planung von Elektroanlagen* Tab. 15.4. They
+  are higher than the worked house of §17 (cooker 11 kW): size the circuit from the device.
+
+### S.3 Bath zones
+
+- Confirmed (DIN VDE 0100-701): in zones 0 to 2 of a tub or shower, as a rule up to 60 cm
+  beside the tub and up to 2.25 m high, switches, sockets, junction boxes and concealed
+  cables are not allowed. — *Gebäudetechnik* 6.2.
