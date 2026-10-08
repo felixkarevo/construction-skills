@@ -1544,3 +1544,7 @@ here is a design value.
   step-free and the ground can fall away from the building. The plinth and the door
   threshold then need their waterproofing detail (`roofing-waterproofing`).
 - Base slab drawn 250 mm thick: the "slab 250" of the default set in §9.3.
+- Basement storey drawn 2.60 m from floor to floor: with the 200 mm floor slab above it
+  the rooms are 2.40 m clear, the least height of a habitable room (S.1), and the wall
+  stays inside the 2.60 m clear height of a masonry basement wall without calculation
+  (`masonry-construction` §9.5).
