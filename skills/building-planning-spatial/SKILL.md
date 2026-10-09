@@ -1548,3 +1548,16 @@ here is a design value.
   the rooms are 2.40 m clear, the least height of a habitable room (S.1), and the wall
   stays inside the 2.60 m clear height of a masonry basement wall without calculation
   (`masonry-construction` §9.5).
+- Outer wall of a basement drawn as 240 mm reinforced concrete with 120 mm perimeter
+  insulation outside: while ground and ground water are not known the model draws the safe
+  side, the least cast-in-place wall of a watertight concrete structure under pressing water
+  at w/z ≤ 0.55 (`concrete-detailing` §9.2, row "BKL-1 (0,55 line)"; the same figures in
+  `geotechnics-foundations` §10.3), with the perimeter insulation of the worked cellar wall
+  in `construction-detailing` §7.1. The ground report decides the real wall: masonry may do
+  on dry, draining ground (`masonry-construction` §9.5), practice asks for 300 mm and more
+  under a real head of water (`concrete-detailing` §9.2), and the earth pressure on the wall
+  is the engineer's in every case (`geotechnics-foundations` §8.3).
+- Base slab under a basement drawn 250 mm thick, as a raft without strip footings: slab and
+  walls form one tank (`geotechnics-foundations` §6.4), and 250 mm is the slab of the same
+  pressing-water row (`concrete-detailing` §9.2). The same number as the "slab 250" above,
+  for another reason; the two may part.

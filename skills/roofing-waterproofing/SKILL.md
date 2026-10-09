@@ -1230,3 +1230,8 @@ here is a design value.
 - Overhang at eaves and verge: 0.50 m. By S.1 it shelters about 0.85 m of wall below it.
 - The pitched roof is drawn as one plate 0.30 m thick (rafters, battens, covering, lining):
   a body for volume and clashes, not a build-up.
+- Protection of a basement against water from the ground: drawn as one placeholder around
+  the walls in the ground and under the base slab, reaching 0.30 m above the ground (the
+  lower end of the 30-50 cm of §10.4). The model does not choose between watertight
+  concrete (§10.3) and a tanking skin (§10.2): the load case decides (§10.1), and only a
+  ground report names it.
