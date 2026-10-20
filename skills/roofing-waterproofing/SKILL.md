@@ -736,6 +736,22 @@ The **concrete itself** is the sealing element, uncoated. Conditions:
 
 ### 11.1 Roof windows, light domes, glass roofs (Tageslicht)
 
+- **Roof windows in the slope (Dachflächenfenster), planning values (S.5).** Makers approve
+  their windows for a band of pitches, each with its flashing: VELUX 15°–90°, Roto 15°–79°
+  (R6) or 20°–65° (R8). The length follows the pitch: the steeper the roof, the shorter the
+  window (VELUX grid: 140 cm long at 41°–54°, 160 cm at 35°–44°, 118 cm at 52°–90°). Fitted
+  with the top edge at about 2.00 m, the lower edge lands at about 0.90 m above the floor;
+  Neufert draws the top edge at 1.85–2.05 m and the lower edge at 0.90–1.10 m at the knee
+  wall. A fixed extension unit 92 cm long, joined frame to frame below the window, carries
+  the glass further down the slope; a vertical unit below it fills a knee wall. The clear
+  space between two rafters is the frame width + 6 cm; a wider window needs the rafters in
+  its way cut and carried by trimmers (Wechsel). Windows side by side or above one another
+  under one flashing stand about 19 cm apart.
+- **Where a roof window may stand.** Over the room it lights: its lower edge above the inner
+  face of the eaves wall, its sides between the gable walls, and roof left above it to the
+  ridge (S.3). In Bavaria a roof window that is a second way out has its lower edge, or a
+  landing in front of it, no more than 1 m from the eaves edge, measured horizontally
+  (`building-planning-spatial` S.1).
 - **U-value targets** (energy-regulation lineage EnEV → **GEG - verify current figures**):
   reference-building roof window 1.4 W/(m²K); existing-building retrofit caps roof window
   1.3-1.4 (1.9 in relaxed legacy rows); glass roof 2.0 (2.7); **domes/light bands ≈ 2.5-2.7**
@@ -1230,6 +1246,18 @@ here is a design value.
 - Overhang at eaves and verge: 0.50 m. By S.1 it shelters about 0.85 m of wall below it.
 - The pitched roof is drawn as one plate 0.30 m thick (rafters, battens, covering, lining):
   a body for volume and clashes, not a build-up.
+- Roof window of a simple house: 1.14 m wide and 1.40 m long (the size SK08 of the maker grid
+  in S.5), lower edge 0.90 m above the floor (the maker's rule in S.5); where the slope does
+  not come down that low inside the room, the window starts at the lowest point it reaches
+  there. Sizes from 0.55 m to 1.34 m wide and from 0.78 m to 1.80 m long, the frames of the
+  same grid; a larger glass is made of several windows.
+- Roof left between a roof window and the ridge: at least 0.50 m along the slope, room for
+  the ridge purlin and the ridge covering. Two openings in one slope keep at least the 19 cm
+  of S.5 between them.
+- Where a roof window is wider than the space between two rafters, the rafters in its way are
+  cut and carried by a trimmer (Wechsel) above and below the opening, drawn with the section
+  of the rafters and 0.03 m clear of the window frame on every side (S.5: frame width + 6 cm
+  between the rafters).
 - Protection of a basement against water from the ground: drawn as one placeholder around
   the walls in the ground and under the base slab, reaching 0.30 m above the ground (the
   lower end of the 30-50 cm of §10.4). The model does not choose between watertight
@@ -1244,3 +1272,30 @@ here is a design value.
   Beispiele* Tab. 4.1 (`sources/text/lastannahmen-beispiele/part-005.md`, line 124) and
   the solution of Aufgabe 1 in 4.5.1 (line 1135: "Loggia: Z: q_k = 4,0 kN/m^2; Q_k = 2,0 kN
   (für örtliche Nachweise)"). §8 had called the 2.0 a line load in kN/m; corrected there.
+
+### S.5 Roof windows in the slope (Dachflächenfenster)
+
+Maker data and one book. A maker's band of pitches is what it approves for its own product;
+another maker or product differs. Read the current product sheet before real use.
+
+- Practice (VELUX price list valid from 2026-07-01, PDF p. 79 and p. 93; `sources/text/
+  dachfenster-hersteller/part-001.md`): "Dachneigungsbereich 15°–90° je nach Wahl der
+  Eindeckrahmen", for the pivot window GGL and for the extension units GIU/GIL alike.
+- Practice (Roto FAQ, `dachfenster-hersteller/part-003.md`): Designo R6 15°–79°, Designo R8
+  20°–65°; a raising frame adds about 10° from a pitch of 15°.
+- Practice (VELUX size grid, PDF p. 5): window lengths by recommended pitch for the pivot
+  window, 118 cm at 52°–90°, 140 cm at 41°–54°, 160 cm at 35°–44°, 180 cm at 30°–37°; frame
+  widths 55, 66, 78, 94, 114 and 134 cm. "Wenn Sie die Fensterlänge entsprechend den
+  angegebenen Dachneigungen wählen und die Fenster mit einer Oberkante von 200 cm einbauen,
+  ergibt sich die von VELUX empfohlene Fensterunterkante von ca. 90 cm".
+- Practice (VELUX, PDF p. 5 and p. 92): the fixed extension units GIU/GIL in the slope are
+  92 cm long, "Fenster und Zusatzelement werden direkt Blendrahmen an Blendrahmen miteinander
+  verbunden"; units for a knee wall below the window (VIU/VFE) are 60 to 137 cm high.
+- Practice (VELUX document 7049, `dachfenster-hersteller/part-002.md`): "Blendrahmenbreite
+  + 6 cm = lichtes Sparrenmaß".
+- Typical (Neufert, *Architects' Data*, 3rd ed. 2002, p. 181, figures 5, 12 and 13, read on
+  the page image `sources/text/neufert-2002/pages/page-0181.png`): top edge of a roof window
+  1.85–2.05 m above the floor, lower edge 0.90–1.10 m at the knee wall (0.80–1.00 m for a
+  seated person); windows in a row or above one another 19 cm apart; "Generously wide
+  windows in living rooms can be achieved by the inclusion of rafter trimmers."
+

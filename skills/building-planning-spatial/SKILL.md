@@ -501,9 +501,9 @@ and the resale norm):
 | Treppenhaus WF-Anteil (EG+OG combined) | 8–11 | 11–14 | 14–20 |
 | Technik/Anschluss (within Keller or HWR) | 3–5 | 5–8 | 8–12 |
 
-All areas in **m²** (Wohnfläche logic: 100 % floor area, DG sloped areas 50 %
-above 2 m / 100 % above 1 m — Wohnflächenverordnung, **T2, VERIFY when the
-number is sold as WFL**).
+All areas in **m²** (Wohnfläche logic: 100 % floor area; under a DG slope floor with a
+clear height of at least 2 m counts in full, between 1 m and 2 m at half, below 1 m not at
+all — Wohnflächenverordnung, **T2, VERIFY when the number is sold as WFL**; §3.4).
 
 **The gap between 3.1 and 3.2 is the point.** 7.5 m² is not a German bedroom —
 it is a child's room from the 1960s. Quote 3.2 to clients; keep 3.1 only to
@@ -550,6 +550,17 @@ geometry it will violate, not just the market convention.
 | Wohnräume | ≥ 2.40–2.50 | **2.60–2.80** (KfW-efficiency houses often 2.60–2.70 to cut envelope volume) |
 | Bad/HWR/Flur | — | 2.30–2.60 (often lowered for installation level) |
 | Unterzug clear at escapes/doors | ≥ 2.00 (MBO lineages, VERIFY) | keep ≥ 2.10 |
+
+**Attic storey under a pitched roof (Dachgeschoss, Kniestock/Drempel).** The knee wall is
+the outer wall along the eaves that rises above the attic floor before the roof starts; it
+lifts the slope and with it the floor one can stand on. Under the slope the clear height
+falls towards the knee wall, so a room there has no single height. Bavaria asks 2.40 m clear
+for a habitable room, in the attic 2.20 m over half of its floor, where parts lower than
+1.50 m are not counted; this does not hold for habitable rooms of residential buildings of
+classes 1 and 2 (S.1). For the living area, floor under a clear height of at least 2 m
+counts in full, between 1 m and 2 m at half, below 1 m not at all (Wohnflächenverordnung,
+**T2, VERIFY**). A local design statute may cap the knee wall (S.4); how the model draws one:
+S.3.
 
 **F2F default:** clear 2.70 + RC buildup 0.20 (or timber 0.30–0.38) →
 **F2F 2.90–3.05; use 2.90** as worked default. Every +100 mm costs façade,
@@ -1557,6 +1568,16 @@ skill, that section was corrected and names the line ("S.n"); the appendix gover
   *Kompendium Nachhaltige Bauwerke* 12.7.2; *Gebäudetechnik* 2.1.1. The "1/10 openable"
   of §3.1 and §4.3 is the weaker practice rule; where the two differ, 1/8 of the rough
   opening governs.
+- Confirmed (BayBO Art. 45 (1), version in force from 2026-05-01): habitable rooms need a
+  clear height of at least 2.40 m, in the attic 2.20 m over half of their floor, "wobei
+  Raumteile mit einer lichten Höhe unter 1,50 m außer Betracht bleiben"; the sentence does
+  not hold for habitable rooms in residential buildings of building classes 1 and 2. —
+  `sources/text/baybo/part-007.md`.
+- Confirmed (BayBO Art. 35 (4), version in force from 2026-05-01): a window that serves as
+  a way out is at least 0.60 m wide and 1 m high, opens from inside and lies no higher than
+  1.20 m above the floor; in a roof slope or a dormer its lower edge, or a landing in front
+  of it, is no more than 1 m from the eaves edge, measured horizontally. —
+  `sources/text/baybo/part-005.md`.
 - Confirmed (BayBO Art. 45 (2), version in force from 2026-05-01): the rough opening of
   the windows is at least 1/8 of the net floor area of the room "einschließlich der
   Netto-Grundfläche verglaster Vorbauten und Loggien": the floor of a glazed porch or
@@ -1602,7 +1623,27 @@ here is a design value.
   walls form one tank (`geotechnics-foundations` §6.4), and 250 mm is the slab of the same
   pressing-water row (`concrete-detailing` §9.2). The same number as the "slab 250" above,
   for another reason; the two may part.
+- Knee wall of an attic storey: drawn between 0.30 m and 1.80 m high, from the attic floor to
+  where the underside of the roof meets the outer face of the eaves wall. Above 1.80 m a
+  local design statute no longer counts the wall as a knee wall (S.4); below 0.30 m the slope
+  leaves no room at the wall, and the roof is drawn on the storey height instead.
+- Under a roof with a knee wall the outer walls of the attic reach up to the underside of the
+  roof and the inner walls up to the storey height, all of them cut by the slope. The storey
+  height is then the height of a flat ceiling in the middle of the attic (a collar-beam
+  ceiling), which the model does not draw; a room open to the ridge takes a storey height up
+  to the ridge.
 - Usable depth of a loggia or balcony: at least 1.50 m from the wall to the guard. A small
   table with a chair pulled out from it fits across that depth (§3.3, Dining: 700 to pull a
   chair out); the books give no depth of their own. The same 1.50 m is what a balcony may
   project in Bavaria and still stay out of the setback depth (S.2).
+
+### S.4 Attic storey under a pitched roof
+
+- Typical (local law, one example; Oberstaufen, Ortsgestaltungssatzung 2018, § 5 (2) and
+  (3), `sources/text/dachgauben/part-005.md`): knee walls of buildings of two and more
+  storeys no higher than 0.80 m from the raw attic floor to the top of the eaves purlin;
+  "Wandhöhen unter der Dachschräge (Rohdecke bis OK-Fußpfette) mit mehr als 1,80 m gelten
+  nicht mehr als Kniestock". Other towns set other numbers or none; the B-Plan rules first.
+- Typical (Neufert 2002 p. 181, `roofing-waterproofing` S.5): a roof window at the knee wall
+  has its lower edge 0.90–1.10 m above the floor.
+
