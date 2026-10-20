@@ -604,9 +604,9 @@ Rules:
 
 Same stack physics as flat roofs (§4/§5) with stricter use loads and details:
 
-- **Imposed loads:** category **Z (balconies / roof terraces / loggias): qk = 4.0 kN/m²**
-  (companion value 2.0 kN/m in the source table - line load for the parapet/railing zone
-  **[VERIFY]**); parapet/partition line loads applied at ≤ 1.2 m height by use category:
+- **Imposed loads:** category **Z (balconies / roof terraces / loggias): qk = 4.0 kN/m²**,
+  with a point load **Qk = 2.0 kN** for local checks (S.4; a single load in kN, not a line
+  load); parapet/partition line loads applied at ≤ 1.2 m height by use category:
   A, B1, H, F1-F4, T1, Z → 0.5 kN/m; B2/B3, C1-C4, D, E, FL, HC, T2 → 1.0 kN/m; C5, C6, T3 →
   2.0 kN/m - full magnitude in the fall direction, 50 % opposite (min 0.5). Sound protection
   over rooms below: impact sound limits apply to terrace build-ups (DIN 4109-1 rows "unter
@@ -1235,3 +1235,12 @@ here is a design value.
   lower end of the 30-50 cm of §10.4). The model does not choose between watertight
   concrete (§10.3) and a tanking skin (§10.2): the load case decides (§10.1), and only a
   ground report names it.
+
+### S.4 Imposed load of balconies, loggias and roof terraces
+
+- Confirmed (DIN EN 1991-1-1/NA, Tab. 6.1DE, as a book prints it): category Z, "Zugänge,
+  Balkone und Ähnliches" (roof terraces, arcades, loggias, balconies, exit landings): area
+  load q_k = 4.0 kN/m², point load Q_k = 2.0 kN for local checks. — *Lastannahmen –
+  Beispiele* Tab. 4.1 (`sources/text/lastannahmen-beispiele/part-005.md`, line 124) and
+  the solution of Aufgabe 1 in 4.5.1 (line 1135: "Loggia: Z: q_k = 4,0 kN/m^2; Q_k = 2,0 kN
+  (für örtliche Nachweise)"). §8 had called the 2.0 a line load in kN/m; corrected there.

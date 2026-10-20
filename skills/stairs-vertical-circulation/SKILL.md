@@ -790,6 +790,7 @@ The core (Treppe + Aufzug + Schächte) is fixed **before** apartment layouts:
 | Flat top rail ≠ Handlauf | 100×50 or 50 mm square cap not graspable — add a separate 40 mm grab rail | the most-violated rule |
 | Geländer height design | ≥ 90 cm; **design 100 cm throughout** so one detail covers Lauf + Podeste | MBO § 38: 0.90 m for a fall height of 1 to 12 m, 1.10 m above; BGI 561: 1.00 m (S.3). State law decides |
 | Window parapet (Brüstung) | ≥ 0.80 m up to 12 m fall height, ≥ 0.90 m above | MBO § 38 (S.3); state law decides |
+| Where a guard is needed | every open side of a walkable area above a fall of more than 0.50 m: balcony, loggia, gallery, landing | BayBO Art. 36 (S.3), Bavaria; state law decides |
 | Openings | **no 120 mm sphere** [VERIFY vs DIN 18065; old 100 mm sphere carried]; design baluster gaps ≤ 100 mm; **vertical bars only** | child head rule |
 | Bottom triangle | rail ≤ 100 mm above nosing line or infill down to it | practice |
 | Extensions | +30 cm beyond Antritt/Austritt (altengerecht) | [T4] |
@@ -1130,3 +1131,8 @@ skill, that section was corrected and names the line ("S.n"); the appendix gover
   12 m must be 0.90 m high, above 12 m 1.10 m. — *Bausanierung* 14.6.5.
 - Confirmed (BGI 561, workplaces): guard height at least 1.00 m up to a fall height of
   12 m, 1.10 m above; horizontal force at least 500 N/m. — *Bausanierung* 13.6.1.
+- Confirmed (BayBO Art. 36 (1) Nr. 1, version in force from 2026-05-01): in Bavaria a guard
+  is needed at areas meant to be walked on that border directly on areas lying more than
+  0.50 m lower (balconies, loggias, galleries, landings), unless it defeats the purpose of
+  the area; the article names no height, so the heights above apply. —
+  `sources/text/baybo/part-006.md`.

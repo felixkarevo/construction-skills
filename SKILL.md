@@ -77,7 +77,7 @@ sections are numbered `S.1`, `S.2`, …; other skills point to them by name
 | If the task involves... | Use skill |
 |---|---|
 | Default complexity tier, "keep it simple", contract/defect liability, § 633 BGB, aarRdT, DIN presumption, Gebäudetyp E | `simple-first-building` (governing — see Rule zero) |
-| Plot/B-Plan reading, GRZ/GFZ, envelope test, room sizing, orientation/sun, staircase-first layout, anthropometric/ergonomic clearances | `building-planning-spatial` |
+| Plot/B-Plan reading, GRZ/GFZ, envelope test, room sizing, orientation/sun, staircase-first layout, anthropometric/ergonomic clearances, loggia/balcony/roof terrace as outdoor space | `building-planning-spatial` |
 | Choosing house form (EFH/DHH/Reihenhaus/MFH/atrium), plan-depth/daylight, compactness, density | `building-typology` |
 | Freehand/CAD drawing conventions, projections, hatching, dimensioning, plan-set types | `construction-drawing-sketching` |
 | Building law, permits, Bauleitplanung, Bauvorlagen, HOAI Leistungsphasen, VOB/BGB contract basics | `building-regulations-permits` |

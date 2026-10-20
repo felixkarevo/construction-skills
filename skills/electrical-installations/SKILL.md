@@ -1268,9 +1268,13 @@ skill, that section was corrected and names the line ("S.n"); the appendix gover
 | Hall up to 3 m / over 3 m long | 1 / 1 | 1 / 2 |
 | Storage room | 1 | 1 |
 | Hobby room | 3 | 1 |
+| Outdoor seat (Freisitz: terrace, balcony, loggia) | 1 | 1 |
 
 — *Gebäudetechnik* Tab. 6.6 (after HEA), Tab. 2.3 and Tab. 2.9. This fills the counts
-§5.3 left open for bedrooms, halls and utility rooms.
+§5.3 left open for bedrooms, halls and utility rooms. The row "Freisitz" stands in Tab. 6.6
+(`sources/text/gebaudetechnik/part-038.md`, line 462 ff.). The same book asks for outside
+sockets that can be switched off from inside and are protected by a 30 mA residual
+current device (`part-039.md`, line 404).
 
 Notes to the table, as printed: a room with a dining corner gets one socket and one outlet
 more; the sockets at beds and at the work surfaces of kitchens, cooking niches and utility

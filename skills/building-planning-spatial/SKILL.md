@@ -719,6 +719,38 @@ as a room, independent of any code minimum. **Cite as:** Neufert, Architects'
 Data (English ed., Neufert_2002.pdf excerpt), p.16 (body measurements/
 furniture) or p.17 (space requirements/circulation).
 
+### 3.10 Outdoor space on a storey — loggia, balcony, roof terrace
+
+A **loggia** is a covered outdoor space recessed into the outline of the house: walls
+on the sides it shares with rooms, open on the others. A **balcony** projects beyond
+the outline; a **roof terrace** lies on the roof of a room below. All three are
+outdoor space, not rooms: not heated, not habitable, no daylight or minimum-area rule
+of their own.
+
+- **Envelope.** The walls between an outdoor space and a heated room are outer walls
+  of the thermal envelope (`building-physics-thermal-moisture`); the open sides get no
+  wall. A window or door onto a loggia is a window or door to the outside.
+- **Floor.** The floor of a loggia is an ordinary floor slab, carried like the others
+  (`structural-systems`), for the imposed load of category Z (`roofing-waterproofing`
+  §8, S.4). Over a heated room it is that room's roof: insulation, waterproofing and
+  falls as on a flat roof (`roofing-waterproofing` §8). A slab that runs from inside
+  the envelope out into a balcony is a thermal bridge and needs one of the breaks of
+  `construction-detailing` §4.7; a loggia inside the outline needs none of them when
+  its floor is insulated on top as a roof.
+- **Guard.** Every open side gets a guard, a parapet or a railing, where the floor lies
+  more than 0.50 m above the ground or the surface below (Bavaria, BayBO Art. 36;
+  `stairs-vertical-circulation` S.3). Its height comes from the same section: 0.90 m
+  for a fall height up to 12 m, 1.10 m above. The law of the state decides.
+- **Depth.** Usable depth at least 1.50 m from the wall to the guard (S.3, a default of
+  this library; no book gives a depth).
+- **Counting.** Outdoor space is listed apart from the living area: the
+  Wohnflächenverordnung counts balconies and loggias at a quarter, at most a half
+  (`building-typology`). For GRZ/GFZ the plan text decides (1.4). The window rule of a
+  room behind a glazed loggia counts the loggia's floor with the room's (S.1).
+- **Distance to the boundary.** A loggia lies inside the outline and is measured with
+  the house; a balcony may stay out of the setback depth only within the limits of the
+  state law (S.2).
+
 ---
 
 ## Section 4: Circulation — Flurs, Doors, Windows
@@ -1525,11 +1557,20 @@ skill, that section was corrected and names the line ("S.n"); the appendix gover
   *Kompendium Nachhaltige Bauwerke* 12.7.2; *Gebäudetechnik* 2.1.1. The "1/10 openable"
   of §3.1 and §4.3 is the weaker practice rule; where the two differ, 1/8 of the rough
   opening governs.
+- Confirmed (BayBO Art. 45 (2), version in force from 2026-05-01): the rough opening of
+  the windows is at least 1/8 of the net floor area of the room "einschließlich der
+  Netto-Grundfläche verglaster Vorbauten und Loggien": the floor of a glazed porch or
+  loggia in front of the window is added to the room's. — `sources/text/baybo/part-007.md`.
 
 ### S.2 Distance to the boundary (MBO 2019 § 6)
 
 - Confirmed: the depth of the setback area is 0.4 H, at least 3 m (0.2 H, at least 3 m in
   commercial and industrial areas). — *Bauphysik* 4.2. State codes deviate; VERIFY per state.
+- Confirmed (BayBO Art. 6 (6) Nr. 2, version in force from 2026-05-01): balconies and
+  one-storey oriels are left out of the setback depth when together they take at most a
+  third of the width of the outer wall, at most 5 m each, project at most 1.50 m from the
+  wall and stay at least 2 m from the opposite boundary. — `sources/text/baybo/part-002.md`.
+  A loggia inside the outline is no projection: the wall behind its open side is measured.
 
 ### S.3 Defaults of this library for a simple house model
 
@@ -1561,3 +1602,7 @@ here is a design value.
   walls form one tank (`geotechnics-foundations` §6.4), and 250 mm is the slab of the same
   pressing-water row (`concrete-detailing` §9.2). The same number as the "slab 250" above,
   for another reason; the two may part.
+- Usable depth of a loggia or balcony: at least 1.50 m from the wall to the guard. A small
+  table with a chair pulled out from it fits across that depth (§3.3, Dining: 700 to pull a
+  chair out); the books give no depth of their own. The same 1.50 m is what a balcony may
+  project in Bavaria and still stay out of the setback depth (S.2).
