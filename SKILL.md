@@ -49,10 +49,11 @@ build-up, a system, or a standard tier, not just reading off a table.
 
 ## Source Check appendices ("S.n") — where a number was read again
 
-Ten skills end with an **Appendix S: Source Check** (`building-planning-spatial`,
+Eleven skills end with an **Appendix S: Source Check** (`building-planning-spatial`,
 `masonry-construction`, `building-physics-thermal-moisture`, `building-services-tga`,
 `electrical-installations`, `structural-systems`, `timber-steel-design`,
-`fire-protection-building`, `roofing-waterproofing`, `stairs-vertical-circulation`). Its
+`fire-protection-building`, `roofing-waterproofing`, `stairs-vertical-circulation`,
+`openings-windows-doors`). Its
 sections are numbered `S.1`, `S.2`, …; other skills point to them by name
 (`structural-systems` S.1).
 

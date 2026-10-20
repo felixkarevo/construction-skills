@@ -382,7 +382,7 @@ Rules collected from EN 845-2 practice and traditional Mauerwerksbau
 
 | Parameter | Rule |
 |---|---|
-| Max spans (rule-of-thumb tier) | 24 cm wall: Flach-/Rollschichtbogen ≤ 0.9 m, segmental ≤ 1.3 m; 36.5 cm wall: ≤ 1.3 / ≤ 1.6 m; true arched openings: 24 cm ≤ 2.0 m, 36.5 cm 2.0–5.5 m, > 36.5 cm 3.5–8.5 m — beyond the tier: engineered |
+| Max spans (rule-of-thumb tier) | 24 cm wall: Flach-/Rollschichtbogen ≤ 0.9 m, segmental ≤ 1.3 m; 36.5 cm wall: ≤ 1.3 / ≤ 1.6 m; true arched openings: 24 cm ≤ 2.0 m, 36.5 cm 2.0–5.5 m, > 36.5 cm 3.5–8.5 m — beyond the tier: engineered (book guide values, S.1) |
 | Wedge joints | 5–20 mm, radial — every joint line extended passes through the arch centre; non-radial joints slide |
 | Voussoir count | odd number + crown keystone (setting convenience) |
 | Skewback (Anfangsfuge) | inclined springing joint whose line aims at the arch centre — segmental/jack arches need it |
@@ -391,6 +391,14 @@ Rules collected from EN 845-2 practice and traditional Mauerwerksbau
 | Abutment | undisturbed full-height pier resisting the thrust; H ≈ w·l²/(8·f) — flatter arch, harder push |
 | Wall above springing | keep loaded and continuous; the vertical surcharge stabilises the arch |
 | Centring (Lehrgerüst) | strike ≥ 7 days (14 for > 1.2 m/cold); ease gradually (wedges/sand jacks), build symmetrically from both springings |
+
+**Round (semicircular) arch, Rundbogen** (S.1). The centre lies on the springing line, so
+the arch runs into the straight jambs tangentially, and the rise is half the span. A
+round-arched opening of clear width l and crown height h has straight jambs of h − l/2,
+an arch of radius l/2 and the area (h − l/2)·l + π·l²/8. Within the true-arch span of the
+table above for the thickness of the masonry, a bonded round arch carries the wall over it
+without a lintel; beyond that span, or in masonry thinner than 24 cm, a lintel at the crown
+carries and the arch is only the shape of the opening (S.2).
 
 Thrust sanity table (uniform w on the arch): `H = w·l²/(8f)`.
 
@@ -1365,3 +1373,45 @@ Ranked by real-world frequency in DACH execution.
     design charts (η_x,q/η_y,q/η_f,q by aspect ratio), full DIN 18008-3
     rules, and SSG joint design are not reproduced — verify editions and
     hand structural glass beyond a simple IGU check to a facade engineer.
+
+---
+
+## Appendix S: Source Check 2026-10 — values re-read from the literature
+
+Each line below was read again in the source books (`sources/`) in October 2026, with the
+place it stands at. "Confirmed" means: a dated book prints the rule; "Typical" means it
+prints a guide value, not a rule. State law (LBO) and local rules still override; `VERIFY`
+tags elsewhere in this skill stay in force. Where a line here differs from a section of
+this skill, that section was corrected and names the line ("S.n"); the appendix governs.
+
+### S.1 Round arches in masonry
+
+- Confirmed (geometry of the shape, no standard involved): the round or semicircular arch
+  "merges tangentially into the supporting vertical wall pillars. Its rise is always equal
+  to the circle radius or half the span"; the circle centres lie at impost height. —
+  *Building Construction Design: From Principle to Detail*, 7.6.1.1
+  (`building-construction-design-from-principle-to-detail-volume/part-025.md`, l. 289, 317).
+- Typical, maximum spans of semicircular and pointed arches as guide values: with 24 cm
+  masonry ≤ 200 cm; with 36.5 cm masonry ≤ 200–550 cm; above 36.5 cm masonry > 350–850 cm.
+  — same place, l. 321–333. The row "true arched openings" of §4.4 gives the same values.
+- Typical: wedge-shaped joints 0.5–2.0 cm, joint lines pointing to the centre, an odd number
+  of voussoirs with a keystone as a convenience of erection. — same place, l. 305–313; §4.4
+  rows "Wedge joints" and "Voussoir count".
+- Practice: a relieving arch of bricks over a jack arch for spans up to about 1.90 m. — same
+  book, caption of Fig. 7.58 (part-025.md, l. 349).
+
+### S.2 Defaults of this library for round-arched openings
+
+**Not from a book.** These are choices of this library, made so that a simple house can be
+modelled with round-arched windows and doors. Tier T4, massing only: a product sheet, the
+mason's or the engineer's figure replaces them, and nothing here is a design value.
+
+- A round-arched window or door keeps a straight jamb of at least 0.30 m below the
+  springing line, so that the frame and the hinges of a casement or a leaf have a straight
+  part to sit on.
+- A round arch in masonry thinner than 24 cm is not counted as carrying itself: the guide
+  values of S.1 begin at 24 cm, so a lintel is drawn at the crown.
+- The ring of a round arch that carries itself is drawn as deep as the §3.3 lintel for the
+  same span, so that the wall §3.3 asks for above an opening also holds the arch.
+- For a way out in an emergency, a round-arched window counts with the largest rectangle
+  that fits inside the opening; the part of the arch beside it does not count.
