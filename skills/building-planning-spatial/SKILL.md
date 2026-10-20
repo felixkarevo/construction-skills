@@ -562,6 +562,14 @@ counts in full, between 1 m and 2 m at half, below 1 m not at all (Wohnflächenv
 **T2, VERIFY**). A local design statute may cap the knee wall (S.4); how the model draws one:
 S.3.
 
+**Dormers and roof cut-outs.** A dormer lifts the slope over part of the attic floor and
+gives it a window in an upright wall; a roof cut-out opens the slope to an outdoor terrace in
+front of a rear wall (`roofing-waterproofing` §11.4). Under a dormer the clear height is that
+of the dormer's roof, and that floor counts by it in the rules above (S.1); the floor of a
+cut-out is outdoor space like a loggia (3.10) and is no part of the room. Whether a town
+allows them, how wide and how far from verge and ridge, is local law (`roofing-waterproofing`
+S.6).
+
 **F2F default:** clear 2.70 + RC buildup 0.20 (or timber 0.30–0.38) →
 **F2F 2.90–3.05; use 2.90** as worked default. Every +100 mm costs façade,
 stairs and (on many plans) the next Vollgeschoss reading — check 1.4 first.

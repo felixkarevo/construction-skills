@@ -12,7 +12,8 @@ description: >
   multi-ply bituminous waterproofing per DIN 18531-18535 (DIN 18195 superseded - flagged).
   Balconies, loggias and roof terraces on waterproofing; wet-room tanking (DIN 18534);
   below-grade waterproofing - white tub (Weiße Wanne / WU-concrete) and black tub (Schwarze
-  Wanne) per DIN 18533 load cases; roof windows, light domes and daylight openings; PV on roof
+  Wanne) per DIN 18533 load cases; roof windows, light domes and daylight openings; dormers
+  and roof cut-outs (Dachgaube, Dacheinschnitt) with examples of local law; PV on roof
   (loads, fire separations, BIPV watertightness proof); green/retention roofs. Airtightness
   layer continuity (DIN 4108-7, GEG, n50); hygrothermal design (Glaser/DIN 4108-3 period
   balance, roof sd-ratio rule, inverted-roof U surcharge, tapered-insulation U, timber flat-roof
@@ -813,6 +814,39 @@ The **concrete itself** is the sealing element, uncoated. Conditions:
   on steeper slopes **[VERIFY]**; upstands per §3.3 with the substrate kept below the sealing
   termination line; perimeters and outlets kept clear of granules.
 
+### 11.4 Dormers and roof cut-outs (Dachgauben, Dacheinschnitte)
+
+- **What they are.** A dormer (Dachgaube) stands out of the slope: a front with a window, two
+  cheeks (Gaubenwangen) and a roof of its own. A shed dormer (Schleppgaube) has one slope,
+  flatter than the main roof, that runs back into it below the ridge; a gable dormer
+  (Giebelgaube) has a small gable roof whose ridge runs square to the main ridge. A roof
+  cut-out (Dacheinschnitt, Negativgaube, Dachloggia) is the reverse: the slope is opened from
+  the eaves side up to a rear wall, and the floor behind the eaves becomes an open terrace.
+  Both give the attic standing height and an outside wall where the slope would come down to
+  the floor (`building-planning-spatial` 3.4). Neufert advises dormers of one size and shape
+  on a roof, and a width that follows the rafter spacing, to spare the trimming of rafters
+  (S.6).
+- **Structure.** Every rafter in the way of a dormer or a cut-out is cut and carried by a
+  trimmer (Wechsel) above and below the opening, as at a wide roof window (S.3); the cheeks
+  of a dormer stand on the rafters beside the opening. Sizing is the carpenter's
+  (`timber-steel-design`).
+- **Envelope.** Front, cheeks and roof of a dormer, and the rear wall and the sides of a
+  cut-out, are parts of the thermal envelope like the slope they replace, insulated and with
+  the airtight layer run on without a gap (§12.5). Where a dormer cheek or front meets the
+  slope, and along the sides of a cut-out, the covering is flashed up the wall like any
+  penetration (§2.4). A shed dormer flatter than the standard pitch of the tiles needs a
+  covering for low slopes, such as standing-seam metal (§2.2).
+- **The floor of a roof cut-out** is a flat roof over the room below it: sealing, falls of
+  at least 2 % to a drain or over the eaves, a protective layer and the wearing surface
+  (§8), and an upstand of the sealing at the door and the walls (§3.3). The imposed load is
+  that of a roof terrace (S.4), and its open side needs a guard (`building-planning-spatial`
+  3.10).
+- **Local law.** Whether a town allows dormers and cut-outs, from which pitch, how wide and
+  how far from verge, ridge and one another is set by the B-Plan or a local design statute;
+  the numbers differ from town to town (examples in S.6, not general rules). In Bavaria a
+  dormer needs no permit only where such a statute rules on it and is kept (S.6).
+- **How a simple model draws them:** S.3.
+
 ---
 
 ## Section 12: Building-Physics Design of Roofs - Methods and Worked Examples
@@ -1258,6 +1292,38 @@ here is a design value.
   cut and carried by a trimmer (Wechsel) above and below the opening, drawn with the section
   of the rafters and 0.03 m clear of the window frame on every side (S.5: frame width + 6 cm
   between the rafters).
+- Dormers and roof cut-outs (§11.4) are drawn only on a gable roof over an attic storey with a
+  knee wall. The front of a dormer is the eaves wall itself, raised up to the dormer roof
+  between its cheeks; the eaves run on in front of it with the overhang of the main roof.
+- Front of a dormer: 2.20 m from the attic floor to the underside of the dormer roof, the
+  clear height an attic room asks over half of its floor (`building-planning-spatial` S.1).
+  A window in the front starts above the line where the underside of the main roof meets the
+  front, so that the roof in front of it does not cover it.
+- Pitch of a shed dormer: 15° unless another is asked for, never flatter than 10°, the least
+  pitch of the examples of local law in S.6; at such a pitch the dormer roof is covered with
+  standing-seam metal, not with tiles (§2.2). A gable dormer takes the pitch of the main roof,
+  as the examples ask.
+- Cheeks of a dormer drawn as a timber-frame wall 0.20 m thick; they stand on the rafters
+  beside the opening and reach from the underside of the main roof up to the dormer roof.
+- Roof of a dormer: a plate as thick as the main roof, reaching 0.20 m over its front and its
+  cheeks, less than the overhang of the main roof, as the examples of S.6 ask.
+- A dormer or a roof cut-out keeps at least 1.25 m from the verge, measured along the eaves
+  from the edge of the roof to the outside of its cheek, the least distance of the examples
+  in S.6.
+- The top of a dormer, where its roof meets the main roof or its own ridge, lies at least
+  0.50 m below the ridge of the main roof, measured vertically: room for the ridge purlin and
+  the ridge covering, as above a roof window.
+- All dormers and roof cut-outs of one slope together take at most 50 % of the length of the
+  ridge, the most that the examples of S.6 allow. Each is at least 1.00 m wide between the
+  centre lines of its cheeks, a little more than one rafter field (Neufert in S.6: the width
+  follows the rafter spacing).
+- Roof cut-out of a simple house: the slope is opened from the outer face of the eaves wall up
+  to a rear wall; the sides and the rear wall are outer walls of the attic, cut by the slope.
+  The floor is the attic floor and outdoor space like a loggia (`building-planning-spatial`
+  3.10). The eaves wall stays in front of it as a parapet, with a railing behind it where it
+  is lower than the guard of `stairs-vertical-circulation` S.3.
+- The rafters in the way of a dormer or a roof cut-out are cut and carried by trimmers above
+  and below the opening, as at a wide roof window.
 - Protection of a basement against water from the ground: drawn as one placeholder around
   the walls in the ground and under the base slab, reaching 0.30 m above the ground (the
   lower end of the 30-50 cm of §10.4). The model does not choose between watertight
@@ -1299,3 +1365,51 @@ another maker or product differs. Read the current product sheet before real use
   seated person); windows in a row or above one another 19 cm apart; "Generously wide
   windows in living rooms can be achieved by the inclusion of rafter trimmers."
 
+### S.6 Dormers and roof cut-outs in local law (examples) and in the Bavarian code
+
+Local design statutes (Gestaltungssatzungen, Dachgaubensatzungen) of Bavarian towns, copied
+from their own publications (`sources/text/dachgauben/`). **Local law only:** each binds only
+in its own town, a B-Plan may rule otherwise, and the next town's numbers differ. They show
+the kind of rule and the range of numbers, nothing more; status Practice.
+
+- Practice (Adelsdorf, Dachgaubensatzung 1994, § 2 and § 3, `dachgauben/part-001.md` lines
+  21-50): "Dachgauben sind ab einer Dachneigung von 35 Grad und höher zulässig"; all dormers
+  of a roof together no longer than 2/5 of the ridge; "Die Länge einer Einzelgaube wird auf
+  maximal 3,00 m festgelegt"; 1.25 m to the verge (2.0 m at an end house), 1.0 m below the
+  ridge measured vertically, between two dormers 2/3 of the dormer width and at least 1.00 m;
+  "Die Neigung bei Schleppgauben muss mindestens 10 Grad betragen", a gable dormer takes the
+  pitch of the main roof. Roof cut-outs keep the same distances and together take at most
+  2/5 of the ridge.
+- Practice (Stadtbergen, Dachgaubensatzung 2005, § 2 table, `dachgauben/part-002.md` lines
+  23-33): no dormers below 30°; at 30-35° all dormers together 0,4 of the eaves length,
+  1.5 m to the verge, a single gable dormer 1.8 m and a shed dormer 3.0 m wide, 0.8 m below
+  the main ridge; from 35° 0,5 of the eaves length, 1.3 m to the verge, 2.2 m and 3.5 m,
+  1.2 m below the ridge; 1.25 m between dormers; the overhang of a dormer smaller than that
+  of the main roof.
+- Practice (Friedberg, Dachgaubensatzung 1998, § 2, `dachgauben/part-003.md` lines 47-94):
+  1.50 m to the verge, at least 1.00 m below the ridge, the front of the dormer at least
+  25 cm behind the outer wall below it, all dormers together at most 50 % of the ridge;
+  shed dormers only from 45°.
+- Practice (Dittelbrunn 1997/98, `dachgauben/part-004.md` lines 34-38): dormers from 35°, a
+  single one at most 2.00 m wide, all together at most half the length of the building,
+  1.50 m to the verge and between dormers, the dormer ridge at least 0.75 m below the main
+  ridge.
+- Practice (Oberstaufen, Ortsgestaltungssatzung 2018, § 6, `dachgauben/part-005.md` lines
+  161-210): dormers from 22°, shed dormers from 5°; 0.35 m below the ridge, 1.25 m from the
+  outer wall and 2.50 m from the verge; roof cut-outs at most 3.0 m wide each, all together
+  at most 1/3 of the length of the building, with the eaves running on in front of them.
+- Practice (Egling, Ortsgestaltungssatzung 2021, 4.5, `dachgauben/part-006.md` line 120):
+  "Dacheinschnitte (Negativgaube/Loggia) sind unzulässig". A town may forbid them altogether.
+- Confirmed (BayBO Art. 57 (2) Nr. 4, version in force from 2026-05-01, `sources/text/baybo/
+  part-009.md` lines 186-208): "Dachgauben und vergleichbare Dachaufbauten" need no permit
+  only within a statute under Art. 81 that rules on where and how large they may be, and when
+  they keep to it. Outside such a statute the ordinary procedure applies.
+- Confirmed (BayBO Art. 6 (5a) Satz 5, same version, `baybo/part-002.md` lines 31-35): in
+  towns of more than 250 000 inhabitants subordinate dormers are left out of the setback
+  depth when together they take no more than a third of the width of the outer wall, at most
+  5 m each, with a front of at most 4 m² and at most 2.5 m high.
+- Typical (Neufert, *Architects' Data*, 3rd ed. 2002, p. 78 of the file, printed p. 77,
+  read on `sources/text/neufert-2002/pages/page-0078.png`): ten kinds of dormer drawn without
+  dimensions; "Dormers should all be of the same size and shape if possible"; "Normally, to
+  avoid expensive trimming of rafters, the width of the dormers should conform to the rafter
+  spacing."

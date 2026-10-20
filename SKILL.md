@@ -93,7 +93,7 @@ sections are numbered `S.1`, `S.2`, …; other skills point to them by name
 | Fire resistance classes, escape routes, fire compartments, Eurocode fire design | `fire-protection-building` |
 | Layer build-ups/junction details, joint grammar, tolerances, movement joints | `construction-detailing` |
 | Material selection/properties: concrete, masonry units, steel, timber, insulation, glass, CE marks | `building-materials` |
-| Roof design (pitched/flat), waterproofing membranes, below-grade tanking (black/white tub) | `roofing-waterproofing` |
+| Roof design (pitched/flat), dormers and roof cut-outs, waterproofing membranes, below-grade tanking (black/white tub) | `roofing-waterproofing` |
 | Lintels, window/door build-ups, U_w calc, sealing joints, mounting classes, structural glazing/DIN 18008, isochoric climatic load | `openings-windows-doors` |
 | Stair geometry/set-out, ramps, lifts, stair structural/acoustic/fire checks | `stairs-vertical-circulation` |
 | Heating/cooling systems, DHW/legionella, ventilation, TGA sizing, heat pumps | `building-services-tga` |
