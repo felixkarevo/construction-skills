@@ -5,8 +5,8 @@ description: >
   set-out from OKFF-to-OKFF height, Steigungsverhältnis 2s+a=60–65 cm
   (Schrittmaß/Blondel), tread ≥26 cm, rise ≤19(–21) cm as German practice
   values (VERIFY against DIN 18065 current), lichte Durchgangshöhe ≥2.00 m (design 2.10 m),
-  floor-opening length algorithm, Gehlinie winder geometry with derived
-  minimum inner radius, flight/Podest/door rules (no door onto flight, Podest
+  floor-opening length algorithm, winder and spindle-stair geometry after
+  DIN 18065:2020-08 (Lauflinie, walking zone, usable width, headroom), flight/Podest/door rules (no door onto flight, Podest
   ≥ door width, escape width ≥1.00 m per digested MBO/LBO), type selection
   tree (straight/L/U-Halbwendung/winders/Spindeltreppe), structural forms
   (Laufplatte slab, landing-beam, cantilever, folded plate, spine, precast,
@@ -187,6 +187,8 @@ Gait locks into cadence within two steps — which is why **uniformity matters
 more than the absolute value**: all rises 5 mm tall is fine; one rise 15 mm
 off is a trip hazard. Schrittmaß is a comfort filter **inside** the code box,
 never instead of it.
+DIN 18065:2020-08 itself sets the step rule at 590 mm to 650 mm (S.4); the
+600 mm lower end above is the comfort band of this skill.
 
 ### 4.2 Companion checks
 
@@ -310,34 +312,53 @@ three steps with cues/handrail, a Rampe ≤ 6 %, or remove it. **Splits:** for
 A winder is a tapered tread that turns without a full Podest — the
 space-efficient turn and the most mis-set-out element in house stairs.
 
-### 7.1 Governing rules [all T4/VERIFY against DIN 18065 current]
+### 7.1 Governing rules — DIN 18065:2020-08 (S.4)
 
-| Rule | Adopted value |
-|---|---|
-| Going at the **Gehlinie (walkline)** | ≥ straight-flight minimum (use 260) |
-| Gehlinie position | 300 mm from the narrow inside edge (widths ≤ ~1 m; centre line when wider) |
-| Narrow-end going | ≥ 120 mm (old generic value 152 mm — both fix the same geometry problem; use the governing one) |
-| Uniformity | winders identical at the Gehlinie |
-| Necessary stairs | winders restricted on many escape stairs — Podest per turn [VERIFY state LBO] |
+Values for dwelling houses with at most two dwellings and inside dwellings; other
+buildings in brackets. A winder stair is a necessary stair here unless it is an
+additional one.
+
+| Rule | Value | Basis |
+|---|---|---|
+| Rise and going of a winder | the limits of Tabelle 1 hold on the walking line (Lauflinie): rise 140–200 mm, going 230–370 mm, 2s + a = 590–650 mm (other buildings 140–190 / 260–370) | S.4 |
+| Where the going is measured | on the Lauflinie; where it curves, the going is the chord between the nosings | S.4 |
+| Walking zone (Gehbereich) | usable width up to 100 cm: 2/10 of it, in the middle of the stair; wider: 20 cm wide, 40 cm from the inner edge of the handrail | S.4 |
+| Lauflinie | chosen freely inside the walking zone, continuous, without kinks | S.4 |
+| Narrow end | at the inner boundary of the usable width at least 50 mm (other buildings 100 mm) | S.4 |
+| Uniformity | the narrow ends stay equal or shrink toward the corner of the turn; one rule of tapering (Verziehungsregel) per flight | S.4 |
+| Necessary stairs | winders on escape stairs restricted by some states — Podest per turn | [VERIFY state LBO] |
+
+This skill used to carry a walking line 300 mm from the narrow edge and a narrow end of
+120 mm; *Bausanierung* 13.5.1 prints a Lauflinie about 50 cm from the narrow end above 1.0 m
+width and a going of at least 10 cm inside, at most 40 cm outside. Both are older rules:
+DIN 18065:2020-08 governs (S.4).
 
 ### 7.2 Derived geometry
 
-About inner radius r_i, subtended angle θ (rad): narrow-end = r_i·θ ≥ 120;
-Gehlinie = (r_i+300)·θ ≥ 260 ⇒ **r_i ≥ 120/θ** (governs for θ < 43.3°, i.e.
-almost always; with the 152 mm basis: r_i ≥ 152/θ — recompute for the layout
-at hand, never reuse a prior margin).
+Winders turning about an inner radius r_i through θ per step, usable width w up to 1000 mm,
+Lauflinie in the middle of the walking zone (r_L = r_i + w/2):
 
-### 7.3 Minimum inner radius, 90° turn
+```
+narrow end   2·r_i·sin(θ/2)            ≥ 50 mm  (other buildings 100 mm)
+Lauflinie    a = 2·r_L·sin(θ/2)        230 ≤ a ≤ 370 mm, and 2s + a within 590–650 mm
+```
 
-| Layout | θ | r_i ≥ 120/θ | (152/θ basis) | Gehlinie going at r_i | Verdict |
-|---|---|---|---|---|---|
-| 2 winders @ 45° | 0.785 | **153 mm** | 194 mm | 356 mm ✓ | Best for tight plans; ~200 mm newel/well |
-| 3 winders @ 30° | 0.524 | **229 mm** | 290 mm | 277 mm ✓ | ~460 mm well — often a duct/post |
-| 4 winders @ 22.5° | 0.393 | 306 mm | 387 mm | 238 mm ✗ → r_i ≥ 361 | Smooth, big well; curved-stair territory |
-| winders about a point (r_i = 0) | any | — | — | narrow end = 0 ✗ | **Non-compliant** — what most builders draw |
+The Lauflinie may move inside the walking zone (w/10 to either side) when one bound is
+missed. Recompute for the layout at hand; never reuse a prior margin.
 
-**Rule to enforce:** winders turning about a point or ≤ 50 mm newel are
-non-compliant however they look. Fix: bigger well, fewer winders, or Podest.
+### 7.3 Minimum inner radius, 90° turn (w = 800 mm, house)
+
+| Layout | θ | r_i for a narrow end ≥ 50 mm | Lauflinie going at that r_i | Verdict |
+|---|---|---|---|---|
+| 2 winders @ 45° | 45° | **66 mm** | 357 mm ✓ (≤ 370) | Tight plans; a 150 mm newel |
+| 3 winders @ 30° | 30° | **97 mm** | 257 mm ✓ | The usual layout |
+| 4 winders @ 22.5° | 22.5° | 129 mm | 206 mm ✗ → r_i ≥ 190 for 230 mm | Smooth, big well; curved-stair territory |
+| winders about a point (r_i = 0) | any | — | narrow end = 0 ✗ | **Non-compliant** — what most builders draw |
+
+**Rule to enforce:** winders turning about a point, or about a newel too thin for the
+narrow end, are non-compliant however they look. Fix: bigger well, fewer winders, or
+Podest. In other buildings (narrow end 100 mm, going from 260 mm, width from 1000 mm)
+recompute.
 
 ### 7.4 When NOT to wind
 
@@ -362,10 +383,11 @@ Q3 Rectangle ≈ (Going/2 + Podest depth) × (2×width + 100)?
    YES → HALBWENDUNG (dogleg) — the German stacking default; mid-Podest
         gives window + rest. Best area efficiency of landing types.
 Q4 Shortfall ≤ ~900 mm, able-bodied users, LBO allows winders?
-   YES → WENDLUNGEN (§7): verify r_i ≥ 120/θ; check furniture separately.
+   YES → WENDLUNGEN (§7): verify narrow end and Lauflinie (§7.2); check furniture separately.
 Q5 Secondary route only (Dachzugang, Keller, Loft, utility)?
-   YES → SPINDELTREPPE (§9) Ø 1500–1650; accept usability penalty; sole
-        escape only if LBO/DIN 18065 category explicitly allows [VERIFY].
+   YES → SPINDELTREPPE (§9) Ø 1400–1600 as an additional stair (50 cm usable
+        width); as the necessary stair of a house Ø ≥ 1900 (80 cm, §9.2) and
+        only if the LBO allows [VERIFY].
 Q6 Loft-level change in minimal space?
    YES → Raumspartreppe/Leiter — maintenance/loft access only, never the
         required Treppe between occupied floors [VERIFY LBO].
@@ -382,7 +404,7 @@ ALWAYS: a 200 mm narrower bedroom is invisible; a bad stair is a fall.
 | L + 2 winders | 2750×1900 | 5.2 m² | ~1.8 m² | 1.20 | ★★★☆☆ | ★★★☆☆ | Corner ~700–900 mm short |
 | **Halbwendung** | **3300×2200** | **7.3 m²**, stackable | ~2.4 m² | 1.15 | ★★★★☆ | ★★★☆☆ | **Default house stair** |
 | U + winders | 3000×2100 | 6.3 m² | ~2.2 m² | 1.30 | ★★☆☆☆ | ★★☆☆☆ | Dogleg ~300 mm too long |
-| Spindel Ø 1524 | 1624×1624 | 2.6 m² | 2.6 m² | 1.6–3.0 | ★★☆☆☆ | ★☆☆☆☆ | Dachzugang, Loft, annex |
+| Spindel Ø 2000 | 2000×2000 | 4.0 m² | Ø 2.1 m ≈ 3.5 m² | 1.6–3.0 | ★★☆☆☆ | ★☆☆☆☆ | Dachzugang, Loft, annex |
 | Curved/helical | 3000×2500+ | 7.5+ m² | large | 4.0+ | ★★★★☆ | ★★★☆☆ | Feature; bespoke formwork |
 
 *Cost index = stair element only (in-situ RC straight = 1.00), excludes plan
@@ -398,48 +420,71 @@ Aufzug void from sketch one (§18).
 
 ## 9. Spindeltreppen (spiral stairs)
 
-### 9.1 Envelope — carried-over practice values, all VERIFY
+A Spindeltreppe winds about a spindle (Treppenspindel), the bearing core in its middle; a
+Wendeltreppe winds about an open well (Treppenauge) and follows §7.
 
-The digested sources contain no clause-level spiral table. Values below kept
-from the prior skill where consistent with German practice, retagged to
-DIN 18065 (Wendeltreppe) / state rules:
+### 9.1 Envelope — DIN 18065:2020-08 (S.4)
 
-| Item | Practice value |
-|---|---|
-| Clear walking width at/below handrail | ≥ 660 mm [VERIFY] |
-| Going at Gehlinie (300 mm from narrow edge) | ≥ 190–210 mm [VERIFY] |
-| Max rise | ≤ 220 mm secondary-stair envelope [VERIFY] |
-| Headroom | ≥ 2100 mm (§5 floor) |
-| Overall Ø | ≥ 1500; 1600–1650 with chunky column (consequence) |
-| Use | secondary dwelling routes unless LBO says otherwise [VERIFY] |
+| Item | House with at most 2 dwellings | Other buildings | Basis |
+|---|---|---|---|
+| Usable width, necessary stair | ≥ 80 cm | ≥ 100 cm | S.4 |
+| Usable width, additional stair | ≥ 50 cm | ≥ 50 cm | S.4 |
+| Rise | 140–200 mm (additional stair 140–210) | 140–190 mm | S.4 |
+| Going on the Lauflinie | 230–370 mm (additional stair 210–370) | 260–370 mm | S.4 |
+| Schrittmaß 2s + a | 590–650 mm | 590–650 mm | S.4 |
+| Narrow end at the spindle | no minimum | ≥ 100 mm | S.4 |
+| Walking zone | 2/10 of the usable width; inner boundary in the middle of the usable width (up to 130 cm); at most 40 cm from the outer boundary | same | S.4 |
+| Headroom | ≥ 200 cm, also under the stair's own upper turn | same | S.4 |
+| Gap to walls and guards | ≤ 6 cm | same | S.4 |
+| Guard on the open side | 90 cm (fall height ≤ 12 m) | 90 or 100 cm (§19) | S.3, S.4 |
+| As the only (necessary) stair of a house | state law decides | | [VERIFY LBO] |
 
-### 9.2 Geometry + worked Ø 1524, H = 3200
+The usable width runs from the spindle to the inner edge of the handrail.
+
+### 9.2 Geometry + worked Ø 2000, H = 2900
 
 ```
-r_c column radius; r_w = r_c + 300 (Gehlinie); θ·r_w ≥ a_Gehlinie,min;
-N ≤ 2π·r_w/a_min per turn.
+r_o outer radius; r_c spindle radius; h handrail allowance (S.5)
+w     = r_o − r_c − h                     usable width, ≥ 800 mm (house, necessary stair)
+r_L   = r_c + 0.6·w                       Lauflinie in the middle of the walking zone (S.5; w ≤ 1300)
+n, s  from §3;  a = 630 − 2s, never below 590 − 2s or 230 mm
+θ     = 2·asin(a / (2·r_L))              angle per tread (a is the chord, S.4)
+N     = 360° / θ                          treads per turn
+headroom under the own upper turn = (N − 1)·s − tread thickness ≥ 2000 mm
+      (from the plane through the nosings, S.4: under the back edge of a tread above,
+      that plane has risen almost one rise above the tread below)
+sweep = (n − 1)·θ
 ```
+
+If the headroom misses, take a smaller going, down to 590 − 2s; if that is not enough, a
+larger diameter.
 
 | Quantity | Value |
 |---|---|
-| r_o = 762; column Ø 150 → r_c = 75 | clear width 687 |
-| r_w = 375 → adopt 12 treads/turn (θ = 30°) | Gehlinie going = 196 mm (tight vs 190 — recompute for the *actual* column Ø) |
-| n = ceil(3200/220) = 15 | **s = 213.3 mm** — secondary-stair territory [VERIFY] |
-| Rotation ≈ 1.25 turns; opening Ø 1624; footprint ≈ 2.07 m² well | |
+| Ø 2000, spindle Ø 150, h = 60 | w = 1000 − 75 − 60 = **865 mm** ✓ ≥ 800 |
+| r_L = 75 + 0.6 × 865 | **594 mm** |
+| n = round(2900/175) = 17 | s = **170.6 mm** |
+| a = 630 − 341.2 | **288.8 mm**; 2s + a = 630 ✓ |
+| θ = 2·asin(288.8/1188) | 28.1°, N = 12.8 treads per turn |
+| Headroom = 11.8 × 170.6 − 50 | 1962 mm ✗ |
+| N ≥ 1 + 2050/170.6 = 13.02 → θ ≤ 27.7° | a = 2 × 594 × sin(13.8°) = **284 mm**; 2s + a = 625 ✓ |
+| Headroom = 12.02 × 170.6 − 50 | **2000 mm** ✓ |
+| Sweep = 16 × 27.7° | **442°**, about 1¼ turns; floor opening Ø ≈ 2.10 m |
 
-**The honest note:** s ≈ 213 mm is ~20 % steeper than a 177.8 main stair —
-legal-ish, compact, genuinely unpleasant. Always recompute θ_min for the
+The smallest diameter for w = 800 is 2 × (800 + 75 + 60) = **1870 mm**; at H = 2900 its
+headroom then asks for a going of about 265 mm (2s + a = 607 ✓). Always recompute θ for the
 layout in front of you; margins from examples do not transfer.
 
 ### 9.3 Verdicts
 
-✅ Good: roof/Loft access where a full stair would eat a room; external annex
-entry; cellar utility. ⚠️ Tolerable: secondary stair with a compliant main
-stair; sole stair of a studio annexe for able-bodied adults *if* the LBO
-agrees [VERIFY]. ❌ Wrong: primary family stair; households with
-elderly/children/mobility limits; sole bedroom escape (no Trage route);
-sole furniture route. State furniture + stretcher limits explicitly — clients
-underestimate both.
+✅ Good: roof/Loft access where a full stair would eat a room; additional stair beside a
+main stair; external annex entry; cellar utility. ⚠️ Tolerable: the stair of a small house
+at Ø ≥ 1.9 m and 80 cm usable width, which DIN 18065 admits as a necessary stair (S.4),
+*if* the LBO agrees [VERIFY]. ❌ Avoid for primary routes: a spindle stair stays the less
+comfortable main stair of a family house, with tapered treads, a handrail on one side and
+no route for furniture or a stretcher; households with elderly/children/mobility limits;
+sole bedroom escape (no Trage route). State furniture + stretcher limits explicitly —
+clients underestimate both.
 
 ### 9.4 Materials
 
@@ -875,7 +920,7 @@ lift?"* It changes rise, width, possibly the plan; at design stage it is free.
 |---|---|---|---|
 | 1 | Riser count slab-to-slab | first/last step off; uniformity break | §3 Step 1 |
 | 2 | Opening sized by eye | 1.8 m headroom after the pour | §5.2 every time |
-| 3 | Winders about a point | narrow end ≈ 0 mm | §7.3 r_i ≥ 120/θ |
+| 3 | Winders about a point | narrow end ≈ 0 mm | §7.3 narrow end ≥ 50 mm |
 | 4 | Flat square top rail as Handlauf | not graspable in a fall | §19.1 grab rail |
 | 5 | Guard posts drilled into finished plate | 7.4 kN into 30 mm concrete | §19.3 cast-in |
 | 6 | Steeper roof stair | cadence break in one building | same s/a (§4) |
@@ -884,7 +929,7 @@ lift?"* It changes rise, width, possibly the plan; at design stage it is free.
 | 9 | Door over the flight top | pushed backwards downstairs | §5.4 [T3] |
 | 10 | Handlauf stops at mid-Podest | no support at the turn; lost in smoke | §15/§19 |
 | 11 | Bad/WC under dogleg leg 1 | 1.43 m soffit | §21 |
-| 12 | Spindeltreppe to save 4 m² | 213 mm rises; no Trage route | §9.3 say no |
+| 12 | Spindeltreppe as the family's main stair to save 3 m² | tapered treads; no furniture or Trage route | §9.3 |
 | 13 | Polished treads | wet falls | §20 |
 | 14 | Props struck at 7 d | sagging soffit forever | §12.1 ≥ 14 d |
 | 15 | Horizontal balusters | toddler ladder | §19.1 vertical ≤ 100 |
@@ -1023,8 +1068,9 @@ compliant turn via §8. **Headroom/opening** — [ ] §5.2 computed + recorded
 [ ] ≥ 2.10 worst point vs slab/beams/ducts/lights [ ] mid-Podest soffit
 noted; no circulation beneath if < 2.10 [ ] Dachzugang same s/a [ ] door
 swings at both flight heads. **Flights/Podeste** — [ ] Podest ≥ width and ≥
-door width; no door onto flight [ ] ≤ ~18/Lauf [ ] winders r_i ≥ 120/θ +
-Gehlinie check recomputed *for this layout* [ ] spiral use case on §9.3 ✅
+door width; no door onto flight [ ] ≤ ~18/Lauf [ ] winders: narrow end +
+Lauflinie going recomputed *for this layout* (§7.2) [ ] spiral: usable width,
+Lauflinie going and headroom under the upper turn (§9.2); use case on §9.3 ✅
 list. **Structure** — [ ] plate ≥ l₀/30 + practice floor; spans > 3.6 m
 re-structured [ ] slope factor + step triangles in loads; 3.0 kN/m² + 2.0 kN
 point [ ] A_s ≥ calc & min; distribution ≥ 20 %; top steel over Podest beam
@@ -1049,8 +1095,8 @@ with Brandschutz plan [ ] vendor shaft layout before fixing walls.
 
 ## 27. Known gaps (state when relevant)
 
-1. **DIN 18065 clause values not in the digests** — only the ≥ 100 cm width
-   anchor and terminology (Gehlinie etc.) are carried. Every step/width/
+1. **DIN 18065 clause values** — Tabelle 1, step rule, walking zone, winders,
+   spindle stairs, headroom and guards are read in DIN 18065:2020-08 (S.4). Every other step/width/
    headroom/handrail/120 mm-sphere figure tagged VERIFY must be re-read from
    current DIN 18065; the previous skill's values came from non-German codes
    and are kept only where aligned with German practice.
@@ -1067,8 +1113,8 @@ with Brandschutz plan [ ] vendor shaft layout before fixing walls.
    items, `fire-protection-building` + Brandschutzfachplaner.
 7. **Helical/curved in-situ stairs** — structurally out of scope
    (bending + torsion), engineer-only.
-8. **Winder narrow-end value (120 vs 152 mm) and Gehlinie position per width
-   class** — carried at two practice levels; resolve per DIN 18065.
+8. **Winders and spindle stairs** — dimensions read in DIN 18065:2020-08 (S.4);
+   whether one may be the necessary stair is state law [VERIFY LBO].
 9. **Timber/steel stairs** — system selection + practice sizes only;
    `timber-steel-design` for verification.
 10. **Stairlift/home-lift intrusion figures** — indicative; confirm per
@@ -1141,3 +1187,75 @@ skill, that section was corrected and names the line ("S.n"); the appendix gover
   balustrade after DIN 18008-4; wind loads are added to the guard loads except for
   "Brüstungen von Balkonen und Laubengängen". The BayTB names no height either. —
   `sources/text/baytb-november-2025/part-001.md` (line 420), `part-002.md` (lines 30, 742).
+
+### S.4 DIN 18065:2020-08 — read in the standard itself
+
+Read in the edition of August 2020 (`sources/text/din-18065/`, tables and figures of the
+spiral stair transcribed by hand from the PDF). It governs over S.1, which is the same
+table as a book prints it.
+
+- Confirmed (Tabelle 1, 6.1.2, houses with at most two dwellings and inside dwellings): a
+  necessary stair has a usable width of at least 80 cm, a rise of 140 to 200 mm and a going
+  of 230 to 370 mm; an additional stair at least 50 cm, 140 to 210 mm and 210 to 370 mm.
+  In other buildings a necessary stair has at least 100 cm, 140 to 190 mm and 260 to
+  370 mm. — `part-001.md` lines 556–571 (page 11).
+- Confirmed (6.1.3): the step rule 2s + a lies between 590 mm and 650 mm. — `part-001.md`
+  lines 573–578 (page 11). §4.1 keeps 600 to 650 mm as its comfort band.
+- Confirmed (4.3): the going is measured on the walking line (Lauflinie); where it curves,
+  the going is the chord between the nosings. — `part-001.md` lines 396–401 (page 8).
+- Confirmed (4.6, 6.5): the clear headroom of a stair is at least 200 cm, measured upright
+  from the plane through the nosings to the underside of the parts above. — `part-001.md`
+  lines 423–427 (page 9) and 665–670 (page 13).
+- Confirmed (4.11): the usable width is measured between bounding surfaces and the inner
+  edges of handrails. — `part-001.md` lines 452–455 (page 9).
+- Confirmed (6.2.1, 6.2.4): winders have at least 100 mm at the narrowest point of the
+  usable width, 50 mm in houses with at most two dwellings; on a spindle stair in such a
+  house no minimum is set at the narrow end, elsewhere 100 mm. — `part-001.md` lines 581–586
+  and 606–609 (pages 11–12).
+- Confirmed (6.6): the gap between a flight and walls or guards is at most 6 cm. —
+  `part-001.md` lines 671–673 (page 13).
+- Confirmed (6.9.2): in houses with at most two dwellings a guard is at least 90 cm high
+  at a fall height up to 12 m, 110 cm above. — `part-001.md` lines 710–733 (page 14).
+- Confirmed (8.1, 8.2, Bild A.23): up to a usable width of 100 cm the walking zone is 2/10
+  of the usable width in the middle of the stair; above 100 cm it is 20 cm wide and 40 cm
+  from the inner edge of the handrail. — `part-001.md` lines 876–885 and 1280–1296
+  (pages 17, 34).
+- Confirmed (8.4, Bild A.24, A.25): on a spindle stair the walking zone is 2/10 of the
+  usable width; up to a usable width of 130 cm its inner boundary lies in the middle of the
+  usable width, and it lies at most 40 cm from the outer boundary. At 80 cm usable width:
+  40 cm from the spindle side, a walking zone of 16 cm, 24 cm to the handrail side. —
+  `part-001.md` lines 893–896 (page 17), `part-002.md` lines 16–57 (pages 35–36).
+- Confirmed (8.6): the Lauflinie is chosen freely inside the walking zone; it is continuous
+  and has no kinks. — `part-001.md` lines 907–909 (page 18).
+- Older rule: *Bausanierung* 13.5.1 prints a Lauflinie in the middle up to 1.0 m usable
+  width and about 50 cm from the narrow end above, a going of at least 10 cm inside and at
+  most 40 cm outside. DIN 18065:2020-08 governs; §7.1 follows it. —
+  `sources/text/bausanierung/part-023.md` (13.5.1).
+- Still VERIFY: whether a winder or spindle stair may be the necessary stair of a house is
+  state law (LBO); DIN 18065 sets only its dimensions.
+
+### S.5 Defaults of this library — the spindle stair
+
+Not from a book: the choices that let a spindle stair be drawn from an outer diameter
+within the limits of S.4.
+
+- Library default: the spindle is a steel tube of 150 mm diameter, and a spindle from 100 mm
+  to 300 mm is accepted; the usual tube of a house stair, thin enough to leave the walking
+  width.
+- Library default: handrail and guard on the outer side take 60 mm off the outer radius,
+  so the usable width is the outer radius less the spindle radius less 60 mm; DIN 18065
+  measures to the inner edge of the handrail (S.4).
+- Library default: the Lauflinie of a spindle stair runs in the middle of the walking zone,
+  at the spindle radius plus 0.6 times the usable width; DIN 18065 lets it lie anywhere in
+  the zone (S.4), the middle keeps a margin to both sides.
+- Library default: the going on the Lauflinie is 630 mm less twice the rise, made smaller
+  down to 590 mm less twice the rise where the headroom under the stair's own upper turn
+  needs it.
+- Library default: the treads of a spindle stair are drawn 50 mm thick, and the headroom
+  under the upper turn is measured to their underside.
+- Library default: the outer diameter is 2.00 m, the round size above the 1.87 m that a
+  usable width of 80 cm needs with the spindle and handrail above; a spindle stair is
+  drawn up to an outer diameter of 3.00 m, a larger round stair is a Wendeltreppe about an
+  open well, built to measure.
+- Library default: the floor opening above a spindle stair is a circle 50 mm wider in
+  radius than the stair, inside the gap of at most 6 cm of DIN 18065 (S.4).
