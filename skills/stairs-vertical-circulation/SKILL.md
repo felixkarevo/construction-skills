@@ -1136,3 +1136,8 @@ skill, that section was corrected and names the line ("S.n"); the appendix gover
   0.50 m lower (balconies, loggias, galleries, landings), unless it defeats the purpose of
   the area; the article names no height, so the heights above apply. —
   `sources/text/baybo/part-006.md`.
+- Confirmed (BayTB, edition of November 2025): in Bavaria a guard is built after the
+  ETB-Richtlinie "Bauteile, die gegen Absturz sichern" (A 1.2.1.3, Anlage A 1.2.1/8), a glass
+  balustrade after DIN 18008-4; wind loads are added to the guard loads except for
+  "Brüstungen von Balkonen und Laubengängen". The BayTB names no height either. —
+  `sources/text/baytb-november-2025/part-001.md` (line 420), `part-002.md` (lines 30, 742).
