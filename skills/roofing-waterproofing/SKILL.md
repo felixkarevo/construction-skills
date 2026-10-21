@@ -748,6 +748,14 @@ The **concrete itself** is the sealing element, uncoated. Conditions:
   space between two rafters is the frame width + 6 cm; a wider window needs the rafters in
   its way cut and carried by trimmers (Wechsel). Windows side by side or above one another
   under one flashing stand about 19 cm apart.
+- **Floor-deep at the knee wall (Kniestockelement, S.5).** A roof window whose lower edge sits
+  right above the knee wall can be carried down to the floor by a vertical unit set into the
+  knee wall below it, as wide as the window and joined to it under one complete flashing.
+  Makers sell such units 60, 95, 115 and 137 cm high in the widths of their windows, for a
+  window above at a pitch of 15° to 55°. Where the glass reaches lower than the window
+  parapet a fall height asks (0.80 m up to 12 m, `stairs-vertical-circulation` S.3), the
+  opening needs protection against falling up to that height: a railing in front of it, or
+  a fixed lower pane built as fall-protecting glazing (DIN 18008-4).
 - **Where a roof window may stand.** Over the room it lights: its lower edge above the inner
   face of the eaves wall, its sides between the gable walls, and roof left above it to the
   ridge (S.3). In Bavaria a roof window that is a second way out has its lower edge, or a
@@ -1292,6 +1300,13 @@ here is a design value.
   cut and carried by a trimmer (Wechsel) above and below the opening, drawn with the section
   of the rafters and 0.03 m clear of the window frame on every side (S.5: frame width + 6 cm
   between the rafters).
+- Vertical unit below a roof window at the knee wall (Kniestockelement, §11.1): drawn only under
+  a roof window whose lower edge sits right above the inner face of the eaves wall, as wide as
+  the window, in the eaves wall below it. It reaches up to where the underside of the roof meets
+  the outer face of the knee wall; the strip of roof over the wall between the unit and the
+  window stands for the joint and the complete flashing that join them. Its lower edge lies on
+  the floor, unless the knee wall is higher than the tallest unit of S.5: then it lies 1.37 m
+  below the top of the unit. A knee wall lower than 0.60 m, the lowest unit of S.5, takes none.
 - Dormers and roof cut-outs (§11.4) are drawn only on a gable roof over an attic storey with a
   knee wall. The front of a dormer is the eaves wall itself, raised up to the dormer roof
   between its cheeks; the eaves run on in front of it with the overhang of the main roof.
@@ -1357,6 +1372,21 @@ another maker or product differs. Read the current product sheet before real use
 - Practice (VELUX, PDF p. 5 and p. 92): the fixed extension units GIU/GIL in the slope are
   92 cm long, "Fenster und Zusatzelement werden direkt Blendrahmen an Blendrahmen miteinander
   verbunden"; units for a knee wall below the window (VIU/VFE) are 60 to 137 cm high.
+- Practice (VELUX price list, PDF p. 5 and p. 95): the vertical units below a window at a knee
+  wall come in the heights 60, 95, 115 and 137 cm and in the widths 78, 94, 114 and 134 cm, the
+  widths of the windows they join; "Dachneigungsbereich 90° 15°–55° für das darüber liegende
+  Dachfenster je nach Wahl des Fenstertyps und Eindeckrahmens"; "Für den Einbau von Dachfenster
+  und Zusatzelement wird ein Komplett-Eindeckrahmen benötigt"; for the units in a wall of full
+  storey height (VFA/VFB) "Brüstungshöhe für VFA/VFB beträgt ca. 90 cm".
+- Confirmed (MBO 2016-05 § 38, as a book prints it): window parapets with a fall height up to
+  12 m at least 0.80 m high, above 12 m at least 0.90 m; "Geringere Brüstungshöhen sind
+  demgemäß nur dann zulässig, wenn durch andere Vorrichtungen wie z. B. Geländer die
+  vorgeschriebenen Mindesthöhen eingehalten werden." — *Bausanierung* 14.6.5
+  (`sources/text/bausanierung/part-025.md`, line 237); the same in `stairs-vertical-circulation`
+  S.3, with the Bavarian code that names no height.
+- Confirmed (BayTB, edition of November 2025, A 1.2.7.1): glazing that protects against falling
+  is built after DIN 18008-4:2013-07, "Zusatzanforderungen an absturzsichernde Verglasungen". —
+  `sources/text/baytb-november-2025/part-001.md` (lines 668-674).
 - Practice (VELUX document 7049, `dachfenster-hersteller/part-002.md`): "Blendrahmenbreite
   + 6 cm = lichtes Sparrenmaß".
 - Typical (Neufert, *Architects' Data*, 3rd ed. 2002, p. 181, figures 5, 12 and 13, read on
