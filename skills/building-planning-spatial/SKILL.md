@@ -562,6 +562,14 @@ counts in full, between 1 m and 2 m at half, below 1 m not at all (Wohnflächenv
 **T2, VERIFY**). A local design statute may cap the knee wall (S.4); how the model draws one:
 S.3.
 
+**A flat ceiling under the ridge (Kehlbalkenlage, Decke zum Spitzboden).** Often the attic
+rooms are closed at the top by a flat ceiling between the two slopes, at the level of the
+collar beams that brace the rafter pairs (S.4); the triangle above it is a loft (Spitzboden).
+A room's clear height is then that ceiling in the middle and the slope at the sides, and the
+rules above count its floor by both. A loft without a habitable room may be reached by a
+folding stair or a ladder in buildings of classes 1 and 2; a usable roof space otherwise
+needs a stair (S.4). How the model draws such a ceiling: S.3.
+
 **Dormers and roof cut-outs.** A dormer lifts the slope over part of the attic floor and
 gives it a window in an upright wall; a roof cut-out opens the slope to an outdoor terrace in
 front of a rear wall (`roofing-waterproofing` §11.4). Under a dormer the clear height is that
@@ -1640,6 +1648,16 @@ here is a design value.
   height is then the height of a flat ceiling in the middle of the attic (a collar-beam
   ceiling), which the model does not draw; a room open to the ridge takes a storey height up
   to the ridge.
+- Ceiling under the loft (collar-beam ceiling): drawn as a plate 0.20 m thick, the thickness
+  the model gives a floor slab, with its underside at the storey height, so that the rooms keep
+  the clear height the storey height gives them and the inner walls end under it. It spans
+  between the two slopes, which cut its edges, and between the gable walls. Its top stays at
+  least 0.50 m below the underside of the roof at the ridge, room for the ridge purlin and for a
+  loft one can get into. The books give no thickness of such a ceiling.
+- With that ceiling a roof window ends below its underside, since above it a window would
+  light the loft and not the room; no stair is drawn up to the loft (a folding stair is not
+  drawn); over the terrace of a roof cut-out the ceiling is left open; a dormer stays as it is,
+  and where its roof rises higher than the ceiling, the room under it ends at the ceiling.
 - Usable depth of a loggia or balcony: at least 1.50 m from the wall to the guard. A small
   table with a chair pulled out from it fits across that depth (§3.3, Dining: 700 to pull a
   chair out); the books give no depth of their own. The same 1.50 m is what a balcony may
@@ -1654,4 +1672,14 @@ here is a design value.
   nicht mehr als Kniestock". Other towns set other numbers or none; the B-Plan rules first.
 - Typical (Neufert 2002 p. 181, `roofing-waterproofing` S.5): a roof window at the knee wall
   has its lower edge 0.90–1.10 m above the floor.
+- Confirmed (BayBO Art. 32 (1) and (2), version in force from 2026-05-01): "Jedes nicht zu
+  ebener Erde liegende Geschoss und der benutzbare Dachraum eines Gebäudes müssen über
+  mindestens eine Treppe zugänglich sein"; "In Gebäuden der Gebäudeklassen 1 und 2 sind
+  einschiebbare Treppen und Leitern als Zugang zu einem Dachraum ohne Aufenthaltsraum
+  zulässig." — `sources/text/baybo/part-004.md`.
+- Typical (*Holzbausanierung beim Bauen im Bestand* 5.4.4, `sources/text/holzbausanierung-beim-bauen-im-bestand/part-012.md`
+  lines 446-456): in a rafter roof "Lediglich zur Begrenzung der Durchbiegung der Sparren sind
+  Abstützungen (d. h. z. B. Scheren, Kehlbalken) notwendig"; stiffened to a plate, the
+  collar-beam level carries horizontal forces to the gable and inner walls (the
+  "unverschiebliche Kehlbalkendach"). Sizing is the engineer's (`timber-steel-design`).
 

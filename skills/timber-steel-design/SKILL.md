@@ -1958,3 +1958,6 @@ here is a design value.
 - Purlin of width 12 cm: depth from the glulam ratio of §2.3, at least 16 cm, rounded up in
   steps of 4 cm (the row of width 12 in S.2).
 - Posts 12/12 cm and eaves plate (Fußpfette) 12/12 cm: a preferred section of S.2.
+- Collar beams (Kehlbalken) under a ceiling to the loft (`building-planning-spatial` 3.4): one
+  on every rafter, at the level of that ceiling, as wide as the rafters, the depth by the same
+  rule as theirs over the span between the two slopes.
