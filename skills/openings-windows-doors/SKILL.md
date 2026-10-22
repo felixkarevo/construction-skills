@@ -691,6 +691,10 @@ concentrate at window perimeters more than anywhere else in the envelope.
   Prefer **integrated-in-wall insulated boxes (e.g. PB/EPS-shelled)** or
   window-attached boxes ahead of the lintel line; a bare PP box in a cold
   reveal is the classic black-streak ceiling failure.
+- **Hinged shutters (Klappläden, Schlagläden)** hang in front of the façade
+  and do not enter the wall build-up: no box, no thermal bridge (S.3). Each
+  leaf needs free wall beside the opening to lie on when open; the sizes this
+  library draws with are in S.4.
 - Shading design: F_s external roller-shutter/louvre closed ≈ 0.30–0.35,
   canopy 0.50–0.55, internal light blind 0.70–0.80 **[VERIFY]** — this feeds
   the summer overheat check (a_W ratio limits: vertical façades ~10–15 % by
@@ -1415,3 +1419,34 @@ mason's or the engineer's figure replaces them, and nothing here is a design val
   same span, so that the wall §3.3 asks for above an opening also holds the arch.
 - For a way out in an emergency, a round-arched window counts with the largest rectangle
   that fits inside the opening; the part of the arch beside it does not count.
+
+### S.3 Hinged shutters (Klappläden)
+
+- Confirmed (description, no figure): hinged shutters "hängen vor der Fassade – wo sie auch
+  als Gestaltungselement das Erscheinungsbild des Hauses prägen – und greifen nicht ins
+  bauphysikalische Gefüge der Außenwand ein"; they are named as the alternative to a roller
+  shutter box built into the wall, which forms a thermal bridge. — Stahr, *Sanierung von
+  baulichen Anlagen* (2018), 4.4.3.7, "3. Fensterläden"
+  (`sanierung-von-baulichen-anlagen/part-009.md`, l. 246–252).
+- Confirmed (description, no figure): shutters ("Klapp-, Schlag- oder Windläden") improve
+  sound and thermal insulation, partly considerably. — *Bausanierung*, 7th ed. (2022),
+  14.7.3 (`bausanierung/part-025.md`, l. 387).
+- Neither book gives sizes of a leaf, its thickness or the wall it needs beside the
+  opening; S.4 holds the choices of this library.
+
+### S.4 Defaults of this library for hinged shutters
+
+**Not from a book.** These are choices of this library, made so that a simple house can be
+modelled with a pair of hinged shutters on a window or a glazed door. Tier T4, massing
+only: the joiner's or the manufacturer's sheet replaces them.
+
+- A pair of hinged shutters has two leaves, each as wide as half the opening plus 0.03 m of
+  overlap at the edge of the opening, and as high as the opening; under a round arch each
+  leaf follows its half of the arch.
+- A shutter leaf is drawn 0.04 m thick, as a wooden leaf of frame and boards or louvres.
+- An open leaf lies on the façade beside the opening, 0.03 m in front of the outer face of
+  the wall, hinged at the edge of the opening.
+- The wall beside the opening must be free for one leaf on each side, up to 0.10 m from the
+  end of the wall: no other opening and no leaf of a neighbouring opening may lie there. A
+  pier too narrow for that takes folding shutters (Faltläden), which are not drawn.
+- Shutters go only on an opening in an outer wall, never on a window in the roof slope.
