@@ -55,6 +55,11 @@ Every skill carries a **reality check** (what the output may and may not be used
 
 Skills and documentation: MIT. Example model & renders: CC-BY-4.0 (attribution appreciated).
 
+The reference literature the skills were distilled from (`sources/`) is a private library and
+is **not distributed** with this repository. Every re-checked value carries a bibliographic
+citation (book, table/section, page) in the skill's Appendix S, so provenance is traceable
+without the books themselves.
+
 ## Contributing
 
 PRs welcome: new discipline skills, corrections to standards figures (with edition date), more FreeCAD gotchas, ports of the tier system to other jurisdictions. Keep the house style: frontmatter `name`+`description`, reality check, evidentiary tiers, numeric density, `VERIFY` tags for anything not grounded in a standard's current text — and no vendor/agent branding inside skill content.

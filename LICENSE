@@ -20,6 +20,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-Note: the FreeCAD model file (model/House5Marla_Rawalpindi.FCStd) and design
-document (docs/DESIGN_DOCUMENT.md) are additionally licensed CC-BY-4.0 —
-see README.md.
+Note: the FreeCAD model file (example/example-house.FCStd) and design
+document (example/design_document_legacy.md) are additionally licensed
+CC-BY-4.0 — see README.md.

@@ -509,7 +509,7 @@ The basic module is **M = 100 mm**; multi-modules in DACH/international practice
 (300 mm), 6M (600 mm), 12M (1200 mm) — the same 1 M = 100 mm anchor already used in §3.4 and
 Appendix A (ISO 1006/2848, DIN 4172), restated here with the reference-point vocabulary that
 resolves *where inside its coordination space* a component sits (Neufert, *Architects' Data*
-(Neufert_2002.pdf excerpt), p.34):
+2002 edition, p.34):
 
 - **Coordinate space:** a coordinate system is a set of planes at right angles to each other,
   spaced per the coordinate dimensions; a component's nominal size, plus the joint/tolerance

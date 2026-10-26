@@ -125,7 +125,7 @@ Minimum depth of representative boreholes (Aufschlusspunkte) **below the planned
 | Cuts / embankments | cut: 20–40 % of cut depth below formation; embankment: below the potential slip surface |
 
 **Generic cross-check for retaining-wall trial bores** (non-DACH-specific, international
-handbook rule of thumb — Neufert, *Architects' Data* (Neufert_2002.pdf excerpt), p.54): minimum
+handbook rule of thumb — Neufert, *Architects' Data*, 2002 edition, p. 54): minimum
 trial-bore depth T below the base of a retaining structure, measured from the bore-hole
 reference level, T ≥ 3b or ≥ 6 m for a free-standing or rear-anchored in-situ-concrete or
 sheet-pile retaining wall (b = the greatest embedment/bore depth among the walls being
@@ -648,7 +648,7 @@ embedment into bond stratum ≥ 2.5–5 m per tables.
 Minimum centre-to-centre spacing per EA-Pfähle Bild 3 (values not reliably digested): the working anchors used here are **≥ 1.5–2 × shaft diameter for driven/displacement piles, larger (~2.5–3×) for bored friction piles in cohesive ground** (VERIFY exact grid). A pile cap (Fundamentkopf / cross-cap or a continuous Streifen under a wall line) ties piles into one unit and transfers the load including its own weight; cap concrete ≥ C25/30, embedment of pile head into cap ≥ ~10–15 cm plus reinforcement coupling (detailing is engineer work). Heave: driving displacement piles into soft clay lifts neighbouring pile positions — sequence from the centre outward and check uplift on already-cast piles (Reibungsminderung / Zuglast).
 
 **Generic cross-check (non-DACH-specific, international handbook rule of thumb):** Neufert,
-*Architects' Data* (Neufert_2002.pdf excerpt), p.54, gives simple minimum centre-to-centre pile
+*Architects' Data*, 2002 edition, p. 54, gives simple minimum centre-to-centre pile
 spacings independent of soil/EA-Pfähle load-transfer classification — useful only as a sanity
 check on the EA-Pfähle-derived spacings above, never a substitute: bored piles (Bohrpfähle),
 shaft spacing ≥ 3d (d = shaft diameter), widened-base spacing ≥ 2d_r (d_r = base/toe diameter),
@@ -725,7 +725,7 @@ A basement wall cast against a floor slab and base slab cannot move enough to mo
 ### 8.4 Retaining wall proportioning & checks
 
 **Generic wall-type typology (non-DACH-specific cross-reference):** Neufert, *Architects' Data*
-(Neufert_2002.pdf excerpt), p.54, groups retaining structures rated for soil-pressure retention
+2002 edition, p.54, groups retaining structures rated for soil-pressure retention
 into six built-practice types — useful for classifying which DIN 4085 earth-pressure case
 (§8.2) applies before any proportioning arithmetic: (a) free-standing in-situ concrete or
 sheet-pile wall, ground retained on one side only; (b) as (a) but rear-anchored; (c) in-situ

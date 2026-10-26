@@ -299,8 +299,8 @@ Still-air layer resistance R_g [m²K/W] by thickness (up / horizontal / down):
   hollow-core 100 mm: 0.15/0.05) — use table values, not 1D calc, for
   unreinforced-rib decks. VERIFY edition.
 
-**Generic material-property cross-check** (non-edition-specific; Neufert, *Architects' Data*
-(Neufert_2002.pdf excerpt), p.114): thermal resistance 1/Λ [m²K/W] by construction thickness for
+**Generic material-property cross-check** (non-edition-specific; Neufert, *Architects' Data*,
+2002 edition, p. 114): thermal resistance 1/Λ [m²K/W] by construction thickness for
 unplastered reinforced-concrete and hollow-clay-block floor systems, given as (average value in
 the field / worst-point value through the rib or web) — a physical-property cross-check against
 the DIN 4108-4 catalogue above, not a substitute for it. **VERIFY every row against the current

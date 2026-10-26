@@ -670,7 +670,7 @@ argument, and the numbers win.
 3.2's room bands and 3.3's furniture clearances are *derived* numbers. This
 subsection tabulates the primary anthropometric data they were derived from —
 the "Man: Dimensions and Space Requirements" plates of Neufert's
-Measurement-Basis chapter (English ed., Neufert_2002.pdf excerpt, pp. 16–17;
+Measurement-Basis chapter (2002 English edition, pp. 16–17;
 the classic "little man diagram" lineage referenced generically at 3.3 and in
 the tier table, Section 0). **These are body-and-movement geometry, not a
 DIN standard and not German law** — where DIN 18040-2 (barrier-free) requires
@@ -743,7 +743,7 @@ were built on, and it is what to show a client who wants to cut a passage to
 700 mm or a bed clearance to 400 mm: below the one-person-facing envelope
 (625 mm) or the two-people-passing envelope (1000 mm), the room stops working
 as a room, independent of any code minimum. **Cite as:** Neufert, Architects'
-Data (English ed., Neufert_2002.pdf excerpt), p.16 (body measurements/
+Data (2002 English edition), p. 16 (body measurements/
 furniture) or p.17 (space requirements/circulation).
 
 ### 3.10 Outdoor space on a storey — loggia, balcony, roof terrace
@@ -1512,7 +1512,7 @@ Atrium/L/split items (2.6) need explicit Tragwerksplaner review."*
 | **DIN 18040-2; DIN 1946-2; DIN 1986-100** | barrier-free (claimed-only); Lüftungskonzept / drainage gradients | T2, VERIFY editions |
 | **DIN EN 1998-1/NA** | seismic zones (mostly 0; Oberrheingraben/Alpine fringe) | T2, VERIFY |
 | **conception digest (structural rules)** | spans 5–7 m, one-way/30, 62.5 cm stud grid, ring-beam anchors, lintel spans | T2-rules-of-thumb, VERIFY |
-| **Neufert Architects' Data / market norms** | furniture clearances, room-size bands (3.2–3.3); body-dimension/movement-envelope tables, English ed. Neufert_2002.pdf pp.16–17 (3.9) | T4 |
+| **Neufert Architects' Data / market norms** | furniture clearances, room-size bands (3.2–3.3); body-dimension/movement-envelope tables, 2002 English edition, pp. 16–17 (3.9) | T4 |
 | WoFlV; generic international habitable minimums (7.5/9.5 m²) | WFL bands; sanity floor ONLY | T1 / T3 |
 
 ## Appendix B — Rules of thumb (metric)
