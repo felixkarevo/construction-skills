@@ -48,8 +48,13 @@ one-line descriptions.
   real project — `example/work_log_legacy.md` documents what was actually
   verified (volume-diff openings, load take-down footings, CalculiX FEM runs)
   versus what wasn't.
-- **`sources/`** holds the literature this library was distilled from —
-  consult it for provenance when a figure looks wrong before changing it.
+- **`sources/`** (maintainers only — **not distributed** with the public
+  repo) holds the literature this library was distilled from. It is
+  gitignored and was never committed; keep it that way — these are
+  copyrighted books. If you have it, consult it for provenance when a figure
+  looks wrong before changing it. Contributors without it should rely on the
+  Appendix S citations (book, table/section, page) and open an issue instead
+  of guessing.
 
 ## Adding a new skill
 

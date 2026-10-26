@@ -40,7 +40,7 @@ Every skill carries a **reality check** (what the output may and may not be used
 
 ## The example model (`example/`)
 
-`example-house.FCStd` — a real BIM model with 700+ parametric objects (walls with verified void openings, footings, tie columns, rebar cages, doors/windows, MEP risers, electrical schedule), built and verified entirely through the MCP bridge: opening geometry checked by volume-diff, footings by load take-down + bearing check, selected members by actual CalculiX runs via `run_fem_analysis`. `example/work_log_legacy.md` documents what broke and how it was fixed — several FreeCAD API gotchas in the core skill came from this log. The model's original commission was a compact South-Asian plot; it is kept as a historical demonstration of workflow, not as planning guidance (see the banner in the docs).
+`example-house.FCStd` — a real BIM model with 700+ parametric objects (walls with verified void openings, footings, tie columns, rebar cages, doors/windows, MEP risers, electrical schedule), built and verified entirely through the MCP bridge: opening geometry checked by volume-diff, footings by load take-down + bearing check, selected members by actual CalculiX runs via `run_fem_analysis`. `example/work_log_legacy.md` documents what broke and how it was fixed — several FreeCAD API gotchas in the core skill came from this log. The model's original commission was a compact South-Asian plot; it is kept as a historical demonstration of workflow, not as planning guidance (see the banner in `example/design_document_legacy.md`).
 
 ## ⚠️ Reality check — read before building anything
 
