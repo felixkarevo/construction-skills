@@ -1,0 +1,52 @@
+{
+  "name": "construction-skills",
+  "owner": {
+    "name": "felixkarevo"
+  },
+  "metadata": {
+    "pluginRoot": "./"
+  },
+  "plugins": [
+    {
+      "name": "construction-skills",
+      "source": "./",
+      "description": "33 discipline skills for DACH building design and engineering: planning, structural, building physics, materials, detailing, services (TGA/ELT), delivery, whole-life, BIM/IFC and FreeCAD modeling. Read the root SKILL.md router first; simple-first-building governs every design decision.",
+      "skills": [
+        "./skills/accessibility-universal-design",
+        "./skills/bim-management",
+        "./skills/building-acoustics",
+        "./skills/building-materials",
+        "./skills/building-physics-thermal-moisture",
+        "./skills/building-planning-spatial",
+        "./skills/building-regulations-permits",
+        "./skills/building-renovation-refurbishment",
+        "./skills/building-services-tga",
+        "./skills/building-typology",
+        "./skills/concrete-detailing",
+        "./skills/construction-detailing",
+        "./skills/construction-drawing-sketching",
+        "./skills/construction-freecad-bim",
+        "./skills/construction-scheduling-site",
+        "./skills/construction-skills-router",
+        "./skills/cost-management-din276",
+        "./skills/electrical-installations",
+        "./skills/existing-structures-retrofit",
+        "./skills/fire-protection-building",
+        "./skills/geotechnics-foundations",
+        "./skills/ifc-model-validation",
+        "./skills/ifcopenshell-bim-authoring",
+        "./skills/masonry-construction",
+        "./skills/openings-windows-doors",
+        "./skills/roofing-waterproofing",
+        "./skills/seismic-design",
+        "./skills/simple-first-building",
+        "./skills/stairs-vertical-circulation",
+        "./skills/structural-analysis",
+        "./skills/structural-systems",
+        "./skills/sustainable-construction",
+        "./skills/timber-building-renovation",
+        "./skills/timber-steel-design"
+      ]
+    }
+  ]
+}

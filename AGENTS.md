@@ -1,12 +1,14 @@
 # AGENTS.md
 
 This repo is a reference library, not an application — 33 discipline `SKILL.md`
-files under `skills/*` covering DACH (Germany/Austria/Switzerland) building
-design and engineering, plus a live FreeCAD BIM demo under `example/`.
+files plus the `construction-skills-router` under `skills/*` covering DACH
+(Germany/Austria/Switzerland) building design and engineering, plus a live
+FreeCAD BIM demo under `example/`.
 
 ## Start here
 
-**Read the root [`SKILL.md`](SKILL.md) first**, before opening any file under
+**Read the router [`skills/construction-skills-router/SKILL.md`](skills/construction-skills-router/SKILL.md)
+first**, before opening any other file under
 `skills/*`. It's a router: it maps task keywords to the owning skill(s), gives
 multi-skill sequences for project-level asks, and states Rule Zero —
 `simple-first-building` (the complexity-ladder / civil-law governing skill)
@@ -60,10 +62,17 @@ one-line descriptions.
 
 Follow the pattern of an existing skill closest to the new topic (frontmatter,
 reality check, evidentiary tiers, `VERIFY` tags). Then:
-1. Add it to the root [`SKILL.md`](SKILL.md) router's lookup table (and, if it
-   changes a project-level sequence, the task-recipes section).
+1. Add it to the router's ([`skills/construction-skills-router/SKILL.md`](skills/construction-skills-router/SKILL.md))
+   lookup table (and, if it changes a project-level sequence, the
+   task-recipes section).
 2. Add it to the matching category row in `README.md`'s "The skill library"
    table.
+3. Add it to the `skills` array in `.claude-plugin/marketplace.json` (keeps
+   `npx skills` / Claude Code marketplace / npm-sync discovery complete).
+
+Install tooling: `package.json` (npm/bun git-URL install, `files` limited to
+`skills/` + docs) and `.claude-plugin/marketplace.json` (plugin manifest) —
+no build step, no dependencies; keep both in sync with the skill set.
 
 ## Reality check
 

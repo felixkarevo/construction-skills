@@ -10,7 +10,26 @@ The repository also bundles a real, verifiable demo: a complete residential BIM 
 
 ## How to use
 
-1. **Load the skills** into your agent's skill/knowledge directory (most agents accept a folder of `SKILL.md` files, e.g. `.claude/skills/`, `skills/`, or system-prompt includes). Every file is self-contained reference material with frontmatter (`name`, `description`). The root [`SKILL.md`](SKILL.md) is a **router**: it maps tasks/keywords to the right discipline skill(s) and gives the multi-skill sequence for project-level asks — consult it first, especially for anything spanning more than one discipline. Agent harnesses that read an `AGENTS.md` will pick this up automatically via [`AGENTS.md`](AGENTS.md).
+### Install
+
+Pick one — all agent-neutral:
+
+- **`npx skills` / `bunx skills`** (OpenCode, Claude Code, Codex, Cursor, [75+ agents](https://github.com/vercel-labs/skills)):
+  ```bash
+  npx skills add felixkarevo/construction-skills        # pick skills + agents interactively
+  npx skills add felixkarevo/construction-skills --skill '*' -a claude-code   # all skills, one agent
+  ```
+- **npm / bun** (skills land in `node_modules`, then get linked into your agent's skill dirs):
+  ```bash
+  npm install -D github:felixkarevo/construction-skills   # or: bun add -d github:...
+  npx skills experimental_sync -y                          # links skills/* into agent dirs
+  ```
+- **Claude Code marketplace**: `/plugin marketplace add felixkarevo/construction-skills`, then install the `construction-skills` plugin.
+- **Plain git**: clone or submodule the repo and point your agent at `skills/` (each skill is one self-contained `SKILL.md` folder). No build step, no dependencies.
+
+### Use
+
+1. **Load the skills** into your agent's skill/knowledge directory (most agents accept a folder of `SKILL.md` files, e.g. `.claude/skills/`, `skills/`, or system-prompt includes). Every file is self-contained reference material with frontmatter (`name`, `description`). The [`construction-skills-router`](skills/construction-skills-router/SKILL.md) skill maps tasks/keywords to the right discipline skill(s) and gives the multi-skill sequence for project-level asks — consult it first, especially for anything spanning more than one discipline. Agent harnesses that read an `AGENTS.md` will pick this up automatically via [`AGENTS.md`](AGENTS.md).
 2. **Connect FreeCAD** with the [neka-nat/freecad-mcp](https://github.com/neka-nat/freecad-mcp) server:
    - Install FreeCAD **1.0+** (desktop GUI — the RPC bridge needs a live event loop, not headless).
    - Copy the `addon/FreeCADMCP` folder of the repo into FreeCAD's Mod directory (Linux: `~/.FreeCAD/Mod/` or `~/.local/share/FreeCAD/Mod/`; Windows: `%APPDATA%\FreeCAD\Mod\`; macOS: `~/Library/Application Support/FreeCAD/v1-1/Mod/`), restart FreeCAD, open the **MCP** workbench and **Start RPC Server** (an Auto-Start option exists).
@@ -19,7 +38,7 @@ The repository also bundles a real, verifiable demo: a complete residential BIM 
      { "mcpServers": { "freecad": { "command": "uvx", "args": ["freecad-mcp"] } } }
      ```
    - Tools exposed: `create_document`, `create_object`, `edit_object`, `delete_object`, `execute_code` (persistent Python namespace with `FreeCAD`/`App`/`Gui`), `insert_part_from_library`, `get_view`, `get_object(s)`, `list_documents`, `get_rpc_status`, and `run_fem_analysis` (CalculiX solver: von Mises, displacement, node count). Screenshot feedback can be toggled per call (`include_screenshot`, `view_name`) or globally (`--only-text-feedback`) to save tokens.
-3. **Set the standard first** — read [`skills/simple-first-building/SKILL.md`](skills/simple-first-building/SKILL.md): it fixes the complexity ladder (what "simple" means per discipline), the civil-law default machinery (§ 633 BGB, aarRdT, DIN presumption), how to deviate up or down lawfully, and the Gebäudetyp E / pilot-standard status. It's governing — the root router loads it alongside whatever specialist skill it points you to. Then read [`skills/construction-freecad-bim/SKILL.md`](skills/construction-freecad-bim/SKILL.md) for modeling mechanics; its "How this library fits" table also routes every task to the right discipline skill.
+3. **Set the standard first** — read [`skills/simple-first-building/SKILL.md`](skills/simple-first-building/SKILL.md): it fixes the complexity ladder (what "simple" means per discipline), the civil-law default machinery (§ 633 BGB, aarRdT, DIN presumption), how to deviate up or down lawfully, and the Gebäudetyp E / pilot-standard status. It's governing — the router loads it alongside whatever specialist skill it points you to. Then read [`skills/construction-freecad-bim/SKILL.md`](skills/construction-freecad-bim/SKILL.md) for modeling mechanics; its "How this library fits" table also routes every task to the right discipline skill.
 
 ## The skill library
 
@@ -36,7 +55,7 @@ The repository also bundles a real, verifiable demo: a complete residential BIM 
 
 **Reading order for a project:** `simple-first-building` (tier + ladder profile as contract text!) → `building-regulations-permits` + `building-planning-spatial` → `building-typology` → `structural-systems` → physics skills as governing constraints → detailing/materials skills → `building-services-tga` (+ `electrical-installations` for ELT depth) + `construction-scheduling-site` + `cost-management-din276` → `construction-freecad-bim` (+ `bim-management` for data discipline) → verification per `structural-analysis`.
 
-Every skill carries a **reality check** (what the output may and may not be used for) and an **evidentiary tier system** that separates law (`GEG`, `MBO`/`LBO`, Eurocode + NA as recognized rules of technique), standards-of-practice and tagged `VERIFY` placeholders — so a planning placeholder is never confused with a binding figure. Values that depend on jurisdiction or edition are explicitly marked for confirmation. Ten skills end with an **Appendix S: Source Check** (sections `S.1`, `S.2`, …): figures read again in the source books, with book and place; they govern over older figures, and library defaults that no book gives are labelled as such (see the router, [`SKILL.md`](SKILL.md)).
+Every skill carries a **reality check** (what the output may and may not be used for) and an **evidentiary tier system** that separates law (`GEG`, `MBO`/`LBO`, Eurocode + NA as recognized rules of technique), standards-of-practice and tagged `VERIFY` placeholders — so a planning placeholder is never confused with a binding figure. Values that depend on jurisdiction or edition are explicitly marked for confirmation. Ten skills end with an **Appendix S: Source Check** (sections `S.1`, `S.2`, …): figures read again in the source books, with book and place; they govern over older figures, and library defaults that no book gives are labelled as such (see the router, [`skills/construction-skills-router/SKILL.md`](skills/construction-skills-router/SKILL.md)).
 
 ## The example model (`example/`)
 

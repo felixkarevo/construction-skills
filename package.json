@@ -1,0 +1,29 @@
+{
+  "name": "construction-skills",
+  "version": "1.0.0",
+  "description": "33 agent-neutral DACH building design & engineering skills (Eurocodes, GEG/LBO, building physics, BIM/IFC, FreeCAD) for MCP-capable AI agents.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/felixkarevo/construction-skills.git"
+  },
+  "homepage": "https://github.com/felixkarevo/construction-skills",
+  "keywords": [
+    "agent-skills",
+    "construction",
+    "building-design",
+    "civil-engineering",
+    "eurocodes",
+    "din-standards",
+    "geg",
+    "freecad",
+    "bim",
+    "ifc"
+  ],
+  "files": [
+    "skills/",
+    "AGENTS.md",
+    "README.md",
+    "LICENSE"
+  ]
+}
